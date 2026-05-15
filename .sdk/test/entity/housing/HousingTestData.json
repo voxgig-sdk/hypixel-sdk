@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "housing": {
+      "HOUSING00": {
+        "hous": [],
+        "houses": {},
+        "success": true
+      },
+      "HOUSING01": {
+        "hous": [],
+        "houses": {},
+        "success": true
+      },
+      "HOUSING02": {
+        "hous": [],
+        "houses": {},
+        "success": true
+      }
+    }
+  },
+  "new": {
+    "housing": {
+      "housing_ref01": {
+        "hous": [],
+        "houses": {},
+        "success": true
+      }
+    }
+  }
+}

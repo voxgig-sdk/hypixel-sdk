@@ -1,0 +1,2045 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Hypixel API",
+    "description": "Official Hypixel API documentation for accessing player data, game information, resources, and more. Requires API key for authentication and has rate limits for requests.",
+    "version": "2.0.0",
+    "termsOfService": "https://developer.hypixel.net",
+    "contact": {
+      "name": "Hypixel API Support",
+      "url": "https://hypixel.net"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.hypixel.net",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKey": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Player Data",
+      "description": "Endpoints for retrieving player information"
+    },
+    {
+      "name": "Resources",
+      "description": "Game resources and metadata"
+    },
+    {
+      "name": "SkyBlock",
+      "description": "SkyBlock specific endpoints"
+    },
+    {
+      "name": "Guild",
+      "description": "Guild information"
+    },
+    {
+      "name": "Housing",
+      "description": "Housing related endpoints"
+    },
+    {
+      "name": "Other",
+      "description": "Additional utility endpoints"
+    }
+  ],
+  "paths": {
+    "/v2/player": {
+      "get": {
+        "tags": [
+          "Player Data"
+        ],
+        "summary": "Data of a specific player, including game stats",
+        "description": "Returns comprehensive player data including UUID, display name, rank, login times, and game statistics",
+        "operationId": "getPlayer",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "Player UUID (supports both dashed and undashed versions)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get player's data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "player": {
+                      "type": "object",
+                      "properties": {
+                        "uuid": {
+                          "type": "string"
+                        },
+                        "displayname": {
+                          "type": "string"
+                        },
+                        "rank": {
+                          "type": "string",
+                          "enum": [
+                            "ADMIN",
+                            "MODERATOR",
+                            "HELPER"
+                          ]
+                        },
+                        "packageRank": {
+                          "type": "string",
+                          "enum": [
+                            "MVP_PLUS",
+                            "MVP",
+                            "VIP_PLUS",
+                            "VIP"
+                          ]
+                        },
+                        "newPackageRank": {
+                          "type": "string",
+                          "enum": [
+                            "MVP_PLUS",
+                            "MVP",
+                            "VIP_PLUS",
+                            "VIP"
+                          ]
+                        },
+                        "monthlyPackageRank": {
+                          "type": "string",
+                          "enum": [
+                            "SUPERSTAR"
+                          ]
+                        },
+                        "firstLogin": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Unix timestamp in milliseconds"
+                        },
+                        "lastLogin": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Unix timestamp in milliseconds"
+                        },
+                        "lastLogout": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Unix timestamp in milliseconds"
+                        },
+                        "stats": {
+                          "type": "object",
+                          "description": "Game statistics organized by game type database name"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "The limit of requests per minute for the provided API key",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "The remaining amount of requests allowed for the current minute",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "The amount of seconds until the next minute and the reset of the API key usages",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Some data is missing, this is usually a field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access is forbidden, usually due to an invalid API key being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/recentgames": {
+      "get": {
+        "tags": [
+          "Player Data"
+        ],
+        "summary": "The recently played games of a specific player",
+        "description": "Returns the list of recently played games for a specific player",
+        "operationId": "getRecentGames",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "Player UUID (supports both dashed and undashed versions)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get player's recent game",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "uuid": {
+                      "type": "string"
+                    },
+                    "games": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "gameType": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string"
+                          },
+                          "map": {
+                            "type": "string"
+                          },
+                          "ended": {
+                            "type": "integer",
+                            "format": "int64"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Some data is missing, this is usually a field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access is forbidden, usually due to an invalid API key being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Some data provided is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/status": {
+      "get": {
+        "tags": [
+          "Player Data"
+        ],
+        "summary": "The current online status of a specific player",
+        "description": "Returns the current online status and session information for a specific player",
+        "operationId": "getPlayerStatus",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "Player UUID (supports both dashed and undashed versions)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get player status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "uuid": {
+                      "type": "string"
+                    },
+                    "session": {
+                      "type": "object",
+                      "properties": {
+                        "online": {
+                          "type": "boolean"
+                        },
+                        "gameType": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string"
+                        },
+                        "map": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Some data is missing, this is usually a field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access is forbidden, usually due to an invalid API key being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/guild": {
+      "get": {
+        "tags": [
+          "Guild"
+        ],
+        "summary": "Retrieve a Guild by a player, id, or name",
+        "description": "Returns guild information based on the provided query parameter. Only one query parameter should be used.",
+        "operationId": "getGuild",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Guild ObjectID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "player",
+            "in": "query",
+            "description": "Player UUID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Guild name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get guild information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "guild": {
+                      "type": "object",
+                      "description": "Guild data object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Some data is missing, this is usually a field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access is forbidden, usually due to an invalid API key being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/resources/games": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Game Information",
+        "description": "Returns information about Hypixel Games. This endpoint is in early development.",
+        "operationId": "getGames",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "games": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "databaseName": {
+                            "type": "string"
+                          },
+                          "modeNames": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/achievements": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Achievements",
+        "description": "Returns information about achievements",
+        "operationId": "getAchievements",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "achievements": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/challenges": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Challenges",
+        "description": "Returns information about challenges",
+        "operationId": "getChallenges",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "challenges": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/quests": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Quests",
+        "description": "Returns information about quests",
+        "operationId": "getQuests",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "quests": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/guilds/achievements": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Guild Achievements",
+        "description": "Returns information about guild achievements",
+        "operationId": "getGuildAchievements",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "one_time": {
+                      "type": "object"
+                    },
+                    "tiered": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/vanity/pets": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Vanity Pets",
+        "description": "Returns information about vanity pets",
+        "operationId": "getVanityPets",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "types": {
+                      "type": "object"
+                    },
+                    "rarities": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/vanity/companions": {
+      "get": {
+        "tags": [
+          "Resources"
+        ],
+        "summary": "Vanity Companions",
+        "description": "Returns information about vanity companions",
+        "operationId": "getVanityCompanions",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "types": {
+                      "type": "object"
+                    },
+                    "rarities": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/skyblock/collections": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Collections",
+        "description": "Information regarding Collections in the SkyBlock game",
+        "operationId": "getSkyBlockCollections",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "collections": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/skyblock/skills": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Skills",
+        "description": "Information regarding skills in the SkyBlock game",
+        "operationId": "getSkyBlockSkills",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "skills": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/skyblock/items": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Items",
+        "description": "Information regarding items in the SkyBlock game",
+        "operationId": "getSkyBlockItems",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "material": {
+                            "type": "string"
+                          },
+                          "color": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "tier": {
+                            "type": "string"
+                          },
+                          "stats": {
+                            "type": "object"
+                          },
+                          "npc_sell_price": {
+                            "type": "number"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/skyblock/election": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Election and Mayor",
+        "description": "Information regarding the current mayor and ongoing election in SkyBlock",
+        "operationId": "getSkyBlockElection",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "mayor": {
+                      "type": "object"
+                    },
+                    "current": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/resources/skyblock/bingo": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Current Bingo Event",
+        "description": "Information regarding the current bingo event and its goals",
+        "operationId": "getSkyBlockBingo",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "start": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "end": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "modifier": {
+                      "type": "string"
+                    },
+                    "goals": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "lore": {
+                            "type": "string"
+                          },
+                          "fullLore": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "tiers": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer"
+                            }
+                          },
+                          "progress": {
+                            "type": "integer"
+                          },
+                          "requiredAmount": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/skyblock/news": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "News",
+        "description": "Returns SkyBlock news items",
+        "operationId": "getSkyBlockNews",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "item": {
+                            "type": "object",
+                            "properties": {
+                              "material": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access is forbidden, usually due to an invalid API key being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/auction": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Request auction(s) by the auction UUID, player UUID, or profile UUID",
+        "description": "Returns the auctions selected by the provided query. Only one query parameter can be used in a single request, and cannot be filtered by multiple.",
+        "operationId": "getSkyBlockAuction",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "The auction UUID that you wish to request",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "player",
+            "in": "query",
+            "description": "The player UUID that you wish to request",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "The profile UUID that you wish to request",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "uuid": {
+                            "type": "string"
+                          },
+                          "auctioneer": {
+                            "type": "string"
+                          },
+                          "profile_id": {
+                            "type": "string"
+                          },
+                          "coop": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "start": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "end": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "item_name": {
+                            "type": "string"
+                          },
+                          "item_lore": {
+                            "type": "string"
+                          },
+                          "extra": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "tier": {
+                            "type": "string"
+                          },
+                          "starting_bid": {
+                            "type": "integer"
+                          },
+                          "item_bytes": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "integer"
+                              },
+                              "data": {
+                                "type": "string",
+                                "description": "Base64 encoded string containing gzipped NBT data"
+                              }
+                            }
+                          },
+                          "claimed": {
+                            "type": "boolean"
+                          },
+                          "claimed_bidders": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "highest_bid_amount": {
+                            "type": "integer"
+                          },
+                          "bids": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "auction_id": {
+                                  "type": "string"
+                                },
+                                "bidder": {
+                                  "type": "string"
+                                },
+                                "profile_id": {
+                                  "type": "string"
+                                },
+                                "amount": {
+                                  "type": "integer"
+                                },
+                                "timestamp": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Some data is missing, this is usually a field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access is forbidden, usually due to an invalid API key being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Some data provided is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/auctions": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Active auctions",
+        "description": "Returns the currently active auctions",
+        "operationId": "getSkyBlockAuctions",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "totalPages": {
+                      "type": "integer"
+                    },
+                    "totalAuctions": {
+                      "type": "integer"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/auctions_ended": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Recently ended auctions",
+        "description": "Returns recently ended auctions",
+        "operationId": "getSkyBlockAuctionsEnded",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "auctions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/bazaar": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Bazaar",
+        "description": "Returns bazaar information",
+        "operationId": "getSkyBlockBazaar",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "lastUpdated": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "products": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/profile": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Profile by UUID",
+        "description": "Returns SkyBlock profile data by profile UUID",
+        "operationId": "getSkyBlockProfile",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "Profile UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "profile": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/profiles": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Profiles by player",
+        "description": "Returns all SkyBlock profiles for a player",
+        "operationId": "getSkyBlockProfiles",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "Player UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "profiles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/museum": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Museum data by profile ID",
+        "description": "Returns museum data for a SkyBlock profile",
+        "operationId": "getSkyBlockMuseum",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "Profile UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "members": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/garden": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Garden data by profile ID",
+        "description": "Returns garden data for a SkyBlock profile",
+        "operationId": "getSkyBlockGarden",
+        "parameters": [
+          {
+            "name": "profile",
+            "in": "query",
+            "description": "Profile UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "garden": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/bingo": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Bingo data by player",
+        "description": "Returns bingo data for a player",
+        "operationId": "getSkyBlockPlayerBingo",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "Player UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/skyblock/firesales": {
+      "get": {
+        "tags": [
+          "SkyBlock"
+        ],
+        "summary": "Active/Upcoming Fire Sales",
+        "description": "Returns information about active and upcoming fire sales",
+        "operationId": "getSkyBlockFireSales",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "sales": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/housing/houses": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "summary": "The currently active public houses",
+        "description": "Returns a list of currently active public houses",
+        "operationId": "getHousingHouses",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "houses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/housing/house": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "summary": "Information about a specific house",
+        "description": "Returns detailed information about a specific house",
+        "operationId": "getHousingHouse",
+        "parameters": [
+          {
+            "name": "house",
+            "in": "query",
+            "description": "House UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "house": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/housing/player": {
+      "get": {
+        "tags": [
+          "Housing"
+        ],
+        "summary": "The public houses for a specific player",
+        "description": "Returns all public houses owned by a specific player",
+        "operationId": "getHousingPlayer",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "Player UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "houses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/boosters": {
+      "get": {
+        "tags": [
+          "Other"
+        ],
+        "summary": "Active Network Boosters",
+        "description": "Returns information about currently active network boosters",
+        "operationId": "getBoosters",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "boosters": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "boosterState": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/counts": {
+      "get": {
+        "tags": [
+          "Other"
+        ],
+        "summary": "Current Player Counts",
+        "description": "Returns current player counts across all games",
+        "operationId": "getPlayerCounts",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "playerCount": {
+                      "type": "integer"
+                    },
+                    "games": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/leaderboards": {
+      "get": {
+        "tags": [
+          "Other"
+        ],
+        "summary": "Current Leaderboards",
+        "description": "Returns current leaderboard information",
+        "operationId": "getLeaderboards",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "leaderboards": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    },
+    "/v2/punishmentstats": {
+      "get": {
+        "tags": [
+          "Other"
+        ],
+        "summary": "Punishment Statistics",
+        "description": "Returns punishment statistics for the network",
+        "operationId": "getPunishmentStats",
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "watchdog_lastMinute": {
+                      "type": "integer"
+                    },
+                    "staff_rollingDaily": {
+                      "type": "integer"
+                    },
+                    "watchdog_total": {
+                      "type": "integer"
+                    },
+                    "watchdog_rollingDaily": {
+                      "type": "integer"
+                    },
+                    "staff_total": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "apiKey",
+        "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+        "name": "API-Key",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "cause": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        }
+      }
+    }
+  }
+}

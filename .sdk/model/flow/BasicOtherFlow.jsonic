@@ -1,0 +1,40 @@
+# BasicOtherFlow
+
+main: kit: flow: BasicOtherFlow:
+{
+  entity: "other",
+  kind: "basic",
+  name: "BasicOtherFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "other_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "other_ref01",
+        srcdatavar: "other_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-other_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOtherFlow"
+}

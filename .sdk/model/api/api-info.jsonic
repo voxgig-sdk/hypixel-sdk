@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Hypixel API Support"
+        url: "https://hypixel.net"
+      }
+      description: "Official Hypixel API documentation for accessing player data, game information, resources, and more. Requires API key for authentication and has rate limits for requests."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.hypixel.net"
+        }
+      ]
+      termsOfService: "https://developer.hypixel.net"
+      title: "Hypixel API"
+      version: "2.0.0"
+    }
+  }
+}
+
+}

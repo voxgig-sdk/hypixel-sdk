@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "resource": {
+      "RESOURCE00": {
+        "achievement": {},
+        "challenge": {},
+        "game": {},
+        "last_updated": "s67",
+        "one_time": {},
+        "quest": {},
+        "rarity": {},
+        "success": false,
+        "tiered": {},
+        "type": {}
+      },
+      "RESOURCE01": {
+        "achievement": {},
+        "challenge": {},
+        "game": {},
+        "last_updated": "scb",
+        "one_time": {},
+        "quest": {},
+        "rarity": {},
+        "success": false,
+        "tiered": {},
+        "type": {}
+      },
+      "RESOURCE02": {
+        "achievement": {},
+        "challenge": {},
+        "game": {},
+        "last_updated": "s12f",
+        "one_time": {},
+        "quest": {},
+        "rarity": {},
+        "success": false,
+        "tiered": {},
+        "type": {}
+      }
+    }
+  },
+  "new": {
+    "resource": {
+      "resource_ref01": {
+        "achievement": {},
+        "challenge": {},
+        "game": {},
+        "last_updated": "s193",
+        "one_time": {},
+        "quest": {},
+        "rarity": {},
+        "success": false,
+        "tiered": {},
+        "type": {}
+      }
+    }
+  }
+}

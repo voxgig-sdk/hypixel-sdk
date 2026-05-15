@@ -1,0 +1,177 @@
+# Entity: resource
+
+main: kit: entity: resource: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "achievement"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "challenge"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "game"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "last_updated"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "one_time"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "quest"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "rarity"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "tiered"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "resource"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/v2/resources/achievements"
+          parts: [
+            "v2"
+            "resources"
+            "achievements"
+          ]
+          select: {
+            "$action": "achievement"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/challenges"
+          parts: [
+            "v2"
+            "resources"
+            "challenges"
+          ]
+          select: {
+            "$action": "challenge"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/games"
+          parts: [
+            "v2"
+            "resources"
+            "games"
+          ]
+          select: {
+            "$action": "game"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/guilds/achievements"
+          parts: [
+            "v2"
+            "resources"
+            "guilds"
+            "achievements"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/quests"
+          parts: [
+            "v2"
+            "resources"
+            "quests"
+          ]
+          select: {
+            "$action": "quest"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/vanity/companions"
+          parts: [
+            "v2"
+            "resources"
+            "vanity"
+            "companions"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/vanity/pets"
+          parts: [
+            "v2"
+            "resources"
+            "vanity"
+            "pets"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

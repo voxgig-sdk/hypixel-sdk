@@ -1,0 +1,40 @@
+# BasicSkyBlockFlow
+
+main: kit: flow: BasicSkyBlockFlow:
+{
+  entity: "sky_block",
+  kind: "basic",
+  name: "BasicSkyBlockFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "sky_block_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "sky_block_ref01",
+        srcdatavar: "sky_block_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-sky_block_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSkyBlockFlow"
+}

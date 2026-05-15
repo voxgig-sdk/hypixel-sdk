@@ -1,0 +1,142 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 8
+  metrics: count: path: 34
+  metrics: count: method: 34
+
+  entity: guild: {
+    path: "/v2/guild": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.guild`")|top
+    }
+  }
+
+  entity: hous: {
+    path: "/v2/housing/houses": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: housing: {
+    path: "/v2/housing/house": {
+      action: "houses": {}
+      op: load: method: *GET
+    }
+    path: "/v2/housing/player": {
+      action: "player": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: other: {
+    path: "/v2/boosters": {
+      op: list: method: *GET
+    }
+    path: "/v2/counts": {
+      op: load: method: *GET
+    }
+    path: "/v2/leaderboards": {
+      op: load: method: *GET
+    }
+    path: "/v2/punishmentstats": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: player: {
+    path: "/v2/player": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.player`")|top
+    }
+  }
+
+  entity: player_data: {
+    path: "/v2/recentgames": {
+      op: list: method: *GET
+    }
+    path: "/v2/status": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: resource: {
+    path: "/v2/resources/achievements": {
+      action: "achievement": {}
+      op: load: method: *GET
+    }
+    path: "/v2/resources/challenges": {
+      action: "challenge": {}
+      op: load: method: *GET
+    }
+    path: "/v2/resources/games": {
+      action: "game": {}
+      op: load: method: *GET
+    }
+    path: "/v2/resources/guilds/achievements": {
+      op: load: method: *GET
+    }
+    path: "/v2/resources/quests": {
+      action: "quest": {}
+      op: load: method: *GET
+    }
+    path: "/v2/resources/vanity/companions": {
+      op: load: method: *GET
+    }
+    path: "/v2/resources/vanity/pets": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: sky_block: {
+    path: "/v2/resources/skyblock/bingo": {
+      op: list: method: *GET
+    }
+    path: "/v2/resources/skyblock/collections": {
+      op: load: method: *GET
+    }
+    path: "/v2/resources/skyblock/election": {
+      op: load: method: *GET
+    }
+    path: "/v2/resources/skyblock/items": {
+      op: list: method: *GET
+    }
+    path: "/v2/resources/skyblock/skills": {
+      op: load: method: *GET
+    }
+    path: "/v2/skyblock/auction": {
+      op: list: method: *GET
+    }
+    path: "/v2/skyblock/auctions": {
+      op: list: method: *GET
+    }
+    path: "/v2/skyblock/auctions_ended": {
+      op: list: method: *GET
+    }
+    path: "/v2/skyblock/bazaar": {
+      op: load: method: *GET
+    }
+    path: "/v2/skyblock/bingo": {
+      op: list: method: *GET
+    }
+    path: "/v2/skyblock/firesales": {
+      op: list: method: *GET
+    }
+    path: "/v2/skyblock/garden": {
+      op: load: method: *GET
+    }
+    path: "/v2/skyblock/museum": {
+      op: load: method: *GET
+    }
+    path: "/v2/skyblock/news": {
+      op: list: method: *GET
+    }
+    path: "/v2/skyblock/profile": {
+      op: load: method: *GET
+    }
+    path: "/v2/skyblock/profiles": {
+      op: list: method: *GET
+    }
+  }
+
+}

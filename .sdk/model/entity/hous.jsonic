@@ -1,0 +1,44 @@
+# Entity: hous
+
+main: kit: entity: hous: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "hous"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "hous"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/v2/housing/houses"
+          parts: [
+            "v2"
+            "housing"
+            "houses"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

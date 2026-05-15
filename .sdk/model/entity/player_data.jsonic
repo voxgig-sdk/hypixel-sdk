@@ -1,0 +1,122 @@
+# Entity: player_data
+
+main: kit: entity: player_data: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "date"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "ended"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "game_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "map"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "mode"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "session"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "player_data"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/recentgames"
+          parts: [
+            "v2"
+            "recentgames"
+          ]
+          select: {
+            exist: [
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/status"
+          parts: [
+            "v2"
+            "status"
+          ]
+          select: {
+            exist: [
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

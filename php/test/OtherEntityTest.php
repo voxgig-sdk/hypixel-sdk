@@ -1,0 +1,125 @@
+<?php
+declare(strict_types=1);
+
+// Other entity test
+
+require_once __DIR__ . '/../hypixel_sdk.php';
+require_once __DIR__ . '/Runner.php';
+
+use PHPUnit\Framework\TestCase;
+use Voxgig\Struct\Struct as Vs;
+
+class OtherEntityTest extends TestCase
+{
+    public function test_create_instance(): void
+    {
+        $testsdk = HypixelSDK::test(null, null);
+        $ent = $testsdk->Other(null);
+        $this->assertNotNull($ent);
+    }
+
+    public function test_basic_flow(): void
+    {
+        $setup = other_basic_setup(null);
+        // Per-op sdk-test-control.json skip.
+        $_live = !empty($setup["live"]);
+        foreach (["list", "load"] as $_op) {
+            [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "other." . $_op, $_live ? "live" : "unit");
+            if ($_shouldSkip) {
+                $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
+                return;
+            }
+        }
+        // The basic flow consumes synthetic IDs from the fixture. In live mode
+        // without an *_ENTID env override, those IDs hit the live API and 4xx.
+        if (!empty($setup["synthetic_only"])) {
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set HYPIXEL_TEST_OTHER_ENTID JSON to run live");
+            return;
+        }
+        $client = $setup["client"];
+
+        // Bootstrap entity data from existing test data.
+        $other_ref01_data_raw = Vs::items(Helpers::to_map(
+            Vs::getpath($setup["data"], "existing.other")));
+        $other_ref01_data = null;
+        if (count($other_ref01_data_raw) > 0) {
+            $other_ref01_data = Helpers::to_map($other_ref01_data_raw[0][1]);
+        }
+
+        // LIST
+        $other_ref01_ent = $client->Other(null);
+        $other_ref01_match = [];
+
+        [$other_ref01_list_result, $err] = $other_ref01_ent->list($other_ref01_match, null);
+        $this->assertNull($err);
+        $this->assertIsArray($other_ref01_list_result);
+
+        // LOAD
+        $other_ref01_match_dt0 = [];
+        [$other_ref01_data_dt0_loaded, $err] = $other_ref01_ent->load($other_ref01_match_dt0, null);
+        $this->assertNull($err);
+        $this->assertNotNull($other_ref01_data_dt0_loaded);
+
+    }
+}
+
+function other_basic_setup($extra)
+{
+    Runner::load_env_local();
+
+    $entity_data_file = __DIR__ . '/../../.sdk/test/entity/other/OtherTestData.json';
+    $entity_data_source = file_get_contents($entity_data_file);
+    $entity_data = json_decode($entity_data_source, true);
+
+    $options = [];
+    $options["entity"] = $entity_data["existing"];
+
+    $client = HypixelSDK::test($options, $extra);
+
+    // Generate idmap.
+    $idmap = [];
+    foreach (["other01", "other02", "other03"] as $k) {
+        $idmap[$k] = strtoupper($k);
+    }
+
+    // Detect ENTID env override before envOverride consumes it. When live
+    // mode is on without a real override, the basic test runs against synthetic
+    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    $entid_env_raw = getenv("HYPIXEL_TEST_OTHER_ENTID");
+    $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
+
+    $env = Runner::env_override([
+        "HYPIXEL_TEST_OTHER_ENTID" => $idmap,
+        "HYPIXEL_TEST_LIVE" => "FALSE",
+        "HYPIXEL_TEST_EXPLAIN" => "FALSE",
+        "HYPIXEL_APIKEY" => "NONE",
+    ]);
+
+    $idmap_resolved = Helpers::to_map(
+        $env["HYPIXEL_TEST_OTHER_ENTID"]);
+    if ($idmap_resolved === null) {
+        $idmap_resolved = Helpers::to_map($idmap);
+    }
+
+    if ($env["HYPIXEL_TEST_LIVE"] === "TRUE") {
+        $merged_opts = Vs::merge([
+            [
+                "apikey" => $env["HYPIXEL_APIKEY"],
+            ],
+            $extra ?? [],
+        ]);
+        $client = new HypixelSDK(Helpers::to_map($merged_opts));
+    }
+
+    $live = $env["HYPIXEL_TEST_LIVE"] === "TRUE";
+    return [
+        "client" => $client,
+        "data" => $entity_data,
+        "idmap" => $idmap_resolved,
+        "env" => $env,
+        "explain" => $env["HYPIXEL_TEST_EXPLAIN"] === "TRUE",
+        "live" => $live,
+        "synthetic_only" => $live && !$idmap_overridden,
+        "now" => (int)(microtime(true) * 1000),
+    ];
+}

@@ -1,0 +1,129 @@
+# Entity: other
+
+main: kit: entity: other: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "booster"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "booster_state"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "game"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "leaderboard"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "player_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "staff_rolling_daily"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "staff_total"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "watchdog_last_minute"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "watchdog_rolling_daily"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "watchdog_total"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "other"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/v2/boosters"
+          parts: [
+            "v2"
+            "boosters"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/v2/counts"
+          parts: [
+            "v2"
+            "counts"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/leaderboards"
+          parts: [
+            "v2"
+            "leaderboards"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/punishmentstats"
+          parts: [
+            "v2"
+            "punishmentstats"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

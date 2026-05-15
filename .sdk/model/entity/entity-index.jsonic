@@ -1,0 +1,10 @@
+# Entity Models
+
+@"guild.jsonic"
+@"hous.jsonic"
+@"housing.jsonic"
+@"other.jsonic"
+@"player.jsonic"
+@"player_data.jsonic"
+@"resource.jsonic"
+@"sky_block.jsonic"

@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "other": {
+      "OTHER00": {
+        "booster": [],
+        "booster_state": {},
+        "game": {},
+        "leaderboard": {},
+        "player_count": "s72",
+        "staff_rolling_daily": "s73",
+        "staff_total": "s74",
+        "success": false,
+        "watchdog_last_minute": "s76",
+        "watchdog_rolling_daily": "s77",
+        "watchdog_total": "s78"
+      },
+      "OTHER01": {
+        "booster": [],
+        "booster_state": {},
+        "game": {},
+        "leaderboard": {},
+        "player_count": "se0",
+        "staff_rolling_daily": "se1",
+        "staff_total": "se2",
+        "success": false,
+        "watchdog_last_minute": "se4",
+        "watchdog_rolling_daily": "se5",
+        "watchdog_total": "se6"
+      },
+      "OTHER02": {
+        "booster": [],
+        "booster_state": {},
+        "game": {},
+        "leaderboard": {},
+        "player_count": "s14e",
+        "staff_rolling_daily": "s14f",
+        "staff_total": "s150",
+        "success": false,
+        "watchdog_last_minute": "s152",
+        "watchdog_rolling_daily": "s153",
+        "watchdog_total": "s154"
+      }
+    }
+  },
+  "new": {
+    "other": {
+      "other_ref01": {
+        "booster": [],
+        "booster_state": {},
+        "game": {},
+        "leaderboard": {},
+        "player_count": "s1bc",
+        "staff_rolling_daily": "s1bd",
+        "staff_total": "s1be",
+        "success": false,
+        "watchdog_last_minute": "s1c0",
+        "watchdog_rolling_daily": "s1c1",
+        "watchdog_total": "s1c2"
+      }
+    }
+  }
+}

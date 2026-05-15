@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "guild": {
+      "GUILD00": {
+        "guild": {},
+        "success": false
+      },
+      "GUILD01": {
+        "guild": {},
+        "success": false
+      },
+      "GUILD02": {
+        "guild": {},
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "guild": {
+      "guild_ref01": {
+        "guild": {},
+        "success": false
+      }
+    }
+  }
+}

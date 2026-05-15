@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "player": {
+      "PLAYER00": {
+        "player": {},
+        "success": false
+      },
+      "PLAYER01": {
+        "player": {},
+        "success": false
+      },
+      "PLAYER02": {
+        "player": {},
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "player": {
+      "player_ref01": {
+        "player": {},
+        "success": false
+      }
+    }
+  }
+}

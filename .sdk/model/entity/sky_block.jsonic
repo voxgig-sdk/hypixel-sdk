@@ -1,0 +1,613 @@
+# Entity: sky_block
+
+main: kit: entity: sky_block: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "auction"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "auctioneer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "bid"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "claimed"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "claimed_bidder"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "collection"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "color"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "coop"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "current"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "end"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "event"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "extra"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "full_lore"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "garden"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "highest_bid_amount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "item"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "item_byte"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "item_lore"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "item_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "last_updated"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "link"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "lore"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "material"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "mayor"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "member"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "npc_sell_price"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "product"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "profile"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "profile_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "progress"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "required_amount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "sale"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "skill"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "start"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "starting_bid"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "stat"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tier"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "total_auction"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total_page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "version"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "sky_block"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "player"
+                orig: "player"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "profile"
+                orig: "profile"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "uuid"
+                orig: "uuid"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/skyblock/auction"
+          parts: [
+            "v2"
+            "skyblock"
+            "auction"
+          ]
+          select: {
+            exist: [
+              "player"
+              "profile"
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: 0
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/skyblock/auctions"
+          parts: [
+            "v2"
+            "skyblock"
+            "auctions"
+          ]
+          select: {
+            exist: [
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/skyblock/bingo"
+          parts: [
+            "v2"
+            "skyblock"
+            "bingo"
+          ]
+          select: {
+            exist: [
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "uuid"
+                orig: "uuid"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/skyblock/profiles"
+          parts: [
+            "v2"
+            "skyblock"
+            "profiles"
+          ]
+          select: {
+            exist: [
+              "uuid"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/skyblock/bingo"
+          parts: [
+            "v2"
+            "resources"
+            "skyblock"
+            "bingo"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/skyblock/items"
+          parts: [
+            "v2"
+            "resources"
+            "skyblock"
+            "items"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/skyblock/auctions_ended"
+          parts: [
+            "v2"
+            "skyblock"
+            "auctions_ended"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/skyblock/firesales"
+          parts: [
+            "v2"
+            "skyblock"
+            "firesales"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/skyblock/news"
+          parts: [
+            "v2"
+            "skyblock"
+            "news"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "profile"
+                orig: "profile"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/skyblock/garden"
+          parts: [
+            "v2"
+            "skyblock"
+            "garden"
+          ]
+          select: {
+            exist: [
+              "profile"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "profile"
+                orig: "profile"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/skyblock/museum"
+          parts: [
+            "v2"
+            "skyblock"
+            "museum"
+          ]
+          select: {
+            exist: [
+              "profile"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "profile"
+                orig: "profile"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v2/skyblock/profile"
+          parts: [
+            "v2"
+            "skyblock"
+            "profile"
+          ]
+          select: {
+            exist: [
+              "profile"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/skyblock/collections"
+          parts: [
+            "v2"
+            "resources"
+            "skyblock"
+            "collections"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/skyblock/election"
+          parts: [
+            "v2"
+            "resources"
+            "skyblock"
+            "election"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/resources/skyblock/skills"
+          parts: [
+            "v2"
+            "resources"
+            "skyblock"
+            "skills"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/v2/skyblock/bazaar"
+          parts: [
+            "v2"
+            "skyblock"
+            "bazaar"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

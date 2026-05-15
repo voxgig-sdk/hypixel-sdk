@@ -1,0 +1,40 @@
+# BasicPlayerDataFlow
+
+main: kit: flow: BasicPlayerDataFlow:
+{
+  entity: "player_data",
+  kind: "basic",
+  name: "BasicPlayerDataFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "player_data_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "player_data_ref01",
+        srcdatavar: "player_data_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-player_data_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPlayerDataFlow"
+}
