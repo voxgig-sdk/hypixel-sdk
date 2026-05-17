@@ -22,7 +22,6 @@ func MakeConfig() map[string]any {
 			},
 			"entity": map[string]any{
 				"guild": map[string]any{},
-				"hous": map[string]any{},
 				"housing": map[string]any{},
 				"other": map[string]any{},
 				"player": map[string]any{},
@@ -112,76 +111,21 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"hous": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "hous",
-						"req": false,
-						"type": "`$ARRAY`",
-						"active": true,
-						"index$": 0,
-					},
-					map[string]any{
-						"name": "success",
-						"req": false,
-						"type": "`$BOOLEAN`",
-						"active": true,
-						"index$": 1,
-					},
-				},
-				"name": "hous",
-				"op": map[string]any{
-					"list": map[string]any{
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"method": "GET",
-								"orig": "/v2/housing/houses",
-								"parts": []any{
-									"v2",
-									"housing",
-									"houses",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"index$": 0,
-							},
-						},
-						"input": "data",
-						"key$": "list",
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
 			"housing": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "hous",
-						"req": false,
-						"type": "`$ARRAY`",
-						"active": true,
-						"index$": 0,
-					},
-					map[string]any{
-						"name": "houses",
+						"name": "house",
 						"req": false,
 						"type": "`$OBJECT`",
 						"active": true,
-						"index$": 1,
+						"index$": 0,
 					},
 					map[string]any{
 						"name": "success",
 						"req": false,
 						"type": "`$BOOLEAN`",
 						"active": true,
-						"index$": 2,
+						"index$": 1,
 					},
 				},
 				"name": "housing",
@@ -222,6 +166,25 @@ func MakeConfig() map[string]any {
 								"active": true,
 								"index$": 0,
 							},
+							map[string]any{
+								"method": "GET",
+								"orig": "/v2/housing/houses",
+								"parts": []any{
+									"v2",
+									"housing",
+									"houses",
+								},
+								"select": map[string]any{
+									"$action": "house",
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"active": true,
+								"args": map[string]any{},
+								"index$": 1,
+							},
 						},
 						"input": "data",
 						"key$": "list",
@@ -234,8 +197,8 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"kind": "query",
-											"name": "houses",
-											"orig": "houses",
+											"name": "house",
+											"orig": "house",
 											"reqd": true,
 											"type": "`$STRING`",
 											"active": true,
@@ -250,9 +213,9 @@ func MakeConfig() map[string]any {
 									"house",
 								},
 								"select": map[string]any{
-									"$action": "houses",
+									"$action": "house",
 									"exist": []any{
-										"houses",
+										"house",
 									},
 								},
 								"transform": map[string]any{

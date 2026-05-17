@@ -1,7 +1,6 @@
 // Hypixel Ts SDK
 
 import { GuildEntity } from './entity/GuildEntity'
-import { HousEntity } from './entity/HousEntity'
 import { HousingEntity } from './entity/HousingEntity'
 import { OtherEntity } from './entity/OtherEntity'
 import { PlayerEntity } from './entity/PlayerEntity'
@@ -212,12 +211,6 @@ class HypixelSDK {
   Guild(data?: any) {
     const self = this
     return new GuildEntity(self,data)
-  }
-
-
-  Hous(data?: any) {
-    const self = this
-    return new HousEntity(self,data)
   }
 
 

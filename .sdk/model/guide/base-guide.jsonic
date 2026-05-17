@@ -1,7 +1,7 @@
 # Guide
 
 guide: {
-  metrics: count: entity: 8
+  metrics: count: entity: 7
   metrics: count: path: 34
   metrics: count: method: 34
 
@@ -12,16 +12,14 @@ guide: {
     }
   }
 
-  entity: hous: {
-    path: "/v2/housing/houses": {
-      op: list: method: *GET
-    }
-  }
-
   entity: housing: {
     path: "/v2/housing/house": {
-      action: "houses": {}
+      action: "house": {}
       op: load: method: *GET
+    }
+    path: "/v2/housing/houses": {
+      action: "house": {}
+      op: list: method: *GET
     }
     path: "/v2/housing/player": {
       action: "player": {}

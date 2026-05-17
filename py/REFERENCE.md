@@ -46,10 +46,6 @@ client = HypixelSDK.test()
 
 Create a new `GuildEntity` instance. Pass `None` for no initial data.
 
-#### `Hous(data=None)`
-
-Create a new `HousEntity` instance. Pass `None` for no initial data.
-
 #### `Housing(data=None)`
 
 Create a new `HousingEntity` instance. Pass `None` for no initial data.
@@ -158,58 +154,6 @@ Return the entity name.
 
 ---
 
-## HousEntity
-
-```python
-hous = client.Hous()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl=None) -> tuple`
-
-List entities matching the given criteria. Returns an array.
-
-```python
-results, err = client.Hous().list({})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `HousEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## HousingEntity
 
 ```python
@@ -220,8 +164,7 @@ housing = client.Housing()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `houses` | ``$OBJECT`` | No |  |
+| `house` | ``$OBJECT`` | No |  |
 | `success` | ``$BOOLEAN`` | No |  |
 
 ### Operations

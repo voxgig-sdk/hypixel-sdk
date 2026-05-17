@@ -9,7 +9,8 @@
         "mode": "s54",
         "session": {},
         "success": true,
-        "uuid": "s57"
+        "uuid": "s57",
+        "id": "PLAYER_DATA00"
       },
       "PLAYER_DATA01": {
         "date": "sa0",
@@ -19,7 +20,8 @@
         "mode": "sa4",
         "session": {},
         "success": true,
-        "uuid": "sa7"
+        "uuid": "sa7",
+        "id": "PLAYER_DATA01"
       },
       "PLAYER_DATA02": {
         "date": "sf0",
@@ -29,7 +31,8 @@
         "mode": "sf4",
         "session": {},
         "success": true,
-        "uuid": "sf7"
+        "uuid": "sf7",
+        "id": "PLAYER_DATA02"
       }
     }
   },

@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/hypixel-sdk/core"
+	"github.com/voxgig-sdk/hypixel-sdk/go/core"
 )
 
 type BaseFeature struct {

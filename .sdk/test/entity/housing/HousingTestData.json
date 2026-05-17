@@ -2,28 +2,27 @@
   "existing": {
     "housing": {
       "HOUSING00": {
-        "hous": [],
-        "houses": {},
-        "success": true
+        "house": {},
+        "success": false,
+        "id": "HOUSING00"
       },
       "HOUSING01": {
-        "hous": [],
-        "houses": {},
-        "success": true
+        "house": {},
+        "success": false,
+        "id": "HOUSING01"
       },
       "HOUSING02": {
-        "hous": [],
-        "houses": {},
-        "success": true
+        "house": {},
+        "success": false,
+        "id": "HOUSING02"
       }
     }
   },
   "new": {
     "housing": {
       "housing_ref01": {
-        "hous": [],
-        "houses": {},
-        "success": true
+        "house": {},
+        "success": false
       }
     }
   }

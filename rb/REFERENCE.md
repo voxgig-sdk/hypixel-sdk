@@ -46,10 +46,6 @@ client = HypixelSDK.test
 
 Create a new `Guild` entity instance. Pass `nil` for no initial data.
 
-#### `Hous(data = nil)`
-
-Create a new `Hous` entity instance. Pass `nil` for no initial data.
-
 #### `Housing(data = nil)`
 
 Create a new `Housing` entity instance. Pass `nil` for no initial data.
@@ -163,59 +159,6 @@ Return the entity name.
 
 ---
 
-## HousEntity
-
-```ruby
-hous = client.Hous
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl = nil) -> result, err`
-
-List entities matching the given criteria. Returns an array.
-
-```ruby
-results, err = client.Hous.list(nil)
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `HousEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## HousingEntity
 
 ```ruby
@@ -226,8 +169,7 @@ housing = client.Housing
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `houses` | ``$OBJECT`` | No |  |
+| `house` | ``$OBJECT`` | No |  |
 | `success` | ``$BOOLEAN`` | No |  |
 
 ### Operations

@@ -12,7 +12,8 @@
         "success": false,
         "watchdog_last_minute": "s76",
         "watchdog_rolling_daily": "s77",
-        "watchdog_total": "s78"
+        "watchdog_total": "s78",
+        "id": "OTHER00"
       },
       "OTHER01": {
         "booster": [],
@@ -25,7 +26,8 @@
         "success": false,
         "watchdog_last_minute": "se4",
         "watchdog_rolling_daily": "se5",
-        "watchdog_total": "se6"
+        "watchdog_total": "se6",
+        "id": "OTHER01"
       },
       "OTHER02": {
         "booster": [],
@@ -38,7 +40,8 @@
         "success": false,
         "watchdog_last_minute": "s152",
         "watchdog_rolling_daily": "s153",
-        "watchdog_total": "s154"
+        "watchdog_total": "s154",
+        "id": "OTHER02"
       }
     }
   },

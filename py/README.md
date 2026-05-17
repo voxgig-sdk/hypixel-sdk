@@ -166,7 +166,6 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
 | `Guild` | `(data) -> GuildEntity` | Create a Guild entity instance. |
-| `Hous` | `(data) -> HousEntity` | Create a Hous entity instance. |
 | `Housing` | `(data) -> HousingEntity` | Create a Housing entity instance. |
 | `Other` | `(data) -> OtherEntity` | Create a Other entity instance. |
 | `Player` | `(data) -> PlayerEntity` | Create a Player entity instance. |
@@ -219,23 +218,11 @@ Operations: Load.
 
 API path: `/v2/guild`
 
-#### Hous
-
-| Field | Description |
-| --- | --- |
-| `hous` |  |
-| `success` |  |
-
-Operations: List.
-
-API path: `/v2/housing/houses`
-
 #### Housing
 
 | Field | Description |
 | --- | --- |
-| `hous` |  |
-| `houses` |  |
+| `house` |  |
 | `success` |  |
 
 Operations: List, Load.
@@ -395,30 +382,6 @@ const guild = await client.Guild().load({ id: 'guild_id' })
 ```
 
 
-### Hous
-
-Create an instance: `const hous = client.Hous()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `hous` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-
-#### Example: List
-
-```ts
-const houss = await client.Hous().list()
-```
-
-
 ### Housing
 
 Create an instance: `const housing = client.Housing()`
@@ -434,8 +397,7 @@ Create an instance: `const housing = client.Housing()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hous` | ``$ARRAY`` |  |
-| `houses` | ``$OBJECT`` |  |
+| `house` | ``$OBJECT`` |  |
 | `success` | ``$BOOLEAN`` |  |
 
 #### Example: Load

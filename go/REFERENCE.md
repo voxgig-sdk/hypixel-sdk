@@ -44,10 +44,6 @@ client := sdk.TestSDK(nil, nil)
 
 Create a new `Guild` entity instance. Pass `nil` for no initial data.
 
-#### `Hous(data map[string]any) HypixelEntity`
-
-Create a new `Hous` entity instance. Pass `nil` for no initial data.
-
 #### `Housing(data map[string]any) HypixelEntity`
 
 Create a new `Housing` entity instance. Pass `nil` for no initial data.
@@ -155,53 +151,6 @@ Return the entity name.
 
 ---
 
-## HousEntity
-
-```go
-hous := client.Hous(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.Hous(nil).List(nil, nil)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `HousEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## HousingEntity
 
 ```go
@@ -212,8 +161,7 @@ housing := client.Housing(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `houses` | ``$OBJECT`` | No |  |
+| `house` | ``$OBJECT`` | No |  |
 | `success` | ``$BOOLEAN`` | No |  |
 
 ### Operations

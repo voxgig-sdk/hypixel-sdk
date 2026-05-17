@@ -3,15 +3,18 @@
     "guild": {
       "GUILD00": {
         "guild": {},
-        "success": false
+        "success": false,
+        "id": "GUILD00"
       },
       "GUILD01": {
         "guild": {},
-        "success": false
+        "success": false,
+        "id": "GUILD01"
       },
       "GUILD02": {
         "guild": {},
-        "success": false
+        "success": false,
+        "id": "GUILD02"
       }
     }
   },

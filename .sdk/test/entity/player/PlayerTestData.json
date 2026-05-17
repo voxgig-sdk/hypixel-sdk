@@ -3,15 +3,18 @@
     "player": {
       "PLAYER00": {
         "player": {},
-        "success": false
+        "success": false,
+        "id": "PLAYER00"
       },
       "PLAYER01": {
         "player": {},
-        "success": false
+        "success": false,
+        "id": "PLAYER01"
       },
       "PLAYER02": {
         "player": {},
-        "success": false
+        "success": false,
+        "id": "PLAYER02"
       }
     }
   },

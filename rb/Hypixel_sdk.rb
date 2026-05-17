@@ -205,12 +205,6 @@ class HypixelSDK
   end
 
 
-  def Hous(data = nil)
-    require_relative 'entity/hous_entity'
-    HousEntity.new(self, data)
-  end
-
-
   def Housing(data = nil)
     require_relative 'entity/housing_entity'
     HousingEntity.new(self, data)

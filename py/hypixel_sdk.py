@@ -218,11 +218,6 @@ class HypixelSDK:
         return GuildEntity(self, data)
 
 
-    def Hous(self, data=None):
-        from entity.hous_entity import HousEntity
-        return HousEntity(self, data)
-
-
     def Housing(self, data=None):
         from entity.housing_entity import HousingEntity
         return HousingEntity(self, data)

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/hypixel-sdk"
-	"github.com/voxgig-sdk/hypixel-sdk/core"
+	sdk "github.com/voxgig-sdk/hypixel-sdk/go"
+	"github.com/voxgig-sdk/hypixel-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/hypixel-sdk/go/utility/struct"
 )
 
 func TestHousingEntity(t *testing.T) {

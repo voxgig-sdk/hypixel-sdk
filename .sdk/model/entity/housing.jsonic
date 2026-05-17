@@ -6,12 +6,7 @@ main: kit: entity: housing: {
 
   fields: [
     {
-      name: "hous"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "houses"
+      name: "house"
       req: false
       type: "`$OBJECT`"
     }
@@ -57,6 +52,22 @@ main: kit: entity: housing: {
             res: "`body`"
           }
         }
+        {
+          method: "GET"
+          orig: "/v2/housing/houses"
+          parts: [
+            "v2"
+            "housing"
+            "houses"
+          ]
+          select: {
+            "$action": "house"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
       ]
     }
     load: {
@@ -67,8 +78,8 @@ main: kit: entity: housing: {
             query: [
               {
                 kind: "query"
-                name: "houses"
-                orig: "houses"
+                name: "house"
+                orig: "house"
                 reqd: true
                 type: "`$STRING`"
               }
@@ -82,9 +93,9 @@ main: kit: entity: housing: {
             "house"
           ]
           select: {
-            "$action": "houses"
+            "$action": "house"
             exist: [
-              "houses"
+              "house"
             ]
           }
           transform: {

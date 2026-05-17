@@ -5,14 +5,14 @@ The Golang SDK for the Hypixel API. Provides an entity-oriented interface using 
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/hypixel-sdk
+go get github.com/voxgig-sdk/hypixel-sdk/go
 ```
 
 If the module is not yet published to a registry, use a `replace` directive
 in your `go.mod` to point to a local checkout:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/hypixel-sdk=../path/to/github.com/voxgig-sdk/hypixel-sdk
+go mod edit -replace github.com/voxgig-sdk/hypixel-sdk/go=../path/to/github.com/voxgig-sdk/hypixel-sdk/go
 ```
 
 
@@ -30,8 +30,8 @@ import (
     "fmt"
     "os"
 
-    sdk "github.com/voxgig-sdk/hypixel-sdk"
-    "github.com/voxgig-sdk/hypixel-sdk/core"
+    sdk "github.com/voxgig-sdk/hypixel-sdk/go"
+    "github.com/voxgig-sdk/hypixel-sdk/go/core"
 )
 
 func main() {
@@ -187,7 +187,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Guild` | `(data map[string]any) HypixelEntity` | Create a Guild entity instance. |
-| `Hous` | `(data map[string]any) HypixelEntity` | Create a Hous entity instance. |
 | `Housing` | `(data map[string]any) HypixelEntity` | Create a Housing entity instance. |
 | `Other` | `(data map[string]any) HypixelEntity` | Create a Other entity instance. |
 | `Player` | `(data map[string]any) HypixelEntity` | Create a Player entity instance. |
@@ -238,23 +237,11 @@ Operations: Load.
 
 API path: `/v2/guild`
 
-#### Hous
-
-| Field | Description |
-| --- | --- |
-| `"hous"` |  |
-| `"success"` |  |
-
-Operations: List.
-
-API path: `/v2/housing/houses`
-
 #### Housing
 
 | Field | Description |
 | --- | --- |
-| `"hous"` |  |
-| `"houses"` |  |
+| `"house"` |  |
 | `"success"` |  |
 
 Operations: List, Load.
@@ -414,30 +401,6 @@ result, err := client.Guild(nil).Load(map[string]any{"id": "guild_id"}, nil)
 ```
 
 
-### Hous
-
-Create an instance: `hous := client.Hous(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `hous` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-
-#### Example: List
-
-```go
-results, err := client.Hous(nil).List(nil, nil)
-```
-
-
 ### Housing
 
 Create an instance: `housing := client.Housing(nil)`
@@ -453,8 +416,7 @@ Create an instance: `housing := client.Housing(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hous` | ``$ARRAY`` |  |
-| `houses` | ``$OBJECT`` |  |
+| `house` | ``$OBJECT`` |  |
 | `success` | ``$BOOLEAN`` |  |
 
 #### Example: Load
@@ -730,7 +692,7 @@ Use `core.ToMapAny()` to safely cast results and nested data.
 ### Package structure
 
 ```
-github.com/voxgig-sdk/hypixel-sdk/
+github.com/voxgig-sdk/hypixel-sdk/go/
 ├── hypixel.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -739,7 +701,7 @@ github.com/voxgig-sdk/hypixel-sdk/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/hypixel-sdk`) re-exports everything needed
+The root package (`github.com/voxgig-sdk/hypixel-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

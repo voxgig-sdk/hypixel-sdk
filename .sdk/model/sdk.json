@@ -109,67 +109,13 @@
             "ancestors": []
           }
         },
-        "hous": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "hous",
-              "req": false,
-              "type": "`$ARRAY`",
-              "active": true
-            },
-            {
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
-            }
-          ],
-          "name": "hous",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "method": "GET",
-                  "orig": "/v2/housing/houses",
-                  "parts": [
-                    "v2",
-                    "housing",
-                    "houses"
-                  ],
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "relations": {
-            "ancestors": []
-          }
-        },
         "housing": {
           "alias": {
             "field": {}
           },
           "fields": [
             {
-              "name": "hous",
-              "req": false,
-              "type": "`$ARRAY`",
-              "active": true
-            },
-            {
-              "name": "houses",
+              "name": "house",
               "req": false,
               "type": "`$OBJECT`",
               "active": true
@@ -217,6 +163,24 @@
                     "res": "`body`"
                   },
                   "active": true
+                },
+                {
+                  "method": "GET",
+                  "orig": "/v2/housing/houses",
+                  "parts": [
+                    "v2",
+                    "housing",
+                    "houses"
+                  ],
+                  "select": {
+                    "$action": "house"
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {}
                 }
               ],
               "input": "data"
@@ -229,8 +193,8 @@
                     "query": [
                       {
                         "kind": "query",
-                        "name": "houses",
-                        "orig": "houses",
+                        "name": "house",
+                        "orig": "house",
                         "reqd": true,
                         "type": "`$STRING`",
                         "active": true
@@ -245,9 +209,9 @@
                     "house"
                   ],
                   "select": {
-                    "$action": "houses",
+                    "$action": "house",
                     "exist": [
-                      "houses"
+                      "house"
                     ]
                   },
                   "transform": {
@@ -1601,6 +1565,9 @@
             },
             "rb": {
               "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
             }
           }
         }
@@ -1633,32 +1600,6 @@
             }
           ],
           "key$": "BasicGuildFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicHousFlow": {
-          "entity": "hous",
-          "kind": "basic",
-          "name": "BasicHousFlow",
-          "step": [
-            {
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "hous_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicHousFlow",
           "active": true,
           "param": {}
         },
@@ -1908,6 +1849,33 @@
         }
       },
       "target": {
+        "go-cli": {
+          "title": "Go CLI",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "hypixel"
+          },
+          "phase": {
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "deps": {},
+          "name": "go-cli",
+          "active": true
+        },
         "ts": {
           "title": "TypeScript",
           "ext": "ts",
@@ -1948,14 +1916,7 @@
             "name": "hypixel"
           },
           "srcfeature": false,
-          "deps": {
-            "github.com/voxgig/struct": {
-              "active": true,
-              "version": "v0.0.0",
-              "replace": "./utility/struct",
-              "kind": "prod"
-            }
-          },
+          "deps": {},
           "name": "go",
           "active": true
         },
@@ -2043,15 +2004,6 @@
     },
     "def": {
       "desc": ""
-    },
-    "api": {
-      "guide": {},
-      "entity": {}
     }
-  },
-  "name__orig": "hypixel",
-  "Name": "Hypixel",
-  "name_": "hypixel",
-  "name-": "hypixel",
-  "NAME": "HYPIXEL"
+  }
 }

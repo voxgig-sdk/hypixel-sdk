@@ -46,10 +46,6 @@ $client = HypixelSDK::test();
 
 Create a new `GuildEntity` instance. Pass `null` for no initial data.
 
-#### `Hous($data = null)`
-
-Create a new `HousEntity` instance. Pass `null` for no initial data.
-
 #### `Housing($data = null)`
 
 Create a new `HousingEntity` instance. Pass `null` for no initial data.
@@ -160,59 +156,6 @@ Return the entity name.
 
 ---
 
-## HousEntity
-
-```php
-$hous = $client->Hous();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-
-### Operations
-
-#### `list(array $reqmatch, ?array $ctrl = null): array`
-
-List entities matching the given criteria. Returns an array.
-
-```php
-[$results, $err] = $client->Hous()->list([]);
-```
-
-### Common Methods
-
-#### `dataGet(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `dataSet($data): void`
-
-Set the entity data.
-
-#### `matchGet(): array`
-
-Get the entity match criteria.
-
-#### `matchSet($match): void`
-
-Set the entity match criteria.
-
-#### `make(): HousEntity`
-
-Create a new `HousEntity` instance with the same client and
-options.
-
-#### `getName(): string`
-
-Return the entity name.
-
-
----
-
 ## HousingEntity
 
 ```php
@@ -223,8 +166,7 @@ $housing = $client->Housing();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `houses` | ``$OBJECT`` | No |  |
+| `house` | ``$OBJECT`` | No |  |
 | `success` | ``$BOOLEAN`` | No |  |
 
 ### Operations

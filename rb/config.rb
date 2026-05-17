@@ -23,7 +23,6 @@ module HypixelConfig
         },
         "entity" => {
           "guild" => {},
-          "hous" => {},
           "housing" => {},
           "other" => {},
           "player" => {},
@@ -113,76 +112,21 @@ module HypixelConfig
             "ancestors" => [],
           },
         },
-        "hous" => {
-          "fields" => [
-            {
-              "name" => "hous",
-              "req" => false,
-              "type" => "`$ARRAY`",
-              "active" => true,
-              "index$" => 0,
-            },
-            {
-              "name" => "success",
-              "req" => false,
-              "type" => "`$BOOLEAN`",
-              "active" => true,
-              "index$" => 1,
-            },
-          ],
-          "name" => "hous",
-          "op" => {
-            "list" => {
-              "name" => "list",
-              "points" => [
-                {
-                  "method" => "GET",
-                  "orig" => "/v2/housing/houses",
-                  "parts" => [
-                    "v2",
-                    "housing",
-                    "houses",
-                  ],
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "active" => true,
-                  "args" => {},
-                  "select" => {},
-                  "index$" => 0,
-                },
-              ],
-              "input" => "data",
-              "key$" => "list",
-            },
-          },
-          "relations" => {
-            "ancestors" => [],
-          },
-        },
         "housing" => {
           "fields" => [
             {
-              "name" => "hous",
-              "req" => false,
-              "type" => "`$ARRAY`",
-              "active" => true,
-              "index$" => 0,
-            },
-            {
-              "name" => "houses",
+              "name" => "house",
               "req" => false,
               "type" => "`$OBJECT`",
               "active" => true,
-              "index$" => 1,
+              "index$" => 0,
             },
             {
               "name" => "success",
               "req" => false,
               "type" => "`$BOOLEAN`",
               "active" => true,
-              "index$" => 2,
+              "index$" => 1,
             },
           ],
           "name" => "housing",
@@ -223,6 +167,25 @@ module HypixelConfig
                   "active" => true,
                   "index$" => 0,
                 },
+                {
+                  "method" => "GET",
+                  "orig" => "/v2/housing/houses",
+                  "parts" => [
+                    "v2",
+                    "housing",
+                    "houses",
+                  ],
+                  "select" => {
+                    "$action" => "house",
+                  },
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "active" => true,
+                  "args" => {},
+                  "index$" => 1,
+                },
               ],
               "input" => "data",
               "key$" => "list",
@@ -235,8 +198,8 @@ module HypixelConfig
                     "query" => [
                       {
                         "kind" => "query",
-                        "name" => "houses",
-                        "orig" => "houses",
+                        "name" => "house",
+                        "orig" => "house",
                         "reqd" => true,
                         "type" => "`$STRING`",
                         "active" => true,
@@ -251,9 +214,9 @@ module HypixelConfig
                     "house",
                   ],
                   "select" => {
-                    "$action" => "houses",
+                    "$action" => "house",
                     "exist" => [
-                      "houses",
+                      "house",
                     ],
                   },
                   "transform" => {

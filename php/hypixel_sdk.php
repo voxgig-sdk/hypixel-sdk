@@ -230,13 +230,6 @@ class HypixelSDK
     }
 
 
-    public function Hous($data = null)
-    {
-        require_once __DIR__ . '/entity/hous_entity.php';
-        return new HousEntity($this, $data);
-    }
-
-
     public function Housing($data = null)
     {
         require_once __DIR__ . '/entity/housing_entity.php';

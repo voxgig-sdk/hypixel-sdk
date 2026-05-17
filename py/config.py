@@ -23,7 +23,6 @@ def make_config():
       },
             "entity": {
                 "guild": {},
-                "hous": {},
                 "housing": {},
                 "other": {},
                 "player": {},
@@ -113,76 +112,21 @@ def make_config():
           "ancestors": [],
         },
       },
-      "hous": {
-        "fields": [
-          {
-            "name": "hous",
-            "req": False,
-            "type": "`$ARRAY`",
-            "active": True,
-            "index$": 0,
-          },
-          {
-            "name": "success",
-            "req": False,
-            "type": "`$BOOLEAN`",
-            "active": True,
-            "index$": 1,
-          },
-        ],
-        "name": "hous",
-        "op": {
-          "list": {
-            "name": "list",
-            "points": [
-              {
-                "method": "GET",
-                "orig": "/v2/housing/houses",
-                "parts": [
-                  "v2",
-                  "housing",
-                  "houses",
-                ],
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "active": True,
-                "args": {},
-                "select": {},
-                "index$": 0,
-              },
-            ],
-            "input": "data",
-            "key$": "list",
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
       "housing": {
         "fields": [
           {
-            "name": "hous",
-            "req": False,
-            "type": "`$ARRAY`",
-            "active": True,
-            "index$": 0,
-          },
-          {
-            "name": "houses",
+            "name": "house",
             "req": False,
             "type": "`$OBJECT`",
             "active": True,
-            "index$": 1,
+            "index$": 0,
           },
           {
             "name": "success",
             "req": False,
             "type": "`$BOOLEAN`",
             "active": True,
-            "index$": 2,
+            "index$": 1,
           },
         ],
         "name": "housing",
@@ -223,6 +167,25 @@ def make_config():
                 "active": True,
                 "index$": 0,
               },
+              {
+                "method": "GET",
+                "orig": "/v2/housing/houses",
+                "parts": [
+                  "v2",
+                  "housing",
+                  "houses",
+                ],
+                "select": {
+                  "$action": "house",
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "args": {},
+                "index$": 1,
+              },
             ],
             "input": "data",
             "key$": "list",
@@ -235,8 +198,8 @@ def make_config():
                   "query": [
                     {
                       "kind": "query",
-                      "name": "houses",
-                      "orig": "houses",
+                      "name": "house",
+                      "orig": "house",
                       "reqd": True,
                       "type": "`$STRING`",
                       "active": True,
@@ -251,9 +214,9 @@ def make_config():
                   "house",
                 ],
                 "select": {
-                  "$action": "houses",
+                  "$action": "house",
                   "exist": [
-                    "houses",
+                    "house",
                   ],
                 },
                 "transform": {

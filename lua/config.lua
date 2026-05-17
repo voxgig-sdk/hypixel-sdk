@@ -22,7 +22,6 @@ local function make_config()
       },
       entity = {
         ["guild"] = {},
-        ["hous"] = {},
         ["housing"] = {},
         ["other"] = {},
         ["player"] = {},
@@ -112,76 +111,21 @@ local function make_config()
           ["ancestors"] = {},
         },
       },
-      ["hous"] = {
-        ["fields"] = {
-          {
-            ["name"] = "hous",
-            ["req"] = false,
-            ["type"] = "`$ARRAY`",
-            ["active"] = true,
-            ["index$"] = 0,
-          },
-          {
-            ["name"] = "success",
-            ["req"] = false,
-            ["type"] = "`$BOOLEAN`",
-            ["active"] = true,
-            ["index$"] = 1,
-          },
-        },
-        ["name"] = "hous",
-        ["op"] = {
-          ["list"] = {
-            ["name"] = "list",
-            ["points"] = {
-              {
-                ["method"] = "GET",
-                ["orig"] = "/v2/housing/houses",
-                ["parts"] = {
-                  "v2",
-                  "housing",
-                  "houses",
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["active"] = true,
-                ["args"] = {},
-                ["select"] = {},
-                ["index$"] = 0,
-              },
-            },
-            ["input"] = "data",
-            ["key$"] = "list",
-          },
-        },
-        ["relations"] = {
-          ["ancestors"] = {},
-        },
-      },
       ["housing"] = {
         ["fields"] = {
           {
-            ["name"] = "hous",
-            ["req"] = false,
-            ["type"] = "`$ARRAY`",
-            ["active"] = true,
-            ["index$"] = 0,
-          },
-          {
-            ["name"] = "houses",
+            ["name"] = "house",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["active"] = true,
-            ["index$"] = 1,
+            ["index$"] = 0,
           },
           {
             ["name"] = "success",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["active"] = true,
-            ["index$"] = 2,
+            ["index$"] = 1,
           },
         },
         ["name"] = "housing",
@@ -222,6 +166,25 @@ local function make_config()
                 ["active"] = true,
                 ["index$"] = 0,
               },
+              {
+                ["method"] = "GET",
+                ["orig"] = "/v2/housing/houses",
+                ["parts"] = {
+                  "v2",
+                  "housing",
+                  "houses",
+                },
+                ["select"] = {
+                  ["$action"] = "house",
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["active"] = true,
+                ["args"] = {},
+                ["index$"] = 1,
+              },
             },
             ["input"] = "data",
             ["key$"] = "list",
@@ -234,8 +197,8 @@ local function make_config()
                   ["query"] = {
                     {
                       ["kind"] = "query",
-                      ["name"] = "houses",
-                      ["orig"] = "houses",
+                      ["name"] = "house",
+                      ["orig"] = "house",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
                       ["active"] = true,
@@ -250,9 +213,9 @@ local function make_config()
                   "house",
                 },
                 ["select"] = {
-                  ["$action"] = "houses",
+                  ["$action"] = "house",
                   ["exist"] = {
-                    "houses",
+                    "house",
                   },
                 },
                 ["transform"] = {

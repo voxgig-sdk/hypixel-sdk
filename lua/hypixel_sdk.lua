@@ -250,12 +250,6 @@ function HypixelSDK:Guild(data)
 end
 
 
-function HypixelSDK:Hous(data)
-  local EntityMod = require("entity.hous_entity")
-  return EntityMod.new(self, data)
-end
-
-
 function HypixelSDK:Housing(data)
   local EntityMod = require("entity.housing_entity")
   return EntityMod.new(self, data)

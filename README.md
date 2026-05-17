@@ -2,17 +2,16 @@
 
 
 
-Available for [Golang](go/) and [Lua](lua/) and [PHP](php/) and [Python](py/) and [Ruby](rb/) and [TypeScript](ts/).
+Available for [Golang](go/) and [Go CLI](go-cli/) and [Lua](lua/) and [PHP](php/) and [Python](py/) and [Ruby](rb/) and [TypeScript](ts/).
 
 
 ## Entities
 
-The API exposes 8 entities:
+The API exposes 7 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
 | **Guild** |  | `/v2/guild` |
-| **Hous** |  | `/v2/housing/houses` |
 | **Housing** |  | `/v2/housing/player` |
 | **Other** |  | `/v2/boosters` |
 | **Player** |  | `/v2/player` |
@@ -66,7 +65,7 @@ and `body`.
 ### Golang
 
 ```go
-import sdk "github.com/voxgig-sdk/hypixel-sdk"
+import sdk "github.com/voxgig-sdk/hypixel-sdk/go"
 
 client := sdk.NewHypixelSDK(map[string]any{
     "apikey": os.Getenv("HYPIXEL_APIKEY"),
@@ -276,6 +275,7 @@ console.log(result.data)
 ## Language-specific documentation
 
 - [Golang SDK](go/README.md)
+- [Go CLI SDK](go-cli/README.md)
 - [Lua SDK](lua/README.md)
 - [PHP SDK](php/README.md)
 - [Python SDK](py/README.md)

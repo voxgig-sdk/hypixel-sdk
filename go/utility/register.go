@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/hypixel-sdk/core"
+import "github.com/voxgig-sdk/hypixel-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

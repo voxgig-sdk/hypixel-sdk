@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/hypixel-sdk/go/utility/struct"
 )
 
 type HypixelSDK struct {
@@ -247,11 +247,6 @@ func (sdk *HypixelSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 
 func (sdk *HypixelSDK) Guild(data map[string]any) HypixelEntity {
 	return NewGuildEntityFunc(sdk, data)
-}
-
-
-func (sdk *HypixelSDK) Hous(data map[string]any) HypixelEntity {
-	return NewHousEntityFunc(sdk, data)
 }
 
 

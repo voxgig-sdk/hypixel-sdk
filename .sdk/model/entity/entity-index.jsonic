@@ -1,7 +1,6 @@
 # Entity Models
 
 @"guild.jsonic"
-@"hous.jsonic"
 @"housing.jsonic"
 @"other.jsonic"
 @"player.jsonic"

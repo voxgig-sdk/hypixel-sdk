@@ -61,18 +61,6 @@ Create a new `Guild` entity instance.
 
 **Returns:** `GuildEntity` instance.
 
-#### `Hous(data?: object)`
-
-Create a new `Hous` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `HousEntity` instance.
-
 #### `Housing(data?: object)`
 
 Create a new `Housing` entity instance.
@@ -242,57 +230,6 @@ Return a copy of the entity options.
 
 ---
 
-## HousEntity
-
-```ts
-const hous = client.Hous()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.Hous().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `HousEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `HypixelSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## HousingEntity
 
 ```ts
@@ -303,8 +240,7 @@ const housing = client.Housing()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `houses` | ``$OBJECT`` | No |  |
+| `house` | ``$OBJECT`` | No |  |
 | `success` | ``$BOOLEAN`` | No |  |
 
 ### Operations

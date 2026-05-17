@@ -11,7 +11,8 @@
         "rarity": {},
         "success": false,
         "tiered": {},
-        "type": {}
+        "type": {},
+        "id": "RESOURCE00"
       },
       "RESOURCE01": {
         "achievement": {},
@@ -23,7 +24,8 @@
         "rarity": {},
         "success": false,
         "tiered": {},
-        "type": {}
+        "type": {},
+        "id": "RESOURCE01"
       },
       "RESOURCE02": {
         "achievement": {},
@@ -35,7 +37,8 @@
         "rarity": {},
         "success": false,
         "tiered": {},
-        "type": {}
+        "type": {},
+        "id": "RESOURCE02"
       }
     }
   },

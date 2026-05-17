@@ -1,10 +1,10 @@
 package voxgighypixelsdk
 
 import (
-	"github.com/voxgig-sdk/hypixel-sdk/core"
-	"github.com/voxgig-sdk/hypixel-sdk/entity"
-	"github.com/voxgig-sdk/hypixel-sdk/feature"
-	_ "github.com/voxgig-sdk/hypixel-sdk/utility"
+	"github.com/voxgig-sdk/hypixel-sdk/go/core"
+	"github.com/voxgig-sdk/hypixel-sdk/go/entity"
+	"github.com/voxgig-sdk/hypixel-sdk/go/feature"
+	_ "github.com/voxgig-sdk/hypixel-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
@@ -34,9 +34,6 @@ func init() {
 	}
 	core.NewGuildEntityFunc = func(client *core.HypixelSDK, entopts map[string]any) core.HypixelEntity {
 		return entity.NewGuildEntity(client, entopts)
-	}
-	core.NewHousEntityFunc = func(client *core.HypixelSDK, entopts map[string]any) core.HypixelEntity {
-		return entity.NewHousEntity(client, entopts)
 	}
 	core.NewHousingEntityFunc = func(client *core.HypixelSDK, entopts map[string]any) core.HypixelEntity {
 		return entity.NewHousingEntity(client, entopts)

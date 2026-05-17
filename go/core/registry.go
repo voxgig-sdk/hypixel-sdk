@@ -8,8 +8,6 @@ var NewTestFeatureFunc func() Feature
 
 var NewGuildEntityFunc func(client *HypixelSDK, entopts map[string]any) HypixelEntity
 
-var NewHousEntityFunc func(client *HypixelSDK, entopts map[string]any) HypixelEntity
-
 var NewHousingEntityFunc func(client *HypixelSDK, entopts map[string]any) HypixelEntity
 
 var NewOtherEntityFunc func(client *HypixelSDK, entopts map[string]any) HypixelEntity

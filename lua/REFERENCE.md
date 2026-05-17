@@ -45,10 +45,6 @@ local client = sdk.test(nil, nil)
 
 Create a new `Guild` entity instance. Pass `nil` for no initial data.
 
-#### `Hous(data)`
-
-Create a new `Hous` entity instance. Pass `nil` for no initial data.
-
 #### `Housing(data)`
 
 Create a new `Housing` entity instance. Pass `nil` for no initial data.
@@ -162,59 +158,6 @@ Return the entity name.
 
 ---
 
-## HousEntity
-
-```lua
-local hous = client:Hous(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:Hous(nil):list(nil, nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `HousEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## HousingEntity
 
 ```lua
@@ -225,8 +168,7 @@ local housing = client:Housing(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hous` | ``$ARRAY`` | No |  |
-| `houses` | ``$OBJECT`` | No |  |
+| `house` | ``$OBJECT`` | No |  |
 | `success` | ``$BOOLEAN`` | No |  |
 
 ### Operations

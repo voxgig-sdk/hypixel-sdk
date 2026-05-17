@@ -1,7 +1,6 @@
 # Flows
 
 @"BasicGuildFlow.jsonic"
-@"BasicHousFlow.jsonic"
 @"BasicHousingFlow.jsonic"
 @"BasicOtherFlow.jsonic"
 @"BasicPlayerDataFlow.jsonic"
