@@ -18,7 +18,23 @@
         ],
         "termsOfService": "https://developer.hypixel.net",
         "title": "Hypixel API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "tagline": "Read player stats, guild info, and SkyBlock data from the Hypixel Minecraft server",
+        "homepage": "https://developer.hypixel.net/",
+        "docs_url": "https://api.hypixel.net/",
+        "license_short": "Usage governed by the Hypixel API Terms of Service; requires a developer API key",
+        "license_md": "- Access requires a Hypixel developer account and API key issued via the developer dashboard\n- Use is subject to the Hypixel API Terms of Service\n- Rate limits are enforced on requests; abuse may result in key revocation\n- No specific open-source licence is published for the API itself",
+        "about_md": "The [Hypixel API](https://api.hypixel.net) is the public HTTP interface for the [Hypixel Network](https://hypixel.net), one of the largest Minecraft servers. It exposes player profiles, guild data, game resources, and SkyBlock-specific information for community tooling, leaderboards, and stat trackers.\n\nWhat you can retrieve:\n\n- Player profiles, stats, and game-mode history\n- Guild membership and metadata\n- SkyBlock auctions, bazaar listings, profiles, and collections\n- Housing data for player-built houses\n- Static game resources (achievements, challenges, quests, pets, etc.)\n\nMost endpoints require an API key obtained from the [Hypixel developer dashboard](https://developer.hypixel.net/). Requests are rate-limited and CORS is enabled. Responses are JSON.",
+        "entity_desc": {
+          "guild": "Guild lookup operations returning guild metadata and member rosters under `/guild`.",
+          "housing": "Player housing data exposing publicly listed houses and their metadata.",
+          "other": "Miscellaneous endpoints that do not belong to a specific game or resource group (e.g. server status, key info, punishment stats).",
+          "player": "Player lookup endpoints returning profile, rank, and per-game statistics, typically under `/player`.",
+          "player_data": "Higher-level aggregated player datasets such as recent games, status, and online presence.",
+          "resource": "Static game resource catalogues such as achievements, challenges, quests, vanity items, and pets under `/resources`.",
+          "sky_block": "SkyBlock-specific data including auctions, the bazaar, player profiles, collections, and election results under `/skyblock`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -26,7 +42,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "guild": {

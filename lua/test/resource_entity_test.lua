@@ -91,7 +91,6 @@ function resource_basic_setup(extra)
     ["HYPIXEL_TEST_RESOURCE_ENTID"] = idmap,
     ["HYPIXEL_TEST_LIVE"] = "FALSE",
     ["HYPIXEL_TEST_EXPLAIN"] = "FALSE",
-    ["HYPIXEL_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function resource_basic_setup(extra)
   if env["HYPIXEL_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["HYPIXEL_APIKEY"],
       },
       extra or {},
     })

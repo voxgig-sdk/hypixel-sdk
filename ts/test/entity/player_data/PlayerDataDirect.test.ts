@@ -135,14 +135,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'HYPIXEL_TEST_PLAYER_DATA_ENTID': {},
     'HYPIXEL_TEST_LIVE': 'FALSE',
-    'HYPIXEL_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.HYPIXEL_TEST_LIVE
 
   if (live) {
     const client = new HypixelSDK({
-      apikey: env.HYPIXEL_APIKEY,
     })
 
     let idmap: any = env['HYPIXEL_TEST_PLAYER_DATA_ENTID']

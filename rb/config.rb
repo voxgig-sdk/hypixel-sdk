@@ -15,9 +15,6 @@ module HypixelConfig
       },
       "options" => {
         "base" => "https://api.hypixel.net",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

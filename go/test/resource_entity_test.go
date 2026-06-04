@@ -117,7 +117,6 @@ func resourceBasicSetup(extra map[string]any) *entityTestSetup {
 		"HYPIXEL_TEST_RESOURCE_ENTID": idmap,
 		"HYPIXEL_TEST_LIVE":      "FALSE",
 		"HYPIXEL_TEST_EXPLAIN":   "FALSE",
-		"HYPIXEL_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["HYPIXEL_TEST_RESOURCE_ENTID"])
@@ -128,7 +127,6 @@ func resourceBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["HYPIXEL_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["HYPIXEL_APIKEY"],
 			},
 			extra,
 		})

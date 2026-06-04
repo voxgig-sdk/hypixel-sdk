@@ -135,7 +135,6 @@ func sky_blockBasicSetup(extra map[string]any) *entityTestSetup {
 		"HYPIXEL_TEST_SKY_BLOCK_ENTID": idmap,
 		"HYPIXEL_TEST_LIVE":      "FALSE",
 		"HYPIXEL_TEST_EXPLAIN":   "FALSE",
-		"HYPIXEL_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["HYPIXEL_TEST_SKY_BLOCK_ENTID"])
@@ -146,7 +145,6 @@ func sky_blockBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["HYPIXEL_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["HYPIXEL_APIKEY"],
 			},
 			extra,
 		})

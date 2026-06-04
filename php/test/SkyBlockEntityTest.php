@@ -96,7 +96,6 @@ function sky_block_basic_setup($extra)
         "HYPIXEL_TEST_SKY_BLOCK_ENTID" => $idmap,
         "HYPIXEL_TEST_LIVE" => "FALSE",
         "HYPIXEL_TEST_EXPLAIN" => "FALSE",
-        "HYPIXEL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +107,6 @@ function sky_block_basic_setup($extra)
     if ($env["HYPIXEL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["HYPIXEL_APIKEY"],
             ],
             $extra ?? [],
         ]);
