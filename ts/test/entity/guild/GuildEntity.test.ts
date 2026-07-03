@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'HYPIXEL_TEST_GUILD_ENTID': idmap,
     'HYPIXEL_TEST_LIVE': 'FALSE',
     'HYPIXEL_TEST_EXPLAIN': 'FALSE',
+    'HYPIXEL_APIKEY': 'NONE',
   })
 
   idmap = env['HYPIXEL_TEST_GUILD_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new HypixelSDK(merge([
       {
+        apikey: env.HYPIXEL_APIKEY,
       },
       extra
     ]))

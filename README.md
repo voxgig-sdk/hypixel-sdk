@@ -1,22 +1,8 @@
 # Hypixel SDK
 
-Read player stats, guild info, and SkyBlock data from the Hypixel Minecraft server
+Hypixel API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Hypixel API
-
-The [Hypixel API](https://api.hypixel.net) is the public HTTP interface for the [Hypixel Network](https://hypixel.net), one of the largest Minecraft servers. It exposes player profiles, guild data, game resources, and SkyBlock-specific information for community tooling, leaderboards, and stat trackers.
-
-What you can retrieve:
-
-- Player profiles, stats, and game-mode history
-- Guild membership and metadata
-- SkyBlock auctions, bazaar listings, profiles, and collections
-- Housing data for player-built houses
-- Static game resources (achievements, challenges, quests, pets, etc.)
-
-Most endpoints require an API key obtained from the [Hypixel developer dashboard](https://developer.hypixel.net/). Requests are rate-limited and CORS is enabled. Responses are JSON.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install hypixel-sdk
 luarocks install hypixel-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { HypixelSDK } from 'hypixel'
 
-const client = new HypixelSDK({})
+const client = new HypixelSDK({
+  apikey: process.env.HYPIXEL_APIKEY,
+})
 
+// Load guild data
+const guild = await client.Guild().load({})
+console.log(guild.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,13 +90,13 @@ The API exposes 7 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Guild** | Guild lookup operations returning guild metadata and member rosters under `/guild`. | `/v2/guild` |
-| **Housing** | Player housing data exposing publicly listed houses and their metadata. | `/v2/housing/player` |
-| **Other** | Miscellaneous endpoints that do not belong to a specific game or resource group (e.g. server status, key info, punishment stats). | `/v2/boosters` |
-| **Player** | Player lookup endpoints returning profile, rank, and per-game statistics, typically under `/player`. | `/v2/player` |
-| **PlayerData** | Higher-level aggregated player datasets such as recent games, status, and online presence. | `/v2/recentgames` |
-| **Resource** | Static game resource catalogues such as achievements, challenges, quests, vanity items, and pets under `/resources`. | `/v2/resources/achievements` |
-| **SkyBlock** | SkyBlock-specific data including auctions, the bazaar, player profiles, collections, and election results under `/skyblock`. | `/v2/skyblock/auction` |
+| **Guild** |  | `/v2/guild` |
+| **Housing** |  | `/v2/housing/player` |
+| **Other** |  | `/v2/boosters` |
+| **Player** |  | `/v2/player` |
+| **PlayerData** |  | `/v2/recentgames` |
+| **Resource** |  | `/v2/resources/achievements` |
+| **SkyBlock** |  | `/v2/skyblock/auction` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -116,15 +106,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from hypixel_sdk import HypixelSDK
 
-client = HypixelSDK({})
+client = HypixelSDK({
+    "apikey": os.environ.get("HYPIXEL_APIKEY"),
+})
 
 
 # Load a specific guild
-guild, err = client.Guild(None).load(
-    {"id": "example_id"}, None
-)
+guild, err = client.Guild().load({"id": "example_id"})
+print(guild)
 ```
 
 ### PHP
@@ -133,13 +125,14 @@ guild, err = client.Guild(None).load(
 <?php
 require_once 'hypixel_sdk.php';
 
-$client = new HypixelSDK([]);
+$client = new HypixelSDK([
+    "apikey" => getenv("HYPIXEL_APIKEY"),
+]);
 
 
 // Load a specific guild
-[$guild, $err] = $client->Guild(null)->load(
-    ["id" => "example_id"], null
-);
+[$guild, $err] = $client->Guild()->load(["id" => "example_id"]);
+print_r($guild);
 ```
 
 ### Golang
@@ -147,8 +140,13 @@ $client = new HypixelSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/hypixel-sdk/go"
 
-client := sdk.NewHypixelSDK(map[string]any{})
+client := sdk.NewHypixelSDK(map[string]any{
+    "apikey": os.Getenv("HYPIXEL_APIKEY"),
+})
 
+// Load guild data
+guild, err := client.Guild(nil).Load(map[string]any{}, nil)
+fmt.Println(guild)
 ```
 
 ### Ruby
@@ -156,13 +154,14 @@ client := sdk.NewHypixelSDK(map[string]any{})
 ```ruby
 require_relative "Hypixel_sdk"
 
-client = HypixelSDK.new({})
+client = HypixelSDK.new({
+  "apikey" => ENV["HYPIXEL_APIKEY"],
+})
 
 
 # Load a specific guild
-guild, err = client.Guild(nil).load(
-  { "id" => "example_id" }, nil
-)
+guild, err = client.Guild().load({ "id" => "example_id" })
+puts guild
 ```
 
 ### Lua
@@ -170,13 +169,14 @@ guild, err = client.Guild(nil).load(
 ```lua
 local sdk = require("hypixel_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("HYPIXEL_APIKEY"),
+})
 
 
 -- Load a specific guild
-local guild, err = client:Guild(nil):load(
-  { id = "example_id" }, nil
-)
+local guild, err = client:Guild():load({ id = "example_id" })
+print(guild)
 ```
 
 ## Unit testing in offline mode
@@ -195,25 +195,21 @@ const result = await client.Guild().load({ id: 'test01' })
 ### Python
 
 ```python
-client = HypixelSDK.test(None, None)
-result, err = client.Guild(None).load(
-    {"id": "test01"}, None
-)
+client = HypixelSDK.test()
+result, err = client.Guild().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = HypixelSDK::test(null, null);
-[$result, $err] = $client->Guild(null)->load(
-    ["id" => "test01"], null
-);
+$client = HypixelSDK::test();
+[$result, $err] = $client->Guild()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Guild(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -222,19 +218,15 @@ result, err := client.Guild(nil).Load(
 ### Ruby
 
 ```ruby
-client = HypixelSDK.test(nil, nil)
-result, err = client.Guild(nil).load(
-  { "id" => "test01" }, nil
-)
+client = HypixelSDK.test
+result, err = client.Guild().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Guild(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Guild():load({ id = "test01" })
 ```
 
 ## How it works
@@ -338,16 +330,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Hypixel API
-
-- Upstream: [https://developer.hypixel.net/](https://developer.hypixel.net/)
-- API docs: [https://api.hypixel.net/](https://api.hypixel.net/)
-
-- Access requires a Hypixel developer account and API key issued via the developer dashboard
-- Use is subject to the Hypixel API Terms of Service
-- Rate limits are enforced on requests; abuse may result in key revocation
-- No specific open-source licence is published for the API itself
 
 ---
 

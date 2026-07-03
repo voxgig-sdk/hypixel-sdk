@@ -67,12 +67,14 @@ function guild_direct_setup($mockres)
     $env = Runner::env_override([
         "HYPIXEL_TEST_GUILD_ENTID" => [],
         "HYPIXEL_TEST_LIVE" => "FALSE",
+        "HYPIXEL_APIKEY" => "NONE",
     ]);
 
     $live = $env["HYPIXEL_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["HYPIXEL_APIKEY"],
         ];
         $client = new HypixelSDK($merged_opts);
         return [

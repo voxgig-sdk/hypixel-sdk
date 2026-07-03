@@ -102,6 +102,7 @@ def _sky_block_basic_setup(extra):
         "HYPIXEL_TEST_SKY_BLOCK_ENTID": idmap,
         "HYPIXEL_TEST_LIVE": "FALSE",
         "HYPIXEL_TEST_EXPLAIN": "FALSE",
+        "HYPIXEL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,6 +113,7 @@ def _sky_block_basic_setup(extra):
     if env.get("HYPIXEL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("HYPIXEL_APIKEY"),
             },
             extra or {},
         ])

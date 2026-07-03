@@ -107,12 +107,14 @@ function other_direct_setup(mockres)
   local env = runner.env_override({
     ["HYPIXEL_TEST_OTHER_ENTID"] = {},
     ["HYPIXEL_TEST_LIVE"] = "FALSE",
+    ["HYPIXEL_APIKEY"] = "NONE",
   })
 
   local live = env["HYPIXEL_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["HYPIXEL_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -47,7 +47,7 @@ main: kit: entity: player: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.player`"
           }
         }
       ]

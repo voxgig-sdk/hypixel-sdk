@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -125,7 +125,7 @@ local guild = client:Guild(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Guild(nil):load({ id = "guild_id" }, nil)
+local result, err = client:Guild():load({ id = "guild_id" })
 ```
 
 ### Common Methods
@@ -178,7 +178,7 @@ local housing = client:Housing(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Housing(nil):list(nil, nil)
+local results, err = client:Housing():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -186,7 +186,7 @@ local results, err = client:Housing(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Housing(nil):load({ id = "housing_id" }, nil)
+local result, err = client:Housing():load({ id = "housing_id" })
 ```
 
 ### Common Methods
@@ -248,7 +248,7 @@ local other = client:Other(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Other(nil):list(nil, nil)
+local results, err = client:Other():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -256,7 +256,7 @@ local results, err = client:Other(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Other(nil):load({ id = "other_id" }, nil)
+local result, err = client:Other():load({ id = "other_id" })
 ```
 
 ### Common Methods
@@ -309,7 +309,7 @@ local player = client:Player(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Player(nil):load({ id = "player_id" }, nil)
+local result, err = client:Player():load({ id = "player_id" })
 ```
 
 ### Common Methods
@@ -368,7 +368,7 @@ local player_data = client:PlayerData(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:PlayerData(nil):list(nil, nil)
+local results, err = client:PlayerData():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -376,7 +376,7 @@ local results, err = client:PlayerData(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PlayerData(nil):load({ id = "player_data_id" }, nil)
+local result, err = client:PlayerData():load({ id = "player_data_id" })
 ```
 
 ### Common Methods
@@ -437,7 +437,7 @@ local resource = client:Resource(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Resource(nil):load({ id = "resource_id" }, nil)
+local result, err = client:Resource():load({ id = "resource_id" })
 ```
 
 ### Common Methods
@@ -536,7 +536,7 @@ local sky_block = client:SkyBlock(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:SkyBlock(nil):list(nil, nil)
+local results, err = client:SkyBlock():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -544,7 +544,7 @@ local results, err = client:SkyBlock(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:SkyBlock(nil):load({ id = "sky_block_id" }, nil)
+local result, err = client:SkyBlock():load({ id = "sky_block_id" })
 ```
 
 ### Common Methods

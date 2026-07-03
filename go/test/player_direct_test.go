@@ -99,12 +99,14 @@ func playerDirectSetup(mockres any) *playerDirectSetupResult {
 	env := envOverride(map[string]any{
 		"HYPIXEL_TEST_PLAYER_ENTID": map[string]any{},
 		"HYPIXEL_TEST_LIVE":    "FALSE",
+		"HYPIXEL_APIKEY":       "NONE",
 	})
 
 	live := env["HYPIXEL_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["HYPIXEL_APIKEY"],
 		}
 		client := sdk.NewHypixelSDK(mergedOpts)
 

@@ -99,12 +99,14 @@ def _player_data_direct_setup(mockres):
     env = runner.env_override({
         "HYPIXEL_TEST_PLAYER_DATA_ENTID": {},
         "HYPIXEL_TEST_LIVE": "FALSE",
+        "HYPIXEL_APIKEY": "NONE",
     })
 
     live = env.get("HYPIXEL_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("HYPIXEL_APIKEY"),
         }
         client = HypixelSDK(merged_opts)
         return {
