@@ -10,7 +10,7 @@ The Python SDK for the Hypixel API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install hypixel-sdk
+pip install voxgig-sdk-hypixel
 ```
 
 Or install from source:

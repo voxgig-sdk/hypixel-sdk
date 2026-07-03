@@ -10,7 +10,7 @@ The Lua SDK for the Hypixel API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install hypixel-sdk
+luarocks install voxgig-sdk-hypixel
 ```
 
 If the module is not yet published, add the source directory to

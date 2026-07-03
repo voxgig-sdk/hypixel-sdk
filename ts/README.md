@@ -10,7 +10,7 @@ The TypeScript SDK for the Hypixel API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install hypixel
+npm install @voxgig-sdk/hypixel
 ```
 ## Tutorial: your first API call
 

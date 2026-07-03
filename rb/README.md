@@ -10,13 +10,13 @@ The Ruby SDK for the Hypixel API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install hypixel-sdk
+gem install voxgig-sdk-hypixel
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "hypixel-sdk"
+gem "voxgig-sdk-hypixel"
 ```
 
 Then run:
