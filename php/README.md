@@ -9,9 +9,10 @@ The PHP SDK for the Hypixel API — an entity-oriented client using PHP conventi
 
 
 ## Install
-```bash
-composer require voxgig-sdk/hypixel
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/hypixel-sdk/releases](https://github.com/voxgig-sdk/hypixel-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -33,9 +34,12 @@ $client = new HypixelSDK([
 ### 3. Load a guild
 
 ```php
-[$result, $err] = $client->Guild()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->guild()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +50,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = HypixelSDK::test();
 
-[$result, $err] = $client->Hypixel()->load(["id" => "test01"]);
+$result = $client->guild()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -191,8 +198,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -358,7 +369,7 @@ API path: `/v2/skyblock/auction`
 
 ### Guild
 
-Create an instance: `const guild = client.Guild()`
+Create an instance: `const guild = client.guild`
 
 #### Operations
 
@@ -376,13 +387,13 @@ Create an instance: `const guild = client.Guild()`
 #### Example: Load
 
 ```ts
-const guild = await client.Guild().load({ id: 'guild_id' })
+const guild = await client.guild.load({ id: 'guild_id' })
 ```
 
 
 ### Housing
 
-Create an instance: `const housing = client.Housing()`
+Create an instance: `const housing = client.housing`
 
 #### Operations
 
@@ -401,19 +412,19 @@ Create an instance: `const housing = client.Housing()`
 #### Example: Load
 
 ```ts
-const housing = await client.Housing().load({ id: 'housing_id' })
+const housing = await client.housing.load({ id: 'housing_id' })
 ```
 
 #### Example: List
 
 ```ts
-const housings = await client.Housing().list()
+const housings = await client.housing.list()
 ```
 
 
 ### Other
 
-Create an instance: `const other = client.Other()`
+Create an instance: `const other = client.other`
 
 #### Operations
 
@@ -441,19 +452,19 @@ Create an instance: `const other = client.Other()`
 #### Example: Load
 
 ```ts
-const other = await client.Other().load({ id: 'other_id' })
+const other = await client.other.load({ id: 'other_id' })
 ```
 
 #### Example: List
 
 ```ts
-const others = await client.Other().list()
+const others = await client.other.list()
 ```
 
 
 ### Player
 
-Create an instance: `const player = client.Player()`
+Create an instance: `const player = client.player`
 
 #### Operations
 
@@ -471,13 +482,13 @@ Create an instance: `const player = client.Player()`
 #### Example: Load
 
 ```ts
-const player = await client.Player().load({ id: 'player_id' })
+const player = await client.player.load({ id: 'player_id' })
 ```
 
 
 ### PlayerData
 
-Create an instance: `const player_data = client.PlayerData()`
+Create an instance: `const player_data = client.player_data`
 
 #### Operations
 
@@ -502,19 +513,19 @@ Create an instance: `const player_data = client.PlayerData()`
 #### Example: Load
 
 ```ts
-const player_data = await client.PlayerData().load({ id: 'player_data_id' })
+const player_data = await client.player_data.load({ id: 'player_data_id' })
 ```
 
 #### Example: List
 
 ```ts
-const player_datas = await client.PlayerData().list()
+const player_datas = await client.player_data.list()
 ```
 
 
 ### Resource
 
-Create an instance: `const resource = client.Resource()`
+Create an instance: `const resource = client.resource`
 
 #### Operations
 
@@ -540,13 +551,13 @@ Create an instance: `const resource = client.Resource()`
 #### Example: Load
 
 ```ts
-const resource = await client.Resource().load({ id: 'resource_id' })
+const resource = await client.resource.load({ id: 'resource_id' })
 ```
 
 
 ### SkyBlock
 
-Create an instance: `const sky_block = client.SkyBlock()`
+Create an instance: `const sky_block = client.sky_block`
 
 #### Operations
 
@@ -611,13 +622,13 @@ Create an instance: `const sky_block = client.SkyBlock()`
 #### Example: Load
 
 ```ts
-const sky_block = await client.SkyBlock().load({ id: 'sky_block_id' })
+const sky_block = await client.sky_block.load({ id: 'sky_block_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sky_blocks = await client.SkyBlock().list()
+const sky_blocks = await client.sky_block.list()
 ```
 
 
@@ -692,11 +703,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$guild = $client->guild();
+$guild->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $guild->dataGet() now returns the loaded guild data
+// $guild->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

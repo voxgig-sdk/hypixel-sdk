@@ -50,14 +50,12 @@ class TestHousingEntity:
         housing_ref01_ent = client.Housing(None)
         housing_ref01_match = {}
 
-        housing_ref01_list_result, err = housing_ref01_ent.list(housing_ref01_match, None)
-        assert err is None
+        housing_ref01_list_result = housing_ref01_ent.list(housing_ref01_match, None)
         assert isinstance(housing_ref01_list_result, list)
 
         # LOAD
         housing_ref01_match_dt0 = {}
-        housing_ref01_data_dt0_loaded, err = housing_ref01_ent.load(housing_ref01_match_dt0, None)
-        assert err is None
+        housing_ref01_data_dt0_loaded = housing_ref01_ent.load(housing_ref01_match_dt0, None)
         assert housing_ref01_data_dt0_loaded is not None
 
 

@@ -55,6 +55,9 @@ class ResourceEntity
         return new ResourceEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Resource|array $args Resource data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ResourceEntity
         }
     }
 
+    /**
+     * @return Resource|array The current Resource data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Resource fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ResourceEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Resource fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class ResourceEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Resource.
+     *
+     * @param ResourceLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed ResourceLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Resource|array The loaded Resource as an assoc-array at the
+     *   SDK boundary; throws HypixelError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -117,7 +138,7 @@ class ResourceEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

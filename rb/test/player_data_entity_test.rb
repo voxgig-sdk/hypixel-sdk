@@ -43,14 +43,12 @@ class PlayerDataEntityTest < Minitest::Test
     player_data_ref01_ent = client.PlayerData(nil)
     player_data_ref01_match = {}
 
-    player_data_ref01_list_result, err = player_data_ref01_ent.list(player_data_ref01_match, nil)
-    assert_nil err
+    player_data_ref01_list_result = player_data_ref01_ent.list(player_data_ref01_match, nil)
     assert player_data_ref01_list_result.is_a?(Array)
 
     # LOAD
     player_data_ref01_match_dt0 = {}
-    player_data_ref01_data_dt0_loaded, err = player_data_ref01_ent.load(player_data_ref01_match_dt0, nil)
-    assert_nil err
+    player_data_ref01_data_dt0_loaded = player_data_ref01_ent.load(player_data_ref01_match_dt0, nil)
     assert !player_data_ref01_data_dt0_loaded.nil?
 
   end

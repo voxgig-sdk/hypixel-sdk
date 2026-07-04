@@ -80,7 +80,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -94,11 +97,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -106,7 +110,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## GuildEntity
 
 ```php
-$guild = $client->Guild();
+$guild = $client->guild();
 ```
 
 ### Fields
@@ -118,12 +122,12 @@ $guild = $client->Guild();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Guild()->load(["id" => "guild_id"]);
+$result = $client->guild()->load(["id" => "guild_id"]);
 ```
 
 ### Common Methods
@@ -159,7 +163,7 @@ Return the entity name.
 ## HousingEntity
 
 ```php
-$housing = $client->Housing();
+$housing = $client->housing();
 ```
 
 ### Fields
@@ -171,20 +175,20 @@ $housing = $client->Housing();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Housing()->list([]);
+$results = $client->housing()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Housing()->load(["id" => "housing_id"]);
+$result = $client->housing()->load(["id" => "housing_id"]);
 ```
 
 ### Common Methods
@@ -220,7 +224,7 @@ Return the entity name.
 ## OtherEntity
 
 ```php
-$other = $client->Other();
+$other = $client->other();
 ```
 
 ### Fields
@@ -241,20 +245,20 @@ $other = $client->Other();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Other()->list([]);
+$results = $client->other()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Other()->load(["id" => "other_id"]);
+$result = $client->other()->load(["id" => "other_id"]);
 ```
 
 ### Common Methods
@@ -290,7 +294,7 @@ Return the entity name.
 ## PlayerEntity
 
 ```php
-$player = $client->Player();
+$player = $client->player();
 ```
 
 ### Fields
@@ -302,12 +306,12 @@ $player = $client->Player();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Player()->load(["id" => "player_id"]);
+$result = $client->player()->load(["id" => "player_id"]);
 ```
 
 ### Common Methods
@@ -343,7 +347,7 @@ Return the entity name.
 ## PlayerDataEntity
 
 ```php
-$player_data = $client->PlayerData();
+$player_data = $client->player_data();
 ```
 
 ### Fields
@@ -361,20 +365,20 @@ $player_data = $client->PlayerData();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->PlayerData()->list([]);
+$results = $client->player_data()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->PlayerData()->load(["id" => "player_data_id"]);
+$result = $client->player_data()->load(["id" => "player_data_id"]);
 ```
 
 ### Common Methods
@@ -410,7 +414,7 @@ Return the entity name.
 ## ResourceEntity
 
 ```php
-$resource = $client->Resource();
+$resource = $client->resource();
 ```
 
 ### Fields
@@ -430,12 +434,12 @@ $resource = $client->Resource();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Resource()->load(["id" => "resource_id"]);
+$result = $client->resource()->load(["id" => "resource_id"]);
 ```
 
 ### Common Methods
@@ -471,7 +475,7 @@ Return the entity name.
 ## SkyBlockEntity
 
 ```php
-$sky_block = $client->SkyBlock();
+$sky_block = $client->sky_block();
 ```
 
 ### Fields
@@ -529,20 +533,20 @@ $sky_block = $client->SkyBlock();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->SkyBlock()->list([]);
+$results = $client->sky_block()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->SkyBlock()->load(["id" => "sky_block_id"]);
+$result = $client->sky_block()->load(["id" => "sky_block_id"]);
 ```
 
 ### Common Methods

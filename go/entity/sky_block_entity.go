@@ -85,6 +85,27 @@ func (e *SkyBlockEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an SkyBlock; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *SkyBlockEntity) DataTyped(data ...SkyBlock) SkyBlock {
+	if len(data) > 0 {
+		return typedFrom[SkyBlock](e.Data(asMap(data[0])))
+	}
+	return typedFrom[SkyBlock](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through SkyBlock (all fields
+// optional at the wire level).
+func (e *SkyBlockEntity) MatchTyped(match ...SkyBlock) SkyBlock {
+	if len(match) > 0 {
+		return typedFrom[SkyBlock](e.Match(asMap(match[0])))
+	}
+	return typedFrom[SkyBlock](e.Match())
+}
+
 
 func (e *SkyBlockEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *SkyBlockEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// SkyBlockLoadMatch and returns an SkyBlock. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *SkyBlockEntity) LoadTyped(reqmatch SkyBlockLoadMatch, ctrl map[string]any) (SkyBlock, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return SkyBlock{}, err
+	}
+	return typedFrom[SkyBlock](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *SkyBlockEntity) List(reqmatch map[string]any, ctrl map[string]any) (any
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// SkyBlockListMatch and returns []SkyBlock. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *SkyBlockEntity) ListTyped(reqmatch SkyBlockListMatch, ctrl map[string]any) ([]SkyBlock, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[SkyBlock](res), nil
 }
 
 

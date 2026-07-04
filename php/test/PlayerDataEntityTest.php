@@ -50,14 +50,12 @@ class PlayerDataEntityTest extends TestCase
         $player_data_ref01_ent = $client->PlayerData(null);
         $player_data_ref01_match = [];
 
-        [$player_data_ref01_list_result, $err] = $player_data_ref01_ent->list($player_data_ref01_match, null);
-        $this->assertNull($err);
+        $player_data_ref01_list_result = $player_data_ref01_ent->list($player_data_ref01_match, null);
         $this->assertIsArray($player_data_ref01_list_result);
 
         // LOAD
         $player_data_ref01_match_dt0 = [];
-        [$player_data_ref01_data_dt0_loaded, $err] = $player_data_ref01_ent->load($player_data_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $player_data_ref01_data_dt0_loaded = $player_data_ref01_ent->load($player_data_ref01_match_dt0, null);
         $this->assertNotNull($player_data_ref01_data_dt0_loaded);
 
     }

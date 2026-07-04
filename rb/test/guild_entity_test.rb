@@ -42,8 +42,7 @@ class GuildEntityTest < Minitest::Test
     # LOAD
     guild_ref01_ent = client.Guild(nil)
     guild_ref01_match_dt0 = {}
-    guild_ref01_data_dt0_loaded, err = guild_ref01_ent.load(guild_ref01_match_dt0, nil)
-    assert_nil err
+    guild_ref01_data_dt0_loaded = guild_ref01_ent.load(guild_ref01_match_dt0, nil)
     assert !guild_ref01_data_dt0_loaded.nil?
 
   end

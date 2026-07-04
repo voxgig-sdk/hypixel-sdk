@@ -144,16 +144,23 @@ class HypixelSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class HypixelSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,45 +212,122 @@ class HypixelSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def guild(self):
+        """Idiomatic facade: client.guild.list() / client.guild.load({"id": ...})."""
+        from entity.guild_entity import GuildEntity
+        cached = getattr(self, "_guild", None)
+        if cached is None:
+            cached = GuildEntity(self, None)
+            self._guild = cached
+        return cached
 
     def Guild(self, data=None):
+        # Deprecated: use client.guild instead.
         from entity.guild_entity import GuildEntity
         return GuildEntity(self, data)
 
 
+    @property
+    def housing(self):
+        """Idiomatic facade: client.housing.list() / client.housing.load({"id": ...})."""
+        from entity.housing_entity import HousingEntity
+        cached = getattr(self, "_housing", None)
+        if cached is None:
+            cached = HousingEntity(self, None)
+            self._housing = cached
+        return cached
+
     def Housing(self, data=None):
+        # Deprecated: use client.housing instead.
         from entity.housing_entity import HousingEntity
         return HousingEntity(self, data)
 
 
+    @property
+    def other(self):
+        """Idiomatic facade: client.other.list() / client.other.load({"id": ...})."""
+        from entity.other_entity import OtherEntity
+        cached = getattr(self, "_other", None)
+        if cached is None:
+            cached = OtherEntity(self, None)
+            self._other = cached
+        return cached
+
     def Other(self, data=None):
+        # Deprecated: use client.other instead.
         from entity.other_entity import OtherEntity
         return OtherEntity(self, data)
 
 
+    @property
+    def player(self):
+        """Idiomatic facade: client.player.list() / client.player.load({"id": ...})."""
+        from entity.player_entity import PlayerEntity
+        cached = getattr(self, "_player", None)
+        if cached is None:
+            cached = PlayerEntity(self, None)
+            self._player = cached
+        return cached
+
     def Player(self, data=None):
+        # Deprecated: use client.player instead.
         from entity.player_entity import PlayerEntity
         return PlayerEntity(self, data)
 
 
+    @property
+    def player_data(self):
+        """Idiomatic facade: client.player_data.list() / client.player_data.load({"id": ...})."""
+        from entity.player_data_entity import PlayerDataEntity
+        cached = getattr(self, "_player_data", None)
+        if cached is None:
+            cached = PlayerDataEntity(self, None)
+            self._player_data = cached
+        return cached
+
     def PlayerData(self, data=None):
+        # Deprecated: use client.player_data instead.
         from entity.player_data_entity import PlayerDataEntity
         return PlayerDataEntity(self, data)
 
 
+    @property
+    def resource(self):
+        """Idiomatic facade: client.resource.list() / client.resource.load({"id": ...})."""
+        from entity.resource_entity import ResourceEntity
+        cached = getattr(self, "_resource", None)
+        if cached is None:
+            cached = ResourceEntity(self, None)
+            self._resource = cached
+        return cached
+
     def Resource(self, data=None):
+        # Deprecated: use client.resource instead.
         from entity.resource_entity import ResourceEntity
         return ResourceEntity(self, data)
 
 
+    @property
+    def sky_block(self):
+        """Idiomatic facade: client.sky_block.list() / client.sky_block.load({"id": ...})."""
+        from entity.sky_block_entity import SkyBlockEntity
+        cached = getattr(self, "_sky_block", None)
+        if cached is None:
+            cached = SkyBlockEntity(self, None)
+            self._sky_block = cached
+        return cached
+
     def SkyBlock(self, data=None):
+        # Deprecated: use client.sky_block instead.
         from entity.sky_block_entity import SkyBlockEntity
         return SkyBlockEntity(self, data)
 

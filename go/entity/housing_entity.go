@@ -85,6 +85,27 @@ func (e *HousingEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Housing; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *HousingEntity) DataTyped(data ...Housing) Housing {
+	if len(data) > 0 {
+		return typedFrom[Housing](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Housing](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Housing (all fields
+// optional at the wire level).
+func (e *HousingEntity) MatchTyped(match ...Housing) Housing {
+	if len(match) > 0 {
+		return typedFrom[Housing](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Housing](e.Match())
+}
+
 
 func (e *HousingEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *HousingEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any,
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// HousingLoadMatch and returns an Housing. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *HousingEntity) LoadTyped(reqmatch HousingLoadMatch, ctrl map[string]any) (Housing, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Housing{}, err
+	}
+	return typedFrom[Housing](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *HousingEntity) List(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// HousingListMatch and returns []Housing. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *HousingEntity) ListTyped(reqmatch HousingListMatch, ctrl map[string]any) ([]Housing, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Housing](res), nil
 }
 
 

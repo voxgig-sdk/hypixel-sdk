@@ -245,36 +245,57 @@ func (sdk *HypixelSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// Guild returns a Guild entity bound to this client.
+// Idiomatic usage: client.Guild(nil).List(nil, nil) or
+// client.Guild(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HypixelSDK) Guild(data map[string]any) HypixelEntity {
 	return NewGuildEntityFunc(sdk, data)
 }
 
 
+// Housing returns a Housing entity bound to this client.
+// Idiomatic usage: client.Housing(nil).List(nil, nil) or
+// client.Housing(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HypixelSDK) Housing(data map[string]any) HypixelEntity {
 	return NewHousingEntityFunc(sdk, data)
 }
 
 
+// Other returns a Other entity bound to this client.
+// Idiomatic usage: client.Other(nil).List(nil, nil) or
+// client.Other(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HypixelSDK) Other(data map[string]any) HypixelEntity {
 	return NewOtherEntityFunc(sdk, data)
 }
 
 
+// Player returns a Player entity bound to this client.
+// Idiomatic usage: client.Player(nil).List(nil, nil) or
+// client.Player(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HypixelSDK) Player(data map[string]any) HypixelEntity {
 	return NewPlayerEntityFunc(sdk, data)
 }
 
 
+// PlayerData returns a PlayerData entity bound to this client.
+// Idiomatic usage: client.PlayerData(nil).List(nil, nil) or
+// client.PlayerData(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HypixelSDK) PlayerData(data map[string]any) HypixelEntity {
 	return NewPlayerDataEntityFunc(sdk, data)
 }
 
 
+// Resource returns a Resource entity bound to this client.
+// Idiomatic usage: client.Resource(nil).List(nil, nil) or
+// client.Resource(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HypixelSDK) Resource(data map[string]any) HypixelEntity {
 	return NewResourceEntityFunc(sdk, data)
 }
 
 
+// SkyBlock returns a SkyBlock entity bound to this client.
+// Idiomatic usage: client.SkyBlock(nil).List(nil, nil) or
+// client.SkyBlock(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *HypixelSDK) SkyBlock(data map[string]any) HypixelEntity {
 	return NewSkyBlockEntityFunc(sdk, data)
 }

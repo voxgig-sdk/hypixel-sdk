@@ -8,6 +8,8 @@ import { PlayerDataEntity } from './entity/PlayerDataEntity'
 import { ResourceEntity } from './entity/ResourceEntity'
 import { SkyBlockEntity } from './entity/SkyBlockEntity'
 
+export type * from './HypixelTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -208,42 +210,98 @@ class HypixelSDK {
 
 
 
+  _guild?: GuildEntity
+
+  // Idiomatic facade: `client.guild.list()` / `client.guild.load({ id })`.
+  get guild(): GuildEntity {
+    return (this._guild ??= new GuildEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.guild` instead. */
   Guild(data?: any) {
     const self = this
     return new GuildEntity(self,data)
   }
 
 
+  _housing?: HousingEntity
+
+  // Idiomatic facade: `client.housing.list()` / `client.housing.load({ id })`.
+  get housing(): HousingEntity {
+    return (this._housing ??= new HousingEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.housing` instead. */
   Housing(data?: any) {
     const self = this
     return new HousingEntity(self,data)
   }
 
 
+  _other?: OtherEntity
+
+  // Idiomatic facade: `client.other.list()` / `client.other.load({ id })`.
+  get other(): OtherEntity {
+    return (this._other ??= new OtherEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.other` instead. */
   Other(data?: any) {
     const self = this
     return new OtherEntity(self,data)
   }
 
 
+  _player?: PlayerEntity
+
+  // Idiomatic facade: `client.player.list()` / `client.player.load({ id })`.
+  get player(): PlayerEntity {
+    return (this._player ??= new PlayerEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.player` instead. */
   Player(data?: any) {
     const self = this
     return new PlayerEntity(self,data)
   }
 
 
+  _player_data?: PlayerDataEntity
+
+  // Idiomatic facade: `client.player_data.list()` / `client.player_data.load({ id })`.
+  get player_data(): PlayerDataEntity {
+    return (this._player_data ??= new PlayerDataEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.player_data` instead. */
   PlayerData(data?: any) {
     const self = this
     return new PlayerDataEntity(self,data)
   }
 
 
+  _resource?: ResourceEntity
+
+  // Idiomatic facade: `client.resource.list()` / `client.resource.load({ id })`.
+  get resource(): ResourceEntity {
+    return (this._resource ??= new ResourceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.resource` instead. */
   Resource(data?: any) {
     const self = this
     return new ResourceEntity(self,data)
   }
 
 
+  _sky_block?: SkyBlockEntity
+
+  // Idiomatic facade: `client.sky_block.list()` / `client.sky_block.load({ id })`.
+  get sky_block(): SkyBlockEntity {
+    return (this._sky_block ??= new SkyBlockEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.sky_block` instead. */
   SkyBlock(data?: any) {
     const self = this
     return new SkyBlockEntity(self,data)

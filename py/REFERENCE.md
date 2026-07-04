@@ -78,9 +78,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -93,11 +93,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -105,7 +105,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## GuildEntity
 
 ```python
-guild = client.Guild()
+guild = client.guild
 ```
 
 ### Fields
@@ -117,12 +117,12 @@ guild = client.Guild()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Guild().load({"id": "guild_id"})
+result = client.guild.load({"id": "guild_id"})
 ```
 
 ### Common Methods
@@ -157,7 +157,7 @@ Return the entity name.
 ## HousingEntity
 
 ```python
-housing = client.Housing()
+housing = client.housing
 ```
 
 ### Fields
@@ -169,20 +169,20 @@ housing = client.Housing()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Housing().list({})
+results = client.housing.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Housing().load({"id": "housing_id"})
+result = client.housing.load({"id": "housing_id"})
 ```
 
 ### Common Methods
@@ -217,7 +217,7 @@ Return the entity name.
 ## OtherEntity
 
 ```python
-other = client.Other()
+other = client.other
 ```
 
 ### Fields
@@ -238,20 +238,20 @@ other = client.Other()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Other().list({})
+results = client.other.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Other().load({"id": "other_id"})
+result = client.other.load({"id": "other_id"})
 ```
 
 ### Common Methods
@@ -286,7 +286,7 @@ Return the entity name.
 ## PlayerEntity
 
 ```python
-player = client.Player()
+player = client.player
 ```
 
 ### Fields
@@ -298,12 +298,12 @@ player = client.Player()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Player().load({"id": "player_id"})
+result = client.player.load({"id": "player_id"})
 ```
 
 ### Common Methods
@@ -338,7 +338,7 @@ Return the entity name.
 ## PlayerDataEntity
 
 ```python
-player_data = client.PlayerData()
+player_data = client.player_data
 ```
 
 ### Fields
@@ -356,20 +356,20 @@ player_data = client.PlayerData()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.PlayerData().list({})
+results = client.player_data.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.PlayerData().load({"id": "player_data_id"})
+result = client.player_data.load({"id": "player_data_id"})
 ```
 
 ### Common Methods
@@ -404,7 +404,7 @@ Return the entity name.
 ## ResourceEntity
 
 ```python
-resource = client.Resource()
+resource = client.resource
 ```
 
 ### Fields
@@ -424,12 +424,12 @@ resource = client.Resource()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Resource().load({"id": "resource_id"})
+result = client.resource.load({"id": "resource_id"})
 ```
 
 ### Common Methods
@@ -464,7 +464,7 @@ Return the entity name.
 ## SkyBlockEntity
 
 ```python
-sky_block = client.SkyBlock()
+sky_block = client.sky_block
 ```
 
 ### Fields
@@ -522,20 +522,20 @@ sky_block = client.SkyBlock()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.SkyBlock().list({})
+results = client.sky_block.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.SkyBlock().load({"id": "sky_block_id"})
+result = client.sky_block.load({"id": "sky_block_id"})
 ```
 
 ### Common Methods

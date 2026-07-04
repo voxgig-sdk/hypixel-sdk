@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Hypixel_types'
+
 
 class HypixelSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class HypixelSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class HypixelSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue HypixelError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = HypixelHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class HypixelSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,52 +198,101 @@ class HypixelSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.guild.list / client.guild.load({ "id" => ... })
+  def guild
+    require_relative 'entity/guild_entity'
+    @guild ||= GuildEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.guild instead.
   def Guild(data = nil)
     require_relative 'entity/guild_entity'
     GuildEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.housing.list / client.housing.load({ "id" => ... })
+  def housing
+    require_relative 'entity/housing_entity'
+    @housing ||= HousingEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.housing instead.
   def Housing(data = nil)
     require_relative 'entity/housing_entity'
     HousingEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.other.list / client.other.load({ "id" => ... })
+  def other
+    require_relative 'entity/other_entity'
+    @other ||= OtherEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.other instead.
   def Other(data = nil)
     require_relative 'entity/other_entity'
     OtherEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.player.list / client.player.load({ "id" => ... })
+  def player
+    require_relative 'entity/player_entity'
+    @player ||= PlayerEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.player instead.
   def Player(data = nil)
     require_relative 'entity/player_entity'
     PlayerEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.player_data.list / client.player_data.load({ "id" => ... })
+  def player_data
+    require_relative 'entity/player_data_entity'
+    @player_data ||= PlayerDataEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.player_data instead.
   def PlayerData(data = nil)
     require_relative 'entity/player_data_entity'
     PlayerDataEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.resource.list / client.resource.load({ "id" => ... })
+  def resource
+    require_relative 'entity/resource_entity'
+    @resource ||= ResourceEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.resource instead.
   def Resource(data = nil)
     require_relative 'entity/resource_entity'
     ResourceEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.sky_block.list / client.sky_block.load({ "id" => ... })
+  def sky_block
+    require_relative 'entity/sky_block_entity'
+    @sky_block ||= SkyBlockEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.sky_block instead.
   def SkyBlock(data = nil)
     require_relative 'entity/sky_block_entity'
     SkyBlockEntity.new(self, data)

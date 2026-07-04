@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch SkyBlockLoadMatch
+---@param ctrl? table
+---@return SkyBlock
+---@return string? err
 function SkyBlockEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch SkyBlockListMatch
+---@param ctrl? table
+---@return SkyBlock[]
+---@return string? err
 function SkyBlockEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  PlayerData,
+  PlayerDataLoadMatch,
+  PlayerDataListMatch,
+} from '../HypixelTypes'
 
 // TODO: needs Entity superclass
-class PlayerDataEntity extends HypixelEntityBase {
+class PlayerDataEntity extends HypixelEntityBase<PlayerData> {
 
   constructor(client: HypixelSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class PlayerDataEntity extends HypixelEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PlayerDataLoadMatch, ctrl?: Control): Promise<PlayerData> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class PlayerDataEntity extends HypixelEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PlayerData> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: PlayerDataListMatch, ctrl?: Control): Promise<PlayerData[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class PlayerDataEntity extends HypixelEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PlayerData[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

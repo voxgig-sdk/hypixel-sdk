@@ -50,16 +50,14 @@ class TestSkyBlockEntity:
         sky_block_ref01_ent = client.SkyBlock(None)
         sky_block_ref01_match = {}
 
-        sky_block_ref01_list_result, err = sky_block_ref01_ent.list(sky_block_ref01_match, None)
-        assert err is None
+        sky_block_ref01_list_result = sky_block_ref01_ent.list(sky_block_ref01_match, None)
         assert isinstance(sky_block_ref01_list_result, list)
 
         # LOAD
         sky_block_ref01_match_dt0 = {
             "id": sky_block_ref01_data["id"],
         }
-        sky_block_ref01_data_dt0_loaded, err = sky_block_ref01_ent.load(sky_block_ref01_match_dt0, None)
-        assert err is None
+        sky_block_ref01_data_dt0_loaded = sky_block_ref01_ent.load(sky_block_ref01_match_dt0, None)
         sky_block_ref01_data_dt0_load_result = helpers.to_map(sky_block_ref01_data_dt0_loaded)
         assert sky_block_ref01_data_dt0_load_result is not None
         assert sky_block_ref01_data_dt0_load_result["id"] == sky_block_ref01_data["id"]

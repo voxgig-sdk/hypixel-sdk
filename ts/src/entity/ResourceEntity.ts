@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Resource,
+  ResourceLoadMatch,
+} from '../HypixelTypes'
 
 // TODO: needs Entity superclass
-class ResourceEntity extends HypixelEntityBase {
+class ResourceEntity extends HypixelEntityBase<Resource> {
 
   constructor(client: HypixelSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class ResourceEntity extends HypixelEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ResourceLoadMatch, ctrl?: Control): Promise<Resource> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class ResourceEntity extends HypixelEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Resource> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

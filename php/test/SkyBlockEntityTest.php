@@ -50,16 +50,14 @@ class SkyBlockEntityTest extends TestCase
         $sky_block_ref01_ent = $client->SkyBlock(null);
         $sky_block_ref01_match = [];
 
-        [$sky_block_ref01_list_result, $err] = $sky_block_ref01_ent->list($sky_block_ref01_match, null);
-        $this->assertNull($err);
+        $sky_block_ref01_list_result = $sky_block_ref01_ent->list($sky_block_ref01_match, null);
         $this->assertIsArray($sky_block_ref01_list_result);
 
         // LOAD
         $sky_block_ref01_match_dt0 = [
             "id" => $sky_block_ref01_data["id"],
         ];
-        [$sky_block_ref01_data_dt0_loaded, $err] = $sky_block_ref01_ent->load($sky_block_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $sky_block_ref01_data_dt0_loaded = $sky_block_ref01_ent->load($sky_block_ref01_match_dt0, null);
         $sky_block_ref01_data_dt0_load_result = Helpers::to_map($sky_block_ref01_data_dt0_loaded);
         $this->assertNotNull($sky_block_ref01_data_dt0_load_result);
         $this->assertEquals($sky_block_ref01_data_dt0_load_result["id"], $sky_block_ref01_data["id"]);

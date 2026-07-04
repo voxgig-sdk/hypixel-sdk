@@ -9,9 +9,12 @@ The TypeScript SDK for the Hypixel API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/hypixel
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/hypixel-sdk/releases](https://github.com/voxgig-sdk/hypixel-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HypixelSDK } from 'hypixel'
+import { HypixelSDK } from '@voxgig-sdk/hypixel'
 
 const client = new HypixelSDK({
   apikey: process.env.HYPIXEL_APIKEY,
@@ -30,7 +33,7 @@ const client = new HypixelSDK({
 ### 3. Load a guild
 
 ```ts
-const result = await client.Guild().load({ id: 'example_id' })
+const result = await client.guild.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HypixelSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.guild.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.guild
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -408,7 +411,7 @@ API path: `/v2/skyblock/auction`
 
 ### Guild
 
-Create an instance: `const guild = client.Guild()`
+Create an instance: `const guild = client.guild`
 
 #### Operations
 
@@ -426,13 +429,13 @@ Create an instance: `const guild = client.Guild()`
 #### Example: Load
 
 ```ts
-const guild = await client.Guild().load({ id: 'guild_id' })
+const guild = await client.guild.load({ id: 'guild_id' })
 ```
 
 
 ### Housing
 
-Create an instance: `const housing = client.Housing()`
+Create an instance: `const housing = client.housing`
 
 #### Operations
 
@@ -451,19 +454,19 @@ Create an instance: `const housing = client.Housing()`
 #### Example: Load
 
 ```ts
-const housing = await client.Housing().load({ id: 'housing_id' })
+const housing = await client.housing.load({ id: 'housing_id' })
 ```
 
 #### Example: List
 
 ```ts
-const housings = await client.Housing().list()
+const housings = await client.housing.list()
 ```
 
 
 ### Other
 
-Create an instance: `const other = client.Other()`
+Create an instance: `const other = client.other`
 
 #### Operations
 
@@ -491,19 +494,19 @@ Create an instance: `const other = client.Other()`
 #### Example: Load
 
 ```ts
-const other = await client.Other().load({ id: 'other_id' })
+const other = await client.other.load({ id: 'other_id' })
 ```
 
 #### Example: List
 
 ```ts
-const others = await client.Other().list()
+const others = await client.other.list()
 ```
 
 
 ### Player
 
-Create an instance: `const player = client.Player()`
+Create an instance: `const player = client.player`
 
 #### Operations
 
@@ -521,13 +524,13 @@ Create an instance: `const player = client.Player()`
 #### Example: Load
 
 ```ts
-const player = await client.Player().load({ id: 'player_id' })
+const player = await client.player.load({ id: 'player_id' })
 ```
 
 
 ### PlayerData
 
-Create an instance: `const player_data = client.PlayerData()`
+Create an instance: `const player_data = client.player_data`
 
 #### Operations
 
@@ -552,19 +555,19 @@ Create an instance: `const player_data = client.PlayerData()`
 #### Example: Load
 
 ```ts
-const player_data = await client.PlayerData().load({ id: 'player_data_id' })
+const player_data = await client.player_data.load({ id: 'player_data_id' })
 ```
 
 #### Example: List
 
 ```ts
-const player_datas = await client.PlayerData().list()
+const player_datas = await client.player_data.list()
 ```
 
 
 ### Resource
 
-Create an instance: `const resource = client.Resource()`
+Create an instance: `const resource = client.resource`
 
 #### Operations
 
@@ -590,13 +593,13 @@ Create an instance: `const resource = client.Resource()`
 #### Example: Load
 
 ```ts
-const resource = await client.Resource().load({ id: 'resource_id' })
+const resource = await client.resource.load({ id: 'resource_id' })
 ```
 
 
 ### SkyBlock
 
-Create an instance: `const sky_block = client.SkyBlock()`
+Create an instance: `const sky_block = client.sky_block`
 
 #### Operations
 
@@ -661,13 +664,13 @@ Create an instance: `const sky_block = client.SkyBlock()`
 #### Example: Load
 
 ```ts
-const sky_block = await client.SkyBlock().load({ id: 'sky_block_id' })
+const sky_block = await client.sky_block.load({ id: 'sky_block_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sky_blocks = await client.SkyBlock().list()
+const sky_blocks = await client.sky_block.list()
 ```
 
 
@@ -728,7 +731,7 @@ hypixel/
 Import the SDK from the package root:
 
 ```ts
-import { HypixelSDK } from 'hypixel'
+import { HypixelSDK } from '@voxgig-sdk/hypixel'
 ```
 
 ### Entity state
@@ -738,11 +741,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const guild = client.guild
+await guild.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// guild.data() now returns the loaded guild data
+// guild.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

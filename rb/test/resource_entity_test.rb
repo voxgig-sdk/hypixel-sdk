@@ -42,8 +42,7 @@ class ResourceEntityTest < Minitest::Test
     # LOAD
     resource_ref01_ent = client.Resource(nil)
     resource_ref01_match_dt0 = {}
-    resource_ref01_data_dt0_loaded, err = resource_ref01_ent.load(resource_ref01_match_dt0, nil)
-    assert_nil err
+    resource_ref01_data_dt0_loaded = resource_ref01_ent.load(resource_ref01_match_dt0, nil)
     assert !resource_ref01_data_dt0_loaded.nil?
 
   end

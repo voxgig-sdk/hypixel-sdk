@@ -49,8 +49,7 @@ class GuildEntityTest extends TestCase
         // LOAD
         $guild_ref01_ent = $client->Guild(null);
         $guild_ref01_match_dt0 = [];
-        [$guild_ref01_data_dt0_loaded, $err] = $guild_ref01_ent->load($guild_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $guild_ref01_data_dt0_loaded = $guild_ref01_ent->load($guild_ref01_match_dt0, null);
         $this->assertNotNull($guild_ref01_data_dt0_loaded);
 
     }

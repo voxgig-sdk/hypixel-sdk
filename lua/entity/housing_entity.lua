@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch HousingLoadMatch
+---@param ctrl? table
+---@return Housing
+---@return string? err
 function HousingEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch HousingListMatch
+---@param ctrl? table
+---@return Housing[]
+---@return string? err
 function HousingEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -42,8 +42,7 @@ class PlayerEntityTest < Minitest::Test
     # LOAD
     player_ref01_ent = client.Player(nil)
     player_ref01_match_dt0 = {}
-    player_ref01_data_dt0_loaded, err = player_ref01_ent.load(player_ref01_match_dt0, nil)
-    assert_nil err
+    player_ref01_data_dt0_loaded = player_ref01_ent.load(player_ref01_match_dt0, nil)
     assert !player_ref01_data_dt0_loaded.nil?
 
   end

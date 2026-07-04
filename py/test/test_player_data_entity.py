@@ -50,14 +50,12 @@ class TestPlayerDataEntity:
         player_data_ref01_ent = client.PlayerData(None)
         player_data_ref01_match = {}
 
-        player_data_ref01_list_result, err = player_data_ref01_ent.list(player_data_ref01_match, None)
-        assert err is None
+        player_data_ref01_list_result = player_data_ref01_ent.list(player_data_ref01_match, None)
         assert isinstance(player_data_ref01_list_result, list)
 
         # LOAD
         player_data_ref01_match_dt0 = {}
-        player_data_ref01_data_dt0_loaded, err = player_data_ref01_ent.load(player_data_ref01_match_dt0, None)
-        assert err is None
+        player_data_ref01_data_dt0_loaded = player_data_ref01_ent.load(player_data_ref01_match_dt0, None)
         assert player_data_ref01_data_dt0_loaded is not None
 
 

@@ -50,14 +50,12 @@ class HousingEntityTest extends TestCase
         $housing_ref01_ent = $client->Housing(null);
         $housing_ref01_match = [];
 
-        [$housing_ref01_list_result, $err] = $housing_ref01_ent->list($housing_ref01_match, null);
-        $this->assertNull($err);
+        $housing_ref01_list_result = $housing_ref01_ent->list($housing_ref01_match, null);
         $this->assertIsArray($housing_ref01_list_result);
 
         // LOAD
         $housing_ref01_match_dt0 = [];
-        [$housing_ref01_data_dt0_loaded, $err] = $housing_ref01_ent->load($housing_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $housing_ref01_data_dt0_loaded = $housing_ref01_ent->load($housing_ref01_match_dt0, null);
         $this->assertNotNull($housing_ref01_data_dt0_loaded);
 
     }

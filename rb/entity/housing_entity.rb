@@ -45,6 +45,7 @@ class HousingEntity
     end
   end
 
+  # @return [Housing, Hash] the current Housing data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class HousingEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Housing fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Housing.
+  #
+  # @param reqmatch [HousingLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Housing, Hash] the loaded Housing; raises HypixelError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class HousingEntity
 
 
   
+  # List Housing items matching the given filter.
+  #
+  # @param reqmatch [HousingListMatch, Hash, nil] match filter (any subset of Housing fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Housing>, Array] the matching Housing items; raises HypixelError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

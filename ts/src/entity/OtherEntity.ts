@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Other,
+  OtherLoadMatch,
+  OtherListMatch,
+} from '../HypixelTypes'
 
 // TODO: needs Entity superclass
-class OtherEntity extends HypixelEntityBase {
+class OtherEntity extends HypixelEntityBase<Other> {
 
   constructor(client: HypixelSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class OtherEntity extends HypixelEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: OtherLoadMatch, ctrl?: Control): Promise<Other> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class OtherEntity extends HypixelEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Other> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: OtherListMatch, ctrl?: Control): Promise<Other[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class OtherEntity extends HypixelEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Other[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

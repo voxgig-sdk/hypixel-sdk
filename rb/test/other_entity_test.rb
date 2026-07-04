@@ -43,14 +43,12 @@ class OtherEntityTest < Minitest::Test
     other_ref01_ent = client.Other(nil)
     other_ref01_match = {}
 
-    other_ref01_list_result, err = other_ref01_ent.list(other_ref01_match, nil)
-    assert_nil err
+    other_ref01_list_result = other_ref01_ent.list(other_ref01_match, nil)
     assert other_ref01_list_result.is_a?(Array)
 
     # LOAD
     other_ref01_match_dt0 = {}
-    other_ref01_data_dt0_loaded, err = other_ref01_ent.load(other_ref01_match_dt0, nil)
-    assert_nil err
+    other_ref01_data_dt0_loaded = other_ref01_ent.load(other_ref01_match_dt0, nil)
     assert !other_ref01_data_dt0_loaded.nil?
 
   end

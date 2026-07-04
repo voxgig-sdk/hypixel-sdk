@@ -244,42 +244,133 @@ end
 
 
 
+-- Idiomatic facade: client:guild():list() / client:guild():load({ id = ... })
+function HypixelSDK:guild(data)
+  local EntityMod = require("entity.guild_entity")
+  if data == nil then
+    if self._guild == nil then
+      self._guild = EntityMod.new(self, nil)
+    end
+    return self._guild
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:guild() instead.
 function HypixelSDK:Guild(data)
   local EntityMod = require("entity.guild_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:housing():list() / client:housing():load({ id = ... })
+function HypixelSDK:housing(data)
+  local EntityMod = require("entity.housing_entity")
+  if data == nil then
+    if self._housing == nil then
+      self._housing = EntityMod.new(self, nil)
+    end
+    return self._housing
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:housing() instead.
 function HypixelSDK:Housing(data)
   local EntityMod = require("entity.housing_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:other():list() / client:other():load({ id = ... })
+function HypixelSDK:other(data)
+  local EntityMod = require("entity.other_entity")
+  if data == nil then
+    if self._other == nil then
+      self._other = EntityMod.new(self, nil)
+    end
+    return self._other
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:other() instead.
 function HypixelSDK:Other(data)
   local EntityMod = require("entity.other_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:player():list() / client:player():load({ id = ... })
+function HypixelSDK:player(data)
+  local EntityMod = require("entity.player_entity")
+  if data == nil then
+    if self._player == nil then
+      self._player = EntityMod.new(self, nil)
+    end
+    return self._player
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:player() instead.
 function HypixelSDK:Player(data)
   local EntityMod = require("entity.player_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:player_data():list() / client:player_data():load({ id = ... })
+function HypixelSDK:player_data(data)
+  local EntityMod = require("entity.player_data_entity")
+  if data == nil then
+    if self._player_data == nil then
+      self._player_data = EntityMod.new(self, nil)
+    end
+    return self._player_data
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:player_data() instead.
 function HypixelSDK:PlayerData(data)
   local EntityMod = require("entity.player_data_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:resource():list() / client:resource():load({ id = ... })
+function HypixelSDK:resource(data)
+  local EntityMod = require("entity.resource_entity")
+  if data == nil then
+    if self._resource == nil then
+      self._resource = EntityMod.new(self, nil)
+    end
+    return self._resource
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:resource() instead.
 function HypixelSDK:Resource(data)
   local EntityMod = require("entity.resource_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:sky_block():list() / client:sky_block():load({ id = ... })
+function HypixelSDK:sky_block(data)
+  local EntityMod = require("entity.sky_block_entity")
+  if data == nil then
+    if self._sky_block == nil then
+      self._sky_block = EntityMod.new(self, nil)
+    end
+    return self._sky_block
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:sky_block() instead.
 function HypixelSDK:SkyBlock(data)
   local EntityMod = require("entity.sky_block_entity")
   return EntityMod.new(self, data)

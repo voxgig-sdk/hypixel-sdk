@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  SkyBlock,
+  SkyBlockLoadMatch,
+  SkyBlockListMatch,
+} from '../HypixelTypes'
 
 // TODO: needs Entity superclass
-class SkyBlockEntity extends HypixelEntityBase {
+class SkyBlockEntity extends HypixelEntityBase<SkyBlock> {
 
   constructor(client: HypixelSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class SkyBlockEntity extends HypixelEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: SkyBlockLoadMatch, ctrl?: Control): Promise<SkyBlock> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class SkyBlockEntity extends HypixelEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<SkyBlock> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: SkyBlockListMatch, ctrl?: Control): Promise<SkyBlock[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class SkyBlockEntity extends HypixelEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<SkyBlock[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

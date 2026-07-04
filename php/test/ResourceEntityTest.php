@@ -49,8 +49,7 @@ class ResourceEntityTest extends TestCase
         // LOAD
         $resource_ref01_ent = $client->Resource(null);
         $resource_ref01_match_dt0 = [];
-        [$resource_ref01_data_dt0_loaded, $err] = $resource_ref01_ent->load($resource_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $resource_ref01_data_dt0_loaded = $resource_ref01_ent->load($resource_ref01_match_dt0, null);
         $this->assertNotNull($resource_ref01_data_dt0_loaded);
 
     }

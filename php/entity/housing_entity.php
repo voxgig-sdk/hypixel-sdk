@@ -55,6 +55,9 @@ class HousingEntity
         return new HousingEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Housing|array $args Housing data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class HousingEntity
         }
     }
 
+    /**
+     * @return Housing|array The current Housing data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Housing fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class HousingEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Housing fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class HousingEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Housing.
+     *
+     * @param HousingLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed HousingLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Housing|array The loaded Housing as an assoc-array at the
+     *   SDK boundary; throws HypixelError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class HousingEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Housing items matching the given filter.
+     *
+     * @param HousingListMatch|array|null $reqmatch Match filter (any subset
+     *   of Housing fields) as an assoc-array; HousingListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Housing[]|array A list of Housing items as assoc-arrays at
+     *   the SDK boundary; throws HypixelError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class HousingEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

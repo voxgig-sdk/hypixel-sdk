@@ -49,8 +49,7 @@ class TestPlayerEntity:
         # LOAD
         player_ref01_ent = client.Player(None)
         player_ref01_match_dt0 = {}
-        player_ref01_data_dt0_loaded, err = player_ref01_ent.load(player_ref01_match_dt0, None)
-        assert err is None
+        player_ref01_data_dt0_loaded = player_ref01_ent.load(player_ref01_match_dt0, None)
         assert player_ref01_data_dt0_loaded is not None
 
 

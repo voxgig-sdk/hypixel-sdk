@@ -50,14 +50,12 @@ class TestOtherEntity:
         other_ref01_ent = client.Other(None)
         other_ref01_match = {}
 
-        other_ref01_list_result, err = other_ref01_ent.list(other_ref01_match, None)
-        assert err is None
+        other_ref01_list_result = other_ref01_ent.list(other_ref01_match, None)
         assert isinstance(other_ref01_list_result, list)
 
         # LOAD
         other_ref01_match_dt0 = {}
-        other_ref01_data_dt0_loaded, err = other_ref01_ent.load(other_ref01_match_dt0, None)
-        assert err is None
+        other_ref01_data_dt0_loaded = other_ref01_ent.load(other_ref01_match_dt0, None)
         assert other_ref01_data_dt0_loaded is not None
 
 

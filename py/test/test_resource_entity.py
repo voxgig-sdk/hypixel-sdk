@@ -49,8 +49,7 @@ class TestResourceEntity:
         # LOAD
         resource_ref01_ent = client.Resource(None)
         resource_ref01_match_dt0 = {}
-        resource_ref01_data_dt0_loaded, err = resource_ref01_ent.load(resource_ref01_match_dt0, None)
-        assert err is None
+        resource_ref01_data_dt0_loaded = resource_ref01_ent.load(resource_ref01_match_dt0, None)
         assert resource_ref01_data_dt0_loaded is not None
 
 

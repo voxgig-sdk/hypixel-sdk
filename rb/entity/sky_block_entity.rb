@@ -45,6 +45,7 @@ class SkyBlockEntity
     end
   end
 
+  # @return [SkyBlock, Hash] the current SkyBlock data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class SkyBlockEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of SkyBlock fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single SkyBlock.
+  #
+  # @param reqmatch [SkyBlockLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [SkyBlock, Hash] the loaded SkyBlock; raises HypixelError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class SkyBlockEntity
 
 
   
+  # List SkyBlock items matching the given filter.
+  #
+  # @param reqmatch [SkyBlockListMatch, Hash, nil] match filter (any subset of SkyBlock fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<SkyBlock>, Array] the matching SkyBlock items; raises HypixelError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

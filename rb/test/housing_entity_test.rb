@@ -43,14 +43,12 @@ class HousingEntityTest < Minitest::Test
     housing_ref01_ent = client.Housing(nil)
     housing_ref01_match = {}
 
-    housing_ref01_list_result, err = housing_ref01_ent.list(housing_ref01_match, nil)
-    assert_nil err
+    housing_ref01_list_result = housing_ref01_ent.list(housing_ref01_match, nil)
     assert housing_ref01_list_result.is_a?(Array)
 
     # LOAD
     housing_ref01_match_dt0 = {}
-    housing_ref01_data_dt0_loaded, err = housing_ref01_ent.load(housing_ref01_match_dt0, nil)
-    assert_nil err
+    housing_ref01_data_dt0_loaded = housing_ref01_ent.load(housing_ref01_match_dt0, nil)
     assert !housing_ref01_data_dt0_loaded.nil?
 
   end
