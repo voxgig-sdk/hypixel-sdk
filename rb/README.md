@@ -34,8 +34,9 @@ client = HypixelSDK.new({
 
 ```ruby
 begin
-  result = client.guild.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Guild record (raises on error).
+  guild = client.Guild.load({ "id" => "example_id" })
+  puts guild
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = HypixelSDK.test
+client = HypixelSDK.test({
+  "entity" => { "guild" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.guild.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+guild = client.Guild.load({ "id" => "test01" })
+puts guild
 ```
 
 ### Use a custom fetch function
@@ -168,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Guild` | `(data) -> GuildEntity` | Create a Guild entity instance. |
 | `Housing` | `(data) -> HousingEntity` | Create a Housing entity instance. |
-| `Other` | `(data) -> OtherEntity` | Create a Other entity instance. |
+| `Other` | `(data) -> OtherEntity` | Create an Other entity instance. |
 | `Player` | `(data) -> PlayerEntity` | Create a Player entity instance. |
 | `PlayerData` | `(data) -> PlayerDataEntity` | Create a PlayerData entity instance. |
 | `Resource` | `(data) -> ResourceEntity` | Create a Resource entity instance. |
@@ -364,7 +369,7 @@ API path: `/v2/skyblock/auction`
 
 ### Guild
 
-Create an instance: `const guild = client.guild`
+Create an instance: `guild = client.Guild`
 
 #### Operations
 
@@ -381,14 +386,15 @@ Create an instance: `const guild = client.guild`
 
 #### Example: Load
 
-```ts
-const guild = await client.guild.load({ id: 'guild_id' })
+```ruby
+# load returns the bare Guild record (raises on error).
+guild = client.Guild.load({ "id" => "guild_id" })
 ```
 
 
 ### Housing
 
-Create an instance: `const housing = client.housing`
+Create an instance: `housing = client.Housing`
 
 #### Operations
 
@@ -406,20 +412,22 @@ Create an instance: `const housing = client.housing`
 
 #### Example: Load
 
-```ts
-const housing = await client.housing.load({ id: 'housing_id' })
+```ruby
+# load returns the bare Housing record (raises on error).
+housing = client.Housing.load({ "id" => "housing_id" })
 ```
 
 #### Example: List
 
-```ts
-const housings = await client.housing.list()
+```ruby
+# list returns an Array of Housing records (raises on error).
+housings = client.Housing.list
 ```
 
 
 ### Other
 
-Create an instance: `const other = client.other`
+Create an instance: `other = client.Other`
 
 #### Operations
 
@@ -446,20 +454,22 @@ Create an instance: `const other = client.other`
 
 #### Example: Load
 
-```ts
-const other = await client.other.load({ id: 'other_id' })
+```ruby
+# load returns the bare Other record (raises on error).
+other = client.Other.load({ "id" => "other_id" })
 ```
 
 #### Example: List
 
-```ts
-const others = await client.other.list()
+```ruby
+# list returns an Array of Other records (raises on error).
+others = client.Other.list
 ```
 
 
 ### Player
 
-Create an instance: `const player = client.player`
+Create an instance: `player = client.Player`
 
 #### Operations
 
@@ -476,14 +486,15 @@ Create an instance: `const player = client.player`
 
 #### Example: Load
 
-```ts
-const player = await client.player.load({ id: 'player_id' })
+```ruby
+# load returns the bare Player record (raises on error).
+player = client.Player.load({ "id" => "player_id" })
 ```
 
 
 ### PlayerData
 
-Create an instance: `const player_data = client.player_data`
+Create an instance: `player_data = client.PlayerData`
 
 #### Operations
 
@@ -507,20 +518,22 @@ Create an instance: `const player_data = client.player_data`
 
 #### Example: Load
 
-```ts
-const player_data = await client.player_data.load({ id: 'player_data_id' })
+```ruby
+# load returns the bare PlayerData record (raises on error).
+player_data = client.PlayerData.load({ "id" => "player_data_id" })
 ```
 
 #### Example: List
 
-```ts
-const player_datas = await client.player_data.list()
+```ruby
+# list returns an Array of PlayerData records (raises on error).
+player_datas = client.PlayerData.list
 ```
 
 
 ### Resource
 
-Create an instance: `const resource = client.resource`
+Create an instance: `resource = client.Resource`
 
 #### Operations
 
@@ -545,14 +558,15 @@ Create an instance: `const resource = client.resource`
 
 #### Example: Load
 
-```ts
-const resource = await client.resource.load({ id: 'resource_id' })
+```ruby
+# load returns the bare Resource record (raises on error).
+resource = client.Resource.load({ "id" => "resource_id" })
 ```
 
 
 ### SkyBlock
 
-Create an instance: `const sky_block = client.sky_block`
+Create an instance: `sky_block = client.SkyBlock`
 
 #### Operations
 
@@ -616,14 +630,16 @@ Create an instance: `const sky_block = client.sky_block`
 
 #### Example: Load
 
-```ts
-const sky_block = await client.sky_block.load({ id: 'sky_block_id' })
+```ruby
+# load returns the bare SkyBlock record (raises on error).
+sky_block = client.SkyBlock.load({ "id" => "sky_block_id" })
 ```
 
 #### Example: List
 
-```ts
-const sky_blocks = await client.sky_block.list()
+```ruby
+# list returns an Array of SkyBlock records (raises on error).
+sky_blocks = client.SkyBlock.list
 ```
 
 
@@ -698,7 +714,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-guild = client.guild
+guild = client.Guild
 guild.load({ "id" => "example_id" })
 
 # guild.data_get now returns the loaded guild data

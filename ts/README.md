@@ -32,11 +32,14 @@ const client = new HypixelSDK({
 
 ### 3. Load a guild
 
-```ts
-const result = await client.guild.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const guild = await client.Guild().load({ id: 'example_id' })
+  console.log(guild)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -54,6 +57,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +88,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HypixelSDK.test()
 
-const result = await client.guild.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const guild = await client.Guild().load({ id: 'test01' })
+// guild is a bare entity populated with mock response data
+console.log(guild)
 ```
 
 You can also use the instance method:
@@ -99,7 +105,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.guild
+const entity = client.Guild()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -183,7 +189,7 @@ new HypixelSDK(options?: {
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
 | `Guild(data?)` | `GuildEntity` | Create a Guild entity instance. |
 | `Housing(data?)` | `HousingEntity` | Create a Housing entity instance. |
-| `Other(data?)` | `OtherEntity` | Create a Other entity instance. |
+| `Other(data?)` | `OtherEntity` | Create an Other entity instance. |
 | `Player(data?)` | `PlayerEntity` | Create a Player entity instance. |
 | `PlayerData(data?)` | `PlayerDataEntity` | Create a PlayerData entity instance. |
 | `Resource(data?)` | `ResourceEntity` | Create a Resource entity instance. |
@@ -204,29 +210,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): HypixelSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -411,7 +418,7 @@ API path: `/v2/skyblock/auction`
 
 ### Guild
 
-Create an instance: `const guild = client.guild`
+Create an instance: `const guild = client.Guild()`
 
 #### Operations
 
@@ -429,13 +436,13 @@ Create an instance: `const guild = client.guild`
 #### Example: Load
 
 ```ts
-const guild = await client.guild.load({ id: 'guild_id' })
+const guild = await client.Guild().load({ id: 'guild_id' })
 ```
 
 
 ### Housing
 
-Create an instance: `const housing = client.housing`
+Create an instance: `const housing = client.Housing()`
 
 #### Operations
 
@@ -454,19 +461,19 @@ Create an instance: `const housing = client.housing`
 #### Example: Load
 
 ```ts
-const housing = await client.housing.load({ id: 'housing_id' })
+const housing = await client.Housing().load({ id: 'housing_id' })
 ```
 
 #### Example: List
 
 ```ts
-const housings = await client.housing.list()
+const housings = await client.Housing().list()
 ```
 
 
 ### Other
 
-Create an instance: `const other = client.other`
+Create an instance: `const other = client.Other()`
 
 #### Operations
 
@@ -494,19 +501,19 @@ Create an instance: `const other = client.other`
 #### Example: Load
 
 ```ts
-const other = await client.other.load({ id: 'other_id' })
+const other = await client.Other().load({ id: 'other_id' })
 ```
 
 #### Example: List
 
 ```ts
-const others = await client.other.list()
+const others = await client.Other().list()
 ```
 
 
 ### Player
 
-Create an instance: `const player = client.player`
+Create an instance: `const player = client.Player()`
 
 #### Operations
 
@@ -524,13 +531,13 @@ Create an instance: `const player = client.player`
 #### Example: Load
 
 ```ts
-const player = await client.player.load({ id: 'player_id' })
+const player = await client.Player().load({ id: 'player_id' })
 ```
 
 
 ### PlayerData
 
-Create an instance: `const player_data = client.player_data`
+Create an instance: `const player_data = client.PlayerData()`
 
 #### Operations
 
@@ -555,19 +562,19 @@ Create an instance: `const player_data = client.player_data`
 #### Example: Load
 
 ```ts
-const player_data = await client.player_data.load({ id: 'player_data_id' })
+const player_data = await client.PlayerData().load({ id: 'player_data_id' })
 ```
 
 #### Example: List
 
 ```ts
-const player_datas = await client.player_data.list()
+const player_datas = await client.PlayerData().list()
 ```
 
 
 ### Resource
 
-Create an instance: `const resource = client.resource`
+Create an instance: `const resource = client.Resource()`
 
 #### Operations
 
@@ -593,13 +600,13 @@ Create an instance: `const resource = client.resource`
 #### Example: Load
 
 ```ts
-const resource = await client.resource.load({ id: 'resource_id' })
+const resource = await client.Resource().load({ id: 'resource_id' })
 ```
 
 
 ### SkyBlock
 
-Create an instance: `const sky_block = client.sky_block`
+Create an instance: `const sky_block = client.SkyBlock()`
 
 #### Operations
 
@@ -664,13 +671,13 @@ Create an instance: `const sky_block = client.sky_block`
 #### Example: Load
 
 ```ts
-const sky_block = await client.sky_block.load({ id: 'sky_block_id' })
+const sky_block = await client.SkyBlock().load({ id: 'sky_block_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sky_blocks = await client.sky_block.list()
+const sky_blocks = await client.SkyBlock().list()
 ```
 
 
@@ -741,7 +748,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const guild = client.guild
+const guild = client.Guild()
 await guild.load({ id: "example_id" })
 
 // guild.data() now returns the loaded guild data

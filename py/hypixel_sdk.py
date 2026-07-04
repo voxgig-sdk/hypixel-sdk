@@ -220,121 +220,51 @@ class HypixelSDK:
         }
 
 
-    @property
-    def guild(self):
-        """Idiomatic facade: client.guild.list() / client.guild.load({"id": ...})."""
-        from entity.guild_entity import GuildEntity
-        cached = getattr(self, "_guild", None)
-        if cached is None:
-            cached = GuildEntity(self, None)
-            self._guild = cached
-        return cached
-
-    def Guild(self, data=None):
-        # Deprecated: use client.guild instead.
+    def Guild(self, data=None) -> "GuildEntity":
+        """Entity factory: client.Guild().list({}) / client.Guild().load({"id": ...})."""
         from entity.guild_entity import GuildEntity
         return GuildEntity(self, data)
 
 
-    @property
-    def housing(self):
-        """Idiomatic facade: client.housing.list() / client.housing.load({"id": ...})."""
-        from entity.housing_entity import HousingEntity
-        cached = getattr(self, "_housing", None)
-        if cached is None:
-            cached = HousingEntity(self, None)
-            self._housing = cached
-        return cached
-
-    def Housing(self, data=None):
-        # Deprecated: use client.housing instead.
+    def Housing(self, data=None) -> "HousingEntity":
+        """Entity factory: client.Housing().list({}) / client.Housing().load({"id": ...})."""
         from entity.housing_entity import HousingEntity
         return HousingEntity(self, data)
 
 
-    @property
-    def other(self):
-        """Idiomatic facade: client.other.list() / client.other.load({"id": ...})."""
-        from entity.other_entity import OtherEntity
-        cached = getattr(self, "_other", None)
-        if cached is None:
-            cached = OtherEntity(self, None)
-            self._other = cached
-        return cached
-
-    def Other(self, data=None):
-        # Deprecated: use client.other instead.
+    def Other(self, data=None) -> "OtherEntity":
+        """Entity factory: client.Other().list({}) / client.Other().load({"id": ...})."""
         from entity.other_entity import OtherEntity
         return OtherEntity(self, data)
 
 
-    @property
-    def player(self):
-        """Idiomatic facade: client.player.list() / client.player.load({"id": ...})."""
-        from entity.player_entity import PlayerEntity
-        cached = getattr(self, "_player", None)
-        if cached is None:
-            cached = PlayerEntity(self, None)
-            self._player = cached
-        return cached
-
-    def Player(self, data=None):
-        # Deprecated: use client.player instead.
+    def Player(self, data=None) -> "PlayerEntity":
+        """Entity factory: client.Player().list({}) / client.Player().load({"id": ...})."""
         from entity.player_entity import PlayerEntity
         return PlayerEntity(self, data)
 
 
-    @property
-    def player_data(self):
-        """Idiomatic facade: client.player_data.list() / client.player_data.load({"id": ...})."""
-        from entity.player_data_entity import PlayerDataEntity
-        cached = getattr(self, "_player_data", None)
-        if cached is None:
-            cached = PlayerDataEntity(self, None)
-            self._player_data = cached
-        return cached
-
-    def PlayerData(self, data=None):
-        # Deprecated: use client.player_data instead.
+    def PlayerData(self, data=None) -> "PlayerDataEntity":
+        """Entity factory: client.PlayerData().list({}) / client.PlayerData().load({"id": ...})."""
         from entity.player_data_entity import PlayerDataEntity
         return PlayerDataEntity(self, data)
 
 
-    @property
-    def resource(self):
-        """Idiomatic facade: client.resource.list() / client.resource.load({"id": ...})."""
-        from entity.resource_entity import ResourceEntity
-        cached = getattr(self, "_resource", None)
-        if cached is None:
-            cached = ResourceEntity(self, None)
-            self._resource = cached
-        return cached
-
-    def Resource(self, data=None):
-        # Deprecated: use client.resource instead.
+    def Resource(self, data=None) -> "ResourceEntity":
+        """Entity factory: client.Resource().list({}) / client.Resource().load({"id": ...})."""
         from entity.resource_entity import ResourceEntity
         return ResourceEntity(self, data)
 
 
-    @property
-    def sky_block(self):
-        """Idiomatic facade: client.sky_block.list() / client.sky_block.load({"id": ...})."""
-        from entity.sky_block_entity import SkyBlockEntity
-        cached = getattr(self, "_sky_block", None)
-        if cached is None:
-            cached = SkyBlockEntity(self, None)
-            self._sky_block = cached
-        return cached
-
-    def SkyBlock(self, data=None):
-        # Deprecated: use client.sky_block instead.
+    def SkyBlock(self, data=None) -> "SkyBlockEntity":
+        """Entity factory: client.SkyBlock().list({}) / client.SkyBlock().load({"id": ...})."""
         from entity.sky_block_entity import SkyBlockEntity
         return SkyBlockEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "HypixelSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -354,3 +284,15 @@ class HypixelSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.guild_entity import GuildEntity
+    from entity.housing_entity import HousingEntity
+    from entity.other_entity import OtherEntity
+    from entity.player_entity import PlayerEntity
+    from entity.player_data_entity import PlayerDataEntity
+    from entity.resource_entity import ResourceEntity
+    from entity.sky_block_entity import SkyBlockEntity

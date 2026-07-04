@@ -28,9 +28,9 @@ const client = new HypixelSDK({
   apikey: process.env.HYPIXEL_APIKEY,
 })
 
-// Load guild data
-const guild = await client.guild.load({})
-console.log(guild.data)
+// Load guild data (returns a Guild)
+const guild = await client.Guild().load()
+console.log(guild)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -95,8 +95,8 @@ client = HypixelSDK({
 })
 
 
-# Load a specific guild
-guild = client.guild.load({"id": "example_id"})
+# Load a specific guild (returns the record, raises on error)
+guild = client.Guild().load({"id": "example_id"})
 print(guild)
 ```
 
@@ -111,8 +111,8 @@ $client = new HypixelSDK([
 ]);
 
 
-// Load a specific guild
-$guild = $client->guild()->load(["id" => "example_id"]);
+// Load a specific guild (returns the bare record; throws on error)
+$guild = $client->Guild()->load(["id" => "example_id"]);
 print_r($guild);
 ```
 
@@ -140,8 +140,8 @@ client = HypixelSDK.new({
 })
 
 
-# Load a specific guild
-guild = client.guild.load({ "id" => "example_id" })
+# Load a specific guild (returns the bare record; raises on error)
+guild = client.Guild.load({ "id" => "example_id" })
 puts guild
 ```
 
@@ -156,7 +156,7 @@ local client = sdk.new({
 
 
 -- Load a specific guild
-local guild, err = client:guild():load({ id = "example_id" })
+local guild, err = client:Guild():load({ id = "example_id" })
 print(guild)
 ```
 
@@ -169,22 +169,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = HypixelSDK.test()
-const result = await client.guild.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const guild = await client.Guild().load({ id: 'test01' })
+// guild is a bare Guild populated with mock data
+console.log(guild)
 ```
 
 ### Python
 
 ```python
 client = HypixelSDK.test()
-result = client.guild.load({"id": "test01"})
+guild = client.Guild().load({"id": "test01"})
+print(guild)
 ```
 
 ### PHP
 
 ```php
-$client = HypixelSDK::test();
-$result = $client->guild()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = HypixelSDK::test([
+    "entity" => ["guild" => ["test01" => ["id" => "test01"]]],
+]);
+$guild = $client->Guild()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -199,15 +204,18 @@ result, err := client.Guild(nil).Load(
 ### Ruby
 
 ```ruby
-client = HypixelSDK.test
-result = client.guild.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = HypixelSDK.test({
+  "entity" => { "guild" => { "test01" => { "id" => "test01" } } },
+})
+guild = client.Guild.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:guild():load({ id = "test01" })
+local result, err = client:Guild():load({ id = "test01" })
 ```
 
 ## How it works
@@ -255,6 +263,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

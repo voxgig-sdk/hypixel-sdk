@@ -110,7 +110,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GuildEntity
 
 ```php
-$guild = $client->guild();
+$guild = $client->Guild();
 ```
 
 ### Fields
@@ -127,7 +127,7 @@ $guild = $client->guild();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->guild()->load(["id" => "guild_id"]);
+$result = $client->Guild()->load(["id" => "guild_id"]);
 ```
 
 ### Common Methods
@@ -163,7 +163,7 @@ Return the entity name.
 ## HousingEntity
 
 ```php
-$housing = $client->housing();
+$housing = $client->Housing();
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ $housing = $client->housing();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->housing()->list([]);
+$results = $client->Housing()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -188,7 +188,7 @@ $results = $client->housing()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->housing()->load(["id" => "housing_id"]);
+$result = $client->Housing()->load(["id" => "housing_id"]);
 ```
 
 ### Common Methods
@@ -224,7 +224,7 @@ Return the entity name.
 ## OtherEntity
 
 ```php
-$other = $client->other();
+$other = $client->Other();
 ```
 
 ### Fields
@@ -250,7 +250,7 @@ $other = $client->other();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->other()->list([]);
+$results = $client->Other()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -258,7 +258,7 @@ $results = $client->other()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->other()->load(["id" => "other_id"]);
+$result = $client->Other()->load(["id" => "other_id"]);
 ```
 
 ### Common Methods
@@ -294,7 +294,7 @@ Return the entity name.
 ## PlayerEntity
 
 ```php
-$player = $client->player();
+$player = $client->Player();
 ```
 
 ### Fields
@@ -311,7 +311,7 @@ $player = $client->player();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->player()->load(["id" => "player_id"]);
+$result = $client->Player()->load(["id" => "player_id"]);
 ```
 
 ### Common Methods
@@ -347,7 +347,7 @@ Return the entity name.
 ## PlayerDataEntity
 
 ```php
-$player_data = $client->player_data();
+$player_data = $client->PlayerData();
 ```
 
 ### Fields
@@ -370,7 +370,7 @@ $player_data = $client->player_data();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->player_data()->list([]);
+$results = $client->PlayerData()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -378,7 +378,7 @@ $results = $client->player_data()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->player_data()->load(["id" => "player_data_id"]);
+$result = $client->PlayerData()->load(["id" => "player_data_id"]);
 ```
 
 ### Common Methods
@@ -414,7 +414,7 @@ Return the entity name.
 ## ResourceEntity
 
 ```php
-$resource = $client->resource();
+$resource = $client->Resource();
 ```
 
 ### Fields
@@ -439,7 +439,7 @@ $resource = $client->resource();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->resource()->load(["id" => "resource_id"]);
+$result = $client->Resource()->load(["id" => "resource_id"]);
 ```
 
 ### Common Methods
@@ -475,7 +475,7 @@ Return the entity name.
 ## SkyBlockEntity
 
 ```php
-$sky_block = $client->sky_block();
+$sky_block = $client->SkyBlock();
 ```
 
 ### Fields
@@ -538,7 +538,7 @@ $sky_block = $client->sky_block();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->sky_block()->list([]);
+$results = $client->SkyBlock()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -546,7 +546,7 @@ $results = $client->sky_block()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->sky_block()->load(["id" => "sky_block_id"]);
+$result = $client->SkyBlock()->load(["id" => "sky_block_id"]);
 ```
 
 ### Common Methods

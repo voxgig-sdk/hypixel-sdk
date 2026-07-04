@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/hypixel-sdk/go=../hypixel-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,31 +43,20 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/hypixel-sdk/go"
-    "github.com/voxgig-sdk/hypixel-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewHypixelSDK(map[string]any{
         "apikey": os.Getenv("HYPIXEL_APIKEY"),
     })
-```
 
-### 3. Load a guild
-
-```go
-    result, err = client.Guild(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single guild — the value is the loaded record.
+    guild, err := client.Guild(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(guild)
 }
 ```
 
@@ -113,10 +107,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Guild(nil).Load(
+guild, err := client.Guild(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(guild) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -197,7 +194,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Guild` | `(data map[string]any) HypixelEntity` | Create a Guild entity instance. |
 | `Housing` | `(data map[string]any) HypixelEntity` | Create a Housing entity instance. |
-| `Other` | `(data map[string]any) HypixelEntity` | Create a Other entity instance. |
+| `Other` | `(data map[string]any) HypixelEntity` | Create an Other entity instance. |
 | `Player` | `(data map[string]any) HypixelEntity` | Create a Player entity instance. |
 | `PlayerData` | `(data map[string]any) HypixelEntity` | Create a PlayerData entity instance. |
 | `Resource` | `(data map[string]any) HypixelEntity` | Create a Resource entity instance. |
@@ -221,17 +218,24 @@ All entities implement the `HypixelEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    guild, err := client.Guild(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // guild is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -406,7 +410,11 @@ Create an instance: `guild := client.Guild(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Guild(nil).Load(map[string]any{"id": "guild_id"}, nil)
+guild, err := client.Guild(nil).Load(map[string]any{"id": "guild_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(guild) // the loaded record
 ```
 
 
@@ -431,13 +439,21 @@ Create an instance: `housing := client.Housing(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Housing(nil).Load(map[string]any{"id": "housing_id"}, nil)
+housing, err := client.Housing(nil).Load(map[string]any{"id": "housing_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(housing) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Housing(nil).List(nil, nil)
+housings, err := client.Housing(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(housings) // the array of records
 ```
 
 
@@ -471,13 +487,21 @@ Create an instance: `other := client.Other(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Other(nil).Load(map[string]any{"id": "other_id"}, nil)
+other, err := client.Other(nil).Load(map[string]any{"id": "other_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(other) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Other(nil).List(nil, nil)
+others, err := client.Other(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(others) // the array of records
 ```
 
 
@@ -501,7 +525,11 @@ Create an instance: `player := client.Player(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Player(nil).Load(map[string]any{"id": "player_id"}, nil)
+player, err := client.Player(nil).Load(map[string]any{"id": "player_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(player) // the loaded record
 ```
 
 
@@ -532,13 +560,21 @@ Create an instance: `player_data := client.PlayerData(nil)`
 #### Example: Load
 
 ```go
-result, err := client.PlayerData(nil).Load(map[string]any{"id": "player_data_id"}, nil)
+player_data, err := client.PlayerData(nil).Load(map[string]any{"id": "player_data_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(player_data) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.PlayerData(nil).List(nil, nil)
+player_datas, err := client.PlayerData(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(player_datas) // the array of records
 ```
 
 
@@ -570,7 +606,11 @@ Create an instance: `resource := client.Resource(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Resource(nil).Load(map[string]any{"id": "resource_id"}, nil)
+resource, err := client.Resource(nil).Load(map[string]any{"id": "resource_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(resource) // the loaded record
 ```
 
 
@@ -641,13 +681,21 @@ Create an instance: `sky_block := client.SkyBlock(nil)`
 #### Example: Load
 
 ```go
-result, err := client.SkyBlock(nil).Load(map[string]any{"id": "sky_block_id"}, nil)
+sky_block, err := client.SkyBlock(nil).Load(map[string]any{"id": "sky_block_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(sky_block) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.SkyBlock(nil).List(nil, nil)
+sky_blocks, err := client.SkyBlock(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(sky_blocks) // the array of records
 ```
 
 

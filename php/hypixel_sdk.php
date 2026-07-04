@@ -233,10 +233,10 @@ class HypixelSDK
 
     private $_guild = null;
 
-    // Idiomatic facade: $client->guild()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Guild() (PHP method
-    // names are case-insensitive).
-    public function guild($data = null)
+    // Canonical facade: $client->Guild()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->guild()
+    // resolves here too.
+    public function Guild($data = null)
     {
         require_once __DIR__ . '/entity/guild_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class HypixelSDK
 
     private $_housing = null;
 
-    // Idiomatic facade: $client->housing()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Housing() (PHP method
-    // names are case-insensitive).
-    public function housing($data = null)
+    // Canonical facade: $client->Housing()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->housing()
+    // resolves here too.
+    public function Housing($data = null)
     {
         require_once __DIR__ . '/entity/housing_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class HypixelSDK
 
     private $_other = null;
 
-    // Idiomatic facade: $client->other()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Other() (PHP method
-    // names are case-insensitive).
-    public function other($data = null)
+    // Canonical facade: $client->Other()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->other()
+    // resolves here too.
+    public function Other($data = null)
     {
         require_once __DIR__ . '/entity/other_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class HypixelSDK
 
     private $_player = null;
 
-    // Idiomatic facade: $client->player()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Player() (PHP method
-    // names are case-insensitive).
-    public function player($data = null)
+    // Canonical facade: $client->Player()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->player()
+    // resolves here too.
+    public function Player($data = null)
     {
         require_once __DIR__ . '/entity/player_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class HypixelSDK
 
     private $_player_data = null;
 
-    // Idiomatic facade: $client->player_data()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PlayerData() (PHP method
-    // names are case-insensitive).
-    public function player_data($data = null)
+    // Canonical facade: $client->PlayerData()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->player_data()
+    // resolves here too.
+    public function PlayerData($data = null)
     {
         require_once __DIR__ . '/entity/player_data_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class HypixelSDK
 
     private $_resource = null;
 
-    // Idiomatic facade: $client->resource()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Resource() (PHP method
-    // names are case-insensitive).
-    public function resource($data = null)
+    // Canonical facade: $client->Resource()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->resource()
+    // resolves here too.
+    public function Resource($data = null)
     {
         require_once __DIR__ . '/entity/resource_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class HypixelSDK
 
     private $_sky_block = null;
 
-    // Idiomatic facade: $client->sky_block()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias SkyBlock() (PHP method
-    // names are case-insensitive).
-    public function sky_block($data = null)
+    // Canonical facade: $client->SkyBlock()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->sky_block()
+    // resolves here too.
+    public function SkyBlock($data = null)
     {
         require_once __DIR__ . '/entity/sky_block_entity.php';
         if ($data === null) {

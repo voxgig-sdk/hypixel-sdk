@@ -182,7 +182,7 @@ Alias for `HypixelSDK.test()`.
 ## GuildEntity
 
 ```ts
-const guild = client.guild
+const guild = client.Guild()
 ```
 
 ### Fields
@@ -199,7 +199,7 @@ const guild = client.guild
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.guild.load({ id: 'guild_id' })
+const result = await client.Guild().load({ id: 'guild_id' })
 ```
 
 ### Common Methods
@@ -233,7 +233,7 @@ Return a copy of the entity options.
 ## HousingEntity
 
 ```ts
-const housing = client.housing
+const housing = client.Housing()
 ```
 
 ### Fields
@@ -250,7 +250,7 @@ const housing = client.housing
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.housing.list()
+const results = await client.Housing().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -258,7 +258,7 @@ const results = await client.housing.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.housing.load({ id: 'housing_id' })
+const result = await client.Housing().load({ id: 'housing_id' })
 ```
 
 ### Common Methods
@@ -292,7 +292,7 @@ Return a copy of the entity options.
 ## OtherEntity
 
 ```ts
-const other = client.other
+const other = client.Other()
 ```
 
 ### Fields
@@ -318,7 +318,7 @@ const other = client.other
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.other.list()
+const results = await client.Other().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -326,7 +326,7 @@ const results = await client.other.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.other.load({ id: 'other_id' })
+const result = await client.Other().load({ id: 'other_id' })
 ```
 
 ### Common Methods
@@ -360,7 +360,7 @@ Return a copy of the entity options.
 ## PlayerEntity
 
 ```ts
-const player = client.player
+const player = client.Player()
 ```
 
 ### Fields
@@ -377,7 +377,7 @@ const player = client.player
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.player.load({ id: 'player_id' })
+const result = await client.Player().load({ id: 'player_id' })
 ```
 
 ### Common Methods
@@ -411,7 +411,7 @@ Return a copy of the entity options.
 ## PlayerDataEntity
 
 ```ts
-const player_data = client.player_data
+const player_data = client.PlayerData()
 ```
 
 ### Fields
@@ -434,7 +434,7 @@ const player_data = client.player_data
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.player_data.list()
+const results = await client.PlayerData().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -442,7 +442,7 @@ const results = await client.player_data.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.player_data.load({ id: 'player_data_id' })
+const result = await client.PlayerData().load({ id: 'player_data_id' })
 ```
 
 ### Common Methods
@@ -476,7 +476,7 @@ Return a copy of the entity options.
 ## ResourceEntity
 
 ```ts
-const resource = client.resource
+const resource = client.Resource()
 ```
 
 ### Fields
@@ -501,7 +501,7 @@ const resource = client.resource
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.resource.load({ id: 'resource_id' })
+const result = await client.Resource().load({ id: 'resource_id' })
 ```
 
 ### Common Methods
@@ -535,7 +535,7 @@ Return a copy of the entity options.
 ## SkyBlockEntity
 
 ```ts
-const sky_block = client.sky_block
+const sky_block = client.SkyBlock()
 ```
 
 ### Fields
@@ -598,7 +598,7 @@ const sky_block = client.sky_block
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.sky_block.list()
+const results = await client.SkyBlock().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -606,7 +606,7 @@ const results = await client.sky_block.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.sky_block.load({ id: 'sky_block_id' })
+const result = await client.SkyBlock().load({ id: 'sky_block_id' })
 ```
 
 ### Common Methods

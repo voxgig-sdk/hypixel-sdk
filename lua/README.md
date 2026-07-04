@@ -36,9 +36,9 @@ local client = sdk.new({
 ### 3. Load a guild
 
 ```lua
-local result, err = client:guild():load({ id = "example_id" })
+local guild, err = client:Guild():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(guild)
 ```
 
 
@@ -84,8 +84,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:guild():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Guild():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Guild` | `(data) -> GuildEntity` | Create a Guild entity instance. |
 | `Housing` | `(data) -> HousingEntity` | Create a Housing entity instance. |
-| `Other` | `(data) -> OtherEntity` | Create a Other entity instance. |
+| `Other` | `(data) -> OtherEntity` | Create an Other entity instance. |
 | `Player` | `(data) -> PlayerEntity` | Create a Player entity instance. |
 | `PlayerData` | `(data) -> PlayerDataEntity` | Create a PlayerData entity instance. |
 | `Resource` | `(data) -> ResourceEntity` | Create a Resource entity instance. |
@@ -193,17 +193,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local guild, err = client:Guild():load({ id = "example_id" })
+    if err then error(err) end
+    -- guild is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -360,7 +365,7 @@ API path: `/v2/skyblock/auction`
 
 ### Guild
 
-Create an instance: `const guild = client.guild`
+Create an instance: `local guild = client:Guild(nil)`
 
 #### Operations
 
@@ -377,14 +382,14 @@ Create an instance: `const guild = client.guild`
 
 #### Example: Load
 
-```ts
-const guild = await client.guild.load({ id: 'guild_id' })
+```lua
+local guild, err = client:Guild():load({ id = "guild_id" })
 ```
 
 
 ### Housing
 
-Create an instance: `const housing = client.housing`
+Create an instance: `local housing = client:Housing(nil)`
 
 #### Operations
 
@@ -402,20 +407,20 @@ Create an instance: `const housing = client.housing`
 
 #### Example: Load
 
-```ts
-const housing = await client.housing.load({ id: 'housing_id' })
+```lua
+local housing, err = client:Housing():load({ id = "housing_id" })
 ```
 
 #### Example: List
 
-```ts
-const housings = await client.housing.list()
+```lua
+local housings, err = client:Housing():list()
 ```
 
 
 ### Other
 
-Create an instance: `const other = client.other`
+Create an instance: `local other = client:Other(nil)`
 
 #### Operations
 
@@ -442,20 +447,20 @@ Create an instance: `const other = client.other`
 
 #### Example: Load
 
-```ts
-const other = await client.other.load({ id: 'other_id' })
+```lua
+local other, err = client:Other():load({ id = "other_id" })
 ```
 
 #### Example: List
 
-```ts
-const others = await client.other.list()
+```lua
+local others, err = client:Other():list()
 ```
 
 
 ### Player
 
-Create an instance: `const player = client.player`
+Create an instance: `local player = client:Player(nil)`
 
 #### Operations
 
@@ -472,14 +477,14 @@ Create an instance: `const player = client.player`
 
 #### Example: Load
 
-```ts
-const player = await client.player.load({ id: 'player_id' })
+```lua
+local player, err = client:Player():load({ id = "player_id" })
 ```
 
 
 ### PlayerData
 
-Create an instance: `const player_data = client.player_data`
+Create an instance: `local player_data = client:PlayerData(nil)`
 
 #### Operations
 
@@ -503,20 +508,20 @@ Create an instance: `const player_data = client.player_data`
 
 #### Example: Load
 
-```ts
-const player_data = await client.player_data.load({ id: 'player_data_id' })
+```lua
+local player_data, err = client:PlayerData():load({ id = "player_data_id" })
 ```
 
 #### Example: List
 
-```ts
-const player_datas = await client.player_data.list()
+```lua
+local player_datas, err = client:PlayerData():list()
 ```
 
 
 ### Resource
 
-Create an instance: `const resource = client.resource`
+Create an instance: `local resource = client:Resource(nil)`
 
 #### Operations
 
@@ -541,14 +546,14 @@ Create an instance: `const resource = client.resource`
 
 #### Example: Load
 
-```ts
-const resource = await client.resource.load({ id: 'resource_id' })
+```lua
+local resource, err = client:Resource():load({ id = "resource_id" })
 ```
 
 
 ### SkyBlock
 
-Create an instance: `const sky_block = client.sky_block`
+Create an instance: `local sky_block = client:SkyBlock(nil)`
 
 #### Operations
 
@@ -612,14 +617,14 @@ Create an instance: `const sky_block = client.sky_block`
 
 #### Example: Load
 
-```ts
-const sky_block = await client.sky_block.load({ id: 'sky_block_id' })
+```lua
+local sky_block, err = client:SkyBlock():load({ id = "sky_block_id" })
 ```
 
 #### Example: List
 
-```ts
-const sky_blocks = await client.sky_block.list()
+```lua
+local sky_blocks, err = client:SkyBlock():list()
 ```
 
 
@@ -694,7 +699,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local guild = client:guild()
+local guild = client:Guild()
 guild:load({ id = "example_id" })
 
 -- guild:data_get() now returns the loaded guild data

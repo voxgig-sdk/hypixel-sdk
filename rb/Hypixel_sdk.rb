@@ -208,91 +208,49 @@ class HypixelSDK
   end
 
 
-  # Idiomatic facade: client.guild.list / client.guild.load({ "id" => ... })
-  def guild
-    require_relative 'entity/guild_entity'
-    @guild ||= GuildEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.guild instead.
+  # Canonical facade: client.Guild.list / client.Guild.load({ "id" => ... })
   def Guild(data = nil)
     require_relative 'entity/guild_entity'
     GuildEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.housing.list / client.housing.load({ "id" => ... })
-  def housing
-    require_relative 'entity/housing_entity'
-    @housing ||= HousingEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.housing instead.
+  # Canonical facade: client.Housing.list / client.Housing.load({ "id" => ... })
   def Housing(data = nil)
     require_relative 'entity/housing_entity'
     HousingEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.other.list / client.other.load({ "id" => ... })
-  def other
-    require_relative 'entity/other_entity'
-    @other ||= OtherEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.other instead.
+  # Canonical facade: client.Other.list / client.Other.load({ "id" => ... })
   def Other(data = nil)
     require_relative 'entity/other_entity'
     OtherEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.player.list / client.player.load({ "id" => ... })
-  def player
-    require_relative 'entity/player_entity'
-    @player ||= PlayerEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.player instead.
+  # Canonical facade: client.Player.list / client.Player.load({ "id" => ... })
   def Player(data = nil)
     require_relative 'entity/player_entity'
     PlayerEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.player_data.list / client.player_data.load({ "id" => ... })
-  def player_data
-    require_relative 'entity/player_data_entity'
-    @player_data ||= PlayerDataEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.player_data instead.
+  # Canonical facade: client.PlayerData.list / client.PlayerData.load({ "id" => ... })
   def PlayerData(data = nil)
     require_relative 'entity/player_data_entity'
     PlayerDataEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.resource.list / client.resource.load({ "id" => ... })
-  def resource
-    require_relative 'entity/resource_entity'
-    @resource ||= ResourceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.resource instead.
+  # Canonical facade: client.Resource.list / client.Resource.load({ "id" => ... })
   def Resource(data = nil)
     require_relative 'entity/resource_entity'
     ResourceEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.sky_block.list / client.sky_block.load({ "id" => ... })
-  def sky_block
-    require_relative 'entity/sky_block_entity'
-    @sky_block ||= SkyBlockEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.sky_block instead.
+  # Canonical facade: client.SkyBlock.list / client.SkyBlock.load({ "id" => ... })
   def SkyBlock(data = nil)
     require_relative 'entity/sky_block_entity'
     SkyBlockEntity.new(self, data)

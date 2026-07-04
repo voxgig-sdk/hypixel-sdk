@@ -4,316 +4,302 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Guild:
-    guild: Optional[dict] = None
-    success: Optional[bool] = None
+class Guild(TypedDict, total=False):
+    guild: dict
+    success: bool
 
 
-@dataclass
-class GuildLoadMatch:
-    guild: Optional[dict] = None
-    success: Optional[bool] = None
+class GuildLoadMatch(TypedDict, total=False):
+    guild: dict
+    success: bool
 
 
-@dataclass
-class Housing:
-    house: Optional[dict] = None
-    success: Optional[bool] = None
+class Housing(TypedDict, total=False):
+    house: dict
+    success: bool
 
 
-@dataclass
-class HousingLoadMatch:
-    house: Optional[dict] = None
-    success: Optional[bool] = None
+class HousingLoadMatch(TypedDict, total=False):
+    house: dict
+    success: bool
 
 
-@dataclass
-class HousingListMatch:
-    house: Optional[dict] = None
-    success: Optional[bool] = None
+class HousingListMatch(TypedDict, total=False):
+    house: dict
+    success: bool
 
 
-@dataclass
-class Other:
-    booster: Optional[list] = None
-    booster_state: Optional[dict] = None
-    game: Optional[dict] = None
-    leaderboard: Optional[dict] = None
-    player_count: Optional[int] = None
-    staff_rolling_daily: Optional[int] = None
-    staff_total: Optional[int] = None
-    success: Optional[bool] = None
-    watchdog_last_minute: Optional[int] = None
-    watchdog_rolling_daily: Optional[int] = None
-    watchdog_total: Optional[int] = None
+class Other(TypedDict, total=False):
+    booster: list
+    booster_state: dict
+    game: dict
+    leaderboard: dict
+    player_count: int
+    staff_rolling_daily: int
+    staff_total: int
+    success: bool
+    watchdog_last_minute: int
+    watchdog_rolling_daily: int
+    watchdog_total: int
 
 
-@dataclass
-class OtherLoadMatch:
-    booster: Optional[list] = None
-    booster_state: Optional[dict] = None
-    game: Optional[dict] = None
-    leaderboard: Optional[dict] = None
-    player_count: Optional[int] = None
-    staff_rolling_daily: Optional[int] = None
-    staff_total: Optional[int] = None
-    success: Optional[bool] = None
-    watchdog_last_minute: Optional[int] = None
-    watchdog_rolling_daily: Optional[int] = None
-    watchdog_total: Optional[int] = None
+class OtherLoadMatch(TypedDict, total=False):
+    booster: list
+    booster_state: dict
+    game: dict
+    leaderboard: dict
+    player_count: int
+    staff_rolling_daily: int
+    staff_total: int
+    success: bool
+    watchdog_last_minute: int
+    watchdog_rolling_daily: int
+    watchdog_total: int
 
 
-@dataclass
-class OtherListMatch:
-    booster: Optional[list] = None
-    booster_state: Optional[dict] = None
-    game: Optional[dict] = None
-    leaderboard: Optional[dict] = None
-    player_count: Optional[int] = None
-    staff_rolling_daily: Optional[int] = None
-    staff_total: Optional[int] = None
-    success: Optional[bool] = None
-    watchdog_last_minute: Optional[int] = None
-    watchdog_rolling_daily: Optional[int] = None
-    watchdog_total: Optional[int] = None
+class OtherListMatch(TypedDict, total=False):
+    booster: list
+    booster_state: dict
+    game: dict
+    leaderboard: dict
+    player_count: int
+    staff_rolling_daily: int
+    staff_total: int
+    success: bool
+    watchdog_last_minute: int
+    watchdog_rolling_daily: int
+    watchdog_total: int
 
 
-@dataclass
-class Player:
-    player: Optional[dict] = None
-    success: Optional[bool] = None
+class Player(TypedDict, total=False):
+    player: dict
+    success: bool
 
 
-@dataclass
-class PlayerLoadMatch:
-    player: Optional[dict] = None
-    success: Optional[bool] = None
+class PlayerLoadMatch(TypedDict, total=False):
+    player: dict
+    success: bool
 
 
-@dataclass
-class PlayerData:
-    date: Optional[int] = None
-    ended: Optional[int] = None
-    game_type: Optional[str] = None
-    map: Optional[str] = None
-    mode: Optional[str] = None
-    session: Optional[dict] = None
-    success: Optional[bool] = None
-    uuid: Optional[str] = None
+class PlayerData(TypedDict, total=False):
+    date: int
+    ended: int
+    game_type: str
+    map: str
+    mode: str
+    session: dict
+    success: bool
+    uuid: str
 
 
-@dataclass
-class PlayerDataLoadMatch:
-    date: Optional[int] = None
-    ended: Optional[int] = None
-    game_type: Optional[str] = None
-    map: Optional[str] = None
-    mode: Optional[str] = None
-    session: Optional[dict] = None
-    success: Optional[bool] = None
-    uuid: Optional[str] = None
+class PlayerDataLoadMatch(TypedDict, total=False):
+    date: int
+    ended: int
+    game_type: str
+    map: str
+    mode: str
+    session: dict
+    success: bool
+    uuid: str
 
 
-@dataclass
-class PlayerDataListMatch:
-    date: Optional[int] = None
-    ended: Optional[int] = None
-    game_type: Optional[str] = None
-    map: Optional[str] = None
-    mode: Optional[str] = None
-    session: Optional[dict] = None
-    success: Optional[bool] = None
-    uuid: Optional[str] = None
+class PlayerDataListMatch(TypedDict, total=False):
+    date: int
+    ended: int
+    game_type: str
+    map: str
+    mode: str
+    session: dict
+    success: bool
+    uuid: str
 
 
-@dataclass
-class Resource:
-    achievement: Optional[dict] = None
-    challenge: Optional[dict] = None
-    game: Optional[dict] = None
-    last_updated: Optional[int] = None
-    one_time: Optional[dict] = None
-    quest: Optional[dict] = None
-    rarity: Optional[dict] = None
-    success: Optional[bool] = None
-    tiered: Optional[dict] = None
-    type: Optional[dict] = None
+class Resource(TypedDict, total=False):
+    achievement: dict
+    challenge: dict
+    game: dict
+    last_updated: int
+    one_time: dict
+    quest: dict
+    rarity: dict
+    success: bool
+    tiered: dict
+    type: dict
 
 
-@dataclass
-class ResourceLoadMatch:
-    achievement: Optional[dict] = None
-    challenge: Optional[dict] = None
-    game: Optional[dict] = None
-    last_updated: Optional[int] = None
-    one_time: Optional[dict] = None
-    quest: Optional[dict] = None
-    rarity: Optional[dict] = None
-    success: Optional[bool] = None
-    tiered: Optional[dict] = None
-    type: Optional[dict] = None
+class ResourceLoadMatch(TypedDict, total=False):
+    achievement: dict
+    challenge: dict
+    game: dict
+    last_updated: int
+    one_time: dict
+    quest: dict
+    rarity: dict
+    success: bool
+    tiered: dict
+    type: dict
 
 
-@dataclass
-class SkyBlock:
-    auction: Optional[list] = None
-    auctioneer: Optional[str] = None
-    bid: Optional[list] = None
-    category: Optional[str] = None
-    claimed: Optional[bool] = None
-    claimed_bidder: Optional[list] = None
-    collection: Optional[dict] = None
-    color: Optional[str] = None
-    coop: Optional[list] = None
-    current: Optional[dict] = None
-    end: Optional[int] = None
-    event: Optional[list] = None
-    extra: Optional[str] = None
-    full_lore: Optional[list] = None
-    garden: Optional[dict] = None
-    highest_bid_amount: Optional[int] = None
-    id: Optional[str] = None
-    item: Optional[dict] = None
-    item_byte: Optional[dict] = None
-    item_lore: Optional[str] = None
-    item_name: Optional[str] = None
-    last_updated: Optional[int] = None
-    link: Optional[str] = None
-    lore: Optional[str] = None
-    material: Optional[str] = None
-    mayor: Optional[dict] = None
-    member: Optional[dict] = None
-    name: Optional[str] = None
-    npc_sell_price: Optional[float] = None
-    page: Optional[int] = None
-    product: Optional[dict] = None
-    profile: Optional[dict] = None
-    profile_id: Optional[str] = None
-    progress: Optional[int] = None
-    required_amount: Optional[int] = None
-    sale: Optional[list] = None
-    skill: Optional[dict] = None
-    start: Optional[int] = None
-    starting_bid: Optional[int] = None
-    stat: Optional[dict] = None
-    success: Optional[bool] = None
-    text: Optional[str] = None
-    tier: Optional[str] = None
-    title: Optional[str] = None
-    total_auction: Optional[int] = None
-    total_page: Optional[int] = None
-    uuid: Optional[str] = None
-    version: Optional[str] = None
+class SkyBlock(TypedDict, total=False):
+    auction: list
+    auctioneer: str
+    bid: list
+    category: str
+    claimed: bool
+    claimed_bidder: list
+    collection: dict
+    color: str
+    coop: list
+    current: dict
+    end: int
+    event: list
+    extra: str
+    full_lore: list
+    garden: dict
+    highest_bid_amount: int
+    id: str
+    item: dict
+    item_byte: dict
+    item_lore: str
+    item_name: str
+    last_updated: int
+    link: str
+    lore: str
+    material: str
+    mayor: dict
+    member: dict
+    name: str
+    npc_sell_price: float
+    page: int
+    product: dict
+    profile: dict
+    profile_id: str
+    progress: int
+    required_amount: int
+    sale: list
+    skill: dict
+    start: int
+    starting_bid: int
+    stat: dict
+    success: bool
+    text: str
+    tier: str
+    title: str
+    total_auction: int
+    total_page: int
+    uuid: str
+    version: str
 
 
-@dataclass
-class SkyBlockLoadMatch:
-    auction: Optional[list] = None
-    auctioneer: Optional[str] = None
-    bid: Optional[list] = None
-    category: Optional[str] = None
-    claimed: Optional[bool] = None
-    claimed_bidder: Optional[list] = None
-    collection: Optional[dict] = None
-    color: Optional[str] = None
-    coop: Optional[list] = None
-    current: Optional[dict] = None
-    end: Optional[int] = None
-    event: Optional[list] = None
-    extra: Optional[str] = None
-    full_lore: Optional[list] = None
-    garden: Optional[dict] = None
-    highest_bid_amount: Optional[int] = None
-    id: Optional[str] = None
-    item: Optional[dict] = None
-    item_byte: Optional[dict] = None
-    item_lore: Optional[str] = None
-    item_name: Optional[str] = None
-    last_updated: Optional[int] = None
-    link: Optional[str] = None
-    lore: Optional[str] = None
-    material: Optional[str] = None
-    mayor: Optional[dict] = None
-    member: Optional[dict] = None
-    name: Optional[str] = None
-    npc_sell_price: Optional[float] = None
-    page: Optional[int] = None
-    product: Optional[dict] = None
-    profile: Optional[dict] = None
-    profile_id: Optional[str] = None
-    progress: Optional[int] = None
-    required_amount: Optional[int] = None
-    sale: Optional[list] = None
-    skill: Optional[dict] = None
-    start: Optional[int] = None
-    starting_bid: Optional[int] = None
-    stat: Optional[dict] = None
-    success: Optional[bool] = None
-    text: Optional[str] = None
-    tier: Optional[str] = None
-    title: Optional[str] = None
-    total_auction: Optional[int] = None
-    total_page: Optional[int] = None
-    uuid: Optional[str] = None
-    version: Optional[str] = None
+class SkyBlockLoadMatch(TypedDict, total=False):
+    auction: list
+    auctioneer: str
+    bid: list
+    category: str
+    claimed: bool
+    claimed_bidder: list
+    collection: dict
+    color: str
+    coop: list
+    current: dict
+    end: int
+    event: list
+    extra: str
+    full_lore: list
+    garden: dict
+    highest_bid_amount: int
+    id: str
+    item: dict
+    item_byte: dict
+    item_lore: str
+    item_name: str
+    last_updated: int
+    link: str
+    lore: str
+    material: str
+    mayor: dict
+    member: dict
+    name: str
+    npc_sell_price: float
+    page: int
+    product: dict
+    profile: dict
+    profile_id: str
+    progress: int
+    required_amount: int
+    sale: list
+    skill: dict
+    start: int
+    starting_bid: int
+    stat: dict
+    success: bool
+    text: str
+    tier: str
+    title: str
+    total_auction: int
+    total_page: int
+    uuid: str
+    version: str
 
 
-@dataclass
-class SkyBlockListMatch:
-    auction: Optional[list] = None
-    auctioneer: Optional[str] = None
-    bid: Optional[list] = None
-    category: Optional[str] = None
-    claimed: Optional[bool] = None
-    claimed_bidder: Optional[list] = None
-    collection: Optional[dict] = None
-    color: Optional[str] = None
-    coop: Optional[list] = None
-    current: Optional[dict] = None
-    end: Optional[int] = None
-    event: Optional[list] = None
-    extra: Optional[str] = None
-    full_lore: Optional[list] = None
-    garden: Optional[dict] = None
-    highest_bid_amount: Optional[int] = None
-    id: Optional[str] = None
-    item: Optional[dict] = None
-    item_byte: Optional[dict] = None
-    item_lore: Optional[str] = None
-    item_name: Optional[str] = None
-    last_updated: Optional[int] = None
-    link: Optional[str] = None
-    lore: Optional[str] = None
-    material: Optional[str] = None
-    mayor: Optional[dict] = None
-    member: Optional[dict] = None
-    name: Optional[str] = None
-    npc_sell_price: Optional[float] = None
-    page: Optional[int] = None
-    product: Optional[dict] = None
-    profile: Optional[dict] = None
-    profile_id: Optional[str] = None
-    progress: Optional[int] = None
-    required_amount: Optional[int] = None
-    sale: Optional[list] = None
-    skill: Optional[dict] = None
-    start: Optional[int] = None
-    starting_bid: Optional[int] = None
-    stat: Optional[dict] = None
-    success: Optional[bool] = None
-    text: Optional[str] = None
-    tier: Optional[str] = None
-    title: Optional[str] = None
-    total_auction: Optional[int] = None
-    total_page: Optional[int] = None
-    uuid: Optional[str] = None
-    version: Optional[str] = None
-
+class SkyBlockListMatch(TypedDict, total=False):
+    auction: list
+    auctioneer: str
+    bid: list
+    category: str
+    claimed: bool
+    claimed_bidder: list
+    collection: dict
+    color: str
+    coop: list
+    current: dict
+    end: int
+    event: list
+    extra: str
+    full_lore: list
+    garden: dict
+    highest_bid_amount: int
+    id: str
+    item: dict
+    item_byte: dict
+    item_lore: str
+    item_name: str
+    last_updated: int
+    link: str
+    lore: str
+    material: str
+    mayor: dict
+    member: dict
+    name: str
+    npc_sell_price: float
+    page: int
+    product: dict
+    profile: dict
+    profile_id: str
+    progress: int
+    required_amount: int
+    sale: list
+    skill: dict
+    start: int
+    starting_bid: int
+    stat: dict
+    success: bool
+    text: str
+    tier: str
+    title: str
+    total_auction: int
+    total_page: int
+    uuid: str
+    version: str

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:guild():list() / client:guild():load({ id = ... })
-function HypixelSDK:guild(data)
+-- Idiomatic facade: client:Guild():list() / client:Guild():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HypixelSDK:Guild(data)
   local EntityMod = require("entity.guild_entity")
   if data == nil then
     if self._guild == nil then
@@ -256,15 +257,10 @@ function HypixelSDK:guild(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:guild() instead.
-function HypixelSDK:Guild(data)
-  local EntityMod = require("entity.guild_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:housing():list() / client:housing():load({ id = ... })
-function HypixelSDK:housing(data)
+-- Idiomatic facade: client:Housing():list() / client:Housing():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HypixelSDK:Housing(data)
   local EntityMod = require("entity.housing_entity")
   if data == nil then
     if self._housing == nil then
@@ -275,15 +271,10 @@ function HypixelSDK:housing(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:housing() instead.
-function HypixelSDK:Housing(data)
-  local EntityMod = require("entity.housing_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:other():list() / client:other():load({ id = ... })
-function HypixelSDK:other(data)
+-- Idiomatic facade: client:Other():list() / client:Other():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HypixelSDK:Other(data)
   local EntityMod = require("entity.other_entity")
   if data == nil then
     if self._other == nil then
@@ -294,15 +285,10 @@ function HypixelSDK:other(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:other() instead.
-function HypixelSDK:Other(data)
-  local EntityMod = require("entity.other_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:player():list() / client:player():load({ id = ... })
-function HypixelSDK:player(data)
+-- Idiomatic facade: client:Player():list() / client:Player():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HypixelSDK:Player(data)
   local EntityMod = require("entity.player_entity")
   if data == nil then
     if self._player == nil then
@@ -313,15 +299,10 @@ function HypixelSDK:player(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:player() instead.
-function HypixelSDK:Player(data)
-  local EntityMod = require("entity.player_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:player_data():list() / client:player_data():load({ id = ... })
-function HypixelSDK:player_data(data)
+-- Idiomatic facade: client:PlayerData():list() / client:PlayerData():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HypixelSDK:PlayerData(data)
   local EntityMod = require("entity.player_data_entity")
   if data == nil then
     if self._player_data == nil then
@@ -332,15 +313,10 @@ function HypixelSDK:player_data(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:player_data() instead.
-function HypixelSDK:PlayerData(data)
-  local EntityMod = require("entity.player_data_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:resource():list() / client:resource():load({ id = ... })
-function HypixelSDK:resource(data)
+-- Idiomatic facade: client:Resource():list() / client:Resource():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HypixelSDK:Resource(data)
   local EntityMod = require("entity.resource_entity")
   if data == nil then
     if self._resource == nil then
@@ -351,15 +327,10 @@ function HypixelSDK:resource(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:resource() instead.
-function HypixelSDK:Resource(data)
-  local EntityMod = require("entity.resource_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:sky_block():list() / client:sky_block():load({ id = ... })
-function HypixelSDK:sky_block(data)
+-- Idiomatic facade: client:SkyBlock():list() / client:SkyBlock():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function HypixelSDK:SkyBlock(data)
   local EntityMod = require("entity.sky_block_entity")
   if data == nil then
     if self._sky_block == nil then
@@ -367,12 +338,6 @@ function HypixelSDK:sky_block(data)
     end
     return self._sky_block
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:sky_block() instead.
-function HypixelSDK:SkyBlock(data)
-  local EntityMod = require("entity.sky_block_entity")
   return EntityMod.new(self, data)
 end
 

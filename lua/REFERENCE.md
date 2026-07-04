@@ -108,7 +108,7 @@ same parameters as `direct()`.
 ## GuildEntity
 
 ```lua
-local guild = client:guild(nil)
+local guild = client:Guild(nil)
 ```
 
 ### Fields
@@ -125,7 +125,7 @@ local guild = client:guild(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:guild():load({ id = "guild_id" })
+local result, err = client:Guild():load({ id = "guild_id" })
 ```
 
 ### Common Methods
@@ -161,7 +161,7 @@ Return the entity name.
 ## HousingEntity
 
 ```lua
-local housing = client:housing(nil)
+local housing = client:Housing(nil)
 ```
 
 ### Fields
@@ -178,7 +178,7 @@ local housing = client:housing(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:housing():list()
+local results, err = client:Housing():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -186,7 +186,7 @@ local results, err = client:housing():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:housing():load({ id = "housing_id" })
+local result, err = client:Housing():load({ id = "housing_id" })
 ```
 
 ### Common Methods
@@ -222,7 +222,7 @@ Return the entity name.
 ## OtherEntity
 
 ```lua
-local other = client:other(nil)
+local other = client:Other(nil)
 ```
 
 ### Fields
@@ -248,7 +248,7 @@ local other = client:other(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:other():list()
+local results, err = client:Other():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -256,7 +256,7 @@ local results, err = client:other():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:other():load({ id = "other_id" })
+local result, err = client:Other():load({ id = "other_id" })
 ```
 
 ### Common Methods
@@ -292,7 +292,7 @@ Return the entity name.
 ## PlayerEntity
 
 ```lua
-local player = client:player(nil)
+local player = client:Player(nil)
 ```
 
 ### Fields
@@ -309,7 +309,7 @@ local player = client:player(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:player():load({ id = "player_id" })
+local result, err = client:Player():load({ id = "player_id" })
 ```
 
 ### Common Methods
@@ -345,7 +345,7 @@ Return the entity name.
 ## PlayerDataEntity
 
 ```lua
-local player_data = client:player_data(nil)
+local player_data = client:PlayerData(nil)
 ```
 
 ### Fields
@@ -368,7 +368,7 @@ local player_data = client:player_data(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:player_data():list()
+local results, err = client:PlayerData():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -376,7 +376,7 @@ local results, err = client:player_data():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:player_data():load({ id = "player_data_id" })
+local result, err = client:PlayerData():load({ id = "player_data_id" })
 ```
 
 ### Common Methods
@@ -412,7 +412,7 @@ Return the entity name.
 ## ResourceEntity
 
 ```lua
-local resource = client:resource(nil)
+local resource = client:Resource(nil)
 ```
 
 ### Fields
@@ -437,7 +437,7 @@ local resource = client:resource(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:resource():load({ id = "resource_id" })
+local result, err = client:Resource():load({ id = "resource_id" })
 ```
 
 ### Common Methods
@@ -473,7 +473,7 @@ Return the entity name.
 ## SkyBlockEntity
 
 ```lua
-local sky_block = client:sky_block(nil)
+local sky_block = client:SkyBlock(nil)
 ```
 
 ### Fields
@@ -536,7 +536,7 @@ local sky_block = client:sky_block(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:sky_block():list()
+local results, err = client:SkyBlock():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -544,7 +544,7 @@ local results, err = client:sky_block():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:sky_block():load({ id = "sky_block_id" })
+local result, err = client:SkyBlock():load({ id = "sky_block_id" })
 ```
 
 ### Common Methods
