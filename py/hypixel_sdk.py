@@ -221,43 +221,43 @@ class HypixelSDK:
 
 
     def Guild(self, data=None) -> "GuildEntity":
-        """Entity factory: client.Guild().list({}) / client.Guild().load({"id": ...})."""
+        """Entity factory: client.Guild().list() / client.Guild().load({"id": ...})."""
         from entity.guild_entity import GuildEntity
         return GuildEntity(self, data)
 
 
     def Housing(self, data=None) -> "HousingEntity":
-        """Entity factory: client.Housing().list({}) / client.Housing().load({"id": ...})."""
+        """Entity factory: client.Housing().list() / client.Housing().load({"id": ...})."""
         from entity.housing_entity import HousingEntity
         return HousingEntity(self, data)
 
 
     def Other(self, data=None) -> "OtherEntity":
-        """Entity factory: client.Other().list({}) / client.Other().load({"id": ...})."""
+        """Entity factory: client.Other().list() / client.Other().load({"id": ...})."""
         from entity.other_entity import OtherEntity
         return OtherEntity(self, data)
 
 
     def Player(self, data=None) -> "PlayerEntity":
-        """Entity factory: client.Player().list({}) / client.Player().load({"id": ...})."""
+        """Entity factory: client.Player().list() / client.Player().load({"id": ...})."""
         from entity.player_entity import PlayerEntity
         return PlayerEntity(self, data)
 
 
     def PlayerData(self, data=None) -> "PlayerDataEntity":
-        """Entity factory: client.PlayerData().list({}) / client.PlayerData().load({"id": ...})."""
+        """Entity factory: client.PlayerData().list() / client.PlayerData().load({"id": ...})."""
         from entity.player_data_entity import PlayerDataEntity
         return PlayerDataEntity(self, data)
 
 
     def Resource(self, data=None) -> "ResourceEntity":
-        """Entity factory: client.Resource().list({}) / client.Resource().load({"id": ...})."""
+        """Entity factory: client.Resource().list() / client.Resource().load({"id": ...})."""
         from entity.resource_entity import ResourceEntity
         return ResourceEntity(self, data)
 
 
     def SkyBlock(self, data=None) -> "SkyBlockEntity":
-        """Entity factory: client.SkyBlock().list({}) / client.SkyBlock().load({"id": ...})."""
+        """Entity factory: client.SkyBlock().list() / client.SkyBlock().load({"id": ...})."""
         from entity.sky_block_entity import SkyBlockEntity
         return SkyBlockEntity(self, data)
 

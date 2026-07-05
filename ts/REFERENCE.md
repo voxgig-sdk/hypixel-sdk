@@ -189,8 +189,8 @@ const guild = client.Guild()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `guild` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `guild` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -199,7 +199,7 @@ const guild = client.Guild()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Guild().load({ id: 'guild_id' })
+const result = await client.Guild().load()
 ```
 
 ### Common Methods
@@ -240,8 +240,8 @@ const housing = client.Housing()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `house` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -258,7 +258,7 @@ const results = await client.Housing().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Housing().load({ id: 'housing_id' })
+const result = await client.Housing().load()
 ```
 
 ### Common Methods
@@ -299,17 +299,17 @@ const other = client.Other()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | ``$ARRAY`` | No |  |
-| `booster_state` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `leaderboard` | ``$OBJECT`` | No |  |
-| `player_count` | ``$INTEGER`` | No |  |
-| `staff_rolling_daily` | ``$INTEGER`` | No |  |
-| `staff_total` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `watchdog_last_minute` | ``$INTEGER`` | No |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` | No |  |
-| `watchdog_total` | ``$INTEGER`` | No |  |
+| `booster` | `any[]` | No |  |
+| `booster_state` | `Record<string, any>` | No |  |
+| `game` | `Record<string, any>` | No |  |
+| `leaderboard` | `Record<string, any>` | No |  |
+| `player_count` | `number` | No |  |
+| `staff_rolling_daily` | `number` | No |  |
+| `staff_total` | `number` | No |  |
+| `success` | `boolean` | No |  |
+| `watchdog_last_minute` | `number` | No |  |
+| `watchdog_rolling_daily` | `number` | No |  |
+| `watchdog_total` | `number` | No |  |
 
 ### Operations
 
@@ -326,7 +326,7 @@ const results = await client.Other().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Other().load({ id: 'other_id' })
+const result = await client.Other().load()
 ```
 
 ### Common Methods
@@ -367,8 +367,8 @@ const player = client.Player()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `player` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -377,7 +377,7 @@ const player = client.Player()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Player().load({ id: 'player_id' })
+const result = await client.Player().load()
 ```
 
 ### Common Methods
@@ -418,14 +418,14 @@ const player_data = client.PlayerData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$INTEGER`` | No |  |
-| `ended` | ``$INTEGER`` | No |  |
-| `game_type` | ``$STRING`` | No |  |
-| `map` | ``$STRING`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `session` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `date` | `number` | No |  |
+| `ended` | `number` | No |  |
+| `game_type` | `string` | No |  |
+| `map` | `string` | No |  |
+| `mode` | `string` | No |  |
+| `session` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -442,7 +442,7 @@ const results = await client.PlayerData().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PlayerData().load({ id: 'player_data_id' })
+const result = await client.PlayerData().load()
 ```
 
 ### Common Methods
@@ -483,16 +483,16 @@ const resource = client.Resource()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | ``$OBJECT`` | No |  |
-| `challenge` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `one_time` | ``$OBJECT`` | No |  |
-| `quest` | ``$OBJECT`` | No |  |
-| `rarity` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tiered` | ``$OBJECT`` | No |  |
-| `type` | ``$OBJECT`` | No |  |
+| `achievement` | `Record<string, any>` | No |  |
+| `challenge` | `Record<string, any>` | No |  |
+| `game` | `Record<string, any>` | No |  |
+| `last_updated` | `number` | No |  |
+| `one_time` | `Record<string, any>` | No |  |
+| `quest` | `Record<string, any>` | No |  |
+| `rarity` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
+| `tiered` | `Record<string, any>` | No |  |
+| `type` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -501,7 +501,7 @@ const resource = client.Resource()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Resource().load({ id: 'resource_id' })
+const result = await client.Resource().load()
 ```
 
 ### Common Methods
@@ -542,54 +542,54 @@ const sky_block = client.SkyBlock()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | ``$ARRAY`` | No |  |
-| `auctioneer` | ``$STRING`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `claimed` | ``$BOOLEAN`` | No |  |
-| `claimed_bidder` | ``$ARRAY`` | No |  |
-| `collection` | ``$OBJECT`` | No |  |
-| `color` | ``$STRING`` | No |  |
-| `coop` | ``$ARRAY`` | No |  |
-| `current` | ``$OBJECT`` | No |  |
-| `end` | ``$INTEGER`` | No |  |
-| `event` | ``$ARRAY`` | No |  |
-| `extra` | ``$STRING`` | No |  |
-| `full_lore` | ``$ARRAY`` | No |  |
-| `garden` | ``$OBJECT`` | No |  |
-| `highest_bid_amount` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `item` | ``$OBJECT`` | No |  |
-| `item_byte` | ``$OBJECT`` | No |  |
-| `item_lore` | ``$STRING`` | No |  |
-| `item_name` | ``$STRING`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `lore` | ``$STRING`` | No |  |
-| `material` | ``$STRING`` | No |  |
-| `mayor` | ``$OBJECT`` | No |  |
-| `member` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `npc_sell_price` | ``$NUMBER`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `product` | ``$OBJECT`` | No |  |
-| `profile` | ``$OBJECT`` | No |  |
-| `profile_id` | ``$STRING`` | No |  |
-| `progress` | ``$INTEGER`` | No |  |
-| `required_amount` | ``$INTEGER`` | No |  |
-| `sale` | ``$ARRAY`` | No |  |
-| `skill` | ``$OBJECT`` | No |  |
-| `start` | ``$INTEGER`` | No |  |
-| `starting_bid` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `tier` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `total_auction` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `auction` | `any[]` | No |  |
+| `auctioneer` | `string` | No |  |
+| `bid` | `any[]` | No |  |
+| `category` | `string` | No |  |
+| `claimed` | `boolean` | No |  |
+| `claimed_bidder` | `any[]` | No |  |
+| `collection` | `Record<string, any>` | No |  |
+| `color` | `string` | No |  |
+| `coop` | `any[]` | No |  |
+| `current` | `Record<string, any>` | No |  |
+| `end` | `number` | No |  |
+| `event` | `any[]` | No |  |
+| `extra` | `string` | No |  |
+| `full_lore` | `any[]` | No |  |
+| `garden` | `Record<string, any>` | No |  |
+| `highest_bid_amount` | `number` | No |  |
+| `id` | `string` | No |  |
+| `item` | `Record<string, any>` | No |  |
+| `item_byte` | `Record<string, any>` | No |  |
+| `item_lore` | `string` | No |  |
+| `item_name` | `string` | No |  |
+| `last_updated` | `number` | No |  |
+| `link` | `string` | No |  |
+| `lore` | `string` | No |  |
+| `material` | `string` | No |  |
+| `mayor` | `Record<string, any>` | No |  |
+| `member` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
+| `npc_sell_price` | `number` | No |  |
+| `page` | `number` | No |  |
+| `product` | `Record<string, any>` | No |  |
+| `profile` | `Record<string, any>` | No |  |
+| `profile_id` | `string` | No |  |
+| `progress` | `number` | No |  |
+| `required_amount` | `number` | No |  |
+| `sale` | `any[]` | No |  |
+| `skill` | `Record<string, any>` | No |  |
+| `start` | `number` | No |  |
+| `starting_bid` | `number` | No |  |
+| `stat` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
+| `text` | `string` | No |  |
+| `tier` | `string` | No |  |
+| `title` | `string` | No |  |
+| `total_auction` | `number` | No |  |
+| `total_page` | `number` | No |  |
+| `uuid` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

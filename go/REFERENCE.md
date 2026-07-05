@@ -122,8 +122,8 @@ guild := client.Guild(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `guild` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `guild` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -132,7 +132,7 @@ guild := client.Guild(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Guild(nil).Load(map[string]any{"id": "guild_id"}, nil)
+result, err := client.Guild(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -169,8 +169,8 @@ housing := client.Housing(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `house` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -187,7 +187,7 @@ results, err := client.Housing(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Housing(nil).Load(map[string]any{"id": "housing_id"}, nil)
+result, err := client.Housing(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -224,17 +224,17 @@ other := client.Other(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | ``$ARRAY`` | No |  |
-| `booster_state` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `leaderboard` | ``$OBJECT`` | No |  |
-| `player_count` | ``$INTEGER`` | No |  |
-| `staff_rolling_daily` | ``$INTEGER`` | No |  |
-| `staff_total` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `watchdog_last_minute` | ``$INTEGER`` | No |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` | No |  |
-| `watchdog_total` | ``$INTEGER`` | No |  |
+| `booster` | `[]any` | No |  |
+| `booster_state` | `map[string]any` | No |  |
+| `game` | `map[string]any` | No |  |
+| `leaderboard` | `map[string]any` | No |  |
+| `player_count` | `int` | No |  |
+| `staff_rolling_daily` | `int` | No |  |
+| `staff_total` | `int` | No |  |
+| `success` | `bool` | No |  |
+| `watchdog_last_minute` | `int` | No |  |
+| `watchdog_rolling_daily` | `int` | No |  |
+| `watchdog_total` | `int` | No |  |
 
 ### Operations
 
@@ -251,7 +251,7 @@ results, err := client.Other(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Other(nil).Load(map[string]any{"id": "other_id"}, nil)
+result, err := client.Other(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -288,8 +288,8 @@ player := client.Player(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `player` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -298,7 +298,7 @@ player := client.Player(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Player(nil).Load(map[string]any{"id": "player_id"}, nil)
+result, err := client.Player(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -335,14 +335,14 @@ player_data := client.PlayerData(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$INTEGER`` | No |  |
-| `ended` | ``$INTEGER`` | No |  |
-| `game_type` | ``$STRING`` | No |  |
-| `map` | ``$STRING`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `session` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `date` | `int` | No |  |
+| `ended` | `int` | No |  |
+| `game_type` | `string` | No |  |
+| `map` | `string` | No |  |
+| `mode` | `string` | No |  |
+| `session` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -359,7 +359,7 @@ results, err := client.PlayerData(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PlayerData(nil).Load(map[string]any{"id": "player_data_id"}, nil)
+result, err := client.PlayerData(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -396,16 +396,16 @@ resource := client.Resource(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | ``$OBJECT`` | No |  |
-| `challenge` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `one_time` | ``$OBJECT`` | No |  |
-| `quest` | ``$OBJECT`` | No |  |
-| `rarity` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tiered` | ``$OBJECT`` | No |  |
-| `type` | ``$OBJECT`` | No |  |
+| `achievement` | `map[string]any` | No |  |
+| `challenge` | `map[string]any` | No |  |
+| `game` | `map[string]any` | No |  |
+| `last_updated` | `int` | No |  |
+| `one_time` | `map[string]any` | No |  |
+| `quest` | `map[string]any` | No |  |
+| `rarity` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
+| `tiered` | `map[string]any` | No |  |
+| `type` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -414,7 +414,7 @@ resource := client.Resource(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Resource(nil).Load(map[string]any{"id": "resource_id"}, nil)
+result, err := client.Resource(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -451,54 +451,54 @@ sky_block := client.SkyBlock(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | ``$ARRAY`` | No |  |
-| `auctioneer` | ``$STRING`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `claimed` | ``$BOOLEAN`` | No |  |
-| `claimed_bidder` | ``$ARRAY`` | No |  |
-| `collection` | ``$OBJECT`` | No |  |
-| `color` | ``$STRING`` | No |  |
-| `coop` | ``$ARRAY`` | No |  |
-| `current` | ``$OBJECT`` | No |  |
-| `end` | ``$INTEGER`` | No |  |
-| `event` | ``$ARRAY`` | No |  |
-| `extra` | ``$STRING`` | No |  |
-| `full_lore` | ``$ARRAY`` | No |  |
-| `garden` | ``$OBJECT`` | No |  |
-| `highest_bid_amount` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `item` | ``$OBJECT`` | No |  |
-| `item_byte` | ``$OBJECT`` | No |  |
-| `item_lore` | ``$STRING`` | No |  |
-| `item_name` | ``$STRING`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `lore` | ``$STRING`` | No |  |
-| `material` | ``$STRING`` | No |  |
-| `mayor` | ``$OBJECT`` | No |  |
-| `member` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `npc_sell_price` | ``$NUMBER`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `product` | ``$OBJECT`` | No |  |
-| `profile` | ``$OBJECT`` | No |  |
-| `profile_id` | ``$STRING`` | No |  |
-| `progress` | ``$INTEGER`` | No |  |
-| `required_amount` | ``$INTEGER`` | No |  |
-| `sale` | ``$ARRAY`` | No |  |
-| `skill` | ``$OBJECT`` | No |  |
-| `start` | ``$INTEGER`` | No |  |
-| `starting_bid` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `tier` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `total_auction` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `auction` | `[]any` | No |  |
+| `auctioneer` | `string` | No |  |
+| `bid` | `[]any` | No |  |
+| `category` | `string` | No |  |
+| `claimed` | `bool` | No |  |
+| `claimed_bidder` | `[]any` | No |  |
+| `collection` | `map[string]any` | No |  |
+| `color` | `string` | No |  |
+| `coop` | `[]any` | No |  |
+| `current` | `map[string]any` | No |  |
+| `end` | `int` | No |  |
+| `event` | `[]any` | No |  |
+| `extra` | `string` | No |  |
+| `full_lore` | `[]any` | No |  |
+| `garden` | `map[string]any` | No |  |
+| `highest_bid_amount` | `int` | No |  |
+| `id` | `string` | No |  |
+| `item` | `map[string]any` | No |  |
+| `item_byte` | `map[string]any` | No |  |
+| `item_lore` | `string` | No |  |
+| `item_name` | `string` | No |  |
+| `last_updated` | `int` | No |  |
+| `link` | `string` | No |  |
+| `lore` | `string` | No |  |
+| `material` | `string` | No |  |
+| `mayor` | `map[string]any` | No |  |
+| `member` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `npc_sell_price` | `float64` | No |  |
+| `page` | `int` | No |  |
+| `product` | `map[string]any` | No |  |
+| `profile` | `map[string]any` | No |  |
+| `profile_id` | `string` | No |  |
+| `progress` | `int` | No |  |
+| `required_amount` | `int` | No |  |
+| `sale` | `[]any` | No |  |
+| `skill` | `map[string]any` | No |  |
+| `start` | `int` | No |  |
+| `starting_bid` | `int` | No |  |
+| `stat` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
+| `text` | `string` | No |  |
+| `tier` | `string` | No |  |
+| `title` | `string` | No |  |
+| `total_auction` | `int` | No |  |
+| `total_page` | `int` | No |  |
+| `uuid` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

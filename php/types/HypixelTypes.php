@@ -19,7 +19,7 @@ class Guild
     public ?bool $success = null;
 }
 
-/** Match filter for Guild#load (any subset of Guild fields). */
+/** Request payload for Guild#load. */
 class GuildLoadMatch
 {
     public ?array $guild = null;
@@ -33,14 +33,14 @@ class Housing
     public ?bool $success = null;
 }
 
-/** Match filter for Housing#load (any subset of Housing fields). */
+/** Request payload for Housing#load. */
 class HousingLoadMatch
 {
     public ?array $house = null;
     public ?bool $success = null;
 }
 
-/** Match filter for Housing#list (any subset of Housing fields). */
+/** Request payload for Housing#list. */
 class HousingListMatch
 {
     public ?array $house = null;
@@ -63,7 +63,7 @@ class Other
     public ?int $watchdog_total = null;
 }
 
-/** Match filter for Other#load (any subset of Other fields). */
+/** Request payload for Other#load. */
 class OtherLoadMatch
 {
     public ?array $booster = null;
@@ -79,7 +79,7 @@ class OtherLoadMatch
     public ?int $watchdog_total = null;
 }
 
-/** Match filter for Other#list (any subset of Other fields). */
+/** Request payload for Other#list. */
 class OtherListMatch
 {
     public ?array $booster = null;
@@ -102,7 +102,7 @@ class Player
     public ?bool $success = null;
 }
 
-/** Match filter for Player#load (any subset of Player fields). */
+/** Request payload for Player#load. */
 class PlayerLoadMatch
 {
     public ?array $player = null;
@@ -122,7 +122,7 @@ class PlayerData
     public ?string $uuid = null;
 }
 
-/** Match filter for PlayerData#load (any subset of PlayerData fields). */
+/** Request payload for PlayerData#load. */
 class PlayerDataLoadMatch
 {
     public ?int $date = null;
@@ -135,7 +135,7 @@ class PlayerDataLoadMatch
     public ?string $uuid = null;
 }
 
-/** Match filter for PlayerData#list (any subset of PlayerData fields). */
+/** Request payload for PlayerData#list. */
 class PlayerDataListMatch
 {
     public ?int $date = null;
@@ -163,7 +163,7 @@ class Resource
     public ?array $type = null;
 }
 
-/** Match filter for Resource#load (any subset of Resource fields). */
+/** Request payload for Resource#load. */
 class ResourceLoadMatch
 {
     public ?array $achievement = null;
@@ -231,7 +231,7 @@ class SkyBlock
     public ?string $version = null;
 }
 
-/** Match filter for SkyBlock#load (any subset of SkyBlock fields). */
+/** Request payload for SkyBlock#load. */
 class SkyBlockLoadMatch
 {
     public ?array $auction = null;
@@ -250,7 +250,7 @@ class SkyBlockLoadMatch
     public ?array $full_lore = null;
     public ?array $garden = null;
     public ?int $highest_bid_amount = null;
-    public ?string $id = null;
+    public string $id;
     public ?array $item = null;
     public ?array $item_byte = null;
     public ?string $item_lore = null;
@@ -284,7 +284,7 @@ class SkyBlockLoadMatch
     public ?string $version = null;
 }
 
-/** Match filter for SkyBlock#list (any subset of SkyBlock fields). */
+/** Request payload for SkyBlock#list. */
 class SkyBlockListMatch
 {
     public ?array $auction = null;

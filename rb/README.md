@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Hypixel API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Guild` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,11 +37,38 @@ client = HypixelSDK.new({
 ```ruby
 begin
   # load returns the bare Guild record (raises on error).
-  guild = client.Guild.load({ "id" => "example_id" })
+  guild = client.Guild.load()
   puts guild
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  guild = client.Guild.load()
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -60,7 +89,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -83,16 +114,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = HypixelSDK.test({
-  "entity" => { "guild" => { "test01" => { "id" => "test01" } } },
-})
+client = HypixelSDK.test
 
-# load returns the bare mock record (raises on error).
-guild = client.Guild.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+guild = client.Guild.load()
 puts guild
 ```
 
@@ -186,10 +214,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -381,14 +406,14 @@ Create an instance: `guild = client.Guild`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `guild` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `guild` | `Hash` |  |
+| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Guild record (raises on error).
-guild = client.Guild.load({ "id" => "guild_id" })
+guild = client.Guild.load()
 ```
 
 
@@ -407,14 +432,14 @@ Create an instance: `housing = client.Housing`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `house` | `Hash` |  |
+| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Housing record (raises on error).
-housing = client.Housing.load({ "id" => "housing_id" })
+housing = client.Housing.load()
 ```
 
 #### Example: List
@@ -440,23 +465,23 @@ Create an instance: `other = client.Other`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | ``$ARRAY`` |  |
-| `booster_state` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `leaderboard` | ``$OBJECT`` |  |
-| `player_count` | ``$INTEGER`` |  |
-| `staff_rolling_daily` | ``$INTEGER`` |  |
-| `staff_total` | ``$INTEGER`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `watchdog_last_minute` | ``$INTEGER`` |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` |  |
-| `watchdog_total` | ``$INTEGER`` |  |
+| `booster` | `Array` |  |
+| `booster_state` | `Hash` |  |
+| `game` | `Hash` |  |
+| `leaderboard` | `Hash` |  |
+| `player_count` | `Integer` |  |
+| `staff_rolling_daily` | `Integer` |  |
+| `staff_total` | `Integer` |  |
+| `success` | `Boolean` |  |
+| `watchdog_last_minute` | `Integer` |  |
+| `watchdog_rolling_daily` | `Integer` |  |
+| `watchdog_total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Other record (raises on error).
-other = client.Other.load({ "id" => "other_id" })
+other = client.Other.load()
 ```
 
 #### Example: List
@@ -481,14 +506,14 @@ Create an instance: `player = client.Player`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `player` | `Hash` |  |
+| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Player record (raises on error).
-player = client.Player.load({ "id" => "player_id" })
+player = client.Player.load()
 ```
 
 
@@ -507,20 +532,20 @@ Create an instance: `player_data = client.PlayerData`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | ``$INTEGER`` |  |
-| `ended` | ``$INTEGER`` |  |
-| `game_type` | ``$STRING`` |  |
-| `map` | ``$STRING`` |  |
-| `mode` | ``$STRING`` |  |
-| `session` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `uuid` | ``$STRING`` |  |
+| `date` | `Integer` |  |
+| `ended` | `Integer` |  |
+| `game_type` | `String` |  |
+| `map` | `String` |  |
+| `mode` | `String` |  |
+| `session` | `Hash` |  |
+| `success` | `Boolean` |  |
+| `uuid` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare PlayerData record (raises on error).
-player_data = client.PlayerData.load({ "id" => "player_data_id" })
+player_data = client.PlayerData.load()
 ```
 
 #### Example: List
@@ -545,22 +570,22 @@ Create an instance: `resource = client.Resource`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | ``$OBJECT`` |  |
-| `challenge` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `one_time` | ``$OBJECT`` |  |
-| `quest` | ``$OBJECT`` |  |
-| `rarity` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `tiered` | ``$OBJECT`` |  |
-| `type` | ``$OBJECT`` |  |
+| `achievement` | `Hash` |  |
+| `challenge` | `Hash` |  |
+| `game` | `Hash` |  |
+| `last_updated` | `Integer` |  |
+| `one_time` | `Hash` |  |
+| `quest` | `Hash` |  |
+| `rarity` | `Hash` |  |
+| `success` | `Boolean` |  |
+| `tiered` | `Hash` |  |
+| `type` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Resource record (raises on error).
-resource = client.Resource.load({ "id" => "resource_id" })
+resource = client.Resource.load()
 ```
 
 
@@ -579,54 +604,54 @@ Create an instance: `sky_block = client.SkyBlock`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | ``$ARRAY`` |  |
-| `auctioneer` | ``$STRING`` |  |
-| `bid` | ``$ARRAY`` |  |
-| `category` | ``$STRING`` |  |
-| `claimed` | ``$BOOLEAN`` |  |
-| `claimed_bidder` | ``$ARRAY`` |  |
-| `collection` | ``$OBJECT`` |  |
-| `color` | ``$STRING`` |  |
-| `coop` | ``$ARRAY`` |  |
-| `current` | ``$OBJECT`` |  |
-| `end` | ``$INTEGER`` |  |
-| `event` | ``$ARRAY`` |  |
-| `extra` | ``$STRING`` |  |
-| `full_lore` | ``$ARRAY`` |  |
-| `garden` | ``$OBJECT`` |  |
-| `highest_bid_amount` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `item` | ``$OBJECT`` |  |
-| `item_byte` | ``$OBJECT`` |  |
-| `item_lore` | ``$STRING`` |  |
-| `item_name` | ``$STRING`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `link` | ``$STRING`` |  |
-| `lore` | ``$STRING`` |  |
-| `material` | ``$STRING`` |  |
-| `mayor` | ``$OBJECT`` |  |
-| `member` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `npc_sell_price` | ``$NUMBER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `product` | ``$OBJECT`` |  |
-| `profile` | ``$OBJECT`` |  |
-| `profile_id` | ``$STRING`` |  |
-| `progress` | ``$INTEGER`` |  |
-| `required_amount` | ``$INTEGER`` |  |
-| `sale` | ``$ARRAY`` |  |
-| `skill` | ``$OBJECT`` |  |
-| `start` | ``$INTEGER`` |  |
-| `starting_bid` | ``$INTEGER`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `text` | ``$STRING`` |  |
-| `tier` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `total_auction` | ``$INTEGER`` |  |
-| `total_page` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `auction` | `Array` |  |
+| `auctioneer` | `String` |  |
+| `bid` | `Array` |  |
+| `category` | `String` |  |
+| `claimed` | `Boolean` |  |
+| `claimed_bidder` | `Array` |  |
+| `collection` | `Hash` |  |
+| `color` | `String` |  |
+| `coop` | `Array` |  |
+| `current` | `Hash` |  |
+| `end` | `Integer` |  |
+| `event` | `Array` |  |
+| `extra` | `String` |  |
+| `full_lore` | `Array` |  |
+| `garden` | `Hash` |  |
+| `highest_bid_amount` | `Integer` |  |
+| `id` | `String` |  |
+| `item` | `Hash` |  |
+| `item_byte` | `Hash` |  |
+| `item_lore` | `String` |  |
+| `item_name` | `String` |  |
+| `last_updated` | `Integer` |  |
+| `link` | `String` |  |
+| `lore` | `String` |  |
+| `material` | `String` |  |
+| `mayor` | `Hash` |  |
+| `member` | `Hash` |  |
+| `name` | `String` |  |
+| `npc_sell_price` | `Float` |  |
+| `page` | `Integer` |  |
+| `product` | `Hash` |  |
+| `profile` | `Hash` |  |
+| `profile_id` | `String` |  |
+| `progress` | `Integer` |  |
+| `required_amount` | `Integer` |  |
+| `sale` | `Array` |  |
+| `skill` | `Hash` |  |
+| `start` | `Integer` |  |
+| `starting_bid` | `Integer` |  |
+| `stat` | `Hash` |  |
+| `success` | `Boolean` |  |
+| `text` | `String` |  |
+| `tier` | `String` |  |
+| `title` | `String` |  |
+| `total_auction` | `Integer` |  |
+| `total_page` | `Integer` |  |
+| `uuid` | `String` |  |
+| `version` | `String` |  |
 
 #### Example: Load
 
@@ -643,12 +668,16 @@ sky_blocks = client.SkyBlock.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -665,8 +694,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -715,9 +745,9 @@ stores the returned data and match criteria internally.
 
 ```ruby
 guild = client.Guild
-guild.load({ "id" => "example_id" })
+guild.load()
 
-# guild.data_get now returns the loaded guild data
+# guild.data_get now returns the guild data from the last load
 # guild.match_get returns the last match criteria
 ```
 

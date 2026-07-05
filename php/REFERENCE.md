@@ -70,11 +70,11 @@ Create a new `ResourceEntity` instance. Pass `null` for no initial data.
 
 Create a new `SkyBlockEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): HypixelUtility`
 
 Return a copy of the SDK utility object.
 
@@ -117,8 +117,8 @@ $guild = $client->Guild();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `guild` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `guild` | `array` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -127,24 +127,24 @@ $guild = $client->Guild();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Guild()->load(["id" => "guild_id"]);
+$result = $client->Guild()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -153,7 +153,7 @@ Set the entity match criteria.
 Create a new `GuildEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -170,17 +170,17 @@ $housing = $client->Housing();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `house` | `array` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Housing()->list([]);
+$results = $client->Housing()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -188,24 +188,24 @@ $results = $client->Housing()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Housing()->load(["id" => "housing_id"]);
+$result = $client->Housing()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -214,7 +214,7 @@ Set the entity match criteria.
 Create a new `HousingEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -231,26 +231,26 @@ $other = $client->Other();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | ``$ARRAY`` | No |  |
-| `booster_state` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `leaderboard` | ``$OBJECT`` | No |  |
-| `player_count` | ``$INTEGER`` | No |  |
-| `staff_rolling_daily` | ``$INTEGER`` | No |  |
-| `staff_total` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `watchdog_last_minute` | ``$INTEGER`` | No |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` | No |  |
-| `watchdog_total` | ``$INTEGER`` | No |  |
+| `booster` | `array` | No |  |
+| `booster_state` | `array` | No |  |
+| `game` | `array` | No |  |
+| `leaderboard` | `array` | No |  |
+| `player_count` | `int` | No |  |
+| `staff_rolling_daily` | `int` | No |  |
+| `staff_total` | `int` | No |  |
+| `success` | `bool` | No |  |
+| `watchdog_last_minute` | `int` | No |  |
+| `watchdog_rolling_daily` | `int` | No |  |
+| `watchdog_total` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Other()->list([]);
+$results = $client->Other()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -258,24 +258,24 @@ $results = $client->Other()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Other()->load(["id" => "other_id"]);
+$result = $client->Other()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -284,7 +284,7 @@ Set the entity match criteria.
 Create a new `OtherEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -301,8 +301,8 @@ $player = $client->Player();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `player` | `array` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -311,24 +311,24 @@ $player = $client->Player();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Player()->load(["id" => "player_id"]);
+$result = $client->Player()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -337,7 +337,7 @@ Set the entity match criteria.
 Create a new `PlayerEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -354,23 +354,23 @@ $player_data = $client->PlayerData();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$INTEGER`` | No |  |
-| `ended` | ``$INTEGER`` | No |  |
-| `game_type` | ``$STRING`` | No |  |
-| `map` | ``$STRING`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `session` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `date` | `int` | No |  |
+| `ended` | `int` | No |  |
+| `game_type` | `string` | No |  |
+| `map` | `string` | No |  |
+| `mode` | `string` | No |  |
+| `session` | `array` | No |  |
+| `success` | `bool` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->PlayerData()->list([]);
+$results = $client->PlayerData()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -378,24 +378,24 @@ $results = $client->PlayerData()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->PlayerData()->load(["id" => "player_data_id"]);
+$result = $client->PlayerData()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -404,7 +404,7 @@ Set the entity match criteria.
 Create a new `PlayerDataEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -421,16 +421,16 @@ $resource = $client->Resource();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | ``$OBJECT`` | No |  |
-| `challenge` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `one_time` | ``$OBJECT`` | No |  |
-| `quest` | ``$OBJECT`` | No |  |
-| `rarity` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tiered` | ``$OBJECT`` | No |  |
-| `type` | ``$OBJECT`` | No |  |
+| `achievement` | `array` | No |  |
+| `challenge` | `array` | No |  |
+| `game` | `array` | No |  |
+| `last_updated` | `int` | No |  |
+| `one_time` | `array` | No |  |
+| `quest` | `array` | No |  |
+| `rarity` | `array` | No |  |
+| `success` | `bool` | No |  |
+| `tiered` | `array` | No |  |
+| `type` | `array` | No |  |
 
 ### Operations
 
@@ -439,24 +439,24 @@ $resource = $client->Resource();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Resource()->load(["id" => "resource_id"]);
+$result = $client->Resource()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -465,7 +465,7 @@ Set the entity match criteria.
 Create a new `ResourceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -482,63 +482,63 @@ $sky_block = $client->SkyBlock();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | ``$ARRAY`` | No |  |
-| `auctioneer` | ``$STRING`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `claimed` | ``$BOOLEAN`` | No |  |
-| `claimed_bidder` | ``$ARRAY`` | No |  |
-| `collection` | ``$OBJECT`` | No |  |
-| `color` | ``$STRING`` | No |  |
-| `coop` | ``$ARRAY`` | No |  |
-| `current` | ``$OBJECT`` | No |  |
-| `end` | ``$INTEGER`` | No |  |
-| `event` | ``$ARRAY`` | No |  |
-| `extra` | ``$STRING`` | No |  |
-| `full_lore` | ``$ARRAY`` | No |  |
-| `garden` | ``$OBJECT`` | No |  |
-| `highest_bid_amount` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `item` | ``$OBJECT`` | No |  |
-| `item_byte` | ``$OBJECT`` | No |  |
-| `item_lore` | ``$STRING`` | No |  |
-| `item_name` | ``$STRING`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `lore` | ``$STRING`` | No |  |
-| `material` | ``$STRING`` | No |  |
-| `mayor` | ``$OBJECT`` | No |  |
-| `member` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `npc_sell_price` | ``$NUMBER`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `product` | ``$OBJECT`` | No |  |
-| `profile` | ``$OBJECT`` | No |  |
-| `profile_id` | ``$STRING`` | No |  |
-| `progress` | ``$INTEGER`` | No |  |
-| `required_amount` | ``$INTEGER`` | No |  |
-| `sale` | ``$ARRAY`` | No |  |
-| `skill` | ``$OBJECT`` | No |  |
-| `start` | ``$INTEGER`` | No |  |
-| `starting_bid` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `tier` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `total_auction` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `auction` | `array` | No |  |
+| `auctioneer` | `string` | No |  |
+| `bid` | `array` | No |  |
+| `category` | `string` | No |  |
+| `claimed` | `bool` | No |  |
+| `claimed_bidder` | `array` | No |  |
+| `collection` | `array` | No |  |
+| `color` | `string` | No |  |
+| `coop` | `array` | No |  |
+| `current` | `array` | No |  |
+| `end` | `int` | No |  |
+| `event` | `array` | No |  |
+| `extra` | `string` | No |  |
+| `full_lore` | `array` | No |  |
+| `garden` | `array` | No |  |
+| `highest_bid_amount` | `int` | No |  |
+| `id` | `string` | No |  |
+| `item` | `array` | No |  |
+| `item_byte` | `array` | No |  |
+| `item_lore` | `string` | No |  |
+| `item_name` | `string` | No |  |
+| `last_updated` | `int` | No |  |
+| `link` | `string` | No |  |
+| `lore` | `string` | No |  |
+| `material` | `string` | No |  |
+| `mayor` | `array` | No |  |
+| `member` | `array` | No |  |
+| `name` | `string` | No |  |
+| `npc_sell_price` | `float` | No |  |
+| `page` | `int` | No |  |
+| `product` | `array` | No |  |
+| `profile` | `array` | No |  |
+| `profile_id` | `string` | No |  |
+| `progress` | `int` | No |  |
+| `required_amount` | `int` | No |  |
+| `sale` | `array` | No |  |
+| `skill` | `array` | No |  |
+| `start` | `int` | No |  |
+| `starting_bid` | `int` | No |  |
+| `stat` | `array` | No |  |
+| `success` | `bool` | No |  |
+| `text` | `string` | No |  |
+| `tier` | `string` | No |  |
+| `title` | `string` | No |  |
+| `total_auction` | `int` | No |  |
+| `total_page` | `int` | No |  |
+| `uuid` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->SkyBlock()->list([]);
+$results = $client->SkyBlock()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -551,19 +551,19 @@ $result = $client->SkyBlock()->load(["id" => "sky_block_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -572,7 +572,7 @@ Set the entity match criteria.
 Create a new `SkyBlockEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

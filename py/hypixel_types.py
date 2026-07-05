@@ -203,7 +203,11 @@ class SkyBlock(TypedDict, total=False):
     version: str
 
 
-class SkyBlockLoadMatch(TypedDict, total=False):
+class SkyBlockLoadMatchRequired(TypedDict):
+    id: str
+
+
+class SkyBlockLoadMatch(SkyBlockLoadMatchRequired, total=False):
     auction: list
     auctioneer: str
     bid: list
@@ -220,7 +224,6 @@ class SkyBlockLoadMatch(TypedDict, total=False):
     full_lore: list
     garden: dict
     highest_bid_amount: int
-    id: str
     item: dict
     item_byte: dict
     item_lore: str

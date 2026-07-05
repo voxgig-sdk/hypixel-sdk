@@ -4,6 +4,8 @@
 
 The Lua SDK for the Hypixel API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Guild()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,9 +38,31 @@ local client = sdk.new({
 ### 3. Load a guild
 
 ```lua
-local guild, err = client:Guild():load({ id = "example_id" })
+local guild, err = client:Guild():load()
 if err then error(err) end
 print(guild)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local guild, err = client:Guild():load()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -84,8 +108,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Guild():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Guild():load()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -181,9 +205,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -198,12 +219,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local guild, err = client:Guild():load({ id = "example_id" })
+    local guild, err = client:Guild():load()
     if err then error(err) end
     -- guild is the loaded record
 
@@ -377,13 +398,13 @@ Create an instance: `local guild = client:Guild(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `guild` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `guild` | `table` |  |
+| `success` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local guild, err = client:Guild():load({ id = "guild_id" })
+local guild, err = client:Guild():load()
 ```
 
 
@@ -402,13 +423,13 @@ Create an instance: `local housing = client:Housing(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `house` | `table` |  |
+| `success` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local housing, err = client:Housing():load({ id = "housing_id" })
+local housing, err = client:Housing():load()
 ```
 
 #### Example: List
@@ -433,22 +454,22 @@ Create an instance: `local other = client:Other(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | ``$ARRAY`` |  |
-| `booster_state` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `leaderboard` | ``$OBJECT`` |  |
-| `player_count` | ``$INTEGER`` |  |
-| `staff_rolling_daily` | ``$INTEGER`` |  |
-| `staff_total` | ``$INTEGER`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `watchdog_last_minute` | ``$INTEGER`` |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` |  |
-| `watchdog_total` | ``$INTEGER`` |  |
+| `booster` | `table` |  |
+| `booster_state` | `table` |  |
+| `game` | `table` |  |
+| `leaderboard` | `table` |  |
+| `player_count` | `number` |  |
+| `staff_rolling_daily` | `number` |  |
+| `staff_total` | `number` |  |
+| `success` | `boolean` |  |
+| `watchdog_last_minute` | `number` |  |
+| `watchdog_rolling_daily` | `number` |  |
+| `watchdog_total` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local other, err = client:Other():load({ id = "other_id" })
+local other, err = client:Other():load()
 ```
 
 #### Example: List
@@ -472,13 +493,13 @@ Create an instance: `local player = client:Player(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `player` | `table` |  |
+| `success` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local player, err = client:Player():load({ id = "player_id" })
+local player, err = client:Player():load()
 ```
 
 
@@ -497,19 +518,19 @@ Create an instance: `local player_data = client:PlayerData(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | ``$INTEGER`` |  |
-| `ended` | ``$INTEGER`` |  |
-| `game_type` | ``$STRING`` |  |
-| `map` | ``$STRING`` |  |
-| `mode` | ``$STRING`` |  |
-| `session` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `uuid` | ``$STRING`` |  |
+| `date` | `number` |  |
+| `ended` | `number` |  |
+| `game_type` | `string` |  |
+| `map` | `string` |  |
+| `mode` | `string` |  |
+| `session` | `table` |  |
+| `success` | `boolean` |  |
+| `uuid` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local player_data, err = client:PlayerData():load({ id = "player_data_id" })
+local player_data, err = client:PlayerData():load()
 ```
 
 #### Example: List
@@ -533,21 +554,21 @@ Create an instance: `local resource = client:Resource(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | ``$OBJECT`` |  |
-| `challenge` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `one_time` | ``$OBJECT`` |  |
-| `quest` | ``$OBJECT`` |  |
-| `rarity` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `tiered` | ``$OBJECT`` |  |
-| `type` | ``$OBJECT`` |  |
+| `achievement` | `table` |  |
+| `challenge` | `table` |  |
+| `game` | `table` |  |
+| `last_updated` | `number` |  |
+| `one_time` | `table` |  |
+| `quest` | `table` |  |
+| `rarity` | `table` |  |
+| `success` | `boolean` |  |
+| `tiered` | `table` |  |
+| `type` | `table` |  |
 
 #### Example: Load
 
 ```lua
-local resource, err = client:Resource():load({ id = "resource_id" })
+local resource, err = client:Resource():load()
 ```
 
 
@@ -566,54 +587,54 @@ Create an instance: `local sky_block = client:SkyBlock(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | ``$ARRAY`` |  |
-| `auctioneer` | ``$STRING`` |  |
-| `bid` | ``$ARRAY`` |  |
-| `category` | ``$STRING`` |  |
-| `claimed` | ``$BOOLEAN`` |  |
-| `claimed_bidder` | ``$ARRAY`` |  |
-| `collection` | ``$OBJECT`` |  |
-| `color` | ``$STRING`` |  |
-| `coop` | ``$ARRAY`` |  |
-| `current` | ``$OBJECT`` |  |
-| `end` | ``$INTEGER`` |  |
-| `event` | ``$ARRAY`` |  |
-| `extra` | ``$STRING`` |  |
-| `full_lore` | ``$ARRAY`` |  |
-| `garden` | ``$OBJECT`` |  |
-| `highest_bid_amount` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `item` | ``$OBJECT`` |  |
-| `item_byte` | ``$OBJECT`` |  |
-| `item_lore` | ``$STRING`` |  |
-| `item_name` | ``$STRING`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `link` | ``$STRING`` |  |
-| `lore` | ``$STRING`` |  |
-| `material` | ``$STRING`` |  |
-| `mayor` | ``$OBJECT`` |  |
-| `member` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `npc_sell_price` | ``$NUMBER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `product` | ``$OBJECT`` |  |
-| `profile` | ``$OBJECT`` |  |
-| `profile_id` | ``$STRING`` |  |
-| `progress` | ``$INTEGER`` |  |
-| `required_amount` | ``$INTEGER`` |  |
-| `sale` | ``$ARRAY`` |  |
-| `skill` | ``$OBJECT`` |  |
-| `start` | ``$INTEGER`` |  |
-| `starting_bid` | ``$INTEGER`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `text` | ``$STRING`` |  |
-| `tier` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `total_auction` | ``$INTEGER`` |  |
-| `total_page` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `auction` | `table` |  |
+| `auctioneer` | `string` |  |
+| `bid` | `table` |  |
+| `category` | `string` |  |
+| `claimed` | `boolean` |  |
+| `claimed_bidder` | `table` |  |
+| `collection` | `table` |  |
+| `color` | `string` |  |
+| `coop` | `table` |  |
+| `current` | `table` |  |
+| `end` | `number` |  |
+| `event` | `table` |  |
+| `extra` | `string` |  |
+| `full_lore` | `table` |  |
+| `garden` | `table` |  |
+| `highest_bid_amount` | `number` |  |
+| `id` | `string` |  |
+| `item` | `table` |  |
+| `item_byte` | `table` |  |
+| `item_lore` | `string` |  |
+| `item_name` | `string` |  |
+| `last_updated` | `number` |  |
+| `link` | `string` |  |
+| `lore` | `string` |  |
+| `material` | `string` |  |
+| `mayor` | `table` |  |
+| `member` | `table` |  |
+| `name` | `string` |  |
+| `npc_sell_price` | `number` |  |
+| `page` | `number` |  |
+| `product` | `table` |  |
+| `profile` | `table` |  |
+| `profile_id` | `string` |  |
+| `progress` | `number` |  |
+| `required_amount` | `number` |  |
+| `sale` | `table` |  |
+| `skill` | `table` |  |
+| `start` | `number` |  |
+| `starting_bid` | `number` |  |
+| `stat` | `table` |  |
+| `success` | `boolean` |  |
+| `text` | `string` |  |
+| `tier` | `string` |  |
+| `title` | `string` |  |
+| `total_auction` | `number` |  |
+| `total_page` | `number` |  |
+| `uuid` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -628,12 +649,16 @@ local sky_blocks, err = client:SkyBlock():list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -650,8 +675,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -700,9 +726,9 @@ stores the returned data and match criteria internally.
 
 ```lua
 local guild = client:Guild()
-guild:load({ id = "example_id" })
+guild:load()
 
--- guild:data_get() now returns the loaded guild data
+-- guild:data_get() now returns the guild data from the last load
 -- guild:match_get() returns the last match criteria
 ```
 

@@ -8,7 +8,7 @@ Complete API reference for the Hypixel Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'hypixel_sdk'
+require_relative 'Hypixel_sdk'
 
 client = HypixelSDK.new(options)
 ```
@@ -118,8 +118,8 @@ guild = client.Guild
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `guild` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `guild` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -128,7 +128,7 @@ guild = client.Guild
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Guild.load({ "id" => "guild_id" })
+result = client.Guild.load()
 ```
 
 ### Common Methods
@@ -171,17 +171,17 @@ housing = client.Housing
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `house` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Housing.list(nil)
+results = client.Housing.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -189,7 +189,7 @@ results = client.Housing.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Housing.load({ "id" => "housing_id" })
+result = client.Housing.load()
 ```
 
 ### Common Methods
@@ -232,26 +232,26 @@ other = client.Other
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | ``$ARRAY`` | No |  |
-| `booster_state` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `leaderboard` | ``$OBJECT`` | No |  |
-| `player_count` | ``$INTEGER`` | No |  |
-| `staff_rolling_daily` | ``$INTEGER`` | No |  |
-| `staff_total` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `watchdog_last_minute` | ``$INTEGER`` | No |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` | No |  |
-| `watchdog_total` | ``$INTEGER`` | No |  |
+| `booster` | `Array` | No |  |
+| `booster_state` | `Hash` | No |  |
+| `game` | `Hash` | No |  |
+| `leaderboard` | `Hash` | No |  |
+| `player_count` | `Integer` | No |  |
+| `staff_rolling_daily` | `Integer` | No |  |
+| `staff_total` | `Integer` | No |  |
+| `success` | `Boolean` | No |  |
+| `watchdog_last_minute` | `Integer` | No |  |
+| `watchdog_rolling_daily` | `Integer` | No |  |
+| `watchdog_total` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Other.list(nil)
+results = client.Other.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -259,7 +259,7 @@ results = client.Other.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Other.load({ "id" => "other_id" })
+result = client.Other.load()
 ```
 
 ### Common Methods
@@ -302,8 +302,8 @@ player = client.Player
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `player` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -312,7 +312,7 @@ player = client.Player
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Player.load({ "id" => "player_id" })
+result = client.Player.load()
 ```
 
 ### Common Methods
@@ -355,23 +355,23 @@ player_data = client.PlayerData
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$INTEGER`` | No |  |
-| `ended` | ``$INTEGER`` | No |  |
-| `game_type` | ``$STRING`` | No |  |
-| `map` | ``$STRING`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `session` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `date` | `Integer` | No |  |
+| `ended` | `Integer` | No |  |
+| `game_type` | `String` | No |  |
+| `map` | `String` | No |  |
+| `mode` | `String` | No |  |
+| `session` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
+| `uuid` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.PlayerData.list(nil)
+results = client.PlayerData.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -379,7 +379,7 @@ results = client.PlayerData.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.PlayerData.load({ "id" => "player_data_id" })
+result = client.PlayerData.load()
 ```
 
 ### Common Methods
@@ -422,16 +422,16 @@ resource = client.Resource
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | ``$OBJECT`` | No |  |
-| `challenge` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `one_time` | ``$OBJECT`` | No |  |
-| `quest` | ``$OBJECT`` | No |  |
-| `rarity` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tiered` | ``$OBJECT`` | No |  |
-| `type` | ``$OBJECT`` | No |  |
+| `achievement` | `Hash` | No |  |
+| `challenge` | `Hash` | No |  |
+| `game` | `Hash` | No |  |
+| `last_updated` | `Integer` | No |  |
+| `one_time` | `Hash` | No |  |
+| `quest` | `Hash` | No |  |
+| `rarity` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
+| `tiered` | `Hash` | No |  |
+| `type` | `Hash` | No |  |
 
 ### Operations
 
@@ -440,7 +440,7 @@ resource = client.Resource
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Resource.load({ "id" => "resource_id" })
+result = client.Resource.load()
 ```
 
 ### Common Methods
@@ -483,63 +483,63 @@ sky_block = client.SkyBlock
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | ``$ARRAY`` | No |  |
-| `auctioneer` | ``$STRING`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `claimed` | ``$BOOLEAN`` | No |  |
-| `claimed_bidder` | ``$ARRAY`` | No |  |
-| `collection` | ``$OBJECT`` | No |  |
-| `color` | ``$STRING`` | No |  |
-| `coop` | ``$ARRAY`` | No |  |
-| `current` | ``$OBJECT`` | No |  |
-| `end` | ``$INTEGER`` | No |  |
-| `event` | ``$ARRAY`` | No |  |
-| `extra` | ``$STRING`` | No |  |
-| `full_lore` | ``$ARRAY`` | No |  |
-| `garden` | ``$OBJECT`` | No |  |
-| `highest_bid_amount` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `item` | ``$OBJECT`` | No |  |
-| `item_byte` | ``$OBJECT`` | No |  |
-| `item_lore` | ``$STRING`` | No |  |
-| `item_name` | ``$STRING`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `lore` | ``$STRING`` | No |  |
-| `material` | ``$STRING`` | No |  |
-| `mayor` | ``$OBJECT`` | No |  |
-| `member` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `npc_sell_price` | ``$NUMBER`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `product` | ``$OBJECT`` | No |  |
-| `profile` | ``$OBJECT`` | No |  |
-| `profile_id` | ``$STRING`` | No |  |
-| `progress` | ``$INTEGER`` | No |  |
-| `required_amount` | ``$INTEGER`` | No |  |
-| `sale` | ``$ARRAY`` | No |  |
-| `skill` | ``$OBJECT`` | No |  |
-| `start` | ``$INTEGER`` | No |  |
-| `starting_bid` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `tier` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `total_auction` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `auction` | `Array` | No |  |
+| `auctioneer` | `String` | No |  |
+| `bid` | `Array` | No |  |
+| `category` | `String` | No |  |
+| `claimed` | `Boolean` | No |  |
+| `claimed_bidder` | `Array` | No |  |
+| `collection` | `Hash` | No |  |
+| `color` | `String` | No |  |
+| `coop` | `Array` | No |  |
+| `current` | `Hash` | No |  |
+| `end` | `Integer` | No |  |
+| `event` | `Array` | No |  |
+| `extra` | `String` | No |  |
+| `full_lore` | `Array` | No |  |
+| `garden` | `Hash` | No |  |
+| `highest_bid_amount` | `Integer` | No |  |
+| `id` | `String` | No |  |
+| `item` | `Hash` | No |  |
+| `item_byte` | `Hash` | No |  |
+| `item_lore` | `String` | No |  |
+| `item_name` | `String` | No |  |
+| `last_updated` | `Integer` | No |  |
+| `link` | `String` | No |  |
+| `lore` | `String` | No |  |
+| `material` | `String` | No |  |
+| `mayor` | `Hash` | No |  |
+| `member` | `Hash` | No |  |
+| `name` | `String` | No |  |
+| `npc_sell_price` | `Float` | No |  |
+| `page` | `Integer` | No |  |
+| `product` | `Hash` | No |  |
+| `profile` | `Hash` | No |  |
+| `profile_id` | `String` | No |  |
+| `progress` | `Integer` | No |  |
+| `required_amount` | `Integer` | No |  |
+| `sale` | `Array` | No |  |
+| `skill` | `Hash` | No |  |
+| `start` | `Integer` | No |  |
+| `starting_bid` | `Integer` | No |  |
+| `stat` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
+| `text` | `String` | No |  |
+| `tier` | `String` | No |  |
+| `title` | `String` | No |  |
+| `total_auction` | `Integer` | No |  |
+| `total_page` | `Integer` | No |  |
+| `uuid` | `String` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.SkyBlock.list(nil)
+results = client.SkyBlock.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

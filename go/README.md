@@ -4,6 +4,8 @@
 
 The Golang SDK for the Hypixel API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Guild(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -52,12 +54,41 @@ func main() {
     })
 
     // Load a single guild — the value is the loaded record.
-    guild, err := client.Guild(nil).Load(map[string]any{"id": "example_id"}, nil)
+    guild, err := client.Guild(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(guild)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+guild, err := client.Guild(nil).Load(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = guild
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -108,12 +139,12 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 guild, err := client.Guild(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(guild) // the loaded mock data
+fmt.Println(guild) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -208,9 +239,6 @@ All entities implement the `HypixelEntity` interface.
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -223,16 +251,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    guild, err := client.Guild(nil).Load(map[string]any{"id": "example_id"}, nil)
+    guild, err := client.Guild(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // guild is the loaded record
+    // guild is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -404,13 +432,13 @@ Create an instance: `guild := client.Guild(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `guild` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `guild` | `map[string]any` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```go
-guild, err := client.Guild(nil).Load(map[string]any{"id": "guild_id"}, nil)
+guild, err := client.Guild(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -433,13 +461,13 @@ Create an instance: `housing := client.Housing(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `house` | `map[string]any` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```go
-housing, err := client.Housing(nil).Load(map[string]any{"id": "housing_id"}, nil)
+housing, err := client.Housing(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -472,22 +500,22 @@ Create an instance: `other := client.Other(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | ``$ARRAY`` |  |
-| `booster_state` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `leaderboard` | ``$OBJECT`` |  |
-| `player_count` | ``$INTEGER`` |  |
-| `staff_rolling_daily` | ``$INTEGER`` |  |
-| `staff_total` | ``$INTEGER`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `watchdog_last_minute` | ``$INTEGER`` |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` |  |
-| `watchdog_total` | ``$INTEGER`` |  |
+| `booster` | `[]any` |  |
+| `booster_state` | `map[string]any` |  |
+| `game` | `map[string]any` |  |
+| `leaderboard` | `map[string]any` |  |
+| `player_count` | `int` |  |
+| `staff_rolling_daily` | `int` |  |
+| `staff_total` | `int` |  |
+| `success` | `bool` |  |
+| `watchdog_last_minute` | `int` |  |
+| `watchdog_rolling_daily` | `int` |  |
+| `watchdog_total` | `int` |  |
 
 #### Example: Load
 
 ```go
-other, err := client.Other(nil).Load(map[string]any{"id": "other_id"}, nil)
+other, err := client.Other(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -519,13 +547,13 @@ Create an instance: `player := client.Player(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `player` | `map[string]any` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```go
-player, err := client.Player(nil).Load(map[string]any{"id": "player_id"}, nil)
+player, err := client.Player(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -548,19 +576,19 @@ Create an instance: `player_data := client.PlayerData(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | ``$INTEGER`` |  |
-| `ended` | ``$INTEGER`` |  |
-| `game_type` | ``$STRING`` |  |
-| `map` | ``$STRING`` |  |
-| `mode` | ``$STRING`` |  |
-| `session` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `uuid` | ``$STRING`` |  |
+| `date` | `int` |  |
+| `ended` | `int` |  |
+| `game_type` | `string` |  |
+| `map` | `string` |  |
+| `mode` | `string` |  |
+| `session` | `map[string]any` |  |
+| `success` | `bool` |  |
+| `uuid` | `string` |  |
 
 #### Example: Load
 
 ```go
-player_data, err := client.PlayerData(nil).Load(map[string]any{"id": "player_data_id"}, nil)
+player_data, err := client.PlayerData(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -592,21 +620,21 @@ Create an instance: `resource := client.Resource(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | ``$OBJECT`` |  |
-| `challenge` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `one_time` | ``$OBJECT`` |  |
-| `quest` | ``$OBJECT`` |  |
-| `rarity` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `tiered` | ``$OBJECT`` |  |
-| `type` | ``$OBJECT`` |  |
+| `achievement` | `map[string]any` |  |
+| `challenge` | `map[string]any` |  |
+| `game` | `map[string]any` |  |
+| `last_updated` | `int` |  |
+| `one_time` | `map[string]any` |  |
+| `quest` | `map[string]any` |  |
+| `rarity` | `map[string]any` |  |
+| `success` | `bool` |  |
+| `tiered` | `map[string]any` |  |
+| `type` | `map[string]any` |  |
 
 #### Example: Load
 
 ```go
-resource, err := client.Resource(nil).Load(map[string]any{"id": "resource_id"}, nil)
+resource, err := client.Resource(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -629,54 +657,54 @@ Create an instance: `sky_block := client.SkyBlock(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | ``$ARRAY`` |  |
-| `auctioneer` | ``$STRING`` |  |
-| `bid` | ``$ARRAY`` |  |
-| `category` | ``$STRING`` |  |
-| `claimed` | ``$BOOLEAN`` |  |
-| `claimed_bidder` | ``$ARRAY`` |  |
-| `collection` | ``$OBJECT`` |  |
-| `color` | ``$STRING`` |  |
-| `coop` | ``$ARRAY`` |  |
-| `current` | ``$OBJECT`` |  |
-| `end` | ``$INTEGER`` |  |
-| `event` | ``$ARRAY`` |  |
-| `extra` | ``$STRING`` |  |
-| `full_lore` | ``$ARRAY`` |  |
-| `garden` | ``$OBJECT`` |  |
-| `highest_bid_amount` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `item` | ``$OBJECT`` |  |
-| `item_byte` | ``$OBJECT`` |  |
-| `item_lore` | ``$STRING`` |  |
-| `item_name` | ``$STRING`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `link` | ``$STRING`` |  |
-| `lore` | ``$STRING`` |  |
-| `material` | ``$STRING`` |  |
-| `mayor` | ``$OBJECT`` |  |
-| `member` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `npc_sell_price` | ``$NUMBER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `product` | ``$OBJECT`` |  |
-| `profile` | ``$OBJECT`` |  |
-| `profile_id` | ``$STRING`` |  |
-| `progress` | ``$INTEGER`` |  |
-| `required_amount` | ``$INTEGER`` |  |
-| `sale` | ``$ARRAY`` |  |
-| `skill` | ``$OBJECT`` |  |
-| `start` | ``$INTEGER`` |  |
-| `starting_bid` | ``$INTEGER`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `text` | ``$STRING`` |  |
-| `tier` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `total_auction` | ``$INTEGER`` |  |
-| `total_page` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `auction` | `[]any` |  |
+| `auctioneer` | `string` |  |
+| `bid` | `[]any` |  |
+| `category` | `string` |  |
+| `claimed` | `bool` |  |
+| `claimed_bidder` | `[]any` |  |
+| `collection` | `map[string]any` |  |
+| `color` | `string` |  |
+| `coop` | `[]any` |  |
+| `current` | `map[string]any` |  |
+| `end` | `int` |  |
+| `event` | `[]any` |  |
+| `extra` | `string` |  |
+| `full_lore` | `[]any` |  |
+| `garden` | `map[string]any` |  |
+| `highest_bid_amount` | `int` |  |
+| `id` | `string` |  |
+| `item` | `map[string]any` |  |
+| `item_byte` | `map[string]any` |  |
+| `item_lore` | `string` |  |
+| `item_name` | `string` |  |
+| `last_updated` | `int` |  |
+| `link` | `string` |  |
+| `lore` | `string` |  |
+| `material` | `string` |  |
+| `mayor` | `map[string]any` |  |
+| `member` | `map[string]any` |  |
+| `name` | `string` |  |
+| `npc_sell_price` | `float64` |  |
+| `page` | `int` |  |
+| `product` | `map[string]any` |  |
+| `profile` | `map[string]any` |  |
+| `profile_id` | `string` |  |
+| `progress` | `int` |  |
+| `required_amount` | `int` |  |
+| `sale` | `[]any` |  |
+| `skill` | `map[string]any` |  |
+| `start` | `int` |  |
+| `starting_bid` | `int` |  |
+| `stat` | `map[string]any` |  |
+| `success` | `bool` |  |
+| `text` | `string` |  |
+| `tier` | `string` |  |
+| `title` | `string` |  |
+| `total_auction` | `int` |  |
+| `total_page` | `int` |  |
+| `uuid` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -699,12 +727,16 @@ fmt.Println(sky_blocks) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -721,9 +753,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -769,9 +801,9 @@ stores the returned data and match criteria internally.
 
 ```go
 guild := client.Guild(nil)
-guild.Load(map[string]any{"id": "example_id"}, nil)
+guild.Load(nil, nil)
 
-// guild.Data() now returns the loaded guild data
+// guild.Data() now returns the guild data from the last load
 // guild.Match() returns the last match criteria
 ```
 

@@ -112,8 +112,8 @@ guild = client.Guild()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `guild` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `guild` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -122,7 +122,7 @@ guild = client.Guild()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Guild().load({"id": "guild_id"})
+result = client.Guild().load()
 ```
 
 ### Common Methods
@@ -164,17 +164,17 @@ housing = client.Housing()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `house` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Housing().list({})
+results = client.Housing().list()
 for housing in results:
     print(housing)
 ```
@@ -184,7 +184,7 @@ for housing in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Housing().load({"id": "housing_id"})
+result = client.Housing().load()
 ```
 
 ### Common Methods
@@ -226,26 +226,26 @@ other = client.Other()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | ``$ARRAY`` | No |  |
-| `booster_state` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `leaderboard` | ``$OBJECT`` | No |  |
-| `player_count` | ``$INTEGER`` | No |  |
-| `staff_rolling_daily` | ``$INTEGER`` | No |  |
-| `staff_total` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `watchdog_last_minute` | ``$INTEGER`` | No |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` | No |  |
-| `watchdog_total` | ``$INTEGER`` | No |  |
+| `booster` | `list` | No |  |
+| `booster_state` | `dict` | No |  |
+| `game` | `dict` | No |  |
+| `leaderboard` | `dict` | No |  |
+| `player_count` | `int` | No |  |
+| `staff_rolling_daily` | `int` | No |  |
+| `staff_total` | `int` | No |  |
+| `success` | `bool` | No |  |
+| `watchdog_last_minute` | `int` | No |  |
+| `watchdog_rolling_daily` | `int` | No |  |
+| `watchdog_total` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Other().list({})
+results = client.Other().list()
 for other in results:
     print(other)
 ```
@@ -255,7 +255,7 @@ for other in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Other().load({"id": "other_id"})
+result = client.Other().load()
 ```
 
 ### Common Methods
@@ -297,8 +297,8 @@ player = client.Player()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `player` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -307,7 +307,7 @@ player = client.Player()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Player().load({"id": "player_id"})
+result = client.Player().load()
 ```
 
 ### Common Methods
@@ -349,23 +349,23 @@ player_data = client.PlayerData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$INTEGER`` | No |  |
-| `ended` | ``$INTEGER`` | No |  |
-| `game_type` | ``$STRING`` | No |  |
-| `map` | ``$STRING`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `session` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `date` | `int` | No |  |
+| `ended` | `int` | No |  |
+| `game_type` | `str` | No |  |
+| `map` | `str` | No |  |
+| `mode` | `str` | No |  |
+| `session` | `dict` | No |  |
+| `success` | `bool` | No |  |
+| `uuid` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PlayerData().list({})
+results = client.PlayerData().list()
 for player_data in results:
     print(player_data)
 ```
@@ -375,7 +375,7 @@ for player_data in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PlayerData().load({"id": "player_data_id"})
+result = client.PlayerData().load()
 ```
 
 ### Common Methods
@@ -417,16 +417,16 @@ resource = client.Resource()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | ``$OBJECT`` | No |  |
-| `challenge` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `one_time` | ``$OBJECT`` | No |  |
-| `quest` | ``$OBJECT`` | No |  |
-| `rarity` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tiered` | ``$OBJECT`` | No |  |
-| `type` | ``$OBJECT`` | No |  |
+| `achievement` | `dict` | No |  |
+| `challenge` | `dict` | No |  |
+| `game` | `dict` | No |  |
+| `last_updated` | `int` | No |  |
+| `one_time` | `dict` | No |  |
+| `quest` | `dict` | No |  |
+| `rarity` | `dict` | No |  |
+| `success` | `bool` | No |  |
+| `tiered` | `dict` | No |  |
+| `type` | `dict` | No |  |
 
 ### Operations
 
@@ -435,7 +435,7 @@ resource = client.Resource()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Resource().load({"id": "resource_id"})
+result = client.Resource().load()
 ```
 
 ### Common Methods
@@ -477,63 +477,63 @@ sky_block = client.SkyBlock()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | ``$ARRAY`` | No |  |
-| `auctioneer` | ``$STRING`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `claimed` | ``$BOOLEAN`` | No |  |
-| `claimed_bidder` | ``$ARRAY`` | No |  |
-| `collection` | ``$OBJECT`` | No |  |
-| `color` | ``$STRING`` | No |  |
-| `coop` | ``$ARRAY`` | No |  |
-| `current` | ``$OBJECT`` | No |  |
-| `end` | ``$INTEGER`` | No |  |
-| `event` | ``$ARRAY`` | No |  |
-| `extra` | ``$STRING`` | No |  |
-| `full_lore` | ``$ARRAY`` | No |  |
-| `garden` | ``$OBJECT`` | No |  |
-| `highest_bid_amount` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `item` | ``$OBJECT`` | No |  |
-| `item_byte` | ``$OBJECT`` | No |  |
-| `item_lore` | ``$STRING`` | No |  |
-| `item_name` | ``$STRING`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `lore` | ``$STRING`` | No |  |
-| `material` | ``$STRING`` | No |  |
-| `mayor` | ``$OBJECT`` | No |  |
-| `member` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `npc_sell_price` | ``$NUMBER`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `product` | ``$OBJECT`` | No |  |
-| `profile` | ``$OBJECT`` | No |  |
-| `profile_id` | ``$STRING`` | No |  |
-| `progress` | ``$INTEGER`` | No |  |
-| `required_amount` | ``$INTEGER`` | No |  |
-| `sale` | ``$ARRAY`` | No |  |
-| `skill` | ``$OBJECT`` | No |  |
-| `start` | ``$INTEGER`` | No |  |
-| `starting_bid` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `tier` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `total_auction` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `auction` | `list` | No |  |
+| `auctioneer` | `str` | No |  |
+| `bid` | `list` | No |  |
+| `category` | `str` | No |  |
+| `claimed` | `bool` | No |  |
+| `claimed_bidder` | `list` | No |  |
+| `collection` | `dict` | No |  |
+| `color` | `str` | No |  |
+| `coop` | `list` | No |  |
+| `current` | `dict` | No |  |
+| `end` | `int` | No |  |
+| `event` | `list` | No |  |
+| `extra` | `str` | No |  |
+| `full_lore` | `list` | No |  |
+| `garden` | `dict` | No |  |
+| `highest_bid_amount` | `int` | No |  |
+| `id` | `str` | No |  |
+| `item` | `dict` | No |  |
+| `item_byte` | `dict` | No |  |
+| `item_lore` | `str` | No |  |
+| `item_name` | `str` | No |  |
+| `last_updated` | `int` | No |  |
+| `link` | `str` | No |  |
+| `lore` | `str` | No |  |
+| `material` | `str` | No |  |
+| `mayor` | `dict` | No |  |
+| `member` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `npc_sell_price` | `float` | No |  |
+| `page` | `int` | No |  |
+| `product` | `dict` | No |  |
+| `profile` | `dict` | No |  |
+| `profile_id` | `str` | No |  |
+| `progress` | `int` | No |  |
+| `required_amount` | `int` | No |  |
+| `sale` | `list` | No |  |
+| `skill` | `dict` | No |  |
+| `start` | `int` | No |  |
+| `starting_bid` | `int` | No |  |
+| `stat` | `dict` | No |  |
+| `success` | `bool` | No |  |
+| `text` | `str` | No |  |
+| `tier` | `str` | No |  |
+| `title` | `str` | No |  |
+| `total_auction` | `int` | No |  |
+| `total_page` | `int` | No |  |
+| `uuid` | `str` | No |  |
+| `version` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.SkyBlock().list({})
+results = client.SkyBlock().list()
 for sky_block in results:
     print(sky_block)
 ```

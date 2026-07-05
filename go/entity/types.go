@@ -14,8 +14,7 @@ type Guild struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// GuildLoadMatch mirrors the guild fields as an all-optional match
-// filter (Go analog of Partial<Guild>).
+// GuildLoadMatch is the typed request payload for Guild.LoadTyped.
 type GuildLoadMatch struct {
 	Guild *map[string]any `json:"guild,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -27,15 +26,13 @@ type Housing struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// HousingLoadMatch mirrors the housing fields as an all-optional match
-// filter (Go analog of Partial<Housing>).
+// HousingLoadMatch is the typed request payload for Housing.LoadTyped.
 type HousingLoadMatch struct {
 	House *map[string]any `json:"house,omitempty"`
 	Success *bool `json:"success,omitempty"`
 }
 
-// HousingListMatch mirrors the housing fields as an all-optional match
-// filter (Go analog of Partial<Housing>).
+// HousingListMatch is the typed request payload for Housing.ListTyped.
 type HousingListMatch struct {
 	House *map[string]any `json:"house,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -56,8 +53,7 @@ type Other struct {
 	WatchdogTotal *int `json:"watchdog_total,omitempty"`
 }
 
-// OtherLoadMatch mirrors the other fields as an all-optional match
-// filter (Go analog of Partial<Other>).
+// OtherLoadMatch is the typed request payload for Other.LoadTyped.
 type OtherLoadMatch struct {
 	Booster *[]any `json:"booster,omitempty"`
 	BoosterState *map[string]any `json:"booster_state,omitempty"`
@@ -72,8 +68,7 @@ type OtherLoadMatch struct {
 	WatchdogTotal *int `json:"watchdog_total,omitempty"`
 }
 
-// OtherListMatch mirrors the other fields as an all-optional match
-// filter (Go analog of Partial<Other>).
+// OtherListMatch is the typed request payload for Other.ListTyped.
 type OtherListMatch struct {
 	Booster *[]any `json:"booster,omitempty"`
 	BoosterState *map[string]any `json:"booster_state,omitempty"`
@@ -94,8 +89,7 @@ type Player struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// PlayerLoadMatch mirrors the player fields as an all-optional match
-// filter (Go analog of Partial<Player>).
+// PlayerLoadMatch is the typed request payload for Player.LoadTyped.
 type PlayerLoadMatch struct {
 	Player *map[string]any `json:"player,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -113,8 +107,7 @@ type PlayerData struct {
 	Uuid *string `json:"uuid,omitempty"`
 }
 
-// PlayerDataLoadMatch mirrors the player_data fields as an all-optional match
-// filter (Go analog of Partial<PlayerData>).
+// PlayerDataLoadMatch is the typed request payload for PlayerData.LoadTyped.
 type PlayerDataLoadMatch struct {
 	Date *int `json:"date,omitempty"`
 	Ended *int `json:"ended,omitempty"`
@@ -126,8 +119,7 @@ type PlayerDataLoadMatch struct {
 	Uuid *string `json:"uuid,omitempty"`
 }
 
-// PlayerDataListMatch mirrors the player_data fields as an all-optional match
-// filter (Go analog of Partial<PlayerData>).
+// PlayerDataListMatch is the typed request payload for PlayerData.ListTyped.
 type PlayerDataListMatch struct {
 	Date *int `json:"date,omitempty"`
 	Ended *int `json:"ended,omitempty"`
@@ -153,8 +145,7 @@ type Resource struct {
 	Type *map[string]any `json:"type,omitempty"`
 }
 
-// ResourceLoadMatch mirrors the resource fields as an all-optional match
-// filter (Go analog of Partial<Resource>).
+// ResourceLoadMatch is the typed request payload for Resource.LoadTyped.
 type ResourceLoadMatch struct {
 	Achievement *map[string]any `json:"achievement,omitempty"`
 	Challenge *map[string]any `json:"challenge,omitempty"`
@@ -220,8 +211,7 @@ type SkyBlock struct {
 	Version *string `json:"version,omitempty"`
 }
 
-// SkyBlockLoadMatch mirrors the sky_block fields as an all-optional match
-// filter (Go analog of Partial<SkyBlock>).
+// SkyBlockLoadMatch is the typed request payload for SkyBlock.LoadTyped.
 type SkyBlockLoadMatch struct {
 	Auction *[]any `json:"auction,omitempty"`
 	Auctioneer *string `json:"auctioneer,omitempty"`
@@ -239,7 +229,7 @@ type SkyBlockLoadMatch struct {
 	FullLore *[]any `json:"full_lore,omitempty"`
 	Garden *map[string]any `json:"garden,omitempty"`
 	HighestBidAmount *int `json:"highest_bid_amount,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	Item *map[string]any `json:"item,omitempty"`
 	ItemByte *map[string]any `json:"item_byte,omitempty"`
 	ItemLore *string `json:"item_lore,omitempty"`
@@ -273,8 +263,7 @@ type SkyBlockLoadMatch struct {
 	Version *string `json:"version,omitempty"`
 }
 
-// SkyBlockListMatch mirrors the sky_block fields as an all-optional match
-// filter (Go analog of Partial<SkyBlock>).
+// SkyBlockListMatch is the typed request payload for SkyBlock.ListTyped.
 type SkyBlockListMatch struct {
 	Auction *[]any `json:"auction,omitempty"`
 	Auctioneer *string `json:"auctioneer,omitempty"`

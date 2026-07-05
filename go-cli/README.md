@@ -16,7 +16,6 @@ go build -o hypixel-cli ./...
 
 ```sh
 # One-shot: arguments form a single AQL expression
-./hypixel-cli list guild
 ./hypixel-cli load 1 guild
 ./hypixel-cli load '{id:1}' guild
 
@@ -30,7 +29,6 @@ go build -o hypixel-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

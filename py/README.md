@@ -4,6 +4,11 @@
 
 The Python SDK for the Hypixel API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Guild()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -40,10 +45,38 @@ client = HypixelSDK({
 
 ```python
 try:
-    guild = client.Guild().load({"id": "example_id"})
+    guild = client.Guild().load()
     print(guild)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    guild = client.Guild().load()
+    print(guild)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -64,7 +97,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -90,7 +126,7 @@ Create a mock client for unit testing — no server required:
 client = HypixelSDK.test()
 
 # Entity ops return the bare record and raise on error.
-guild = client.Guild().load({"id": "test01"})
+guild = client.Guild().load()
 # guild contains the mock response record
 ```
 
@@ -185,9 +221,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -380,13 +413,13 @@ Create an instance: `guild = client.Guild()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `guild` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `guild` | `dict` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```python
-guild = client.Guild().load({"id": "guild_id"})
+guild = client.Guild().load()
 ```
 
 
@@ -398,26 +431,26 @@ Create an instance: `housing = client.Housing()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `house` | `dict` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```python
-housing = client.Housing().load({"id": "housing_id"})
+housing = client.Housing().load()
 ```
 
 #### Example: List
 
 ```python
-housings = client.Housing().list({})
+housings = client.Housing().list()
 ```
 
 
@@ -429,35 +462,35 @@ Create an instance: `other = client.Other()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | ``$ARRAY`` |  |
-| `booster_state` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `leaderboard` | ``$OBJECT`` |  |
-| `player_count` | ``$INTEGER`` |  |
-| `staff_rolling_daily` | ``$INTEGER`` |  |
-| `staff_total` | ``$INTEGER`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `watchdog_last_minute` | ``$INTEGER`` |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` |  |
-| `watchdog_total` | ``$INTEGER`` |  |
+| `booster` | `list` |  |
+| `booster_state` | `dict` |  |
+| `game` | `dict` |  |
+| `leaderboard` | `dict` |  |
+| `player_count` | `int` |  |
+| `staff_rolling_daily` | `int` |  |
+| `staff_total` | `int` |  |
+| `success` | `bool` |  |
+| `watchdog_last_minute` | `int` |  |
+| `watchdog_rolling_daily` | `int` |  |
+| `watchdog_total` | `int` |  |
 
 #### Example: Load
 
 ```python
-other = client.Other().load({"id": "other_id"})
+other = client.Other().load()
 ```
 
 #### Example: List
 
 ```python
-others = client.Other().list({})
+others = client.Other().list()
 ```
 
 
@@ -475,13 +508,13 @@ Create an instance: `player = client.Player()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `player` | `dict` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```python
-player = client.Player().load({"id": "player_id"})
+player = client.Player().load()
 ```
 
 
@@ -493,32 +526,32 @@ Create an instance: `player_data = client.PlayerData()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | ``$INTEGER`` |  |
-| `ended` | ``$INTEGER`` |  |
-| `game_type` | ``$STRING`` |  |
-| `map` | ``$STRING`` |  |
-| `mode` | ``$STRING`` |  |
-| `session` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `uuid` | ``$STRING`` |  |
+| `date` | `int` |  |
+| `ended` | `int` |  |
+| `game_type` | `str` |  |
+| `map` | `str` |  |
+| `mode` | `str` |  |
+| `session` | `dict` |  |
+| `success` | `bool` |  |
+| `uuid` | `str` |  |
 
 #### Example: Load
 
 ```python
-player_data = client.PlayerData().load({"id": "player_data_id"})
+player_data = client.PlayerData().load()
 ```
 
 #### Example: List
 
 ```python
-player_datas = client.PlayerData().list({})
+player_datas = client.PlayerData().list()
 ```
 
 
@@ -536,21 +569,21 @@ Create an instance: `resource = client.Resource()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | ``$OBJECT`` |  |
-| `challenge` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `one_time` | ``$OBJECT`` |  |
-| `quest` | ``$OBJECT`` |  |
-| `rarity` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `tiered` | ``$OBJECT`` |  |
-| `type` | ``$OBJECT`` |  |
+| `achievement` | `dict` |  |
+| `challenge` | `dict` |  |
+| `game` | `dict` |  |
+| `last_updated` | `int` |  |
+| `one_time` | `dict` |  |
+| `quest` | `dict` |  |
+| `rarity` | `dict` |  |
+| `success` | `bool` |  |
+| `tiered` | `dict` |  |
+| `type` | `dict` |  |
 
 #### Example: Load
 
 ```python
-resource = client.Resource().load({"id": "resource_id"})
+resource = client.Resource().load()
 ```
 
 
@@ -562,61 +595,61 @@ Create an instance: `sky_block = client.SkyBlock()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | ``$ARRAY`` |  |
-| `auctioneer` | ``$STRING`` |  |
-| `bid` | ``$ARRAY`` |  |
-| `category` | ``$STRING`` |  |
-| `claimed` | ``$BOOLEAN`` |  |
-| `claimed_bidder` | ``$ARRAY`` |  |
-| `collection` | ``$OBJECT`` |  |
-| `color` | ``$STRING`` |  |
-| `coop` | ``$ARRAY`` |  |
-| `current` | ``$OBJECT`` |  |
-| `end` | ``$INTEGER`` |  |
-| `event` | ``$ARRAY`` |  |
-| `extra` | ``$STRING`` |  |
-| `full_lore` | ``$ARRAY`` |  |
-| `garden` | ``$OBJECT`` |  |
-| `highest_bid_amount` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `item` | ``$OBJECT`` |  |
-| `item_byte` | ``$OBJECT`` |  |
-| `item_lore` | ``$STRING`` |  |
-| `item_name` | ``$STRING`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `link` | ``$STRING`` |  |
-| `lore` | ``$STRING`` |  |
-| `material` | ``$STRING`` |  |
-| `mayor` | ``$OBJECT`` |  |
-| `member` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `npc_sell_price` | ``$NUMBER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `product` | ``$OBJECT`` |  |
-| `profile` | ``$OBJECT`` |  |
-| `profile_id` | ``$STRING`` |  |
-| `progress` | ``$INTEGER`` |  |
-| `required_amount` | ``$INTEGER`` |  |
-| `sale` | ``$ARRAY`` |  |
-| `skill` | ``$OBJECT`` |  |
-| `start` | ``$INTEGER`` |  |
-| `starting_bid` | ``$INTEGER`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `text` | ``$STRING`` |  |
-| `tier` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `total_auction` | ``$INTEGER`` |  |
-| `total_page` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `auction` | `list` |  |
+| `auctioneer` | `str` |  |
+| `bid` | `list` |  |
+| `category` | `str` |  |
+| `claimed` | `bool` |  |
+| `claimed_bidder` | `list` |  |
+| `collection` | `dict` |  |
+| `color` | `str` |  |
+| `coop` | `list` |  |
+| `current` | `dict` |  |
+| `end` | `int` |  |
+| `event` | `list` |  |
+| `extra` | `str` |  |
+| `full_lore` | `list` |  |
+| `garden` | `dict` |  |
+| `highest_bid_amount` | `int` |  |
+| `id` | `str` |  |
+| `item` | `dict` |  |
+| `item_byte` | `dict` |  |
+| `item_lore` | `str` |  |
+| `item_name` | `str` |  |
+| `last_updated` | `int` |  |
+| `link` | `str` |  |
+| `lore` | `str` |  |
+| `material` | `str` |  |
+| `mayor` | `dict` |  |
+| `member` | `dict` |  |
+| `name` | `str` |  |
+| `npc_sell_price` | `float` |  |
+| `page` | `int` |  |
+| `product` | `dict` |  |
+| `profile` | `dict` |  |
+| `profile_id` | `str` |  |
+| `progress` | `int` |  |
+| `required_amount` | `int` |  |
+| `sale` | `list` |  |
+| `skill` | `dict` |  |
+| `start` | `int` |  |
+| `starting_bid` | `int` |  |
+| `stat` | `dict` |  |
+| `success` | `bool` |  |
+| `text` | `str` |  |
+| `tier` | `str` |  |
+| `title` | `str` |  |
+| `total_auction` | `int` |  |
+| `total_page` | `int` |  |
+| `uuid` | `str` |  |
+| `version` | `str` |  |
 
 #### Example: Load
 
@@ -627,16 +660,20 @@ sky_block = client.SkyBlock().load({"id": "sky_block_id"})
 #### Example: List
 
 ```python
-sky_blocks = client.SkyBlock().list({})
+sky_blocks = client.SkyBlock().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -653,8 +690,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -702,9 +740,9 @@ stores the returned data and match criteria internally.
 
 ```python
 guild = client.Guild()
-guild.load({"id": "example_id"})
+guild.load()
 
-# guild.data_get() now returns the loaded guild data
+# guild.data_get() now returns the guild data from the last load
 # guild.match_get() returns the last match criteria
 ```
 

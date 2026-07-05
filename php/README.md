@@ -4,6 +4,8 @@
 
 The PHP SDK for the Hypixel API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Guild()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,10 +38,41 @@ $client = new HypixelSDK([
 ```php
 try {
     // load() returns the bare Guild record (throws on error).
-    $guild = $client->Guild()->load(["id" => "example_id"]);
+    $guild = $client->Guild()->load();
     print_r($guild);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $guild = $client->Guild()->load();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -63,7 +96,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -84,16 +120,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = HypixelSDK::test([
-    "entity" => ["guild" => ["test01" => ["id" => "test01"]]],
-]);
+$client = HypixelSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$guild = $client->Guild()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$guild = $client->Guild()->load();
 print_r($guild);
 ```
 
@@ -190,10 +223,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -386,14 +416,14 @@ Create an instance: `$guild = $client->Guild();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `guild` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `guild` | `array` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Guild record (throws on error).
-$guild = $client->Guild()->load(["id" => "guild_id"]);
+$guild = $client->Guild()->load();
 ```
 
 
@@ -412,14 +442,14 @@ Create an instance: `$housing = $client->Housing();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `house` | `array` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Housing record (throws on error).
-$housing = $client->Housing()->load(["id" => "housing_id"]);
+$housing = $client->Housing()->load();
 ```
 
 #### Example: List
@@ -445,23 +475,23 @@ Create an instance: `$other = $client->Other();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | ``$ARRAY`` |  |
-| `booster_state` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `leaderboard` | ``$OBJECT`` |  |
-| `player_count` | ``$INTEGER`` |  |
-| `staff_rolling_daily` | ``$INTEGER`` |  |
-| `staff_total` | ``$INTEGER`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `watchdog_last_minute` | ``$INTEGER`` |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` |  |
-| `watchdog_total` | ``$INTEGER`` |  |
+| `booster` | `array` |  |
+| `booster_state` | `array` |  |
+| `game` | `array` |  |
+| `leaderboard` | `array` |  |
+| `player_count` | `int` |  |
+| `staff_rolling_daily` | `int` |  |
+| `staff_total` | `int` |  |
+| `success` | `bool` |  |
+| `watchdog_last_minute` | `int` |  |
+| `watchdog_rolling_daily` | `int` |  |
+| `watchdog_total` | `int` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Other record (throws on error).
-$other = $client->Other()->load(["id" => "other_id"]);
+$other = $client->Other()->load();
 ```
 
 #### Example: List
@@ -486,14 +516,14 @@ Create an instance: `$player = $client->Player();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `player` | `array` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Player record (throws on error).
-$player = $client->Player()->load(["id" => "player_id"]);
+$player = $client->Player()->load();
 ```
 
 
@@ -512,20 +542,20 @@ Create an instance: `$player_data = $client->PlayerData();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | ``$INTEGER`` |  |
-| `ended` | ``$INTEGER`` |  |
-| `game_type` | ``$STRING`` |  |
-| `map` | ``$STRING`` |  |
-| `mode` | ``$STRING`` |  |
-| `session` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `uuid` | ``$STRING`` |  |
+| `date` | `int` |  |
+| `ended` | `int` |  |
+| `game_type` | `string` |  |
+| `map` | `string` |  |
+| `mode` | `string` |  |
+| `session` | `array` |  |
+| `success` | `bool` |  |
+| `uuid` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare PlayerData record (throws on error).
-$player_data = $client->PlayerData()->load(["id" => "player_data_id"]);
+$player_data = $client->PlayerData()->load();
 ```
 
 #### Example: List
@@ -550,22 +580,22 @@ Create an instance: `$resource = $client->Resource();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | ``$OBJECT`` |  |
-| `challenge` | ``$OBJECT`` |  |
-| `game` | ``$OBJECT`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `one_time` | ``$OBJECT`` |  |
-| `quest` | ``$OBJECT`` |  |
-| `rarity` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `tiered` | ``$OBJECT`` |  |
-| `type` | ``$OBJECT`` |  |
+| `achievement` | `array` |  |
+| `challenge` | `array` |  |
+| `game` | `array` |  |
+| `last_updated` | `int` |  |
+| `one_time` | `array` |  |
+| `quest` | `array` |  |
+| `rarity` | `array` |  |
+| `success` | `bool` |  |
+| `tiered` | `array` |  |
+| `type` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Resource record (throws on error).
-$resource = $client->Resource()->load(["id" => "resource_id"]);
+$resource = $client->Resource()->load();
 ```
 
 
@@ -584,54 +614,54 @@ Create an instance: `$sky_block = $client->SkyBlock();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | ``$ARRAY`` |  |
-| `auctioneer` | ``$STRING`` |  |
-| `bid` | ``$ARRAY`` |  |
-| `category` | ``$STRING`` |  |
-| `claimed` | ``$BOOLEAN`` |  |
-| `claimed_bidder` | ``$ARRAY`` |  |
-| `collection` | ``$OBJECT`` |  |
-| `color` | ``$STRING`` |  |
-| `coop` | ``$ARRAY`` |  |
-| `current` | ``$OBJECT`` |  |
-| `end` | ``$INTEGER`` |  |
-| `event` | ``$ARRAY`` |  |
-| `extra` | ``$STRING`` |  |
-| `full_lore` | ``$ARRAY`` |  |
-| `garden` | ``$OBJECT`` |  |
-| `highest_bid_amount` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `item` | ``$OBJECT`` |  |
-| `item_byte` | ``$OBJECT`` |  |
-| `item_lore` | ``$STRING`` |  |
-| `item_name` | ``$STRING`` |  |
-| `last_updated` | ``$INTEGER`` |  |
-| `link` | ``$STRING`` |  |
-| `lore` | ``$STRING`` |  |
-| `material` | ``$STRING`` |  |
-| `mayor` | ``$OBJECT`` |  |
-| `member` | ``$OBJECT`` |  |
-| `name` | ``$STRING`` |  |
-| `npc_sell_price` | ``$NUMBER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `product` | ``$OBJECT`` |  |
-| `profile` | ``$OBJECT`` |  |
-| `profile_id` | ``$STRING`` |  |
-| `progress` | ``$INTEGER`` |  |
-| `required_amount` | ``$INTEGER`` |  |
-| `sale` | ``$ARRAY`` |  |
-| `skill` | ``$OBJECT`` |  |
-| `start` | ``$INTEGER`` |  |
-| `starting_bid` | ``$INTEGER`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `text` | ``$STRING`` |  |
-| `tier` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `total_auction` | ``$INTEGER`` |  |
-| `total_page` | ``$INTEGER`` |  |
-| `uuid` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `auction` | `array` |  |
+| `auctioneer` | `string` |  |
+| `bid` | `array` |  |
+| `category` | `string` |  |
+| `claimed` | `bool` |  |
+| `claimed_bidder` | `array` |  |
+| `collection` | `array` |  |
+| `color` | `string` |  |
+| `coop` | `array` |  |
+| `current` | `array` |  |
+| `end` | `int` |  |
+| `event` | `array` |  |
+| `extra` | `string` |  |
+| `full_lore` | `array` |  |
+| `garden` | `array` |  |
+| `highest_bid_amount` | `int` |  |
+| `id` | `string` |  |
+| `item` | `array` |  |
+| `item_byte` | `array` |  |
+| `item_lore` | `string` |  |
+| `item_name` | `string` |  |
+| `last_updated` | `int` |  |
+| `link` | `string` |  |
+| `lore` | `string` |  |
+| `material` | `string` |  |
+| `mayor` | `array` |  |
+| `member` | `array` |  |
+| `name` | `string` |  |
+| `npc_sell_price` | `float` |  |
+| `page` | `int` |  |
+| `product` | `array` |  |
+| `profile` | `array` |  |
+| `profile_id` | `string` |  |
+| `progress` | `int` |  |
+| `required_amount` | `int` |  |
+| `sale` | `array` |  |
+| `skill` | `array` |  |
+| `start` | `int` |  |
+| `starting_bid` | `int` |  |
+| `stat` | `array` |  |
+| `success` | `bool` |  |
+| `text` | `string` |  |
+| `tier` | `string` |  |
+| `title` | `string` |  |
+| `total_auction` | `int` |  |
+| `total_page` | `int` |  |
+| `uuid` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -648,12 +678,16 @@ $sky_blocks = $client->SkyBlock()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -670,8 +704,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -720,10 +755,10 @@ stores the returned data and match criteria internally.
 
 ```php
 $guild = $client->Guild();
-$guild->load(["id" => "example_id"]);
+$guild->load();
 
-// $guild->dataGet() now returns the loaded guild data
-// $guild->matchGet() returns the last match criteria
+// $guild->data_get() now returns the guild data from the last load
+// $guild->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

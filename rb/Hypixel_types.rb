@@ -21,7 +21,7 @@ Guild = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Guild#load (any subset of Guild fields).
+# Request payload for Guild#load.
 #
 # @!attribute [rw] guild
 #   @return [Hash, nil]
@@ -47,7 +47,7 @@ Housing = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Housing#load (any subset of Housing fields).
+# Request payload for Housing#load.
 #
 # @!attribute [rw] house
 #   @return [Hash, nil]
@@ -60,7 +60,7 @@ HousingLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Housing#list (any subset of Housing fields).
+# Request payload for Housing#list.
 #
 # @!attribute [rw] house
 #   @return [Hash, nil]
@@ -122,7 +122,7 @@ Other = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Other#load (any subset of Other fields).
+# Request payload for Other#load.
 #
 # @!attribute [rw] booster
 #   @return [Array, nil]
@@ -171,7 +171,7 @@ OtherLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Other#list (any subset of Other fields).
+# Request payload for Other#list.
 #
 # @!attribute [rw] booster
 #   @return [Array, nil]
@@ -233,7 +233,7 @@ Player = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Player#load (any subset of Player fields).
+# Request payload for Player#load.
 #
 # @!attribute [rw] player
 #   @return [Hash, nil]
@@ -283,7 +283,7 @@ PlayerData = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PlayerData#load (any subset of PlayerData fields).
+# Request payload for PlayerData#load.
 #
 # @!attribute [rw] date
 #   @return [Integer, nil]
@@ -320,7 +320,7 @@ PlayerDataLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PlayerData#list (any subset of PlayerData fields).
+# Request payload for PlayerData#list.
 #
 # @!attribute [rw] date
 #   @return [Integer, nil]
@@ -402,7 +402,7 @@ Resource = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Resource#load (any subset of Resource fields).
+# Request payload for Resource#load.
 #
 # @!attribute [rw] achievement
 #   @return [Hash, nil]
@@ -644,7 +644,7 @@ SkyBlock = Struct.new(
   keyword_init: true
 )
 
-# Match filter for SkyBlock#load (any subset of SkyBlock fields).
+# Request payload for SkyBlock#load.
 #
 # @!attribute [rw] auction
 #   @return [Array, nil]
@@ -695,7 +695,7 @@ SkyBlock = Struct.new(
 #   @return [Integer, nil]
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] item
 #   @return [Hash, nil]
@@ -841,7 +841,7 @@ SkyBlockLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for SkyBlock#list (any subset of SkyBlock fields).
+# Request payload for SkyBlock#list.
 #
 # @!attribute [rw] auction
 #   @return [Array, nil]

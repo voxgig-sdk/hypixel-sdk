@@ -65,8 +65,13 @@ class HousingEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: HousingLoadMatch, ctrl=None) -> Housing:
+    def load(self, reqmatch=None, ctrl=None) -> Housing:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Housing().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class HousingEntity:
 
 
     
-    def list(self, reqmatch: HousingListMatch, ctrl=None) -> list[Housing]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Housing]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Housing().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

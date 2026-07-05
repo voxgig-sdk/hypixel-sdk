@@ -115,8 +115,8 @@ local guild = client:Guild(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `guild` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `guild` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -125,7 +125,7 @@ local guild = client:Guild(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Guild():load({ id = "guild_id" })
+local result, err = client:Guild():load()
 ```
 
 ### Common Methods
@@ -168,8 +168,8 @@ local housing = client:Housing(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `house` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -186,7 +186,7 @@ local results, err = client:Housing():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Housing():load({ id = "housing_id" })
+local result, err = client:Housing():load()
 ```
 
 ### Common Methods
@@ -229,17 +229,17 @@ local other = client:Other(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | ``$ARRAY`` | No |  |
-| `booster_state` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `leaderboard` | ``$OBJECT`` | No |  |
-| `player_count` | ``$INTEGER`` | No |  |
-| `staff_rolling_daily` | ``$INTEGER`` | No |  |
-| `staff_total` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `watchdog_last_minute` | ``$INTEGER`` | No |  |
-| `watchdog_rolling_daily` | ``$INTEGER`` | No |  |
-| `watchdog_total` | ``$INTEGER`` | No |  |
+| `booster` | `table` | No |  |
+| `booster_state` | `table` | No |  |
+| `game` | `table` | No |  |
+| `leaderboard` | `table` | No |  |
+| `player_count` | `number` | No |  |
+| `staff_rolling_daily` | `number` | No |  |
+| `staff_total` | `number` | No |  |
+| `success` | `boolean` | No |  |
+| `watchdog_last_minute` | `number` | No |  |
+| `watchdog_rolling_daily` | `number` | No |  |
+| `watchdog_total` | `number` | No |  |
 
 ### Operations
 
@@ -256,7 +256,7 @@ local results, err = client:Other():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Other():load({ id = "other_id" })
+local result, err = client:Other():load()
 ```
 
 ### Common Methods
@@ -299,8 +299,8 @@ local player = client:Player(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `player` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -309,7 +309,7 @@ local player = client:Player(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Player():load({ id = "player_id" })
+local result, err = client:Player():load()
 ```
 
 ### Common Methods
@@ -352,14 +352,14 @@ local player_data = client:PlayerData(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$INTEGER`` | No |  |
-| `ended` | ``$INTEGER`` | No |  |
-| `game_type` | ``$STRING`` | No |  |
-| `map` | ``$STRING`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `session` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
+| `date` | `number` | No |  |
+| `ended` | `number` | No |  |
+| `game_type` | `string` | No |  |
+| `map` | `string` | No |  |
+| `mode` | `string` | No |  |
+| `session` | `table` | No |  |
+| `success` | `boolean` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -376,7 +376,7 @@ local results, err = client:PlayerData():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PlayerData():load({ id = "player_data_id" })
+local result, err = client:PlayerData():load()
 ```
 
 ### Common Methods
@@ -419,16 +419,16 @@ local resource = client:Resource(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | ``$OBJECT`` | No |  |
-| `challenge` | ``$OBJECT`` | No |  |
-| `game` | ``$OBJECT`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `one_time` | ``$OBJECT`` | No |  |
-| `quest` | ``$OBJECT`` | No |  |
-| `rarity` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `tiered` | ``$OBJECT`` | No |  |
-| `type` | ``$OBJECT`` | No |  |
+| `achievement` | `table` | No |  |
+| `challenge` | `table` | No |  |
+| `game` | `table` | No |  |
+| `last_updated` | `number` | No |  |
+| `one_time` | `table` | No |  |
+| `quest` | `table` | No |  |
+| `rarity` | `table` | No |  |
+| `success` | `boolean` | No |  |
+| `tiered` | `table` | No |  |
+| `type` | `table` | No |  |
 
 ### Operations
 
@@ -437,7 +437,7 @@ local resource = client:Resource(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Resource():load({ id = "resource_id" })
+local result, err = client:Resource():load()
 ```
 
 ### Common Methods
@@ -480,54 +480,54 @@ local sky_block = client:SkyBlock(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | ``$ARRAY`` | No |  |
-| `auctioneer` | ``$STRING`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `claimed` | ``$BOOLEAN`` | No |  |
-| `claimed_bidder` | ``$ARRAY`` | No |  |
-| `collection` | ``$OBJECT`` | No |  |
-| `color` | ``$STRING`` | No |  |
-| `coop` | ``$ARRAY`` | No |  |
-| `current` | ``$OBJECT`` | No |  |
-| `end` | ``$INTEGER`` | No |  |
-| `event` | ``$ARRAY`` | No |  |
-| `extra` | ``$STRING`` | No |  |
-| `full_lore` | ``$ARRAY`` | No |  |
-| `garden` | ``$OBJECT`` | No |  |
-| `highest_bid_amount` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `item` | ``$OBJECT`` | No |  |
-| `item_byte` | ``$OBJECT`` | No |  |
-| `item_lore` | ``$STRING`` | No |  |
-| `item_name` | ``$STRING`` | No |  |
-| `last_updated` | ``$INTEGER`` | No |  |
-| `link` | ``$STRING`` | No |  |
-| `lore` | ``$STRING`` | No |  |
-| `material` | ``$STRING`` | No |  |
-| `mayor` | ``$OBJECT`` | No |  |
-| `member` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `npc_sell_price` | ``$NUMBER`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `product` | ``$OBJECT`` | No |  |
-| `profile` | ``$OBJECT`` | No |  |
-| `profile_id` | ``$STRING`` | No |  |
-| `progress` | ``$INTEGER`` | No |  |
-| `required_amount` | ``$INTEGER`` | No |  |
-| `sale` | ``$ARRAY`` | No |  |
-| `skill` | ``$OBJECT`` | No |  |
-| `start` | ``$INTEGER`` | No |  |
-| `starting_bid` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `tier` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `total_auction` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `uuid` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `auction` | `table` | No |  |
+| `auctioneer` | `string` | No |  |
+| `bid` | `table` | No |  |
+| `category` | `string` | No |  |
+| `claimed` | `boolean` | No |  |
+| `claimed_bidder` | `table` | No |  |
+| `collection` | `table` | No |  |
+| `color` | `string` | No |  |
+| `coop` | `table` | No |  |
+| `current` | `table` | No |  |
+| `end` | `number` | No |  |
+| `event` | `table` | No |  |
+| `extra` | `string` | No |  |
+| `full_lore` | `table` | No |  |
+| `garden` | `table` | No |  |
+| `highest_bid_amount` | `number` | No |  |
+| `id` | `string` | No |  |
+| `item` | `table` | No |  |
+| `item_byte` | `table` | No |  |
+| `item_lore` | `string` | No |  |
+| `item_name` | `string` | No |  |
+| `last_updated` | `number` | No |  |
+| `link` | `string` | No |  |
+| `lore` | `string` | No |  |
+| `material` | `string` | No |  |
+| `mayor` | `table` | No |  |
+| `member` | `table` | No |  |
+| `name` | `string` | No |  |
+| `npc_sell_price` | `number` | No |  |
+| `page` | `number` | No |  |
+| `product` | `table` | No |  |
+| `profile` | `table` | No |  |
+| `profile_id` | `string` | No |  |
+| `progress` | `number` | No |  |
+| `required_amount` | `number` | No |  |
+| `sale` | `table` | No |  |
+| `skill` | `table` | No |  |
+| `start` | `number` | No |  |
+| `starting_bid` | `number` | No |  |
+| `stat` | `table` | No |  |
+| `success` | `boolean` | No |  |
+| `text` | `string` | No |  |
+| `tier` | `string` | No |  |
+| `title` | `string` | No |  |
+| `total_auction` | `number` | No |  |
+| `total_page` | `number` | No |  |
+| `uuid` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
