@@ -563,7 +563,7 @@ fmt.Println(player) // the loaded record
 
 ### PlayerData
 
-Create an instance: `player_data := client.PlayerData(nil)`
+Create an instance: `playerData := client.PlayerData(nil)`
 
 #### Operations
 
@@ -588,21 +588,21 @@ Create an instance: `player_data := client.PlayerData(nil)`
 #### Example: Load
 
 ```go
-player_data, err := client.PlayerData(nil).Load(nil, nil)
+playerData, err := client.PlayerData(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(player_data) // the loaded record
+fmt.Println(playerData) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-player_datas, err := client.PlayerData(nil).List(nil, nil)
+playerDatas, err := client.PlayerData(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(player_datas) // the array of records
+fmt.Println(playerDatas) // the array of records
 ```
 
 
@@ -644,7 +644,7 @@ fmt.Println(resource) // the loaded record
 
 ### SkyBlock
 
-Create an instance: `sky_block := client.SkyBlock(nil)`
+Create an instance: `skyBlock := client.SkyBlock(nil)`
 
 #### Operations
 
@@ -709,21 +709,21 @@ Create an instance: `sky_block := client.SkyBlock(nil)`
 #### Example: Load
 
 ```go
-sky_block, err := client.SkyBlock(nil).Load(map[string]any{"id": "sky_block_id"}, nil)
+skyBlock, err := client.SkyBlock(nil).Load(map[string]any{"id": "sky_block_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(sky_block) // the loaded record
+fmt.Println(skyBlock) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-sky_blocks, err := client.SkyBlock(nil).List(nil, nil)
+skyBlocks, err := client.SkyBlock(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(sky_blocks) // the array of records
+fmt.Println(skyBlocks) // the array of records
 ```
 
 

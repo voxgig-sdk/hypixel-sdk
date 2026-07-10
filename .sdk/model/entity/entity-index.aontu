@@ -1,0 +1,9 @@
+# Entity Models
+
+@"guild.aontu"
+@"housing.aontu"
+@"other.aontu"
+@"player.aontu"
+@"player_data.aontu"
+@"resource.aontu"
+@"sky_block.aontu"

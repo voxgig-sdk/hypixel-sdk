@@ -9,16 +9,23 @@ main: {
         url: "https://hypixel.net"
       }
       description: "Official Hypixel API documentation for accessing player data, game information, resources, and more. Requires API key for authentication and has rate limits for requests."
+      security: {
+        in: "header"
+        name: "API-Key"
+        prefix: ""
+        scheme: "ApiKey"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Production server"
           url: "https://api.hypixel.net"
         }
       ]
+      summary: "Official Hypixel API documentation for accessing player data, game information, resources, and more."
       termsOfService: "https://developer.hypixel.net"
       title: "Hypixel API"
       version: "2.0.0"
+      website: "https://hypixel.net"
     }
   }
-}
-

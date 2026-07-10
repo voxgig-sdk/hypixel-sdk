@@ -21,7 +21,7 @@ class HypixelConfig
             "options" => [
                 "base" => "https://api.hypixel.net",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

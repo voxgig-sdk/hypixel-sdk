@@ -116,6 +116,7 @@ same parameters as `Direct()`.
 
 ```go
 guild := client.Guild(nil)
+fmt.Println(guild.GetName()) // "guild"
 ```
 
 ### Fields
@@ -133,6 +134,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Guild(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -163,6 +168,7 @@ Return the entity name.
 
 ```go
 housing := client.Housing(nil)
+fmt.Println(housing.GetName()) // "housing"
 ```
 
 ### Fields
@@ -180,6 +186,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Housing(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -188,6 +198,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Housing(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -218,6 +232,7 @@ Return the entity name.
 
 ```go
 other := client.Other(nil)
+fmt.Println(other.GetName()) // "other"
 ```
 
 ### Fields
@@ -244,6 +259,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Other(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -252,6 +271,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Other(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -282,6 +305,7 @@ Return the entity name.
 
 ```go
 player := client.Player(nil)
+fmt.Println(player.GetName()) // "player"
 ```
 
 ### Fields
@@ -299,6 +323,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Player(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -328,7 +356,8 @@ Return the entity name.
 ## PlayerDataEntity
 
 ```go
-player_data := client.PlayerData(nil)
+playerData := client.PlayerData(nil)
+fmt.Println(playerData.GetName()) // "player_data"
 ```
 
 ### Fields
@@ -352,6 +381,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.PlayerData(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -360,6 +393,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.PlayerData(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -390,6 +427,7 @@ Return the entity name.
 
 ```go
 resource := client.Resource(nil)
+fmt.Println(resource.GetName()) // "resource"
 ```
 
 ### Fields
@@ -415,6 +453,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Resource(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -444,7 +486,8 @@ Return the entity name.
 ## SkyBlockEntity
 
 ```go
-sky_block := client.SkyBlock(nil)
+skyBlock := client.SkyBlock(nil)
+fmt.Println(skyBlock.GetName()) // "sky_block"
 ```
 
 ### Fields
@@ -508,6 +551,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.SkyBlock(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -516,6 +563,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.SkyBlock(nil).Load(map[string]any{"id": "sky_block_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
