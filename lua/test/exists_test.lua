@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Hypixel SDK exists test
 
 local sdk = require("hypixel_sdk")
 
