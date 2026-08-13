@@ -63,13 +63,13 @@ describe('SkyBlockEntity', async () => {
     const sky_block_ref01_ent = client.SkyBlock()
     const sky_block_ref01_match: any = {}
 
-    const sky_block_ref01_list = await sky_block_ref01_ent.list(sky_block_ref01_match)
+    const sky_block_ref01_list = (await sky_block_ref01_ent.list(sky_block_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const sky_block_ref01_match_dt0: any = {}
     sky_block_ref01_match_dt0.id = sky_block_ref01_data.id
-    const sky_block_ref01_data_dt0 = await sky_block_ref01_ent.load(sky_block_ref01_match_dt0)
+    const sky_block_ref01_data_dt0 = (await sky_block_ref01_ent.load(sky_block_ref01_match_dt0)).data()
     assert(sky_block_ref01_data_dt0.id === sky_block_ref01_data.id)
 
 

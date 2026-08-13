@@ -6,32 +6,17 @@ main: kit: entity: other: {
 
   fields: [
     {
-      name: "booster"
+      name: "boosterState"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "boosters"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "booster_state"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "game"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "leaderboard"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "player_count"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
-      name: "staff_rolling_daily"
+      name: "staff_rollingDaily"
       req: false
       type: "`$INTEGER`"
     }
@@ -46,12 +31,12 @@ main: kit: entity: other: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "watchdog_last_minute"
+      name: "watchdog_lastMinute"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "watchdog_rolling_daily"
+      name: "watchdog_rollingDaily"
       req: false
       type: "`$INTEGER`"
     }
@@ -93,7 +78,7 @@ main: kit: entity: other: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.games`"
           }
         }
         {
@@ -105,7 +90,7 @@ main: kit: entity: other: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.leaderboards`"
           }
         }
         {

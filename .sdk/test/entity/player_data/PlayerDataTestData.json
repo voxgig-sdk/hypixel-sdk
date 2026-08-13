@@ -2,36 +2,30 @@
   "existing": {
     "player_data": {
       "PLAYER_DATA00": {
-        "date": "s50",
-        "ended": "s51",
-        "game_type": "s52",
-        "map": "s53",
-        "mode": "s54",
-        "session": {},
-        "success": true,
-        "uuid": "s57",
+        "date": "s3c",
+        "ended": "s3d",
+        "gameType": "s3e",
+        "map": "s3f",
+        "mode": "s40",
+        "online": false,
         "id": "PLAYER_DATA00"
       },
       "PLAYER_DATA01": {
-        "date": "sa0",
-        "ended": "sa1",
-        "game_type": "sa2",
-        "map": "sa3",
-        "mode": "sa4",
-        "session": {},
-        "success": true,
-        "uuid": "sa7",
+        "date": "s78",
+        "ended": "s79",
+        "gameType": "s7a",
+        "map": "s7b",
+        "mode": "s7c",
+        "online": false,
         "id": "PLAYER_DATA01"
       },
       "PLAYER_DATA02": {
-        "date": "sf0",
-        "ended": "sf1",
-        "game_type": "sf2",
-        "map": "sf3",
-        "mode": "sf4",
-        "session": {},
-        "success": true,
-        "uuid": "sf7",
+        "date": "sb4",
+        "ended": "sb5",
+        "gameType": "sb6",
+        "map": "sb7",
+        "mode": "sb8",
+        "online": false,
         "id": "PLAYER_DATA02"
       }
     }
@@ -39,14 +33,12 @@
   "new": {
     "player_data": {
       "player_data_ref01": {
-        "date": "s140",
-        "ended": "s141",
-        "game_type": "s142",
-        "map": "s143",
-        "mode": "s144",
-        "session": {},
-        "success": true,
-        "uuid": "s147"
+        "date": "sf0",
+        "ended": "sf1",
+        "gameType": "sf2",
+        "map": "sf3",
+        "mode": "sf4",
+        "online": false
       }
     }
   }

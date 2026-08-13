@@ -114,13 +114,6 @@ same parameters as `direct()`. Raises on error.
 guild = client.Guild
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `guild` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -171,7 +164,7 @@ housing = client.Housing
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | `Hash` | No |  |
+| `houses` | `Array` | No |  |
 | `success` | `Boolean` | No |  |
 
 ### Operations
@@ -232,16 +225,13 @@ other = client.Other
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | `Array` | No |  |
-| `booster_state` | `Hash` | No |  |
-| `game` | `Hash` | No |  |
-| `leaderboard` | `Hash` | No |  |
-| `player_count` | `Integer` | No |  |
-| `staff_rolling_daily` | `Integer` | No |  |
+| `boosterState` | `Hash` | No |  |
+| `boosters` | `Array` | No |  |
+| `staff_rollingDaily` | `Integer` | No |  |
 | `staff_total` | `Integer` | No |  |
 | `success` | `Boolean` | No |  |
-| `watchdog_last_minute` | `Integer` | No |  |
-| `watchdog_rolling_daily` | `Integer` | No |  |
+| `watchdog_lastMinute` | `Integer` | No |  |
+| `watchdog_rollingDaily` | `Integer` | No |  |
 | `watchdog_total` | `Integer` | No |  |
 
 ### Operations
@@ -302,8 +292,16 @@ player = client.Player
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `displayname` | `String` | No |  |
+| `firstLogin` | `Integer` | No |  |
+| `lastLogin` | `Integer` | No |  |
+| `lastLogout` | `Integer` | No |  |
+| `monthlyPackageRank` | `String` | No |  |
+| `newPackageRank` | `String` | No |  |
+| `packageRank` | `String` | No |  |
+| `rank` | `String` | No |  |
+| `stats` | `Hash` | No |  |
+| `uuid` | `String` | No |  |
 
 ### Operations
 
@@ -357,12 +355,10 @@ player_data = client.PlayerData
 | --- | --- | --- | --- |
 | `date` | `Integer` | No |  |
 | `ended` | `Integer` | No |  |
-| `game_type` | `String` | No |  |
+| `gameType` | `String` | No |  |
 | `map` | `String` | No |  |
 | `mode` | `String` | No |  |
-| `session` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
-| `uuid` | `String` | No |  |
+| `online` | `Boolean` | No |  |
 
 ### Operations
 
@@ -422,16 +418,16 @@ resource = client.Resource
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | `Hash` | No |  |
-| `challenge` | `Hash` | No |  |
-| `game` | `Hash` | No |  |
-| `last_updated` | `Integer` | No |  |
+| `databaseName` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `lastUpdated` | `Integer` | No |  |
+| `modeNames` | `Hash` | No |  |
+| `name` | `String` | No |  |
 | `one_time` | `Hash` | No |  |
-| `quest` | `Hash` | No |  |
-| `rarity` | `Hash` | No |  |
+| `rarities` | `Hash` | No |  |
 | `success` | `Boolean` | No |  |
 | `tiered` | `Hash` | No |  |
-| `type` | `Hash` | No |  |
+| `types` | `Hash` | No |  |
 
 ### Operations
 
@@ -440,7 +436,7 @@ resource = client.Resource
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Resource.load()
+result = client.Resource.load({ "id" => 1 })
 ```
 
 ### Common Methods
@@ -483,54 +479,49 @@ sky_block = client.SkyBlock
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | `Array` | No |  |
 | `auctioneer` | `String` | No |  |
-| `bid` | `Array` | No |  |
+| `auctions` | `Array` | No |  |
+| `bids` | `Array` | No |  |
 | `category` | `String` | No |  |
 | `claimed` | `Boolean` | No |  |
-| `claimed_bidder` | `Array` | No |  |
-| `collection` | `Hash` | No |  |
+| `claimed_bidders` | `Array` | No |  |
 | `color` | `String` | No |  |
 | `coop` | `Array` | No |  |
 | `current` | `Hash` | No |  |
 | `end` | `Integer` | No |  |
-| `event` | `Array` | No |  |
+| `events` | `Array` | No |  |
 | `extra` | `String` | No |  |
-| `full_lore` | `Array` | No |  |
-| `garden` | `Hash` | No |  |
+| `fullLore` | `Array` | No |  |
 | `highest_bid_amount` | `Integer` | No |  |
 | `id` | `String` | No |  |
 | `item` | `Hash` | No |  |
-| `item_byte` | `Hash` | No |  |
+| `item_bytes` | `Hash` | No |  |
 | `item_lore` | `String` | No |  |
 | `item_name` | `String` | No |  |
-| `last_updated` | `Integer` | No |  |
+| `lastUpdated` | `Integer` | No |  |
 | `link` | `String` | No |  |
 | `lore` | `String` | No |  |
 | `material` | `String` | No |  |
 | `mayor` | `Hash` | No |  |
-| `member` | `Hash` | No |  |
 | `name` | `String` | No |  |
 | `npc_sell_price` | `Float` | No |  |
 | `page` | `Integer` | No |  |
-| `product` | `Hash` | No |  |
-| `profile` | `Hash` | No |  |
 | `profile_id` | `String` | No |  |
+| `profiles` | `Array` | No |  |
 | `progress` | `Integer` | No |  |
-| `required_amount` | `Integer` | No |  |
-| `sale` | `Array` | No |  |
-| `skill` | `Hash` | No |  |
+| `requiredAmount` | `Integer` | No |  |
+| `sales` | `Array` | No |  |
 | `start` | `Integer` | No |  |
 | `starting_bid` | `Integer` | No |  |
-| `stat` | `Hash` | No |  |
+| `stats` | `Hash` | No |  |
 | `success` | `Boolean` | No |  |
 | `text` | `String` | No |  |
 | `tier` | `String` | No |  |
+| `tiers` | `Array` | No |  |
 | `title` | `String` | No |  |
-| `total_auction` | `Integer` | No |  |
-| `total_page` | `Integer` | No |  |
+| `totalAuctions` | `Integer` | No |  |
+| `totalPages` | `Integer` | No |  |
 | `uuid` | `String` | No |  |
-| `version` | `String` | No |  |
 
 ### Operations
 

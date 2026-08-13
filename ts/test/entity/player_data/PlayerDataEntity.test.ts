@@ -63,12 +63,12 @@ describe('PlayerDataEntity', async () => {
     const player_data_ref01_ent = client.PlayerData()
     const player_data_ref01_match: any = {}
 
-    const player_data_ref01_list = await player_data_ref01_ent.list(player_data_ref01_match)
+    const player_data_ref01_list = (await player_data_ref01_ent.list(player_data_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const player_data_ref01_match_dt0: any = {}
-    const player_data_ref01_data_dt0 = await player_data_ref01_ent.load(player_data_ref01_match_dt0)
+    const player_data_ref01_data_dt0 = (await player_data_ref01_ent.load(player_data_ref01_match_dt0)).data()
     assert(null != player_data_ref01_data_dt0)
 
 

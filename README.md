@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = HypixelSDK.test()
-const guild = await client.Guild().load()
-// guild is a bare Guild populated with mock data
-console.log(guild)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = HypixelSDK.test({
+  entity: {
+    other: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const others = await client.Other().list()
+// others is an array of Other entities, populated with mock data
+// — call others[0].data() for the record itself
+console.log(others)
 ```
 
 ### Python
 
 ```python
 client = HypixelSDK.test()
-guild = client.Guild().load()
-print(guild)
+others = client.Other().list()
+print(others)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(guild)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = HypixelSDK::test([
-    "entity" => ["guild" => ["test01" => []]],
+    "entity" => ["other" => ["test01" => []]],
 ]);
-$guild = $client->Guild()->load();
+$others = $client->Other()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Guild(nil).Load(
+result, err := client.Other(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Guild(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = HypixelSDK.test({
-  "entity" => { "guild" => { "test01" => {} } },
+  "entity" => { "other" => { "test01" => {} } },
 })
-guild = client.Guild.load()
+others = client.Other.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Guild():load()
+local results, err = client:Other():list()
 ```
 
 ## Packages
@@ -160,7 +169,7 @@ The API exposes 7 entities:
 | **Other** | The Other entity (list, load). | `/v2/boosters` |
 | **Player** | The Player entity (load). | `/v2/player` |
 | **PlayerData** | The PlayerData entity (list, load). | `/v2/recentgames` |
-| **Resource** | The Resource entity (load). | `/v2/resources/achievements` |
+| **Resource** | The Resource entity (load). | `/v2/resources/guilds/achievements` |
 | **SkyBlock** | The SkyBlock entity (list, load). | `/v2/skyblock/auction` |
 
 The operations available across these entities are **load**, **list** — see each entity's
@@ -195,7 +204,7 @@ $client = new HypixelSDK([
 ]);
 
 
-// Load a specific guild (returns the bare record; throws on error)
+// Load a specific guild (returns the ENTITY; call data_get() for the record; throws on error)
 $guild = $client->Guild()->load();
 print_r($guild);
 ```
@@ -227,7 +236,7 @@ client = HypixelSDK.new({
 })
 
 
-# Load a specific guild (returns the bare record; raises on error)
+# Load a specific guild (returns the ENTITY; call data_get for the record)
 guild = client.Guild.load()
 puts guild
 ```
@@ -363,6 +372,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://hypixel.net](https://hypixel.net)
 

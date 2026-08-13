@@ -2,45 +2,36 @@
   "existing": {
     "other": {
       "OTHER00": {
-        "booster": [],
-        "booster_state": {},
-        "game": {},
-        "leaderboard": {},
-        "player_count": "s72",
-        "staff_rolling_daily": "s73",
-        "staff_total": "s74",
-        "success": false,
-        "watchdog_last_minute": "s76",
-        "watchdog_rolling_daily": "s77",
-        "watchdog_total": "s78",
+        "boosterState": {},
+        "boosters": [],
+        "staff_rollingDaily": "s52",
+        "staff_total": "s53",
+        "success": true,
+        "watchdog_lastMinute": "s55",
+        "watchdog_rollingDaily": "s56",
+        "watchdog_total": "s57",
         "id": "OTHER00"
       },
       "OTHER01": {
-        "booster": [],
-        "booster_state": {},
-        "game": {},
-        "leaderboard": {},
-        "player_count": "se0",
-        "staff_rolling_daily": "se1",
-        "staff_total": "se2",
-        "success": false,
-        "watchdog_last_minute": "se4",
-        "watchdog_rolling_daily": "se5",
-        "watchdog_total": "se6",
+        "boosterState": {},
+        "boosters": [],
+        "staff_rollingDaily": "sa2",
+        "staff_total": "sa3",
+        "success": true,
+        "watchdog_lastMinute": "sa5",
+        "watchdog_rollingDaily": "sa6",
+        "watchdog_total": "sa7",
         "id": "OTHER01"
       },
       "OTHER02": {
-        "booster": [],
-        "booster_state": {},
-        "game": {},
-        "leaderboard": {},
-        "player_count": "s14e",
-        "staff_rolling_daily": "s14f",
-        "staff_total": "s150",
-        "success": false,
-        "watchdog_last_minute": "s152",
-        "watchdog_rolling_daily": "s153",
-        "watchdog_total": "s154",
+        "boosterState": {},
+        "boosters": [],
+        "staff_rollingDaily": "sf2",
+        "staff_total": "sf3",
+        "success": true,
+        "watchdog_lastMinute": "sf5",
+        "watchdog_rollingDaily": "sf6",
+        "watchdog_total": "sf7",
         "id": "OTHER02"
       }
     }
@@ -48,17 +39,14 @@
   "new": {
     "other": {
       "other_ref01": {
-        "booster": [],
-        "booster_state": {},
-        "game": {},
-        "leaderboard": {},
-        "player_count": "s1bc",
-        "staff_rolling_daily": "s1bd",
-        "staff_total": "s1be",
-        "success": false,
-        "watchdog_last_minute": "s1c0",
-        "watchdog_rolling_daily": "s1c1",
-        "watchdog_total": "s1c2"
+        "boosterState": {},
+        "boosters": [],
+        "staff_rollingDaily": "s142",
+        "staff_total": "s143",
+        "success": true,
+        "watchdog_lastMinute": "s145",
+        "watchdog_rollingDaily": "s146",
+        "watchdog_total": "s147"
       }
     }
   }

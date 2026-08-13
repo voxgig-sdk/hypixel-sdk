@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import HypixelSDK
-from core.error import HypixelError
-from core.result import HypixelResult
-from core.response import HypixelResponse
-from core.spec import HypixelSpec
-from feature.base_feature import HypixelBaseFeature
+from projectname_sdk.core.error import HypixelError
+from projectname_sdk.core.result import HypixelResult
+from projectname_sdk.core.response import HypixelResponse
+from projectname_sdk.core.spec import HypixelSpec
+from projectname_sdk.feature.base_feature import HypixelBaseFeature
 
 
 def _client():

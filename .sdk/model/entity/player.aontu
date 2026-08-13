@@ -6,14 +6,54 @@ main: kit: entity: player: {
 
   fields: [
     {
-      name: "player"
+      name: "displayname"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "firstLogin"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "lastLogin"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "lastLogout"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "monthlyPackageRank"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "newPackageRank"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "packageRank"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rank"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stats"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "success"
+      name: "uuid"
       req: false
-      type: "`$BOOLEAN`"
+      type: "`$STRING`"
     }
   ]
 

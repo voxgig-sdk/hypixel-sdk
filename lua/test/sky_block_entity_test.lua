@@ -97,7 +97,7 @@ describe("SkyBlockEntity", function()
     }
     local sky_block_ref01_data_dt0_loaded, err = sky_block_ref01_ent:load(sky_block_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local sky_block_ref01_data_dt0_load_result = helpers.to_map(sky_block_ref01_data_dt0_loaded)
+    local sky_block_ref01_data_dt0_load_result = helpers.to_map(type(sky_block_ref01_data_dt0_loaded) == 'table' and sky_block_ref01_data_dt0_loaded.data_get and sky_block_ref01_data_dt0_loaded:data_get() or sky_block_ref01_data_dt0_loaded)
     assert.is_not_nil(sky_block_ref01_data_dt0_load_result)
     assert.are.equal(sky_block_ref01_data_dt0_load_result["id"], sky_block_ref01_data["id"])
 

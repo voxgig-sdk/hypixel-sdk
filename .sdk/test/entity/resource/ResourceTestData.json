@@ -2,59 +2,55 @@
   "existing": {
     "resource": {
       "RESOURCE00": {
-        "achievement": {},
-        "challenge": {},
-        "game": {},
-        "last_updated": "s67",
+        "databaseName": "s64",
+        "id": "RESOURCE00",
+        "lastUpdated": "s66",
+        "modeNames": {},
+        "name": "s68",
         "one_time": {},
-        "quest": {},
-        "rarity": {},
+        "rarities": {},
         "success": false,
         "tiered": {},
-        "type": {},
-        "id": "RESOURCE00"
+        "types": {}
       },
       "RESOURCE01": {
-        "achievement": {},
-        "challenge": {},
-        "game": {},
-        "last_updated": "scb",
+        "databaseName": "sc8",
+        "id": "RESOURCE01",
+        "lastUpdated": "sca",
+        "modeNames": {},
+        "name": "scc",
         "one_time": {},
-        "quest": {},
-        "rarity": {},
+        "rarities": {},
         "success": false,
         "tiered": {},
-        "type": {},
-        "id": "RESOURCE01"
+        "types": {}
       },
       "RESOURCE02": {
-        "achievement": {},
-        "challenge": {},
-        "game": {},
-        "last_updated": "s12f",
+        "databaseName": "s12c",
+        "id": "RESOURCE02",
+        "lastUpdated": "s12e",
+        "modeNames": {},
+        "name": "s130",
         "one_time": {},
-        "quest": {},
-        "rarity": {},
+        "rarities": {},
         "success": false,
         "tiered": {},
-        "type": {},
-        "id": "RESOURCE02"
+        "types": {}
       }
     }
   },
   "new": {
     "resource": {
       "resource_ref01": {
-        "achievement": {},
-        "challenge": {},
-        "game": {},
-        "last_updated": "s193",
+        "databaseName": "s190",
+        "lastUpdated": "s192",
+        "modeNames": {},
+        "name": "s194",
         "one_time": {},
-        "quest": {},
-        "rarity": {},
+        "rarities": {},
         "success": false,
         "tiered": {},
-        "type": {}
+        "types": {}
       }
     }
   }

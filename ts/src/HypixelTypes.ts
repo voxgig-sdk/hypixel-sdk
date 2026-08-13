@@ -6,291 +6,291 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Guild {
-  guild?: Record<string, any>
-  success?: boolean
 }
 
 export interface GuildLoadMatch {
-  guild?: Record<string, any>
-  success?: boolean
 }
 
 export interface Housing {
-  house?: Record<string, any>
+  houses?: any[]
   success?: boolean
 }
 
 export interface HousingLoadMatch {
-  house?: Record<string, any>
+  houses?: any[]
   success?: boolean
+
+  // Selects a custom action instead of the plain load:
+  //   'house'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface HousingListMatch {
-  house?: Record<string, any>
+  houses?: any[]
   success?: boolean
+
+  // Selects a custom action instead of the plain list:
+  //   'house' | 'player'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Other {
-  booster?: any[]
-  booster_state?: Record<string, any>
-  game?: Record<string, any>
-  leaderboard?: Record<string, any>
-  player_count?: number
-  staff_rolling_daily?: number
+  boosterState?: Record<string, any>
+  boosters?: any[]
+  staff_rollingDaily?: number
   staff_total?: number
   success?: boolean
-  watchdog_last_minute?: number
-  watchdog_rolling_daily?: number
+  watchdog_lastMinute?: number
+  watchdog_rollingDaily?: number
   watchdog_total?: number
 }
 
 export interface OtherLoadMatch {
-  booster?: any[]
-  booster_state?: Record<string, any>
-  game?: Record<string, any>
-  leaderboard?: Record<string, any>
-  player_count?: number
-  staff_rolling_daily?: number
+  boosterState?: Record<string, any>
+  boosters?: any[]
+  staff_rollingDaily?: number
   staff_total?: number
   success?: boolean
-  watchdog_last_minute?: number
-  watchdog_rolling_daily?: number
+  watchdog_lastMinute?: number
+  watchdog_rollingDaily?: number
   watchdog_total?: number
 }
 
 export interface OtherListMatch {
-  booster?: any[]
-  booster_state?: Record<string, any>
-  game?: Record<string, any>
-  leaderboard?: Record<string, any>
-  player_count?: number
-  staff_rolling_daily?: number
+  boosterState?: Record<string, any>
+  boosters?: any[]
+  staff_rollingDaily?: number
   staff_total?: number
   success?: boolean
-  watchdog_last_minute?: number
-  watchdog_rolling_daily?: number
+  watchdog_lastMinute?: number
+  watchdog_rollingDaily?: number
   watchdog_total?: number
 }
 
 export interface Player {
-  player?: Record<string, any>
-  success?: boolean
+  displayname?: string
+  firstLogin?: number
+  lastLogin?: number
+  lastLogout?: number
+  monthlyPackageRank?: string
+  newPackageRank?: string
+  packageRank?: string
+  rank?: string
+  stats?: Record<string, any>
+  uuid?: string
 }
 
 export interface PlayerLoadMatch {
-  player?: Record<string, any>
-  success?: boolean
+  displayname?: string
+  firstLogin?: number
+  lastLogin?: number
+  lastLogout?: number
+  monthlyPackageRank?: string
+  newPackageRank?: string
+  packageRank?: string
+  rank?: string
+  stats?: Record<string, any>
+  uuid?: string
 }
 
 export interface PlayerData {
   date?: number
   ended?: number
-  game_type?: string
+  gameType?: string
   map?: string
   mode?: string
-  session?: Record<string, any>
-  success?: boolean
-  uuid?: string
+  online?: boolean
 }
 
 export interface PlayerDataLoadMatch {
   date?: number
   ended?: number
-  game_type?: string
+  gameType?: string
   map?: string
   mode?: string
-  session?: Record<string, any>
-  success?: boolean
-  uuid?: string
+  online?: boolean
 }
 
 export interface PlayerDataListMatch {
   date?: number
   ended?: number
-  game_type?: string
+  gameType?: string
   map?: string
   mode?: string
-  session?: Record<string, any>
-  success?: boolean
-  uuid?: string
+  online?: boolean
 }
 
 export interface Resource {
-  achievement?: Record<string, any>
-  challenge?: Record<string, any>
-  game?: Record<string, any>
-  last_updated?: number
+  databaseName?: string
+  id?: number
+  lastUpdated?: number
+  modeNames?: Record<string, any>
+  name?: string
   one_time?: Record<string, any>
-  quest?: Record<string, any>
-  rarity?: Record<string, any>
+  rarities?: Record<string, any>
   success?: boolean
   tiered?: Record<string, any>
-  type?: Record<string, any>
+  types?: Record<string, any>
 }
 
 export interface ResourceLoadMatch {
-  achievement?: Record<string, any>
-  challenge?: Record<string, any>
-  game?: Record<string, any>
-  last_updated?: number
+  databaseName?: string
+  id: number
+  lastUpdated?: number
+  modeNames?: Record<string, any>
+  name?: string
   one_time?: Record<string, any>
-  quest?: Record<string, any>
-  rarity?: Record<string, any>
+  rarities?: Record<string, any>
   success?: boolean
   tiered?: Record<string, any>
-  type?: Record<string, any>
+  types?: Record<string, any>
+
+  // Selects a custom action instead of the plain load:
+  //   'achievement' | 'challenge' | 'game' | 'quest'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface SkyBlock {
-  auction?: any[]
   auctioneer?: string
-  bid?: any[]
+  auctions?: any[]
+  bids?: any[]
   category?: string
   claimed?: boolean
-  claimed_bidder?: any[]
-  collection?: Record<string, any>
+  claimed_bidders?: any[]
   color?: string
   coop?: any[]
   current?: Record<string, any>
   end?: number
-  event?: any[]
+  events?: any[]
   extra?: string
-  full_lore?: any[]
-  garden?: Record<string, any>
+  fullLore?: any[]
   highest_bid_amount?: number
   id?: string
   item?: Record<string, any>
-  item_byte?: Record<string, any>
+  item_bytes?: Record<string, any>
   item_lore?: string
   item_name?: string
-  last_updated?: number
+  lastUpdated?: number
   link?: string
   lore?: string
   material?: string
   mayor?: Record<string, any>
-  member?: Record<string, any>
   name?: string
   npc_sell_price?: number
   page?: number
-  product?: Record<string, any>
-  profile?: Record<string, any>
   profile_id?: string
+  profiles?: any[]
   progress?: number
-  required_amount?: number
-  sale?: any[]
-  skill?: Record<string, any>
+  requiredAmount?: number
+  sales?: any[]
   start?: number
   starting_bid?: number
-  stat?: Record<string, any>
+  stats?: Record<string, any>
   success?: boolean
   text?: string
   tier?: string
+  tiers?: any[]
   title?: string
-  total_auction?: number
-  total_page?: number
+  totalAuctions?: number
+  totalPages?: number
   uuid?: string
-  version?: string
 }
 
 export interface SkyBlockLoadMatch {
-  auction?: any[]
   auctioneer?: string
-  bid?: any[]
+  auctions?: any[]
+  bids?: any[]
   category?: string
   claimed?: boolean
-  claimed_bidder?: any[]
-  collection?: Record<string, any>
+  claimed_bidders?: any[]
   color?: string
   coop?: any[]
   current?: Record<string, any>
   end?: number
-  event?: any[]
+  events?: any[]
   extra?: string
-  full_lore?: any[]
-  garden?: Record<string, any>
+  fullLore?: any[]
   highest_bid_amount?: number
   id: string
   item?: Record<string, any>
-  item_byte?: Record<string, any>
+  item_bytes?: Record<string, any>
   item_lore?: string
   item_name?: string
-  last_updated?: number
+  lastUpdated?: number
   link?: string
   lore?: string
   material?: string
   mayor?: Record<string, any>
-  member?: Record<string, any>
   name?: string
   npc_sell_price?: number
   page?: number
-  product?: Record<string, any>
-  profile?: Record<string, any>
   profile_id?: string
+  profiles?: any[]
   progress?: number
-  required_amount?: number
-  sale?: any[]
-  skill?: Record<string, any>
+  requiredAmount?: number
+  sales?: any[]
   start?: number
   starting_bid?: number
-  stat?: Record<string, any>
+  stats?: Record<string, any>
   success?: boolean
   text?: string
   tier?: string
+  tiers?: any[]
   title?: string
-  total_auction?: number
-  total_page?: number
+  totalAuctions?: number
+  totalPages?: number
   uuid?: string
-  version?: string
 }
 
 export interface SkyBlockListMatch {
-  auction?: any[]
   auctioneer?: string
-  bid?: any[]
+  auctions?: any[]
+  bids?: any[]
   category?: string
   claimed?: boolean
-  claimed_bidder?: any[]
-  collection?: Record<string, any>
+  claimed_bidders?: any[]
   color?: string
   coop?: any[]
   current?: Record<string, any>
   end?: number
-  event?: any[]
+  events?: any[]
   extra?: string
-  full_lore?: any[]
-  garden?: Record<string, any>
+  fullLore?: any[]
   highest_bid_amount?: number
   id?: string
   item?: Record<string, any>
-  item_byte?: Record<string, any>
+  item_bytes?: Record<string, any>
   item_lore?: string
   item_name?: string
-  last_updated?: number
+  lastUpdated?: number
   link?: string
   lore?: string
   material?: string
   mayor?: Record<string, any>
-  member?: Record<string, any>
   name?: string
   npc_sell_price?: number
   page?: number
-  product?: Record<string, any>
-  profile?: Record<string, any>
   profile_id?: string
+  profiles?: any[]
   progress?: number
-  required_amount?: number
-  sale?: any[]
-  skill?: Record<string, any>
+  requiredAmount?: number
+  sales?: any[]
   start?: number
   starting_bid?: number
-  stat?: Record<string, any>
+  stats?: Record<string, any>
   success?: boolean
   text?: string
   tier?: string
+  tiers?: any[]
   title?: string
-  total_auction?: number
-  total_page?: number
+  totalAuctions?: number
+  totalPages?: number
   uuid?: string
-  version?: string
 }
 

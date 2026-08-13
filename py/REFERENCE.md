@@ -108,13 +108,6 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 guild = client.Guild()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `guild` | `dict` | No |  |
-| `success` | `bool` | No |  |
-
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -164,7 +157,7 @@ housing = client.Housing()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | `dict` | No |  |
+| `houses` | `list` | No |  |
 | `success` | `bool` | No |  |
 
 ### Operations
@@ -226,16 +219,13 @@ other = client.Other()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | `list` | No |  |
-| `booster_state` | `dict` | No |  |
-| `game` | `dict` | No |  |
-| `leaderboard` | `dict` | No |  |
-| `player_count` | `int` | No |  |
-| `staff_rolling_daily` | `int` | No |  |
+| `boosterState` | `dict` | No |  |
+| `boosters` | `list` | No |  |
+| `staff_rollingDaily` | `int` | No |  |
 | `staff_total` | `int` | No |  |
 | `success` | `bool` | No |  |
-| `watchdog_last_minute` | `int` | No |  |
-| `watchdog_rolling_daily` | `int` | No |  |
+| `watchdog_lastMinute` | `int` | No |  |
+| `watchdog_rollingDaily` | `int` | No |  |
 | `watchdog_total` | `int` | No |  |
 
 ### Operations
@@ -297,8 +287,16 @@ player = client.Player()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `displayname` | `str` | No |  |
+| `firstLogin` | `int` | No |  |
+| `lastLogin` | `int` | No |  |
+| `lastLogout` | `int` | No |  |
+| `monthlyPackageRank` | `str` | No |  |
+| `newPackageRank` | `str` | No |  |
+| `packageRank` | `str` | No |  |
+| `rank` | `str` | No |  |
+| `stats` | `dict` | No |  |
+| `uuid` | `str` | No |  |
 
 ### Operations
 
@@ -351,12 +349,10 @@ player_data = client.PlayerData()
 | --- | --- | --- | --- |
 | `date` | `int` | No |  |
 | `ended` | `int` | No |  |
-| `game_type` | `str` | No |  |
+| `gameType` | `str` | No |  |
 | `map` | `str` | No |  |
 | `mode` | `str` | No |  |
-| `session` | `dict` | No |  |
-| `success` | `bool` | No |  |
-| `uuid` | `str` | No |  |
+| `online` | `bool` | No |  |
 
 ### Operations
 
@@ -417,16 +413,16 @@ resource = client.Resource()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | `dict` | No |  |
-| `challenge` | `dict` | No |  |
-| `game` | `dict` | No |  |
-| `last_updated` | `int` | No |  |
+| `databaseName` | `str` | No |  |
+| `id` | `int` | No |  |
+| `lastUpdated` | `int` | No |  |
+| `modeNames` | `dict` | No |  |
+| `name` | `str` | No |  |
 | `one_time` | `dict` | No |  |
-| `quest` | `dict` | No |  |
-| `rarity` | `dict` | No |  |
+| `rarities` | `dict` | No |  |
 | `success` | `bool` | No |  |
 | `tiered` | `dict` | No |  |
-| `type` | `dict` | No |  |
+| `types` | `dict` | No |  |
 
 ### Operations
 
@@ -435,7 +431,7 @@ resource = client.Resource()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Resource().load()
+result = client.Resource().load({"id": 1})
 ```
 
 ### Common Methods
@@ -477,54 +473,49 @@ sky_block = client.SkyBlock()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | `list` | No |  |
 | `auctioneer` | `str` | No |  |
-| `bid` | `list` | No |  |
+| `auctions` | `list` | No |  |
+| `bids` | `list` | No |  |
 | `category` | `str` | No |  |
 | `claimed` | `bool` | No |  |
-| `claimed_bidder` | `list` | No |  |
-| `collection` | `dict` | No |  |
+| `claimed_bidders` | `list` | No |  |
 | `color` | `str` | No |  |
 | `coop` | `list` | No |  |
 | `current` | `dict` | No |  |
 | `end` | `int` | No |  |
-| `event` | `list` | No |  |
+| `events` | `list` | No |  |
 | `extra` | `str` | No |  |
-| `full_lore` | `list` | No |  |
-| `garden` | `dict` | No |  |
+| `fullLore` | `list` | No |  |
 | `highest_bid_amount` | `int` | No |  |
 | `id` | `str` | No |  |
 | `item` | `dict` | No |  |
-| `item_byte` | `dict` | No |  |
+| `item_bytes` | `dict` | No |  |
 | `item_lore` | `str` | No |  |
 | `item_name` | `str` | No |  |
-| `last_updated` | `int` | No |  |
+| `lastUpdated` | `int` | No |  |
 | `link` | `str` | No |  |
 | `lore` | `str` | No |  |
 | `material` | `str` | No |  |
 | `mayor` | `dict` | No |  |
-| `member` | `dict` | No |  |
 | `name` | `str` | No |  |
 | `npc_sell_price` | `float` | No |  |
 | `page` | `int` | No |  |
-| `product` | `dict` | No |  |
-| `profile` | `dict` | No |  |
 | `profile_id` | `str` | No |  |
+| `profiles` | `list` | No |  |
 | `progress` | `int` | No |  |
-| `required_amount` | `int` | No |  |
-| `sale` | `list` | No |  |
-| `skill` | `dict` | No |  |
+| `requiredAmount` | `int` | No |  |
+| `sales` | `list` | No |  |
 | `start` | `int` | No |  |
 | `starting_bid` | `int` | No |  |
-| `stat` | `dict` | No |  |
+| `stats` | `dict` | No |  |
 | `success` | `bool` | No |  |
 | `text` | `str` | No |  |
 | `tier` | `str` | No |  |
+| `tiers` | `list` | No |  |
 | `title` | `str` | No |  |
-| `total_auction` | `int` | No |  |
-| `total_page` | `int` | No |  |
+| `totalAuctions` | `int` | No |  |
+| `totalPages` | `int` | No |  |
 | `uuid` | `str` | No |  |
-| `version` | `str` | No |  |
 
 ### Operations
 

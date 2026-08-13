@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Hypixel',
   }
 
 
@@ -75,22 +75,7 @@ class Config {
 
   entity = {
     "guild": {
-      "fields": [
-        {
-          "active": true,
-          "name": "guild",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
-        },
-        {
-          "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 1
-        }
-      ],
+      "fields": [],
       "name": "guild",
       "op": {
         "load": {
@@ -127,6 +112,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/guild",
               "parts": [
@@ -158,9 +144,9 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "house",
+          "name": "houses",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 0
         },
         {
@@ -191,6 +177,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/housing/player",
               "parts": [
@@ -206,13 +193,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.houses`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/housing/houses",
               "parts": [
@@ -225,7 +213,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.houses`"
               },
               "index$": 1
             }
@@ -250,6 +238,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/housing/house",
               "parts": [
@@ -265,7 +254,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.house`"
               },
               "index$": 0
             }
@@ -281,80 +270,59 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "booster",
+          "name": "boosterState",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$OBJECT`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "booster_state",
+          "name": "boosters",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "game",
+          "name": "staff_rollingDaily",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$INTEGER`",
           "index$": 2
-        },
-        {
-          "active": true,
-          "name": "leaderboard",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 3
-        },
-        {
-          "active": true,
-          "name": "player_count",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
-        },
-        {
-          "active": true,
-          "name": "staff_rolling_daily",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 5
         },
         {
           "active": true,
           "name": "staff_total",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 6
+          "index$": 3
         },
         {
           "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 7
+          "index$": 4
         },
         {
           "active": true,
-          "name": "watchdog_last_minute",
+          "name": "watchdog_lastMinute",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 8
+          "index$": 5
         },
         {
           "active": true,
-          "name": "watchdog_rolling_daily",
+          "name": "watchdog_rollingDaily",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 9
+          "index$": 6
         },
         {
           "active": true,
           "name": "watchdog_total",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 10
+          "index$": 7
         }
       ],
       "name": "other",
@@ -366,6 +334,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/boosters",
               "parts": [
@@ -389,6 +358,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/counts",
               "parts": [
@@ -398,13 +368,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.games`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/leaderboards",
               "parts": [
@@ -414,13 +385,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.leaderboards`"
               },
               "index$": 1
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/punishmentstats",
               "parts": [
@@ -446,17 +418,73 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "player",
+          "name": "displayname",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "success",
+          "name": "firstLogin",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$INTEGER`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "lastLogin",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "lastLogout",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "monthlyPackageRank",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "newPackageRank",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "packageRank",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "rank",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
+        },
+        {
+          "active": true,
+          "name": "stats",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 8
+        },
+        {
+          "active": true,
+          "name": "uuid",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 9
         }
       ],
       "name": "player",
@@ -479,6 +507,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/player",
               "parts": [
@@ -522,7 +551,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "game_type",
+          "name": "gameType",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -543,24 +572,10 @@ class Config {
         },
         {
           "active": true,
-          "name": "session",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 5
-        },
-        {
-          "active": true,
-          "name": "success",
+          "name": "online",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 6
-        },
-        {
-          "active": true,
-          "name": "uuid",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "index$": 5
         }
       ],
       "name": "player_data",
@@ -583,6 +598,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/recentgames",
               "parts": [
@@ -596,7 +612,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.games`"
               },
               "index$": 0
             }
@@ -621,6 +637,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/status",
               "parts": [
@@ -634,7 +651,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.session`"
               },
               "index$": 0
             }
@@ -650,49 +667,49 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "achievement",
+          "name": "databaseName",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "challenge",
+          "name": "id",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "game",
+          "name": "lastUpdated",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$INTEGER`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "last_updated",
+          "name": "modeNames",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$OBJECT`",
           "index$": 3
+        },
+        {
+          "active": true,
+          "name": "name",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
         },
         {
           "active": true,
           "name": "one_time",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 4
-        },
-        {
-          "active": true,
-          "name": "quest",
-          "req": false,
-          "type": "`$OBJECT`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "rarity",
+          "name": "rarities",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 6
@@ -713,7 +730,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "type",
+          "name": "types",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 9
@@ -728,6 +745,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/achievements",
               "parts": [
@@ -740,13 +758,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.achievements`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/challenges",
               "parts": [
@@ -759,13 +778,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.challenges`"
               },
               "index$": 1
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/games",
               "parts": [
@@ -778,13 +798,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.games`"
               },
               "index$": 2
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/guilds/achievements",
               "parts": [
@@ -803,6 +824,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/quests",
               "parts": [
@@ -815,13 +837,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.quests`"
               },
               "index$": 4
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/vanity/companions",
               "parts": [
@@ -840,6 +863,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/vanity/pets",
               "parts": [
@@ -867,21 +891,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "auction",
+          "name": "auctioneer",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "auctioneer",
+          "name": "auctions",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "bid",
+          "name": "bids",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -902,304 +926,269 @@ class Config {
         },
         {
           "active": true,
-          "name": "claimed_bidder",
+          "name": "claimed_bidders",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "collection",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 6
-        },
-        {
-          "active": true,
           "name": "color",
           "req": false,
           "type": "`$STRING`",
-          "index$": 7
+          "index$": 6
         },
         {
           "active": true,
           "name": "coop",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 8
+          "index$": 7
         },
         {
           "active": true,
           "name": "current",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 9
+          "index$": 8
         },
         {
           "active": true,
           "name": "end",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 10
+          "index$": 9
         },
         {
           "active": true,
-          "name": "event",
+          "name": "events",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 11
+          "index$": 10
         },
         {
           "active": true,
           "name": "extra",
           "req": false,
           "type": "`$STRING`",
-          "index$": 12
+          "index$": 11
         },
         {
           "active": true,
-          "name": "full_lore",
+          "name": "fullLore",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 13
-        },
-        {
-          "active": true,
-          "name": "garden",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 14
+          "index$": 12
         },
         {
           "active": true,
           "name": "highest_bid_amount",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 15
+          "index$": 13
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$STRING`",
-          "index$": 16
+          "index$": 14
         },
         {
           "active": true,
           "name": "item",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 17
+          "index$": 15
         },
         {
           "active": true,
-          "name": "item_byte",
+          "name": "item_bytes",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 18
+          "index$": 16
         },
         {
           "active": true,
           "name": "item_lore",
           "req": false,
           "type": "`$STRING`",
-          "index$": 19
+          "index$": 17
         },
         {
           "active": true,
           "name": "item_name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 20
+          "index$": 18
         },
         {
           "active": true,
-          "name": "last_updated",
+          "name": "lastUpdated",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 21
+          "index$": 19
         },
         {
           "active": true,
           "name": "link",
           "req": false,
           "type": "`$STRING`",
-          "index$": 22
+          "index$": 20
         },
         {
           "active": true,
           "name": "lore",
           "req": false,
           "type": "`$STRING`",
-          "index$": 23
+          "index$": 21
         },
         {
           "active": true,
           "name": "material",
           "req": false,
           "type": "`$STRING`",
-          "index$": 24
+          "index$": 22
         },
         {
           "active": true,
           "name": "mayor",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 25
-        },
-        {
-          "active": true,
-          "name": "member",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 26
+          "index$": 23
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 27
+          "index$": 24
         },
         {
           "active": true,
           "name": "npc_sell_price",
           "req": false,
           "type": "`$NUMBER`",
-          "index$": 28
+          "index$": 25
         },
         {
           "active": true,
           "name": "page",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 29
-        },
-        {
-          "active": true,
-          "name": "product",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 30
-        },
-        {
-          "active": true,
-          "name": "profile",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 31
+          "index$": 26
         },
         {
           "active": true,
           "name": "profile_id",
           "req": false,
           "type": "`$STRING`",
-          "index$": 32
+          "index$": 27
+        },
+        {
+          "active": true,
+          "name": "profiles",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 28
         },
         {
           "active": true,
           "name": "progress",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 33
+          "index$": 29
         },
         {
           "active": true,
-          "name": "required_amount",
+          "name": "requiredAmount",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 34
+          "index$": 30
         },
         {
           "active": true,
-          "name": "sale",
+          "name": "sales",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 35
-        },
-        {
-          "active": true,
-          "name": "skill",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 36
+          "index$": 31
         },
         {
           "active": true,
           "name": "start",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 37
+          "index$": 32
         },
         {
           "active": true,
           "name": "starting_bid",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 38
+          "index$": 33
         },
         {
           "active": true,
-          "name": "stat",
+          "name": "stats",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 39
+          "index$": 34
         },
         {
           "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "index$": 40
+          "index$": 35
         },
         {
           "active": true,
           "name": "text",
           "req": false,
           "type": "`$STRING`",
-          "index$": 41
+          "index$": 36
         },
         {
           "active": true,
           "name": "tier",
           "req": false,
           "type": "`$STRING`",
-          "index$": 42
+          "index$": 37
+        },
+        {
+          "active": true,
+          "name": "tiers",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 38
         },
         {
           "active": true,
           "name": "title",
           "req": false,
           "type": "`$STRING`",
-          "index$": 43
+          "index$": 39
         },
         {
           "active": true,
-          "name": "total_auction",
+          "name": "totalAuctions",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 44
+          "index$": 40
         },
         {
           "active": true,
-          "name": "total_page",
+          "name": "totalPages",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 45
+          "index$": 41
         },
         {
           "active": true,
           "name": "uuid",
           "req": false,
           "type": "`$STRING`",
-          "index$": 46
-        },
-        {
-          "active": true,
-          "name": "version",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 47
+          "index$": 42
         }
       ],
       "name": "sky_block",
@@ -1238,6 +1227,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/auction",
               "parts": [
@@ -1254,7 +1244,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.auctions`"
               },
               "index$": 0
             },
@@ -1273,6 +1263,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/auctions",
               "parts": [
@@ -1287,7 +1278,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.auctions`"
               },
               "index$": 1
             },
@@ -1305,6 +1296,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/bingo",
               "parts": [
@@ -1319,7 +1311,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.events`"
               },
               "index$": 2
             },
@@ -1337,6 +1329,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/profiles",
               "parts": [
@@ -1351,13 +1344,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.profiles`"
               },
               "index$": 3
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/skyblock/bingo",
               "parts": [
@@ -1369,13 +1363,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.goals`"
               },
               "index$": 4
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/skyblock/items",
               "parts": [
@@ -1387,13 +1382,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.items`"
               },
               "index$": 5
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/auctions_ended",
               "parts": [
@@ -1404,13 +1400,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.auctions`"
               },
               "index$": 6
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/firesales",
               "parts": [
@@ -1421,13 +1418,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.sales`"
               },
               "index$": 7
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/news",
               "parts": [
@@ -1438,7 +1436,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.items`"
               },
               "index$": 8
             }
@@ -1463,6 +1461,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/garden",
               "parts": [
@@ -1477,7 +1476,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.garden`"
               },
               "index$": 0
             },
@@ -1495,6 +1494,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/museum",
               "parts": [
@@ -1509,7 +1509,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.members`"
               },
               "index$": 1
             },
@@ -1527,6 +1527,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/profile",
               "parts": [
@@ -1541,13 +1542,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.profile`"
               },
               "index$": 2
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/skyblock/collections",
               "parts": [
@@ -1559,13 +1561,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.collections`"
               },
               "index$": 3
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/skyblock/election",
               "parts": [
@@ -1584,6 +1587,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/resources/skyblock/skills",
               "parts": [
@@ -1595,13 +1599,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.skills`"
               },
               "index$": 5
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v2/skyblock/bazaar",
               "parts": [
@@ -1612,7 +1617,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.products`"
               },
               "index$": 6
             }

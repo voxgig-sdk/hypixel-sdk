@@ -6,9 +6,9 @@ main: kit: entity: housing: {
 
   fields: [
     {
-      name: "house"
+      name: "houses"
       req: false
-      type: "`$OBJECT`"
+      type: "`$ARRAY`"
     }
     {
       name: "success"
@@ -49,7 +49,7 @@ main: kit: entity: housing: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.houses`"
           }
         }
         {
@@ -65,7 +65,7 @@ main: kit: entity: housing: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.houses`"
           }
         }
       ]
@@ -100,7 +100,7 @@ main: kit: entity: housing: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.house`"
           }
         }
       ]

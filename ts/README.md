@@ -55,10 +55,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const guild = await client.Guild().load()
-  console.log(guild)
+  const others = await client.Other().list()
+  console.log(others)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HypixelSDK.test()
 
-const guild = await client.Guild().load()
-// guild is a bare entity populated with mock response data
-console.log(guild)
+const other = await client.Other().list()
+// other is the entity, populated with mock response data
+// — call other.data() for the record itself
+console.log(other)
 ```
 
 You can also use the instance method:
@@ -139,10 +140,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Guild()
+const entity = client.Other()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -299,8 +300,6 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `guild` |  |
-| `success` |  |
 
 Operations: load.
 
@@ -310,7 +309,7 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `house` |  |
+| `houses` |  |
 | `success` |  |
 
 Operations: list, load.
@@ -321,16 +320,13 @@ API path: `/v2/housing/player`
 
 | Field | Description |
 | --- | --- |
-| `booster` |  |
-| `booster_state` |  |
-| `game` |  |
-| `leaderboard` |  |
-| `player_count` |  |
-| `staff_rolling_daily` |  |
+| `boosterState` |  |
+| `boosters` |  |
+| `staff_rollingDaily` |  |
 | `staff_total` |  |
 | `success` |  |
-| `watchdog_last_minute` |  |
-| `watchdog_rolling_daily` |  |
+| `watchdog_lastMinute` |  |
+| `watchdog_rollingDaily` |  |
 | `watchdog_total` |  |
 
 Operations: list, load.
@@ -341,8 +337,16 @@ API path: `/v2/boosters`
 
 | Field | Description |
 | --- | --- |
-| `player` |  |
-| `success` |  |
+| `displayname` |  |
+| `firstLogin` |  |
+| `lastLogin` |  |
+| `lastLogout` |  |
+| `monthlyPackageRank` |  |
+| `newPackageRank` |  |
+| `packageRank` |  |
+| `rank` |  |
+| `stats` |  |
+| `uuid` |  |
 
 Operations: load.
 
@@ -354,12 +358,10 @@ API path: `/v2/player`
 | --- | --- |
 | `date` |  |
 | `ended` |  |
-| `game_type` |  |
+| `gameType` |  |
 | `map` |  |
 | `mode` |  |
-| `session` |  |
-| `success` |  |
-| `uuid` |  |
+| `online` |  |
 
 Operations: list, load.
 
@@ -369,16 +371,16 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `achievement` |  |
-| `challenge` |  |
-| `game` |  |
-| `last_updated` |  |
+| `databaseName` |  |
+| `id` |  |
+| `lastUpdated` |  |
+| `modeNames` |  |
+| `name` |  |
 | `one_time` |  |
-| `quest` |  |
-| `rarity` |  |
+| `rarities` |  |
 | `success` |  |
 | `tiered` |  |
-| `type` |  |
+| `types` |  |
 
 Operations: load.
 
@@ -388,54 +390,49 @@ API path: `/v2/resources/achievements`
 
 | Field | Description |
 | --- | --- |
-| `auction` |  |
 | `auctioneer` |  |
-| `bid` |  |
+| `auctions` |  |
+| `bids` |  |
 | `category` |  |
 | `claimed` |  |
-| `claimed_bidder` |  |
-| `collection` |  |
+| `claimed_bidders` |  |
 | `color` |  |
 | `coop` |  |
 | `current` |  |
 | `end` |  |
-| `event` |  |
+| `events` |  |
 | `extra` |  |
-| `full_lore` |  |
-| `garden` |  |
+| `fullLore` |  |
 | `highest_bid_amount` |  |
 | `id` |  |
 | `item` |  |
-| `item_byte` |  |
+| `item_bytes` |  |
 | `item_lore` |  |
 | `item_name` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `link` |  |
 | `lore` |  |
 | `material` |  |
 | `mayor` |  |
-| `member` |  |
 | `name` |  |
 | `npc_sell_price` |  |
 | `page` |  |
-| `product` |  |
-| `profile` |  |
 | `profile_id` |  |
+| `profiles` |  |
 | `progress` |  |
-| `required_amount` |  |
-| `sale` |  |
-| `skill` |  |
+| `requiredAmount` |  |
+| `sales` |  |
 | `start` |  |
 | `starting_bid` |  |
-| `stat` |  |
+| `stats` |  |
 | `success` |  |
 | `text` |  |
 | `tier` |  |
+| `tiers` |  |
 | `title` |  |
-| `total_auction` |  |
-| `total_page` |  |
+| `totalAuctions` |  |
+| `totalPages` |  |
 | `uuid` |  |
-| `version` |  |
 
 Operations: list, load.
 
@@ -455,13 +452,6 @@ Create an instance: `const guild = client.Guild()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `guild` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -485,7 +475,7 @@ Create an instance: `const housing = client.Housing()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | `Record<string, any>` |  |
+| `houses` | `any[]` |  |
 | `success` | `boolean` |  |
 
 #### Example: Load
@@ -516,16 +506,13 @@ Create an instance: `const other = client.Other()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | `any[]` |  |
-| `booster_state` | `Record<string, any>` |  |
-| `game` | `Record<string, any>` |  |
-| `leaderboard` | `Record<string, any>` |  |
-| `player_count` | `number` |  |
-| `staff_rolling_daily` | `number` |  |
+| `boosterState` | `Record<string, any>` |  |
+| `boosters` | `any[]` |  |
+| `staff_rollingDaily` | `number` |  |
 | `staff_total` | `number` |  |
 | `success` | `boolean` |  |
-| `watchdog_last_minute` | `number` |  |
-| `watchdog_rolling_daily` | `number` |  |
+| `watchdog_lastMinute` | `number` |  |
+| `watchdog_rollingDaily` | `number` |  |
 | `watchdog_total` | `number` |  |
 
 #### Example: Load
@@ -555,8 +542,16 @@ Create an instance: `const player = client.Player()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `displayname` | `string` |  |
+| `firstLogin` | `number` |  |
+| `lastLogin` | `number` |  |
+| `lastLogout` | `number` |  |
+| `monthlyPackageRank` | `string` |  |
+| `newPackageRank` | `string` |  |
+| `packageRank` | `string` |  |
+| `rank` | `string` |  |
+| `stats` | `Record<string, any>` |  |
+| `uuid` | `string` |  |
 
 #### Example: Load
 
@@ -582,12 +577,10 @@ Create an instance: `const player_data = client.PlayerData()`
 | --- | --- | --- |
 | `date` | `number` |  |
 | `ended` | `number` |  |
-| `game_type` | `string` |  |
+| `gameType` | `string` |  |
 | `map` | `string` |  |
 | `mode` | `string` |  |
-| `session` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
-| `uuid` | `string` |  |
+| `online` | `boolean` |  |
 
 #### Example: Load
 
@@ -616,21 +609,21 @@ Create an instance: `const resource = client.Resource()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | `Record<string, any>` |  |
-| `challenge` | `Record<string, any>` |  |
-| `game` | `Record<string, any>` |  |
-| `last_updated` | `number` |  |
+| `databaseName` | `string` |  |
+| `id` | `number` |  |
+| `lastUpdated` | `number` |  |
+| `modeNames` | `Record<string, any>` |  |
+| `name` | `string` |  |
 | `one_time` | `Record<string, any>` |  |
-| `quest` | `Record<string, any>` |  |
-| `rarity` | `Record<string, any>` |  |
+| `rarities` | `Record<string, any>` |  |
 | `success` | `boolean` |  |
 | `tiered` | `Record<string, any>` |  |
-| `type` | `Record<string, any>` |  |
+| `types` | `Record<string, any>` |  |
 
 #### Example: Load
 
 ```ts
-const resource = await client.Resource().load()
+const resource = await client.Resource().load({ id: 1 })
 ```
 
 
@@ -649,54 +642,49 @@ Create an instance: `const sky_block = client.SkyBlock()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | `any[]` |  |
 | `auctioneer` | `string` |  |
-| `bid` | `any[]` |  |
+| `auctions` | `any[]` |  |
+| `bids` | `any[]` |  |
 | `category` | `string` |  |
 | `claimed` | `boolean` |  |
-| `claimed_bidder` | `any[]` |  |
-| `collection` | `Record<string, any>` |  |
+| `claimed_bidders` | `any[]` |  |
 | `color` | `string` |  |
 | `coop` | `any[]` |  |
 | `current` | `Record<string, any>` |  |
 | `end` | `number` |  |
-| `event` | `any[]` |  |
+| `events` | `any[]` |  |
 | `extra` | `string` |  |
-| `full_lore` | `any[]` |  |
-| `garden` | `Record<string, any>` |  |
+| `fullLore` | `any[]` |  |
 | `highest_bid_amount` | `number` |  |
 | `id` | `string` |  |
 | `item` | `Record<string, any>` |  |
-| `item_byte` | `Record<string, any>` |  |
+| `item_bytes` | `Record<string, any>` |  |
 | `item_lore` | `string` |  |
 | `item_name` | `string` |  |
-| `last_updated` | `number` |  |
+| `lastUpdated` | `number` |  |
 | `link` | `string` |  |
 | `lore` | `string` |  |
 | `material` | `string` |  |
 | `mayor` | `Record<string, any>` |  |
-| `member` | `Record<string, any>` |  |
 | `name` | `string` |  |
 | `npc_sell_price` | `number` |  |
 | `page` | `number` |  |
-| `product` | `Record<string, any>` |  |
-| `profile` | `Record<string, any>` |  |
 | `profile_id` | `string` |  |
+| `profiles` | `any[]` |  |
 | `progress` | `number` |  |
-| `required_amount` | `number` |  |
-| `sale` | `any[]` |  |
-| `skill` | `Record<string, any>` |  |
+| `requiredAmount` | `number` |  |
+| `sales` | `any[]` |  |
 | `start` | `number` |  |
 | `starting_bid` | `number` |  |
-| `stat` | `Record<string, any>` |  |
+| `stats` | `Record<string, any>` |  |
 | `success` | `boolean` |  |
 | `text` | `string` |  |
 | `tier` | `string` |  |
+| `tiers` | `any[]` |  |
 | `title` | `string` |  |
-| `total_auction` | `number` |  |
-| `total_page` | `number` |  |
+| `totalAuctions` | `number` |  |
+| `totalPages` | `number` |  |
 | `uuid` | `string` |  |
-| `version` | `string` |  |
 
 #### Example: Load
 
@@ -775,16 +763,16 @@ import { HypixelSDK } from '@voxgig-sdk/hypixel'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const guild = client.Guild()
-await guild.load()
+const other = client.Other()
+await other.list()
 
-// guild.data() now returns the guild data from the last `load`
-// guild.match() returns the last match criteria
+// other.data() now returns the other data from the last `list`
+// other.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

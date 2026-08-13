@@ -6,24 +6,29 @@ main: kit: entity: resource: {
 
   fields: [
     {
-      name: "achievement"
+      name: "databaseName"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
     {
-      name: "challenge"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "game"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "last_updated"
+      name: "id"
       req: false
       type: "`$INTEGER`"
+    }
+    {
+      name: "lastUpdated"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "modeNames"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
     }
     {
       name: "one_time"
@@ -31,12 +36,7 @@ main: kit: entity: resource: {
       type: "`$OBJECT`"
     }
     {
-      name: "quest"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "rarity"
+      name: "rarities"
       req: false
       type: "`$OBJECT`"
     }
@@ -51,11 +51,16 @@ main: kit: entity: resource: {
       type: "`$OBJECT`"
     }
     {
-      name: "type"
+      name: "types"
       req: false
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "resource"
   op: {
@@ -75,7 +80,7 @@ main: kit: entity: resource: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.achievements`"
           }
         }
         {
@@ -91,7 +96,7 @@ main: kit: entity: resource: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.challenges`"
           }
         }
         {
@@ -107,7 +112,7 @@ main: kit: entity: resource: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.games`"
           }
         }
         {
@@ -137,7 +142,7 @@ main: kit: entity: resource: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.quests`"
           }
         }
         {

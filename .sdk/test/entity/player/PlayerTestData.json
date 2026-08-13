@@ -2,18 +2,42 @@
   "existing": {
     "player": {
       "PLAYER00": {
-        "player": {},
-        "success": false,
+        "displayname": "s64",
+        "firstLogin": "s65",
+        "lastLogin": "s66",
+        "lastLogout": "s67",
+        "monthlyPackageRank": "s68",
+        "newPackageRank": "s69",
+        "packageRank": "s6a",
+        "rank": "s6b",
+        "stats": {},
+        "uuid": "s6d",
         "id": "PLAYER00"
       },
       "PLAYER01": {
-        "player": {},
-        "success": false,
+        "displayname": "sc8",
+        "firstLogin": "sc9",
+        "lastLogin": "sca",
+        "lastLogout": "scb",
+        "monthlyPackageRank": "scc",
+        "newPackageRank": "scd",
+        "packageRank": "sce",
+        "rank": "scf",
+        "stats": {},
+        "uuid": "sd1",
         "id": "PLAYER01"
       },
       "PLAYER02": {
-        "player": {},
-        "success": false,
+        "displayname": "s12c",
+        "firstLogin": "s12d",
+        "lastLogin": "s12e",
+        "lastLogout": "s12f",
+        "monthlyPackageRank": "s130",
+        "newPackageRank": "s131",
+        "packageRank": "s132",
+        "rank": "s133",
+        "stats": {},
+        "uuid": "s135",
         "id": "PLAYER02"
       }
     }
@@ -21,8 +45,16 @@
   "new": {
     "player": {
       "player_ref01": {
-        "player": {},
-        "success": false
+        "displayname": "s190",
+        "firstLogin": "s191",
+        "lastLogin": "s192",
+        "lastLogout": "s193",
+        "monthlyPackageRank": "s194",
+        "newPackageRank": "s195",
+        "packageRank": "s196",
+        "rank": "s197",
+        "stats": {},
+        "uuid": "s199"
       }
     }
   }

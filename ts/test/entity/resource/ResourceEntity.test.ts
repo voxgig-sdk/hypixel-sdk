@@ -62,8 +62,9 @@ describe('ResourceEntity', async () => {
     // LOAD
     const resource_ref01_ent = client.Resource()
     const resource_ref01_match_dt0: any = {}
-    const resource_ref01_data_dt0 = await resource_ref01_ent.load(resource_ref01_match_dt0)
-    assert(null != resource_ref01_data_dt0)
+    resource_ref01_match_dt0.id = resource_ref01_data.id
+    const resource_ref01_data_dt0 = (await resource_ref01_ent.load(resource_ref01_match_dt0)).data()
+    assert(resource_ref01_data_dt0.id === resource_ref01_data.id)
 
 
   })

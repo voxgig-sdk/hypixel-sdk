@@ -62,7 +62,7 @@ describe('GuildEntity', async () => {
     // LOAD
     const guild_ref01_ent = client.Guild()
     const guild_ref01_match_dt0: any = {}
-    const guild_ref01_data_dt0 = await guild_ref01_ent.load(guild_ref01_match_dt0)
+    const guild_ref01_data_dt0 = (await guild_ref01_ent.load(guild_ref01_match_dt0)).data()
     assert(null != guild_ref01_data_dt0)
 
 

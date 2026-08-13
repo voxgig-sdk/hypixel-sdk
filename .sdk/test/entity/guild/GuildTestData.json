@@ -2,28 +2,19 @@
   "existing": {
     "guild": {
       "GUILD00": {
-        "guild": {},
-        "success": false,
         "id": "GUILD00"
       },
       "GUILD01": {
-        "guild": {},
-        "success": false,
         "id": "GUILD01"
       },
       "GUILD02": {
-        "guild": {},
-        "success": false,
         "id": "GUILD02"
       }
     }
   },
   "new": {
     "guild": {
-      "guild_ref01": {
-        "guild": {},
-        "success": false
-      }
+      "guild_ref01": {}
     }
   }
 }

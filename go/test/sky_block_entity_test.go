@@ -128,7 +128,7 @@ func TestSkyBlockEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		skyBlockRef01DataDt0LoadResult := core.ToMapAny(skyBlockRef01DataDt0Loaded)
+		skyBlockRef01DataDt0LoadResult := core.ToMapAny(entityData(skyBlockRef01DataDt0Loaded))
 		if skyBlockRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

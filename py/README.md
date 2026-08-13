@@ -41,7 +41,7 @@ client = HypixelSDK({
 
 ### 3. Load a guild
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -58,10 +58,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    guild = client.Guild().load()
-    print(guild)
+    others = client.Other().list()
+    print(others)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = HypixelSDK.test()
 
-# Entity ops return the bare record and raise on error.
-guild = client.Guild().load()
-# guild contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+other = client.Other().list()
+# other contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -252,8 +253,6 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `guild` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -263,7 +262,7 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `house` |  |
+| `houses` |  |
 | `success` |  |
 
 Operations: List, Load.
@@ -274,16 +273,13 @@ API path: `/v2/housing/player`
 
 | Field | Description |
 | --- | --- |
-| `booster` |  |
-| `booster_state` |  |
-| `game` |  |
-| `leaderboard` |  |
-| `player_count` |  |
-| `staff_rolling_daily` |  |
+| `boosterState` |  |
+| `boosters` |  |
+| `staff_rollingDaily` |  |
 | `staff_total` |  |
 | `success` |  |
-| `watchdog_last_minute` |  |
-| `watchdog_rolling_daily` |  |
+| `watchdog_lastMinute` |  |
+| `watchdog_rollingDaily` |  |
 | `watchdog_total` |  |
 
 Operations: List, Load.
@@ -294,8 +290,16 @@ API path: `/v2/boosters`
 
 | Field | Description |
 | --- | --- |
-| `player` |  |
-| `success` |  |
+| `displayname` |  |
+| `firstLogin` |  |
+| `lastLogin` |  |
+| `lastLogout` |  |
+| `monthlyPackageRank` |  |
+| `newPackageRank` |  |
+| `packageRank` |  |
+| `rank` |  |
+| `stats` |  |
+| `uuid` |  |
 
 Operations: Load.
 
@@ -307,12 +311,10 @@ API path: `/v2/player`
 | --- | --- |
 | `date` |  |
 | `ended` |  |
-| `game_type` |  |
+| `gameType` |  |
 | `map` |  |
 | `mode` |  |
-| `session` |  |
-| `success` |  |
-| `uuid` |  |
+| `online` |  |
 
 Operations: List, Load.
 
@@ -322,16 +324,16 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `achievement` |  |
-| `challenge` |  |
-| `game` |  |
-| `last_updated` |  |
+| `databaseName` |  |
+| `id` |  |
+| `lastUpdated` |  |
+| `modeNames` |  |
+| `name` |  |
 | `one_time` |  |
-| `quest` |  |
-| `rarity` |  |
+| `rarities` |  |
 | `success` |  |
 | `tiered` |  |
-| `type` |  |
+| `types` |  |
 
 Operations: Load.
 
@@ -341,54 +343,49 @@ API path: `/v2/resources/achievements`
 
 | Field | Description |
 | --- | --- |
-| `auction` |  |
 | `auctioneer` |  |
-| `bid` |  |
+| `auctions` |  |
+| `bids` |  |
 | `category` |  |
 | `claimed` |  |
-| `claimed_bidder` |  |
-| `collection` |  |
+| `claimed_bidders` |  |
 | `color` |  |
 | `coop` |  |
 | `current` |  |
 | `end` |  |
-| `event` |  |
+| `events` |  |
 | `extra` |  |
-| `full_lore` |  |
-| `garden` |  |
+| `fullLore` |  |
 | `highest_bid_amount` |  |
 | `id` |  |
 | `item` |  |
-| `item_byte` |  |
+| `item_bytes` |  |
 | `item_lore` |  |
 | `item_name` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `link` |  |
 | `lore` |  |
 | `material` |  |
 | `mayor` |  |
-| `member` |  |
 | `name` |  |
 | `npc_sell_price` |  |
 | `page` |  |
-| `product` |  |
-| `profile` |  |
 | `profile_id` |  |
+| `profiles` |  |
 | `progress` |  |
-| `required_amount` |  |
-| `sale` |  |
-| `skill` |  |
+| `requiredAmount` |  |
+| `sales` |  |
 | `start` |  |
 | `starting_bid` |  |
-| `stat` |  |
+| `stats` |  |
 | `success` |  |
 | `text` |  |
 | `tier` |  |
+| `tiers` |  |
 | `title` |  |
-| `total_auction` |  |
-| `total_page` |  |
+| `totalAuctions` |  |
+| `totalPages` |  |
 | `uuid` |  |
-| `version` |  |
 
 Operations: List, Load.
 
@@ -408,13 +405,6 @@ Create an instance: `guild = client.Guild()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `guild` | `dict` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -438,7 +428,7 @@ Create an instance: `housing = client.Housing()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | `dict` |  |
+| `houses` | `list` |  |
 | `success` | `bool` |  |
 
 #### Example: Load
@@ -469,16 +459,13 @@ Create an instance: `other = client.Other()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | `list` |  |
-| `booster_state` | `dict` |  |
-| `game` | `dict` |  |
-| `leaderboard` | `dict` |  |
-| `player_count` | `int` |  |
-| `staff_rolling_daily` | `int` |  |
+| `boosterState` | `dict` |  |
+| `boosters` | `list` |  |
+| `staff_rollingDaily` | `int` |  |
 | `staff_total` | `int` |  |
 | `success` | `bool` |  |
-| `watchdog_last_minute` | `int` |  |
-| `watchdog_rolling_daily` | `int` |  |
+| `watchdog_lastMinute` | `int` |  |
+| `watchdog_rollingDaily` | `int` |  |
 | `watchdog_total` | `int` |  |
 
 #### Example: Load
@@ -508,8 +495,16 @@ Create an instance: `player = client.Player()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | `dict` |  |
-| `success` | `bool` |  |
+| `displayname` | `str` |  |
+| `firstLogin` | `int` |  |
+| `lastLogin` | `int` |  |
+| `lastLogout` | `int` |  |
+| `monthlyPackageRank` | `str` |  |
+| `newPackageRank` | `str` |  |
+| `packageRank` | `str` |  |
+| `rank` | `str` |  |
+| `stats` | `dict` |  |
+| `uuid` | `str` |  |
 
 #### Example: Load
 
@@ -535,12 +530,10 @@ Create an instance: `player_data = client.PlayerData()`
 | --- | --- | --- |
 | `date` | `int` |  |
 | `ended` | `int` |  |
-| `game_type` | `str` |  |
+| `gameType` | `str` |  |
 | `map` | `str` |  |
 | `mode` | `str` |  |
-| `session` | `dict` |  |
-| `success` | `bool` |  |
-| `uuid` | `str` |  |
+| `online` | `bool` |  |
 
 #### Example: Load
 
@@ -569,21 +562,21 @@ Create an instance: `resource = client.Resource()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | `dict` |  |
-| `challenge` | `dict` |  |
-| `game` | `dict` |  |
-| `last_updated` | `int` |  |
+| `databaseName` | `str` |  |
+| `id` | `int` |  |
+| `lastUpdated` | `int` |  |
+| `modeNames` | `dict` |  |
+| `name` | `str` |  |
 | `one_time` | `dict` |  |
-| `quest` | `dict` |  |
-| `rarity` | `dict` |  |
+| `rarities` | `dict` |  |
 | `success` | `bool` |  |
 | `tiered` | `dict` |  |
-| `type` | `dict` |  |
+| `types` | `dict` |  |
 
 #### Example: Load
 
 ```python
-resource = client.Resource().load()
+resource = client.Resource().load({"id": 1})
 ```
 
 
@@ -602,54 +595,49 @@ Create an instance: `sky_block = client.SkyBlock()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | `list` |  |
 | `auctioneer` | `str` |  |
-| `bid` | `list` |  |
+| `auctions` | `list` |  |
+| `bids` | `list` |  |
 | `category` | `str` |  |
 | `claimed` | `bool` |  |
-| `claimed_bidder` | `list` |  |
-| `collection` | `dict` |  |
+| `claimed_bidders` | `list` |  |
 | `color` | `str` |  |
 | `coop` | `list` |  |
 | `current` | `dict` |  |
 | `end` | `int` |  |
-| `event` | `list` |  |
+| `events` | `list` |  |
 | `extra` | `str` |  |
-| `full_lore` | `list` |  |
-| `garden` | `dict` |  |
+| `fullLore` | `list` |  |
 | `highest_bid_amount` | `int` |  |
 | `id` | `str` |  |
 | `item` | `dict` |  |
-| `item_byte` | `dict` |  |
+| `item_bytes` | `dict` |  |
 | `item_lore` | `str` |  |
 | `item_name` | `str` |  |
-| `last_updated` | `int` |  |
+| `lastUpdated` | `int` |  |
 | `link` | `str` |  |
 | `lore` | `str` |  |
 | `material` | `str` |  |
 | `mayor` | `dict` |  |
-| `member` | `dict` |  |
 | `name` | `str` |  |
 | `npc_sell_price` | `float` |  |
 | `page` | `int` |  |
-| `product` | `dict` |  |
-| `profile` | `dict` |  |
 | `profile_id` | `str` |  |
+| `profiles` | `list` |  |
 | `progress` | `int` |  |
-| `required_amount` | `int` |  |
-| `sale` | `list` |  |
-| `skill` | `dict` |  |
+| `requiredAmount` | `int` |  |
+| `sales` | `list` |  |
 | `start` | `int` |  |
 | `starting_bid` | `int` |  |
-| `stat` | `dict` |  |
+| `stats` | `dict` |  |
 | `success` | `bool` |  |
 | `text` | `str` |  |
 | `tier` | `str` |  |
+| `tiers` | `list` |  |
 | `title` | `str` |  |
-| `total_auction` | `int` |  |
-| `total_page` | `int` |  |
+| `totalAuctions` | `int` |  |
+| `totalPages` | `int` |  |
 | `uuid` | `str` |  |
-| `version` | `str` |  |
 
 #### Example: Load
 
@@ -735,15 +723,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-guild = client.Guild()
-guild.load()
+other = client.Other()
+other.list()
 
-# guild.data_get() now returns the guild data from the last load
-# guild.match_get() returns the last match criteria
+# other.data_get() now returns the other data from the last list
+# other.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

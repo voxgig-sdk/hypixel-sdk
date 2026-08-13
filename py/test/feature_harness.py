@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import HypixelControl
-from core.error import HypixelError
-from core.result import HypixelResult
-from core.spec import HypixelSpec
+from hypixel_sdk.config import make_config
+from hypixel_sdk.features import _make_feature
+from hypixel_sdk.core.control import HypixelControl
+from hypixel_sdk.core.error import HypixelError
+from hypixel_sdk.core.result import HypixelResult
+from hypixel_sdk.core.spec import HypixelSpec
 
 
 # True when this SDK was generated with the named feature.

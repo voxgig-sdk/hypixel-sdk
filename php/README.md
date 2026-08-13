@@ -37,7 +37,7 @@ $client = new HypixelSDK([
 
 ```php
 try {
-    // load() returns the bare Guild record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Guild record (throws on error).
     $guild = $client->Guild()->load();
     print_r($guild);
 } catch (\Throwable $err) {
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $guild = $client->Guild()->load();
+    $others = $client->Other()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = HypixelSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$guild = $client->Guild()->load();
-print_r($guild);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$other = $client->Other()->list();
+print_r($other);
 ```
 
 ### Use a custom fetch function
@@ -233,7 +234,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -255,8 +256,6 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `guild` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -266,7 +265,7 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `house` |  |
+| `houses` |  |
 | `success` |  |
 
 Operations: List, Load.
@@ -277,16 +276,13 @@ API path: `/v2/housing/player`
 
 | Field | Description |
 | --- | --- |
-| `booster` |  |
-| `booster_state` |  |
-| `game` |  |
-| `leaderboard` |  |
-| `player_count` |  |
-| `staff_rolling_daily` |  |
+| `boosterState` |  |
+| `boosters` |  |
+| `staff_rollingDaily` |  |
 | `staff_total` |  |
 | `success` |  |
-| `watchdog_last_minute` |  |
-| `watchdog_rolling_daily` |  |
+| `watchdog_lastMinute` |  |
+| `watchdog_rollingDaily` |  |
 | `watchdog_total` |  |
 
 Operations: List, Load.
@@ -297,8 +293,16 @@ API path: `/v2/boosters`
 
 | Field | Description |
 | --- | --- |
-| `player` |  |
-| `success` |  |
+| `displayname` |  |
+| `firstLogin` |  |
+| `lastLogin` |  |
+| `lastLogout` |  |
+| `monthlyPackageRank` |  |
+| `newPackageRank` |  |
+| `packageRank` |  |
+| `rank` |  |
+| `stats` |  |
+| `uuid` |  |
 
 Operations: Load.
 
@@ -310,12 +314,10 @@ API path: `/v2/player`
 | --- | --- |
 | `date` |  |
 | `ended` |  |
-| `game_type` |  |
+| `gameType` |  |
 | `map` |  |
 | `mode` |  |
-| `session` |  |
-| `success` |  |
-| `uuid` |  |
+| `online` |  |
 
 Operations: List, Load.
 
@@ -325,16 +327,16 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `achievement` |  |
-| `challenge` |  |
-| `game` |  |
-| `last_updated` |  |
+| `databaseName` |  |
+| `id` |  |
+| `lastUpdated` |  |
+| `modeNames` |  |
+| `name` |  |
 | `one_time` |  |
-| `quest` |  |
-| `rarity` |  |
+| `rarities` |  |
 | `success` |  |
 | `tiered` |  |
-| `type` |  |
+| `types` |  |
 
 Operations: Load.
 
@@ -344,54 +346,49 @@ API path: `/v2/resources/achievements`
 
 | Field | Description |
 | --- | --- |
-| `auction` |  |
 | `auctioneer` |  |
-| `bid` |  |
+| `auctions` |  |
+| `bids` |  |
 | `category` |  |
 | `claimed` |  |
-| `claimed_bidder` |  |
-| `collection` |  |
+| `claimed_bidders` |  |
 | `color` |  |
 | `coop` |  |
 | `current` |  |
 | `end` |  |
-| `event` |  |
+| `events` |  |
 | `extra` |  |
-| `full_lore` |  |
-| `garden` |  |
+| `fullLore` |  |
 | `highest_bid_amount` |  |
 | `id` |  |
 | `item` |  |
-| `item_byte` |  |
+| `item_bytes` |  |
 | `item_lore` |  |
 | `item_name` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `link` |  |
 | `lore` |  |
 | `material` |  |
 | `mayor` |  |
-| `member` |  |
 | `name` |  |
 | `npc_sell_price` |  |
 | `page` |  |
-| `product` |  |
-| `profile` |  |
 | `profile_id` |  |
+| `profiles` |  |
 | `progress` |  |
-| `required_amount` |  |
-| `sale` |  |
-| `skill` |  |
+| `requiredAmount` |  |
+| `sales` |  |
 | `start` |  |
 | `starting_bid` |  |
-| `stat` |  |
+| `stats` |  |
 | `success` |  |
 | `text` |  |
 | `tier` |  |
+| `tiers` |  |
 | `title` |  |
-| `total_auction` |  |
-| `total_page` |  |
+| `totalAuctions` |  |
+| `totalPages` |  |
 | `uuid` |  |
-| `version` |  |
 
 Operations: List, Load.
 
@@ -412,17 +409,10 @@ Create an instance: `$guild = $client->Guild();`
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `guild` | `array` |  |
-| `success` | `bool` |  |
-
 #### Example: Load
 
 ```php
-// load() returns the bare Guild record (throws on error).
+// load() returns the ENTITY — call data_get() for the Guild record (throws on error).
 $guild = $client->Guild()->load();
 ```
 
@@ -442,13 +432,13 @@ Create an instance: `$housing = $client->Housing();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | `array` |  |
+| `houses` | `array` |  |
 | `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Housing record (throws on error).
+// load() returns the ENTITY — call data_get() for the Housing record (throws on error).
 $housing = $client->Housing()->load();
 ```
 
@@ -475,22 +465,19 @@ Create an instance: `$other = $client->Other();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | `array` |  |
-| `booster_state` | `array` |  |
-| `game` | `array` |  |
-| `leaderboard` | `array` |  |
-| `player_count` | `int` |  |
-| `staff_rolling_daily` | `int` |  |
+| `boosterState` | `array` |  |
+| `boosters` | `array` |  |
+| `staff_rollingDaily` | `int` |  |
 | `staff_total` | `int` |  |
 | `success` | `bool` |  |
-| `watchdog_last_minute` | `int` |  |
-| `watchdog_rolling_daily` | `int` |  |
+| `watchdog_lastMinute` | `int` |  |
+| `watchdog_rollingDaily` | `int` |  |
 | `watchdog_total` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Other record (throws on error).
+// load() returns the ENTITY — call data_get() for the Other record (throws on error).
 $other = $client->Other()->load();
 ```
 
@@ -516,13 +503,21 @@ Create an instance: `$player = $client->Player();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | `array` |  |
-| `success` | `bool` |  |
+| `displayname` | `string` |  |
+| `firstLogin` | `int` |  |
+| `lastLogin` | `int` |  |
+| `lastLogout` | `int` |  |
+| `monthlyPackageRank` | `string` |  |
+| `newPackageRank` | `string` |  |
+| `packageRank` | `string` |  |
+| `rank` | `string` |  |
+| `stats` | `array` |  |
+| `uuid` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Player record (throws on error).
+// load() returns the ENTITY — call data_get() for the Player record (throws on error).
 $player = $client->Player()->load();
 ```
 
@@ -544,17 +539,15 @@ Create an instance: `$player_data = $client->PlayerData();`
 | --- | --- | --- |
 | `date` | `int` |  |
 | `ended` | `int` |  |
-| `game_type` | `string` |  |
+| `gameType` | `string` |  |
 | `map` | `string` |  |
 | `mode` | `string` |  |
-| `session` | `array` |  |
-| `success` | `bool` |  |
-| `uuid` | `string` |  |
+| `online` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare PlayerData record (throws on error).
+// load() returns the ENTITY — call data_get() for the PlayerData record (throws on error).
 $player_data = $client->PlayerData()->load();
 ```
 
@@ -580,22 +573,22 @@ Create an instance: `$resource = $client->Resource();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | `array` |  |
-| `challenge` | `array` |  |
-| `game` | `array` |  |
-| `last_updated` | `int` |  |
+| `databaseName` | `string` |  |
+| `id` | `int` |  |
+| `lastUpdated` | `int` |  |
+| `modeNames` | `array` |  |
+| `name` | `string` |  |
 | `one_time` | `array` |  |
-| `quest` | `array` |  |
-| `rarity` | `array` |  |
+| `rarities` | `array` |  |
 | `success` | `bool` |  |
 | `tiered` | `array` |  |
-| `type` | `array` |  |
+| `types` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Resource record (throws on error).
-$resource = $client->Resource()->load();
+// load() returns the ENTITY — call data_get() for the Resource record (throws on error).
+$resource = $client->Resource()->load(["id" => 1]);
 ```
 
 
@@ -614,59 +607,54 @@ Create an instance: `$sky_block = $client->SkyBlock();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | `array` |  |
 | `auctioneer` | `string` |  |
-| `bid` | `array` |  |
+| `auctions` | `array` |  |
+| `bids` | `array` |  |
 | `category` | `string` |  |
 | `claimed` | `bool` |  |
-| `claimed_bidder` | `array` |  |
-| `collection` | `array` |  |
+| `claimed_bidders` | `array` |  |
 | `color` | `string` |  |
 | `coop` | `array` |  |
 | `current` | `array` |  |
 | `end` | `int` |  |
-| `event` | `array` |  |
+| `events` | `array` |  |
 | `extra` | `string` |  |
-| `full_lore` | `array` |  |
-| `garden` | `array` |  |
+| `fullLore` | `array` |  |
 | `highest_bid_amount` | `int` |  |
 | `id` | `string` |  |
 | `item` | `array` |  |
-| `item_byte` | `array` |  |
+| `item_bytes` | `array` |  |
 | `item_lore` | `string` |  |
 | `item_name` | `string` |  |
-| `last_updated` | `int` |  |
+| `lastUpdated` | `int` |  |
 | `link` | `string` |  |
 | `lore` | `string` |  |
 | `material` | `string` |  |
 | `mayor` | `array` |  |
-| `member` | `array` |  |
 | `name` | `string` |  |
 | `npc_sell_price` | `float` |  |
 | `page` | `int` |  |
-| `product` | `array` |  |
-| `profile` | `array` |  |
 | `profile_id` | `string` |  |
+| `profiles` | `array` |  |
 | `progress` | `int` |  |
-| `required_amount` | `int` |  |
-| `sale` | `array` |  |
-| `skill` | `array` |  |
+| `requiredAmount` | `int` |  |
+| `sales` | `array` |  |
 | `start` | `int` |  |
 | `starting_bid` | `int` |  |
-| `stat` | `array` |  |
+| `stats` | `array` |  |
 | `success` | `bool` |  |
 | `text` | `string` |  |
 | `tier` | `string` |  |
+| `tiers` | `array` |  |
 | `title` | `string` |  |
-| `total_auction` | `int` |  |
-| `total_page` | `int` |  |
+| `totalAuctions` | `int` |  |
+| `totalPages` | `int` |  |
 | `uuid` | `string` |  |
-| `version` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare SkyBlock record (throws on error).
+// load() returns the ENTITY — call data_get() for the SkyBlock record (throws on error).
 $sky_block = $client->SkyBlock()->load(["id" => "sky_block_id"]);
 ```
 
@@ -750,15 +738,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$guild = $client->Guild();
-$guild->load();
+$other = $client->Other();
+$other->list();
 
-// $guild->data_get() now returns the guild data from the last load
-// $guild->match_get() returns the last match criteria
+// $other->data_get() now returns the other data from the last list
+// $other->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

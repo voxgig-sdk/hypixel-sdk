@@ -97,7 +97,7 @@ class SkyBlockEntityTest extends TestCase
             "id" => $sky_block_ref01_data["id"],
         ];
         $sky_block_ref01_data_dt0_loaded = $sky_block_ref01_ent->load($sky_block_ref01_match_dt0, null);
-        $sky_block_ref01_data_dt0_load_result = Helpers::to_map($sky_block_ref01_data_dt0_loaded);
+        $sky_block_ref01_data_dt0_load_result = Helpers::to_map(is_object($sky_block_ref01_data_dt0_loaded) && method_exists($sky_block_ref01_data_dt0_loaded, 'data_get') ? $sky_block_ref01_data_dt0_loaded->data_get() : $sky_block_ref01_data_dt0_loaded);
         $this->assertNotNull($sky_block_ref01_data_dt0_load_result);
         $this->assertEquals($sky_block_ref01_data_dt0_load_result["id"], $sky_block_ref01_data["id"]);
 

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ HypixelUtility.registrar = ->(u) {
   u.prepare_params = HypixelUtilities::PrepareParams
   u.prepare_path = HypixelUtilities::PreparePath
   u.prepare_query = HypixelUtilities::PrepareQuery
+  u.graphql_body = HypixelUtilities::GraphqlBody
+  u.graphql_errors = HypixelUtilities::GraphqlErrors
   u.result_basic = HypixelUtilities::ResultBasic
   u.result_body = HypixelUtilities::ResultBody
   u.result_headers = HypixelUtilities::ResultHeaders

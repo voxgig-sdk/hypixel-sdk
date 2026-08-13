@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local guild, err = client:Guild():load()
+local others, err = client:Other():list()
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Guild():load()
+local result, err = client:Other():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -237,8 +237,6 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `guild` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -248,7 +246,7 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `house` |  |
+| `houses` |  |
 | `success` |  |
 
 Operations: List, Load.
@@ -259,16 +257,13 @@ API path: `/v2/housing/player`
 
 | Field | Description |
 | --- | --- |
-| `booster` |  |
-| `booster_state` |  |
-| `game` |  |
-| `leaderboard` |  |
-| `player_count` |  |
-| `staff_rolling_daily` |  |
+| `boosterState` |  |
+| `boosters` |  |
+| `staff_rollingDaily` |  |
 | `staff_total` |  |
 | `success` |  |
-| `watchdog_last_minute` |  |
-| `watchdog_rolling_daily` |  |
+| `watchdog_lastMinute` |  |
+| `watchdog_rollingDaily` |  |
 | `watchdog_total` |  |
 
 Operations: List, Load.
@@ -279,8 +274,16 @@ API path: `/v2/boosters`
 
 | Field | Description |
 | --- | --- |
-| `player` |  |
-| `success` |  |
+| `displayname` |  |
+| `firstLogin` |  |
+| `lastLogin` |  |
+| `lastLogout` |  |
+| `monthlyPackageRank` |  |
+| `newPackageRank` |  |
+| `packageRank` |  |
+| `rank` |  |
+| `stats` |  |
+| `uuid` |  |
 
 Operations: Load.
 
@@ -292,12 +295,10 @@ API path: `/v2/player`
 | --- | --- |
 | `date` |  |
 | `ended` |  |
-| `game_type` |  |
+| `gameType` |  |
 | `map` |  |
 | `mode` |  |
-| `session` |  |
-| `success` |  |
-| `uuid` |  |
+| `online` |  |
 
 Operations: List, Load.
 
@@ -307,16 +308,16 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `achievement` |  |
-| `challenge` |  |
-| `game` |  |
-| `last_updated` |  |
+| `databaseName` |  |
+| `id` |  |
+| `lastUpdated` |  |
+| `modeNames` |  |
+| `name` |  |
 | `one_time` |  |
-| `quest` |  |
-| `rarity` |  |
+| `rarities` |  |
 | `success` |  |
 | `tiered` |  |
-| `type` |  |
+| `types` |  |
 
 Operations: Load.
 
@@ -326,54 +327,49 @@ API path: `/v2/resources/achievements`
 
 | Field | Description |
 | --- | --- |
-| `auction` |  |
 | `auctioneer` |  |
-| `bid` |  |
+| `auctions` |  |
+| `bids` |  |
 | `category` |  |
 | `claimed` |  |
-| `claimed_bidder` |  |
-| `collection` |  |
+| `claimed_bidders` |  |
 | `color` |  |
 | `coop` |  |
 | `current` |  |
 | `end` |  |
-| `event` |  |
+| `events` |  |
 | `extra` |  |
-| `full_lore` |  |
-| `garden` |  |
+| `fullLore` |  |
 | `highest_bid_amount` |  |
 | `id` |  |
 | `item` |  |
-| `item_byte` |  |
+| `item_bytes` |  |
 | `item_lore` |  |
 | `item_name` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `link` |  |
 | `lore` |  |
 | `material` |  |
 | `mayor` |  |
-| `member` |  |
 | `name` |  |
 | `npc_sell_price` |  |
 | `page` |  |
-| `product` |  |
-| `profile` |  |
 | `profile_id` |  |
+| `profiles` |  |
 | `progress` |  |
-| `required_amount` |  |
-| `sale` |  |
-| `skill` |  |
+| `requiredAmount` |  |
+| `sales` |  |
 | `start` |  |
 | `starting_bid` |  |
-| `stat` |  |
+| `stats` |  |
 | `success` |  |
 | `text` |  |
 | `tier` |  |
+| `tiers` |  |
 | `title` |  |
-| `total_auction` |  |
-| `total_page` |  |
+| `totalAuctions` |  |
+| `totalPages` |  |
 | `uuid` |  |
-| `version` |  |
 
 Operations: List, Load.
 
@@ -393,13 +389,6 @@ Create an instance: `local guild = client:Guild(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `guild` | `table` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -423,7 +412,7 @@ Create an instance: `local housing = client:Housing(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | `table` |  |
+| `houses` | `table` |  |
 | `success` | `boolean` |  |
 
 #### Example: Load
@@ -454,16 +443,13 @@ Create an instance: `local other = client:Other(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | `table` |  |
-| `booster_state` | `table` |  |
-| `game` | `table` |  |
-| `leaderboard` | `table` |  |
-| `player_count` | `number` |  |
-| `staff_rolling_daily` | `number` |  |
+| `boosterState` | `table` |  |
+| `boosters` | `table` |  |
+| `staff_rollingDaily` | `number` |  |
 | `staff_total` | `number` |  |
 | `success` | `boolean` |  |
-| `watchdog_last_minute` | `number` |  |
-| `watchdog_rolling_daily` | `number` |  |
+| `watchdog_lastMinute` | `number` |  |
+| `watchdog_rollingDaily` | `number` |  |
 | `watchdog_total` | `number` |  |
 
 #### Example: Load
@@ -493,8 +479,16 @@ Create an instance: `local player = client:Player(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | `table` |  |
-| `success` | `boolean` |  |
+| `displayname` | `string` |  |
+| `firstLogin` | `number` |  |
+| `lastLogin` | `number` |  |
+| `lastLogout` | `number` |  |
+| `monthlyPackageRank` | `string` |  |
+| `newPackageRank` | `string` |  |
+| `packageRank` | `string` |  |
+| `rank` | `string` |  |
+| `stats` | `table` |  |
+| `uuid` | `string` |  |
 
 #### Example: Load
 
@@ -520,12 +514,10 @@ Create an instance: `local player_data = client:PlayerData(nil)`
 | --- | --- | --- |
 | `date` | `number` |  |
 | `ended` | `number` |  |
-| `game_type` | `string` |  |
+| `gameType` | `string` |  |
 | `map` | `string` |  |
 | `mode` | `string` |  |
-| `session` | `table` |  |
-| `success` | `boolean` |  |
-| `uuid` | `string` |  |
+| `online` | `boolean` |  |
 
 #### Example: Load
 
@@ -554,21 +546,21 @@ Create an instance: `local resource = client:Resource(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | `table` |  |
-| `challenge` | `table` |  |
-| `game` | `table` |  |
-| `last_updated` | `number` |  |
+| `databaseName` | `string` |  |
+| `id` | `number` |  |
+| `lastUpdated` | `number` |  |
+| `modeNames` | `table` |  |
+| `name` | `string` |  |
 | `one_time` | `table` |  |
-| `quest` | `table` |  |
-| `rarity` | `table` |  |
+| `rarities` | `table` |  |
 | `success` | `boolean` |  |
 | `tiered` | `table` |  |
-| `type` | `table` |  |
+| `types` | `table` |  |
 
 #### Example: Load
 
 ```lua
-local resource, err = client:Resource():load()
+local resource, err = client:Resource():load({ id = 1 })
 ```
 
 
@@ -587,54 +579,49 @@ Create an instance: `local sky_block = client:SkyBlock(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | `table` |  |
 | `auctioneer` | `string` |  |
-| `bid` | `table` |  |
+| `auctions` | `table` |  |
+| `bids` | `table` |  |
 | `category` | `string` |  |
 | `claimed` | `boolean` |  |
-| `claimed_bidder` | `table` |  |
-| `collection` | `table` |  |
+| `claimed_bidders` | `table` |  |
 | `color` | `string` |  |
 | `coop` | `table` |  |
 | `current` | `table` |  |
 | `end` | `number` |  |
-| `event` | `table` |  |
+| `events` | `table` |  |
 | `extra` | `string` |  |
-| `full_lore` | `table` |  |
-| `garden` | `table` |  |
+| `fullLore` | `table` |  |
 | `highest_bid_amount` | `number` |  |
 | `id` | `string` |  |
 | `item` | `table` |  |
-| `item_byte` | `table` |  |
+| `item_bytes` | `table` |  |
 | `item_lore` | `string` |  |
 | `item_name` | `string` |  |
-| `last_updated` | `number` |  |
+| `lastUpdated` | `number` |  |
 | `link` | `string` |  |
 | `lore` | `string` |  |
 | `material` | `string` |  |
 | `mayor` | `table` |  |
-| `member` | `table` |  |
 | `name` | `string` |  |
 | `npc_sell_price` | `number` |  |
 | `page` | `number` |  |
-| `product` | `table` |  |
-| `profile` | `table` |  |
 | `profile_id` | `string` |  |
+| `profiles` | `table` |  |
 | `progress` | `number` |  |
-| `required_amount` | `number` |  |
-| `sale` | `table` |  |
-| `skill` | `table` |  |
+| `requiredAmount` | `number` |  |
+| `sales` | `table` |  |
 | `start` | `number` |  |
 | `starting_bid` | `number` |  |
-| `stat` | `table` |  |
+| `stats` | `table` |  |
 | `success` | `boolean` |  |
 | `text` | `string` |  |
 | `tier` | `string` |  |
+| `tiers` | `table` |  |
 | `title` | `string` |  |
-| `total_auction` | `number` |  |
-| `total_page` | `number` |  |
+| `totalAuctions` | `number` |  |
+| `totalPages` | `number` |  |
 | `uuid` | `string` |  |
-| `version` | `string` |  |
 
 #### Example: Load
 
@@ -721,15 +708,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local guild = client:Guild()
-guild:load()
+local other = client:Other()
+other:list()
 
--- guild:data_get() now returns the guild data from the last load
--- guild:match_get() returns the last match criteria
+-- other:data_get() now returns the other data from the last list
+-- other:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

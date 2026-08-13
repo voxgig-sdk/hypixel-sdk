@@ -87,7 +87,7 @@ class SkyBlockEntityTest < Minitest::Test
       "id" => sky_block_ref01_data["id"],
     }
     sky_block_ref01_data_dt0_loaded = sky_block_ref01_ent.load(sky_block_ref01_match_dt0, nil)
-    sky_block_ref01_data_dt0_load_result = Helpers.to_map(sky_block_ref01_data_dt0_loaded)
+    sky_block_ref01_data_dt0_load_result = Helpers.to_map(sky_block_ref01_data_dt0_loaded.respond_to?(:data_get) ? sky_block_ref01_data_dt0_loaded.data_get : sky_block_ref01_data_dt0_loaded)
     assert !sky_block_ref01_data_dt0_load_result.nil?
     assert_equal sky_block_ref01_data_dt0_load_result["id"], sky_block_ref01_data["id"]
 

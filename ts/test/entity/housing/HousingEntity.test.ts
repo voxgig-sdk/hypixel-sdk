@@ -63,12 +63,12 @@ describe('HousingEntity', async () => {
     const housing_ref01_ent = client.Housing()
     const housing_ref01_match: any = {}
 
-    const housing_ref01_list = await housing_ref01_ent.list(housing_ref01_match)
+    const housing_ref01_list = (await housing_ref01_ent.list(housing_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const housing_ref01_match_dt0: any = {}
-    const housing_ref01_data_dt0 = await housing_ref01_ent.load(housing_ref01_match_dt0)
+    const housing_ref01_data_dt0 = (await housing_ref01_ent.load(housing_ref01_match_dt0)).data()
     assert(null != housing_ref01_data_dt0)
 
 

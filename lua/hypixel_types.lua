@@ -7,275 +7,257 @@
 -- edit by hand.
 
 ---@class Guild
----@field guild? table
----@field success? boolean
 
 ---@class GuildLoadMatch
----@field guild? table
----@field success? boolean
 
 ---@class Housing
----@field house? table
+---@field houses? table
 ---@field success? boolean
 
 ---@class HousingLoadMatch
----@field house? table
+---@field houses? table
 ---@field success? boolean
 
 ---@class HousingListMatch
----@field house? table
+---@field houses? table
 ---@field success? boolean
 
 ---@class Other
----@field booster? table
----@field booster_state? table
----@field game? table
----@field leaderboard? table
----@field player_count? number
----@field staff_rolling_daily? number
+---@field boosterState? table
+---@field boosters? table
+---@field staff_rollingDaily? number
 ---@field staff_total? number
 ---@field success? boolean
----@field watchdog_last_minute? number
----@field watchdog_rolling_daily? number
+---@field watchdog_lastMinute? number
+---@field watchdog_rollingDaily? number
 ---@field watchdog_total? number
 
 ---@class OtherLoadMatch
----@field booster? table
----@field booster_state? table
----@field game? table
----@field leaderboard? table
----@field player_count? number
----@field staff_rolling_daily? number
+---@field boosterState? table
+---@field boosters? table
+---@field staff_rollingDaily? number
 ---@field staff_total? number
 ---@field success? boolean
----@field watchdog_last_minute? number
----@field watchdog_rolling_daily? number
+---@field watchdog_lastMinute? number
+---@field watchdog_rollingDaily? number
 ---@field watchdog_total? number
 
 ---@class OtherListMatch
----@field booster? table
----@field booster_state? table
----@field game? table
----@field leaderboard? table
----@field player_count? number
----@field staff_rolling_daily? number
+---@field boosterState? table
+---@field boosters? table
+---@field staff_rollingDaily? number
 ---@field staff_total? number
 ---@field success? boolean
----@field watchdog_last_minute? number
----@field watchdog_rolling_daily? number
+---@field watchdog_lastMinute? number
+---@field watchdog_rollingDaily? number
 ---@field watchdog_total? number
 
 ---@class Player
----@field player? table
----@field success? boolean
+---@field displayname? string
+---@field firstLogin? number
+---@field lastLogin? number
+---@field lastLogout? number
+---@field monthlyPackageRank? string
+---@field newPackageRank? string
+---@field packageRank? string
+---@field rank? string
+---@field stats? table
+---@field uuid? string
 
 ---@class PlayerLoadMatch
----@field player? table
----@field success? boolean
+---@field displayname? string
+---@field firstLogin? number
+---@field lastLogin? number
+---@field lastLogout? number
+---@field monthlyPackageRank? string
+---@field newPackageRank? string
+---@field packageRank? string
+---@field rank? string
+---@field stats? table
+---@field uuid? string
 
 ---@class PlayerData
 ---@field date? number
 ---@field ended? number
----@field game_type? string
+---@field gameType? string
 ---@field map? string
 ---@field mode? string
----@field session? table
----@field success? boolean
----@field uuid? string
+---@field online? boolean
 
 ---@class PlayerDataLoadMatch
 ---@field date? number
 ---@field ended? number
----@field game_type? string
+---@field gameType? string
 ---@field map? string
 ---@field mode? string
----@field session? table
----@field success? boolean
----@field uuid? string
+---@field online? boolean
 
 ---@class PlayerDataListMatch
 ---@field date? number
 ---@field ended? number
----@field game_type? string
+---@field gameType? string
 ---@field map? string
 ---@field mode? string
----@field session? table
----@field success? boolean
----@field uuid? string
+---@field online? boolean
 
 ---@class Resource
----@field achievement? table
----@field challenge? table
----@field game? table
----@field last_updated? number
+---@field databaseName? string
+---@field id? number
+---@field lastUpdated? number
+---@field modeNames? table
+---@field name? string
 ---@field one_time? table
----@field quest? table
----@field rarity? table
+---@field rarities? table
 ---@field success? boolean
 ---@field tiered? table
----@field type? table
+---@field types? table
 
 ---@class ResourceLoadMatch
----@field achievement? table
----@field challenge? table
----@field game? table
----@field last_updated? number
+---@field databaseName? string
+---@field id number
+---@field lastUpdated? number
+---@field modeNames? table
+---@field name? string
 ---@field one_time? table
----@field quest? table
----@field rarity? table
+---@field rarities? table
 ---@field success? boolean
 ---@field tiered? table
----@field type? table
+---@field types? table
 
 ---@class SkyBlock
----@field auction? table
 ---@field auctioneer? string
----@field bid? table
+---@field auctions? table
+---@field bids? table
 ---@field category? string
 ---@field claimed? boolean
----@field claimed_bidder? table
----@field collection? table
+---@field claimed_bidders? table
 ---@field color? string
 ---@field coop? table
 ---@field current? table
 ---@field end? number
----@field event? table
+---@field events? table
 ---@field extra? string
----@field full_lore? table
----@field garden? table
+---@field fullLore? table
 ---@field highest_bid_amount? number
 ---@field id? string
 ---@field item? table
----@field item_byte? table
+---@field item_bytes? table
 ---@field item_lore? string
 ---@field item_name? string
----@field last_updated? number
+---@field lastUpdated? number
 ---@field link? string
 ---@field lore? string
 ---@field material? string
 ---@field mayor? table
----@field member? table
 ---@field name? string
 ---@field npc_sell_price? number
 ---@field page? number
----@field product? table
----@field profile? table
 ---@field profile_id? string
+---@field profiles? table
 ---@field progress? number
----@field required_amount? number
----@field sale? table
----@field skill? table
+---@field requiredAmount? number
+---@field sales? table
 ---@field start? number
 ---@field starting_bid? number
----@field stat? table
+---@field stats? table
 ---@field success? boolean
 ---@field text? string
 ---@field tier? string
+---@field tiers? table
 ---@field title? string
----@field total_auction? number
----@field total_page? number
+---@field totalAuctions? number
+---@field totalPages? number
 ---@field uuid? string
----@field version? string
 
 ---@class SkyBlockLoadMatch
----@field auction? table
 ---@field auctioneer? string
----@field bid? table
+---@field auctions? table
+---@field bids? table
 ---@field category? string
 ---@field claimed? boolean
----@field claimed_bidder? table
----@field collection? table
+---@field claimed_bidders? table
 ---@field color? string
 ---@field coop? table
 ---@field current? table
 ---@field end? number
----@field event? table
+---@field events? table
 ---@field extra? string
----@field full_lore? table
----@field garden? table
+---@field fullLore? table
 ---@field highest_bid_amount? number
 ---@field id string
 ---@field item? table
----@field item_byte? table
+---@field item_bytes? table
 ---@field item_lore? string
 ---@field item_name? string
----@field last_updated? number
+---@field lastUpdated? number
 ---@field link? string
 ---@field lore? string
 ---@field material? string
 ---@field mayor? table
----@field member? table
 ---@field name? string
 ---@field npc_sell_price? number
 ---@field page? number
----@field product? table
----@field profile? table
 ---@field profile_id? string
+---@field profiles? table
 ---@field progress? number
----@field required_amount? number
----@field sale? table
----@field skill? table
+---@field requiredAmount? number
+---@field sales? table
 ---@field start? number
 ---@field starting_bid? number
----@field stat? table
+---@field stats? table
 ---@field success? boolean
 ---@field text? string
 ---@field tier? string
+---@field tiers? table
 ---@field title? string
----@field total_auction? number
----@field total_page? number
+---@field totalAuctions? number
+---@field totalPages? number
 ---@field uuid? string
----@field version? string
 
 ---@class SkyBlockListMatch
----@field auction? table
 ---@field auctioneer? string
----@field bid? table
+---@field auctions? table
+---@field bids? table
 ---@field category? string
 ---@field claimed? boolean
----@field claimed_bidder? table
----@field collection? table
+---@field claimed_bidders? table
 ---@field color? string
 ---@field coop? table
 ---@field current? table
 ---@field end? number
----@field event? table
+---@field events? table
 ---@field extra? string
----@field full_lore? table
----@field garden? table
+---@field fullLore? table
 ---@field highest_bid_amount? number
 ---@field id? string
 ---@field item? table
----@field item_byte? table
+---@field item_bytes? table
 ---@field item_lore? string
 ---@field item_name? string
----@field last_updated? number
+---@field lastUpdated? number
 ---@field link? string
 ---@field lore? string
 ---@field material? string
 ---@field mayor? table
----@field member? table
 ---@field name? string
 ---@field npc_sell_price? number
 ---@field page? number
----@field product? table
----@field profile? table
 ---@field profile_id? string
+---@field profiles? table
 ---@field progress? number
----@field required_amount? number
----@field sale? table
----@field skill? table
+---@field requiredAmount? number
+---@field sales? table
 ---@field start? number
 ---@field starting_bid? number
----@field stat? table
+---@field stats? table
 ---@field success? boolean
 ---@field text? string
 ---@field tier? string
+---@field tiers? table
 ---@field title? string
----@field total_auction? number
----@field total_page? number
+---@field totalAuctions? number
+---@field totalPages? number
 ---@field uuid? string
----@field version? string
 
 local M = {}
 

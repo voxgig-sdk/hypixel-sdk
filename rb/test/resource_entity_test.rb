@@ -41,9 +41,13 @@ class ResourceEntityTest < Minitest::Test
 
     # LOAD
     resource_ref01_ent = client.Resource(nil)
-    resource_ref01_match_dt0 = {}
+    resource_ref01_match_dt0 = {
+      "id" => resource_ref01_data["id"],
+    }
     resource_ref01_data_dt0_loaded = resource_ref01_ent.load(resource_ref01_match_dt0, nil)
-    assert !resource_ref01_data_dt0_loaded.nil?
+    resource_ref01_data_dt0_load_result = Helpers.to_map(resource_ref01_data_dt0_loaded.respond_to?(:data_get) ? resource_ref01_data_dt0_loaded.data_get : resource_ref01_data_dt0_loaded)
+    assert !resource_ref01_data_dt0_load_result.nil?
+    assert_equal resource_ref01_data_dt0_load_result["id"], resource_ref01_data["id"]
 
   end
 end

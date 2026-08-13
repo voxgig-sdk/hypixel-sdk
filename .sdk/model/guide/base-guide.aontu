@@ -16,14 +16,17 @@ guide: {
     path: "/v2/housing/house": {
       action: "house": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.house`")|top
     }
     path: "/v2/housing/houses": {
       action: "house": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.houses`")|top
     }
     path: "/v2/housing/player": {
       action: "player": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.houses`")|top
     }
   }
 
@@ -33,9 +36,11 @@ guide: {
     }
     path: "/v2/counts": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.games`")|top
     }
     path: "/v2/leaderboards": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.leaderboards`")|top
     }
     path: "/v2/punishmentstats": {
       op: load: method: *GET
@@ -52,9 +57,11 @@ guide: {
   entity: player_data: {
     path: "/v2/recentgames": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.games`")|top
     }
     path: "/v2/status": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.session`")|top
     }
   }
 
@@ -62,14 +69,17 @@ guide: {
     path: "/v2/resources/achievements": {
       action: "achievement": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.achievements`")|top
     }
     path: "/v2/resources/challenges": {
       action: "challenge": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.challenges`")|top
     }
     path: "/v2/resources/games": {
       action: "game": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.games`")|top
     }
     path: "/v2/resources/guilds/achievements": {
       op: load: method: *GET
@@ -77,6 +87,7 @@ guide: {
     path: "/v2/resources/quests": {
       action: "quest": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.quests`")|top
     }
     path: "/v2/resources/vanity/companions": {
       op: load: method: *GET
@@ -89,51 +100,66 @@ guide: {
   entity: sky_block: {
     path: "/v2/resources/skyblock/bingo": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.goals`")|top
     }
     path: "/v2/resources/skyblock/collections": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.collections`")|top
     }
     path: "/v2/resources/skyblock/election": {
       op: load: method: *GET
     }
     path: "/v2/resources/skyblock/items": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
     path: "/v2/resources/skyblock/skills": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.skills`")|top
     }
     path: "/v2/skyblock/auction": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.auctions`")|top
     }
     path: "/v2/skyblock/auctions": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.auctions`")|top
     }
     path: "/v2/skyblock/auctions_ended": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.auctions`")|top
     }
     path: "/v2/skyblock/bazaar": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.products`")|top
     }
     path: "/v2/skyblock/bingo": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.events`")|top
     }
     path: "/v2/skyblock/firesales": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.sales`")|top
     }
     path: "/v2/skyblock/garden": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.garden`")|top
     }
     path: "/v2/skyblock/museum": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.members`")|top
     }
     path: "/v2/skyblock/news": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
     path: "/v2/skyblock/profile": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.profile`")|top
     }
     path: "/v2/skyblock/profiles": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.profiles`")|top
     }
   }
 

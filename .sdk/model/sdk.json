@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,26 +22,14 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "guild": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "guild",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
-            }
-          ],
+          "fields": [],
           "name": "guild",
           "op": {
             "load": {
@@ -74,6 +66,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/guild",
                   "parts": [
@@ -107,9 +100,9 @@
           "fields": [
             {
               "active": true,
-              "name": "house",
+              "name": "houses",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -138,6 +131,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/housing/player",
                   "parts": [
@@ -153,12 +147,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.houses`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/housing/houses",
                   "parts": [
@@ -171,7 +166,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.houses`"
                   }
                 }
               ]
@@ -194,6 +189,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/housing/house",
                   "parts": [
@@ -209,7 +205,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.house`"
                   }
                 }
               ]
@@ -227,37 +223,19 @@
           "fields": [
             {
               "active": true,
-              "name": "booster",
+              "name": "boosterState",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "boosters",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "booster_state",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "game",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "leaderboard",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "player_count",
-              "req": false,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "staff_rolling_daily",
+              "name": "staff_rollingDaily",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -275,13 +253,13 @@
             },
             {
               "active": true,
-              "name": "watchdog_last_minute",
+              "name": "watchdog_lastMinute",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "watchdog_rolling_daily",
+              "name": "watchdog_rollingDaily",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -301,6 +279,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/boosters",
                   "parts": [
@@ -322,6 +301,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/counts",
                   "parts": [
@@ -331,12 +311,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.games`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/leaderboards",
                   "parts": [
@@ -346,12 +327,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.leaderboards`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/punishmentstats",
                   "parts": [
@@ -379,15 +361,63 @@
           "fields": [
             {
               "active": true,
-              "name": "player",
+              "name": "displayname",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "firstLogin",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "lastLogin",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "lastLogout",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "monthlyPackageRank",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "newPackageRank",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "packageRank",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "rank",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "stats",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "success",
+              "name": "uuid",
               "req": false,
-              "type": "`$BOOLEAN`"
+              "type": "`$STRING`"
             }
           ],
           "name": "player",
@@ -410,6 +440,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/player",
                   "parts": [
@@ -453,7 +484,7 @@
             },
             {
               "active": true,
-              "name": "game_type",
+              "name": "gameType",
               "req": false,
               "type": "`$STRING`"
             },
@@ -471,21 +502,9 @@
             },
             {
               "active": true,
-              "name": "session",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "success",
+              "name": "online",
               "req": false,
               "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "uuid",
-              "req": false,
-              "type": "`$STRING`"
             }
           ],
           "name": "player_data",
@@ -508,6 +527,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/recentgames",
                   "parts": [
@@ -521,7 +541,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.games`"
                   }
                 }
               ]
@@ -544,6 +564,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/status",
                   "parts": [
@@ -557,7 +578,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.session`"
                   }
                 }
               ]
@@ -575,27 +596,33 @@
           "fields": [
             {
               "active": true,
-              "name": "achievement",
+              "name": "databaseName",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "challenge",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "game",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "last_updated",
+              "name": "id",
               "req": false,
               "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "lastUpdated",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "modeNames",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -605,13 +632,7 @@
             },
             {
               "active": true,
-              "name": "quest",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "rarity",
+              "name": "rarities",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -629,11 +650,15 @@
             },
             {
               "active": true,
-              "name": "type",
+              "name": "types",
               "req": false,
               "type": "`$OBJECT`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "resource",
           "op": {
             "load": {
@@ -643,6 +668,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/achievements",
                   "parts": [
@@ -655,12 +681,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.achievements`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/challenges",
                   "parts": [
@@ -673,12 +700,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.challenges`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/games",
                   "parts": [
@@ -691,12 +719,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.games`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/guilds/achievements",
                   "parts": [
@@ -714,6 +743,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/quests",
                   "parts": [
@@ -726,12 +756,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.quests`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/vanity/companions",
                   "parts": [
@@ -749,6 +780,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/vanity/pets",
                   "parts": [
@@ -778,19 +810,19 @@
           "fields": [
             {
               "active": true,
-              "name": "auction",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "auctioneer",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "bid",
+              "name": "auctions",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "bids",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -808,15 +840,9 @@
             },
             {
               "active": true,
-              "name": "claimed_bidder",
+              "name": "claimed_bidders",
               "req": false,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "collection",
-              "req": false,
-              "type": "`$OBJECT`"
             },
             {
               "active": true,
@@ -844,7 +870,7 @@
             },
             {
               "active": true,
-              "name": "event",
+              "name": "events",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -856,15 +882,9 @@
             },
             {
               "active": true,
-              "name": "full_lore",
+              "name": "fullLore",
               "req": false,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "garden",
-              "req": false,
-              "type": "`$OBJECT`"
             },
             {
               "active": true,
@@ -886,7 +906,7 @@
             },
             {
               "active": true,
-              "name": "item_byte",
+              "name": "item_bytes",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -904,7 +924,7 @@
             },
             {
               "active": true,
-              "name": "last_updated",
+              "name": "lastUpdated",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -934,12 +954,6 @@
             },
             {
               "active": true,
-              "name": "member",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "name",
               "req": false,
               "type": "`$STRING`"
@@ -958,21 +972,15 @@
             },
             {
               "active": true,
-              "name": "product",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "profile",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "profile_id",
               "req": false,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "profiles",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -982,21 +990,15 @@
             },
             {
               "active": true,
-              "name": "required_amount",
+              "name": "requiredAmount",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "sale",
+              "name": "sales",
               "req": false,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "skill",
-              "req": false,
-              "type": "`$OBJECT`"
             },
             {
               "active": true,
@@ -1012,7 +1014,7 @@
             },
             {
               "active": true,
-              "name": "stat",
+              "name": "stats",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -1036,31 +1038,31 @@
             },
             {
               "active": true,
+              "name": "tiers",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
               "name": "title",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "total_auction",
+              "name": "totalAuctions",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "total_page",
+              "name": "totalPages",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "uuid",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "version",
               "req": false,
               "type": "`$STRING`"
             }
@@ -1105,6 +1107,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/auction",
                   "parts": [
@@ -1121,7 +1124,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.auctions`"
                   }
                 },
                 {
@@ -1139,6 +1142,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/auctions",
                   "parts": [
@@ -1153,7 +1157,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.auctions`"
                   }
                 },
                 {
@@ -1170,6 +1174,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/bingo",
                   "parts": [
@@ -1184,7 +1189,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.events`"
                   }
                 },
                 {
@@ -1201,6 +1206,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/profiles",
                   "parts": [
@@ -1215,12 +1221,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.profiles`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/bingo",
                   "parts": [
@@ -1232,12 +1239,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.goals`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/items",
                   "parts": [
@@ -1249,12 +1257,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/auctions_ended",
                   "parts": [
@@ -1265,12 +1274,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.auctions`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/firesales",
                   "parts": [
@@ -1281,12 +1291,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.sales`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/news",
                   "parts": [
@@ -1297,7 +1308,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -1320,6 +1331,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/garden",
                   "parts": [
@@ -1334,7 +1346,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.garden`"
                   }
                 },
                 {
@@ -1351,6 +1363,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/museum",
                   "parts": [
@@ -1365,7 +1378,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.members`"
                   }
                 },
                 {
@@ -1382,6 +1395,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/profile",
                   "parts": [
@@ -1396,12 +1410,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.profile`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/collections",
                   "parts": [
@@ -1413,12 +1428,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.collections`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/election",
                   "parts": [
@@ -1436,6 +1452,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/skills",
                   "parts": [
@@ -1447,12 +1464,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.skills`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/bazaar",
                   "parts": [
@@ -1463,7 +1481,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.products`"
                   }
                 }
               ]
@@ -1870,18 +1888,41 @@
         "website": "https://hypixel.net"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1903,22 +1944,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1957,21 +2016,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -2010,12 +2087,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -2027,10 +2109,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2052,22 +2147,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2089,13 +2202,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2107,10 +2225,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2132,13 +2263,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2155,10 +2291,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2180,13 +2329,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -2209,10 +2363,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "hypixel"
+            "goversion": "",
+            "name": "hypixel",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2234,9 +2401,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

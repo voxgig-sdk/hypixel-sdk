@@ -6,17 +6,17 @@ main: kit: entity: sky_block: {
 
   fields: [
     {
-      name: "auction"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "auctioneer"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "bid"
+      name: "auctions"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "bids"
       req: false
       type: "`$ARRAY`"
     }
@@ -31,14 +31,9 @@ main: kit: entity: sky_block: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "claimed_bidder"
+      name: "claimed_bidders"
       req: false
       type: "`$ARRAY`"
-    }
-    {
-      name: "collection"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "color"
@@ -61,7 +56,7 @@ main: kit: entity: sky_block: {
       type: "`$INTEGER`"
     }
     {
-      name: "event"
+      name: "events"
       req: false
       type: "`$ARRAY`"
     }
@@ -71,14 +66,9 @@ main: kit: entity: sky_block: {
       type: "`$STRING`"
     }
     {
-      name: "full_lore"
+      name: "fullLore"
       req: false
       type: "`$ARRAY`"
-    }
-    {
-      name: "garden"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "highest_bid_amount"
@@ -96,7 +86,7 @@ main: kit: entity: sky_block: {
       type: "`$OBJECT`"
     }
     {
-      name: "item_byte"
+      name: "item_bytes"
       req: false
       type: "`$OBJECT`"
     }
@@ -111,7 +101,7 @@ main: kit: entity: sky_block: {
       type: "`$STRING`"
     }
     {
-      name: "last_updated"
+      name: "lastUpdated"
       req: false
       type: "`$INTEGER`"
     }
@@ -136,11 +126,6 @@ main: kit: entity: sky_block: {
       type: "`$OBJECT`"
     }
     {
-      name: "member"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "name"
       req: false
       type: "`$STRING`"
@@ -156,19 +141,14 @@ main: kit: entity: sky_block: {
       type: "`$INTEGER`"
     }
     {
-      name: "product"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "profile"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "profile_id"
       req: false
       type: "`$STRING`"
+    }
+    {
+      name: "profiles"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "progress"
@@ -176,19 +156,14 @@ main: kit: entity: sky_block: {
       type: "`$INTEGER`"
     }
     {
-      name: "required_amount"
+      name: "requiredAmount"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "sale"
+      name: "sales"
       req: false
       type: "`$ARRAY`"
-    }
-    {
-      name: "skill"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "start"
@@ -201,7 +176,7 @@ main: kit: entity: sky_block: {
       type: "`$INTEGER`"
     }
     {
-      name: "stat"
+      name: "stats"
       req: false
       type: "`$OBJECT`"
     }
@@ -221,27 +196,27 @@ main: kit: entity: sky_block: {
       type: "`$STRING`"
     }
     {
+      name: "tiers"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
       name: "title"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "total_auction"
+      name: "totalAuctions"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "total_page"
+      name: "totalPages"
       req: false
       type: "`$INTEGER`"
     }
     {
       name: "uuid"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "version"
       req: false
       type: "`$STRING`"
     }
@@ -299,7 +274,7 @@ main: kit: entity: sky_block: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.auctions`"
           }
         }
         {
@@ -329,7 +304,7 @@ main: kit: entity: sky_block: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.auctions`"
           }
         }
         {
@@ -358,7 +333,7 @@ main: kit: entity: sky_block: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.events`"
           }
         }
         {
@@ -387,7 +362,7 @@ main: kit: entity: sky_block: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.profiles`"
           }
         }
         {
@@ -401,7 +376,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.goals`"
           }
         }
         {
@@ -415,7 +390,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
         {
@@ -428,7 +403,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.auctions`"
           }
         }
         {
@@ -441,7 +416,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.sales`"
           }
         }
         {
@@ -454,7 +429,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]
@@ -488,7 +463,7 @@ main: kit: entity: sky_block: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.garden`"
           }
         }
         {
@@ -517,7 +492,7 @@ main: kit: entity: sky_block: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.members`"
           }
         }
         {
@@ -546,7 +521,7 @@ main: kit: entity: sky_block: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.profile`"
           }
         }
         {
@@ -560,7 +535,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.collections`"
           }
         }
         {
@@ -588,7 +563,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.skills`"
           }
         }
         {
@@ -601,7 +576,7 @@ main: kit: entity: sky_block: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.products`"
           }
         }
       ]

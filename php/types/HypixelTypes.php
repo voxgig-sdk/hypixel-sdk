@@ -15,98 +15,101 @@ declare(strict_types=1);
 /** Guild entity data model. */
 class Guild
 {
-    public ?array $guild = null;
-    public ?bool $success = null;
 }
 
 /** Request payload for Guild#load. */
 class GuildLoadMatch
 {
-    public ?array $guild = null;
-    public ?bool $success = null;
 }
 
 /** Housing entity data model. */
 class Housing
 {
-    public ?array $house = null;
+    public ?array $houses = null;
     public ?bool $success = null;
 }
 
 /** Request payload for Housing#load. */
 class HousingLoadMatch
 {
-    public ?array $house = null;
+    public ?array $houses = null;
     public ?bool $success = null;
 }
 
 /** Request payload for Housing#list. */
 class HousingListMatch
 {
-    public ?array $house = null;
+    public ?array $houses = null;
     public ?bool $success = null;
 }
 
 /** Other entity data model. */
 class Other
 {
-    public ?array $booster = null;
-    public ?array $booster_state = null;
-    public ?array $game = null;
-    public ?array $leaderboard = null;
-    public ?int $player_count = null;
-    public ?int $staff_rolling_daily = null;
+    public ?array $boosterState = null;
+    public ?array $boosters = null;
+    public ?int $staff_rollingDaily = null;
     public ?int $staff_total = null;
     public ?bool $success = null;
-    public ?int $watchdog_last_minute = null;
-    public ?int $watchdog_rolling_daily = null;
+    public ?int $watchdog_lastMinute = null;
+    public ?int $watchdog_rollingDaily = null;
     public ?int $watchdog_total = null;
 }
 
 /** Request payload for Other#load. */
 class OtherLoadMatch
 {
-    public ?array $booster = null;
-    public ?array $booster_state = null;
-    public ?array $game = null;
-    public ?array $leaderboard = null;
-    public ?int $player_count = null;
-    public ?int $staff_rolling_daily = null;
+    public ?array $boosterState = null;
+    public ?array $boosters = null;
+    public ?int $staff_rollingDaily = null;
     public ?int $staff_total = null;
     public ?bool $success = null;
-    public ?int $watchdog_last_minute = null;
-    public ?int $watchdog_rolling_daily = null;
+    public ?int $watchdog_lastMinute = null;
+    public ?int $watchdog_rollingDaily = null;
     public ?int $watchdog_total = null;
 }
 
 /** Request payload for Other#list. */
 class OtherListMatch
 {
-    public ?array $booster = null;
-    public ?array $booster_state = null;
-    public ?array $game = null;
-    public ?array $leaderboard = null;
-    public ?int $player_count = null;
-    public ?int $staff_rolling_daily = null;
+    public ?array $boosterState = null;
+    public ?array $boosters = null;
+    public ?int $staff_rollingDaily = null;
     public ?int $staff_total = null;
     public ?bool $success = null;
-    public ?int $watchdog_last_minute = null;
-    public ?int $watchdog_rolling_daily = null;
+    public ?int $watchdog_lastMinute = null;
+    public ?int $watchdog_rollingDaily = null;
     public ?int $watchdog_total = null;
 }
 
 /** Player entity data model. */
 class Player
 {
-    public ?array $player = null;
-    public ?bool $success = null;
+    public ?string $displayname = null;
+    public ?int $firstLogin = null;
+    public ?int $lastLogin = null;
+    public ?int $lastLogout = null;
+    public ?string $monthlyPackageRank = null;
+    public ?string $newPackageRank = null;
+    public ?string $packageRank = null;
+    public ?string $rank = null;
+    public ?array $stats = null;
+    public ?string $uuid = null;
 }
 
 /** Request payload for Player#load. */
 class PlayerLoadMatch
 {
-    public ?array $player = null;
-    public ?bool $success = null;
+    public ?string $displayname = null;
+    public ?int $firstLogin = null;
+    public ?int $lastLogin = null;
+    public ?int $lastLogout = null;
+    public ?string $monthlyPackageRank = null;
+    public ?string $newPackageRank = null;
+    public ?string $packageRank = null;
+    public ?string $rank = null;
+    public ?array $stats = null;
+    public ?string $uuid = null;
 }
 
 /** PlayerData entity data model. */
@@ -114,12 +117,10 @@ class PlayerData
 {
     public ?int $date = null;
     public ?int $ended = null;
-    public ?string $game_type = null;
+    public ?string $gameType = null;
     public ?string $map = null;
     public ?string $mode = null;
-    public ?array $session = null;
-    public ?bool $success = null;
-    public ?string $uuid = null;
+    public ?bool $online = null;
 }
 
 /** Request payload for PlayerData#load. */
@@ -127,12 +128,10 @@ class PlayerDataLoadMatch
 {
     public ?int $date = null;
     public ?int $ended = null;
-    public ?string $game_type = null;
+    public ?string $gameType = null;
     public ?string $map = null;
     public ?string $mode = null;
-    public ?array $session = null;
-    public ?bool $success = null;
-    public ?string $uuid = null;
+    public ?bool $online = null;
 }
 
 /** Request payload for PlayerData#list. */
@@ -140,200 +139,183 @@ class PlayerDataListMatch
 {
     public ?int $date = null;
     public ?int $ended = null;
-    public ?string $game_type = null;
+    public ?string $gameType = null;
     public ?string $map = null;
     public ?string $mode = null;
-    public ?array $session = null;
-    public ?bool $success = null;
-    public ?string $uuid = null;
+    public ?bool $online = null;
 }
 
 /** Resource entity data model. */
 class Resource
 {
-    public ?array $achievement = null;
-    public ?array $challenge = null;
-    public ?array $game = null;
-    public ?int $last_updated = null;
+    public ?string $databaseName = null;
+    public ?int $id = null;
+    public ?int $lastUpdated = null;
+    public ?array $modeNames = null;
+    public ?string $name = null;
     public ?array $one_time = null;
-    public ?array $quest = null;
-    public ?array $rarity = null;
+    public ?array $rarities = null;
     public ?bool $success = null;
     public ?array $tiered = null;
-    public ?array $type = null;
+    public ?array $types = null;
 }
 
 /** Request payload for Resource#load. */
 class ResourceLoadMatch
 {
-    public ?array $achievement = null;
-    public ?array $challenge = null;
-    public ?array $game = null;
-    public ?int $last_updated = null;
+    public ?string $databaseName = null;
+    public int $id;
+    public ?int $lastUpdated = null;
+    public ?array $modeNames = null;
+    public ?string $name = null;
     public ?array $one_time = null;
-    public ?array $quest = null;
-    public ?array $rarity = null;
+    public ?array $rarities = null;
     public ?bool $success = null;
     public ?array $tiered = null;
-    public ?array $type = null;
+    public ?array $types = null;
 }
 
 /** SkyBlock entity data model. */
 class SkyBlock
 {
-    public ?array $auction = null;
     public ?string $auctioneer = null;
-    public ?array $bid = null;
+    public ?array $auctions = null;
+    public ?array $bids = null;
     public ?string $category = null;
     public ?bool $claimed = null;
-    public ?array $claimed_bidder = null;
-    public ?array $collection = null;
+    public ?array $claimed_bidders = null;
     public ?string $color = null;
     public ?array $coop = null;
     public ?array $current = null;
     public ?int $end = null;
-    public ?array $event = null;
+    public ?array $events = null;
     public ?string $extra = null;
-    public ?array $full_lore = null;
-    public ?array $garden = null;
+    public ?array $fullLore = null;
     public ?int $highest_bid_amount = null;
     public ?string $id = null;
     public ?array $item = null;
-    public ?array $item_byte = null;
+    public ?array $item_bytes = null;
     public ?string $item_lore = null;
     public ?string $item_name = null;
-    public ?int $last_updated = null;
+    public ?int $lastUpdated = null;
     public ?string $link = null;
     public ?string $lore = null;
     public ?string $material = null;
     public ?array $mayor = null;
-    public ?array $member = null;
     public ?string $name = null;
     public ?float $npc_sell_price = null;
     public ?int $page = null;
-    public ?array $product = null;
-    public ?array $profile = null;
     public ?string $profile_id = null;
+    public ?array $profiles = null;
     public ?int $progress = null;
-    public ?int $required_amount = null;
-    public ?array $sale = null;
-    public ?array $skill = null;
+    public ?int $requiredAmount = null;
+    public ?array $sales = null;
     public ?int $start = null;
     public ?int $starting_bid = null;
-    public ?array $stat = null;
+    public ?array $stats = null;
     public ?bool $success = null;
     public ?string $text = null;
     public ?string $tier = null;
+    public ?array $tiers = null;
     public ?string $title = null;
-    public ?int $total_auction = null;
-    public ?int $total_page = null;
+    public ?int $totalAuctions = null;
+    public ?int $totalPages = null;
     public ?string $uuid = null;
-    public ?string $version = null;
 }
 
 /** Request payload for SkyBlock#load. */
 class SkyBlockLoadMatch
 {
-    public ?array $auction = null;
     public ?string $auctioneer = null;
-    public ?array $bid = null;
+    public ?array $auctions = null;
+    public ?array $bids = null;
     public ?string $category = null;
     public ?bool $claimed = null;
-    public ?array $claimed_bidder = null;
-    public ?array $collection = null;
+    public ?array $claimed_bidders = null;
     public ?string $color = null;
     public ?array $coop = null;
     public ?array $current = null;
     public ?int $end = null;
-    public ?array $event = null;
+    public ?array $events = null;
     public ?string $extra = null;
-    public ?array $full_lore = null;
-    public ?array $garden = null;
+    public ?array $fullLore = null;
     public ?int $highest_bid_amount = null;
     public string $id;
     public ?array $item = null;
-    public ?array $item_byte = null;
+    public ?array $item_bytes = null;
     public ?string $item_lore = null;
     public ?string $item_name = null;
-    public ?int $last_updated = null;
+    public ?int $lastUpdated = null;
     public ?string $link = null;
     public ?string $lore = null;
     public ?string $material = null;
     public ?array $mayor = null;
-    public ?array $member = null;
     public ?string $name = null;
     public ?float $npc_sell_price = null;
     public ?int $page = null;
-    public ?array $product = null;
-    public ?array $profile = null;
     public ?string $profile_id = null;
+    public ?array $profiles = null;
     public ?int $progress = null;
-    public ?int $required_amount = null;
-    public ?array $sale = null;
-    public ?array $skill = null;
+    public ?int $requiredAmount = null;
+    public ?array $sales = null;
     public ?int $start = null;
     public ?int $starting_bid = null;
-    public ?array $stat = null;
+    public ?array $stats = null;
     public ?bool $success = null;
     public ?string $text = null;
     public ?string $tier = null;
+    public ?array $tiers = null;
     public ?string $title = null;
-    public ?int $total_auction = null;
-    public ?int $total_page = null;
+    public ?int $totalAuctions = null;
+    public ?int $totalPages = null;
     public ?string $uuid = null;
-    public ?string $version = null;
 }
 
 /** Request payload for SkyBlock#list. */
 class SkyBlockListMatch
 {
-    public ?array $auction = null;
     public ?string $auctioneer = null;
-    public ?array $bid = null;
+    public ?array $auctions = null;
+    public ?array $bids = null;
     public ?string $category = null;
     public ?bool $claimed = null;
-    public ?array $claimed_bidder = null;
-    public ?array $collection = null;
+    public ?array $claimed_bidders = null;
     public ?string $color = null;
     public ?array $coop = null;
     public ?array $current = null;
     public ?int $end = null;
-    public ?array $event = null;
+    public ?array $events = null;
     public ?string $extra = null;
-    public ?array $full_lore = null;
-    public ?array $garden = null;
+    public ?array $fullLore = null;
     public ?int $highest_bid_amount = null;
     public ?string $id = null;
     public ?array $item = null;
-    public ?array $item_byte = null;
+    public ?array $item_bytes = null;
     public ?string $item_lore = null;
     public ?string $item_name = null;
-    public ?int $last_updated = null;
+    public ?int $lastUpdated = null;
     public ?string $link = null;
     public ?string $lore = null;
     public ?string $material = null;
     public ?array $mayor = null;
-    public ?array $member = null;
     public ?string $name = null;
     public ?float $npc_sell_price = null;
     public ?int $page = null;
-    public ?array $product = null;
-    public ?array $profile = null;
     public ?string $profile_id = null;
+    public ?array $profiles = null;
     public ?int $progress = null;
-    public ?int $required_amount = null;
-    public ?array $sale = null;
-    public ?array $skill = null;
+    public ?int $requiredAmount = null;
+    public ?array $sales = null;
     public ?int $start = null;
     public ?int $starting_bid = null;
-    public ?array $stat = null;
+    public ?array $stats = null;
     public ?bool $success = null;
     public ?string $text = null;
     public ?string $tier = null;
+    public ?array $tiers = null;
     public ?string $title = null;
-    public ?int $total_auction = null;
-    public ?int $total_page = null;
+    public ?int $totalAuctions = null;
+    public ?int $totalPages = null;
     public ?string $uuid = null;
-    public ?string $version = null;
 }
 

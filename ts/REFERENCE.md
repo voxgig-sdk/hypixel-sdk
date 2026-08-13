@@ -185,13 +185,6 @@ Alias for `HypixelSDK.test()`.
 const guild = client.Guild()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `guild` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
-
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -240,8 +233,30 @@ const housing = client.Housing()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | `Record<string, any>` | No |  |
+| `houses` | `any[]` | No |  |
 | `success` | `boolean` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `house` | `/v2/housing/houses` | `client.Housing().list({ $action: 'house', ... })` |
+| `player` | `/v2/housing/player` | `client.Housing().list({ $action: 'player', ... })` |
+| `house` | `/v2/housing/house` | `client.Housing().load({ $action: 'house', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Housing record — check the API definition for its shape.
+
+```ts
+const result = await client.Housing().list({
+  $action: 'house',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -299,16 +314,13 @@ const other = client.Other()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | `any[]` | No |  |
-| `booster_state` | `Record<string, any>` | No |  |
-| `game` | `Record<string, any>` | No |  |
-| `leaderboard` | `Record<string, any>` | No |  |
-| `player_count` | `number` | No |  |
-| `staff_rolling_daily` | `number` | No |  |
+| `boosterState` | `Record<string, any>` | No |  |
+| `boosters` | `any[]` | No |  |
+| `staff_rollingDaily` | `number` | No |  |
 | `staff_total` | `number` | No |  |
 | `success` | `boolean` | No |  |
-| `watchdog_last_minute` | `number` | No |  |
-| `watchdog_rolling_daily` | `number` | No |  |
+| `watchdog_lastMinute` | `number` | No |  |
+| `watchdog_rollingDaily` | `number` | No |  |
 | `watchdog_total` | `number` | No |  |
 
 ### Operations
@@ -367,8 +379,16 @@ const player = client.Player()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
+| `displayname` | `string` | No |  |
+| `firstLogin` | `number` | No |  |
+| `lastLogin` | `number` | No |  |
+| `lastLogout` | `number` | No |  |
+| `monthlyPackageRank` | `string` | No |  |
+| `newPackageRank` | `string` | No |  |
+| `packageRank` | `string` | No |  |
+| `rank` | `string` | No |  |
+| `stats` | `Record<string, any>` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -420,12 +440,10 @@ const player_data = client.PlayerData()
 | --- | --- | --- | --- |
 | `date` | `number` | No |  |
 | `ended` | `number` | No |  |
-| `game_type` | `string` | No |  |
+| `gameType` | `string` | No |  |
 | `map` | `string` | No |  |
 | `mode` | `string` | No |  |
-| `session` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
-| `uuid` | `string` | No |  |
+| `online` | `boolean` | No |  |
 
 ### Operations
 
@@ -483,16 +501,39 @@ const resource = client.Resource()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | `Record<string, any>` | No |  |
-| `challenge` | `Record<string, any>` | No |  |
-| `game` | `Record<string, any>` | No |  |
-| `last_updated` | `number` | No |  |
+| `databaseName` | `string` | No |  |
+| `id` | `number` | No |  |
+| `lastUpdated` | `number` | No |  |
+| `modeNames` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
 | `one_time` | `Record<string, any>` | No |  |
-| `quest` | `Record<string, any>` | No |  |
-| `rarity` | `Record<string, any>` | No |  |
+| `rarities` | `Record<string, any>` | No |  |
 | `success` | `boolean` | No |  |
 | `tiered` | `Record<string, any>` | No |  |
-| `type` | `Record<string, any>` | No |  |
+| `types` | `Record<string, any>` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `achievement` | `/v2/resources/achievements` | `client.Resource().load({ $action: 'achievement', ... })` |
+| `challenge` | `/v2/resources/challenges` | `client.Resource().load({ $action: 'challenge', ... })` |
+| `game` | `/v2/resources/games` | `client.Resource().load({ $action: 'game', ... })` |
+| `quest` | `/v2/resources/quests` | `client.Resource().load({ $action: 'quest', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Resource record — check the API definition for its shape.
+
+```ts
+const result = await client.Resource().load({
+  $action: 'achievement',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -501,7 +542,7 @@ const resource = client.Resource()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Resource().load()
+const result = await client.Resource().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -542,54 +583,49 @@ const sky_block = client.SkyBlock()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | `any[]` | No |  |
 | `auctioneer` | `string` | No |  |
-| `bid` | `any[]` | No |  |
+| `auctions` | `any[]` | No |  |
+| `bids` | `any[]` | No |  |
 | `category` | `string` | No |  |
 | `claimed` | `boolean` | No |  |
-| `claimed_bidder` | `any[]` | No |  |
-| `collection` | `Record<string, any>` | No |  |
+| `claimed_bidders` | `any[]` | No |  |
 | `color` | `string` | No |  |
 | `coop` | `any[]` | No |  |
 | `current` | `Record<string, any>` | No |  |
 | `end` | `number` | No |  |
-| `event` | `any[]` | No |  |
+| `events` | `any[]` | No |  |
 | `extra` | `string` | No |  |
-| `full_lore` | `any[]` | No |  |
-| `garden` | `Record<string, any>` | No |  |
+| `fullLore` | `any[]` | No |  |
 | `highest_bid_amount` | `number` | No |  |
 | `id` | `string` | No |  |
 | `item` | `Record<string, any>` | No |  |
-| `item_byte` | `Record<string, any>` | No |  |
+| `item_bytes` | `Record<string, any>` | No |  |
 | `item_lore` | `string` | No |  |
 | `item_name` | `string` | No |  |
-| `last_updated` | `number` | No |  |
+| `lastUpdated` | `number` | No |  |
 | `link` | `string` | No |  |
 | `lore` | `string` | No |  |
 | `material` | `string` | No |  |
 | `mayor` | `Record<string, any>` | No |  |
-| `member` | `Record<string, any>` | No |  |
 | `name` | `string` | No |  |
 | `npc_sell_price` | `number` | No |  |
 | `page` | `number` | No |  |
-| `product` | `Record<string, any>` | No |  |
-| `profile` | `Record<string, any>` | No |  |
 | `profile_id` | `string` | No |  |
+| `profiles` | `any[]` | No |  |
 | `progress` | `number` | No |  |
-| `required_amount` | `number` | No |  |
-| `sale` | `any[]` | No |  |
-| `skill` | `Record<string, any>` | No |  |
+| `requiredAmount` | `number` | No |  |
+| `sales` | `any[]` | No |  |
 | `start` | `number` | No |  |
 | `starting_bid` | `number` | No |  |
-| `stat` | `Record<string, any>` | No |  |
+| `stats` | `Record<string, any>` | No |  |
 | `success` | `boolean` | No |  |
 | `text` | `string` | No |  |
 | `tier` | `string` | No |  |
+| `tiers` | `any[]` | No |  |
 | `title` | `string` | No |  |
-| `total_auction` | `number` | No |  |
-| `total_page` | `number` | No |  |
+| `totalAuctions` | `number` | No |  |
+| `totalPages` | `number` | No |  |
 | `uuid` | `string` | No |  |
-| `version` | `string` | No |  |
 
 ### Operations
 

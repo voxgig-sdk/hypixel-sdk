@@ -36,7 +36,7 @@ client = HypixelSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Guild record (raises on error).
+  # load returns the ENTITY — call data_get for the Guild record (raises on error).
   guild = client.Guild.load()
   puts guild
 rescue => err
@@ -51,9 +51,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  guild = client.Guild.load()
+  others = client.Other.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = HypixelSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-guild = client.Guild.load()
-puts guild
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+other = client.Other.list()
+puts other
 ```
 
 ### Use a custom fetch function
@@ -245,8 +246,6 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `guild` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -256,7 +255,7 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `house` |  |
+| `houses` |  |
 | `success` |  |
 
 Operations: List, Load.
@@ -267,16 +266,13 @@ API path: `/v2/housing/player`
 
 | Field | Description |
 | --- | --- |
-| `booster` |  |
-| `booster_state` |  |
-| `game` |  |
-| `leaderboard` |  |
-| `player_count` |  |
-| `staff_rolling_daily` |  |
+| `boosterState` |  |
+| `boosters` |  |
+| `staff_rollingDaily` |  |
 | `staff_total` |  |
 | `success` |  |
-| `watchdog_last_minute` |  |
-| `watchdog_rolling_daily` |  |
+| `watchdog_lastMinute` |  |
+| `watchdog_rollingDaily` |  |
 | `watchdog_total` |  |
 
 Operations: List, Load.
@@ -287,8 +283,16 @@ API path: `/v2/boosters`
 
 | Field | Description |
 | --- | --- |
-| `player` |  |
-| `success` |  |
+| `displayname` |  |
+| `firstLogin` |  |
+| `lastLogin` |  |
+| `lastLogout` |  |
+| `monthlyPackageRank` |  |
+| `newPackageRank` |  |
+| `packageRank` |  |
+| `rank` |  |
+| `stats` |  |
+| `uuid` |  |
 
 Operations: Load.
 
@@ -300,12 +304,10 @@ API path: `/v2/player`
 | --- | --- |
 | `date` |  |
 | `ended` |  |
-| `game_type` |  |
+| `gameType` |  |
 | `map` |  |
 | `mode` |  |
-| `session` |  |
-| `success` |  |
-| `uuid` |  |
+| `online` |  |
 
 Operations: List, Load.
 
@@ -315,16 +317,16 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `achievement` |  |
-| `challenge` |  |
-| `game` |  |
-| `last_updated` |  |
+| `databaseName` |  |
+| `id` |  |
+| `lastUpdated` |  |
+| `modeNames` |  |
+| `name` |  |
 | `one_time` |  |
-| `quest` |  |
-| `rarity` |  |
+| `rarities` |  |
 | `success` |  |
 | `tiered` |  |
-| `type` |  |
+| `types` |  |
 
 Operations: Load.
 
@@ -334,54 +336,49 @@ API path: `/v2/resources/achievements`
 
 | Field | Description |
 | --- | --- |
-| `auction` |  |
 | `auctioneer` |  |
-| `bid` |  |
+| `auctions` |  |
+| `bids` |  |
 | `category` |  |
 | `claimed` |  |
-| `claimed_bidder` |  |
-| `collection` |  |
+| `claimed_bidders` |  |
 | `color` |  |
 | `coop` |  |
 | `current` |  |
 | `end` |  |
-| `event` |  |
+| `events` |  |
 | `extra` |  |
-| `full_lore` |  |
-| `garden` |  |
+| `fullLore` |  |
 | `highest_bid_amount` |  |
 | `id` |  |
 | `item` |  |
-| `item_byte` |  |
+| `item_bytes` |  |
 | `item_lore` |  |
 | `item_name` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `link` |  |
 | `lore` |  |
 | `material` |  |
 | `mayor` |  |
-| `member` |  |
 | `name` |  |
 | `npc_sell_price` |  |
 | `page` |  |
-| `product` |  |
-| `profile` |  |
 | `profile_id` |  |
+| `profiles` |  |
 | `progress` |  |
-| `required_amount` |  |
-| `sale` |  |
-| `skill` |  |
+| `requiredAmount` |  |
+| `sales` |  |
 | `start` |  |
 | `starting_bid` |  |
-| `stat` |  |
+| `stats` |  |
 | `success` |  |
 | `text` |  |
 | `tier` |  |
+| `tiers` |  |
 | `title` |  |
-| `total_auction` |  |
-| `total_page` |  |
+| `totalAuctions` |  |
+| `totalPages` |  |
 | `uuid` |  |
-| `version` |  |
 
 Operations: List, Load.
 
@@ -402,17 +399,10 @@ Create an instance: `guild = client.Guild`
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `guild` | `Hash` |  |
-| `success` | `Boolean` |  |
-
 #### Example: Load
 
 ```ruby
-# load returns the bare Guild record (raises on error).
+# load returns the ENTITY — call data_get for the Guild record (raises on error).
 guild = client.Guild.load()
 ```
 
@@ -432,13 +422,13 @@ Create an instance: `housing = client.Housing`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | `Hash` |  |
+| `houses` | `Array` |  |
 | `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Housing record (raises on error).
+# load returns the ENTITY — call data_get for the Housing record (raises on error).
 housing = client.Housing.load()
 ```
 
@@ -465,22 +455,19 @@ Create an instance: `other = client.Other`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | `Array` |  |
-| `booster_state` | `Hash` |  |
-| `game` | `Hash` |  |
-| `leaderboard` | `Hash` |  |
-| `player_count` | `Integer` |  |
-| `staff_rolling_daily` | `Integer` |  |
+| `boosterState` | `Hash` |  |
+| `boosters` | `Array` |  |
+| `staff_rollingDaily` | `Integer` |  |
 | `staff_total` | `Integer` |  |
 | `success` | `Boolean` |  |
-| `watchdog_last_minute` | `Integer` |  |
-| `watchdog_rolling_daily` | `Integer` |  |
+| `watchdog_lastMinute` | `Integer` |  |
+| `watchdog_rollingDaily` | `Integer` |  |
 | `watchdog_total` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Other record (raises on error).
+# load returns the ENTITY — call data_get for the Other record (raises on error).
 other = client.Other.load()
 ```
 
@@ -506,13 +493,21 @@ Create an instance: `player = client.Player`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `displayname` | `String` |  |
+| `firstLogin` | `Integer` |  |
+| `lastLogin` | `Integer` |  |
+| `lastLogout` | `Integer` |  |
+| `monthlyPackageRank` | `String` |  |
+| `newPackageRank` | `String` |  |
+| `packageRank` | `String` |  |
+| `rank` | `String` |  |
+| `stats` | `Hash` |  |
+| `uuid` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Player record (raises on error).
+# load returns the ENTITY — call data_get for the Player record (raises on error).
 player = client.Player.load()
 ```
 
@@ -534,17 +529,15 @@ Create an instance: `player_data = client.PlayerData`
 | --- | --- | --- |
 | `date` | `Integer` |  |
 | `ended` | `Integer` |  |
-| `game_type` | `String` |  |
+| `gameType` | `String` |  |
 | `map` | `String` |  |
 | `mode` | `String` |  |
-| `session` | `Hash` |  |
-| `success` | `Boolean` |  |
-| `uuid` | `String` |  |
+| `online` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare PlayerData record (raises on error).
+# load returns the ENTITY — call data_get for the PlayerData record (raises on error).
 player_data = client.PlayerData.load()
 ```
 
@@ -570,22 +563,22 @@ Create an instance: `resource = client.Resource`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | `Hash` |  |
-| `challenge` | `Hash` |  |
-| `game` | `Hash` |  |
-| `last_updated` | `Integer` |  |
+| `databaseName` | `String` |  |
+| `id` | `Integer` |  |
+| `lastUpdated` | `Integer` |  |
+| `modeNames` | `Hash` |  |
+| `name` | `String` |  |
 | `one_time` | `Hash` |  |
-| `quest` | `Hash` |  |
-| `rarity` | `Hash` |  |
+| `rarities` | `Hash` |  |
 | `success` | `Boolean` |  |
 | `tiered` | `Hash` |  |
-| `type` | `Hash` |  |
+| `types` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Resource record (raises on error).
-resource = client.Resource.load()
+# load returns the ENTITY — call data_get for the Resource record (raises on error).
+resource = client.Resource.load({ "id" => 1 })
 ```
 
 
@@ -604,59 +597,54 @@ Create an instance: `sky_block = client.SkyBlock`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | `Array` |  |
 | `auctioneer` | `String` |  |
-| `bid` | `Array` |  |
+| `auctions` | `Array` |  |
+| `bids` | `Array` |  |
 | `category` | `String` |  |
 | `claimed` | `Boolean` |  |
-| `claimed_bidder` | `Array` |  |
-| `collection` | `Hash` |  |
+| `claimed_bidders` | `Array` |  |
 | `color` | `String` |  |
 | `coop` | `Array` |  |
 | `current` | `Hash` |  |
 | `end` | `Integer` |  |
-| `event` | `Array` |  |
+| `events` | `Array` |  |
 | `extra` | `String` |  |
-| `full_lore` | `Array` |  |
-| `garden` | `Hash` |  |
+| `fullLore` | `Array` |  |
 | `highest_bid_amount` | `Integer` |  |
 | `id` | `String` |  |
 | `item` | `Hash` |  |
-| `item_byte` | `Hash` |  |
+| `item_bytes` | `Hash` |  |
 | `item_lore` | `String` |  |
 | `item_name` | `String` |  |
-| `last_updated` | `Integer` |  |
+| `lastUpdated` | `Integer` |  |
 | `link` | `String` |  |
 | `lore` | `String` |  |
 | `material` | `String` |  |
 | `mayor` | `Hash` |  |
-| `member` | `Hash` |  |
 | `name` | `String` |  |
 | `npc_sell_price` | `Float` |  |
 | `page` | `Integer` |  |
-| `product` | `Hash` |  |
-| `profile` | `Hash` |  |
 | `profile_id` | `String` |  |
+| `profiles` | `Array` |  |
 | `progress` | `Integer` |  |
-| `required_amount` | `Integer` |  |
-| `sale` | `Array` |  |
-| `skill` | `Hash` |  |
+| `requiredAmount` | `Integer` |  |
+| `sales` | `Array` |  |
 | `start` | `Integer` |  |
 | `starting_bid` | `Integer` |  |
-| `stat` | `Hash` |  |
+| `stats` | `Hash` |  |
 | `success` | `Boolean` |  |
 | `text` | `String` |  |
 | `tier` | `String` |  |
+| `tiers` | `Array` |  |
 | `title` | `String` |  |
-| `total_auction` | `Integer` |  |
-| `total_page` | `Integer` |  |
+| `totalAuctions` | `Integer` |  |
+| `totalPages` | `Integer` |  |
 | `uuid` | `String` |  |
-| `version` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare SkyBlock record (raises on error).
+# load returns the ENTITY — call data_get for the SkyBlock record (raises on error).
 sky_block = client.SkyBlock.load({ "id" => "sky_block_id" })
 ```
 
@@ -740,15 +728,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-guild = client.Guild
-guild.load()
+other = client.Other
+other.list()
 
-# guild.data_get now returns the guild data from the last load
-# guild.match_get returns the last match criteria
+# other.data_get now returns the other data from the last list
+# other.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

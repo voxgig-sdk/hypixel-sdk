@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-guild, err := client.Guild(nil).Load(nil, nil)
+others, err := client.Other(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = guild
+_ = others
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-guild, err := client.Guild(nil).Load(
+other, err := client.Other(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(guild) // the returned mock data
+fmt.Println(other) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -271,8 +271,6 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"guild"` |  |
-| `"success"` |  |
 
 Operations: Load.
 
@@ -282,7 +280,7 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `"house"` |  |
+| `"houses"` |  |
 | `"success"` |  |
 
 Operations: List, Load.
@@ -293,16 +291,13 @@ API path: `/v2/housing/player`
 
 | Field | Description |
 | --- | --- |
-| `"booster"` |  |
-| `"booster_state"` |  |
-| `"game"` |  |
-| `"leaderboard"` |  |
-| `"player_count"` |  |
-| `"staff_rolling_daily"` |  |
+| `"boosterState"` |  |
+| `"boosters"` |  |
+| `"staff_rollingDaily"` |  |
 | `"staff_total"` |  |
 | `"success"` |  |
-| `"watchdog_last_minute"` |  |
-| `"watchdog_rolling_daily"` |  |
+| `"watchdog_lastMinute"` |  |
+| `"watchdog_rollingDaily"` |  |
 | `"watchdog_total"` |  |
 
 Operations: List, Load.
@@ -313,8 +308,16 @@ API path: `/v2/boosters`
 
 | Field | Description |
 | --- | --- |
-| `"player"` |  |
-| `"success"` |  |
+| `"displayname"` |  |
+| `"firstLogin"` |  |
+| `"lastLogin"` |  |
+| `"lastLogout"` |  |
+| `"monthlyPackageRank"` |  |
+| `"newPackageRank"` |  |
+| `"packageRank"` |  |
+| `"rank"` |  |
+| `"stats"` |  |
+| `"uuid"` |  |
 
 Operations: Load.
 
@@ -326,12 +329,10 @@ API path: `/v2/player`
 | --- | --- |
 | `"date"` |  |
 | `"ended"` |  |
-| `"game_type"` |  |
+| `"gameType"` |  |
 | `"map"` |  |
 | `"mode"` |  |
-| `"session"` |  |
-| `"success"` |  |
-| `"uuid"` |  |
+| `"online"` |  |
 
 Operations: List, Load.
 
@@ -341,16 +342,16 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `"achievement"` |  |
-| `"challenge"` |  |
-| `"game"` |  |
-| `"last_updated"` |  |
+| `"databaseName"` |  |
+| `"id"` |  |
+| `"lastUpdated"` |  |
+| `"modeNames"` |  |
+| `"name"` |  |
 | `"one_time"` |  |
-| `"quest"` |  |
-| `"rarity"` |  |
+| `"rarities"` |  |
 | `"success"` |  |
 | `"tiered"` |  |
-| `"type"` |  |
+| `"types"` |  |
 
 Operations: Load.
 
@@ -360,54 +361,49 @@ API path: `/v2/resources/achievements`
 
 | Field | Description |
 | --- | --- |
-| `"auction"` |  |
 | `"auctioneer"` |  |
-| `"bid"` |  |
+| `"auctions"` |  |
+| `"bids"` |  |
 | `"category"` |  |
 | `"claimed"` |  |
-| `"claimed_bidder"` |  |
-| `"collection"` |  |
+| `"claimed_bidders"` |  |
 | `"color"` |  |
 | `"coop"` |  |
 | `"current"` |  |
 | `"end"` |  |
-| `"event"` |  |
+| `"events"` |  |
 | `"extra"` |  |
-| `"full_lore"` |  |
-| `"garden"` |  |
+| `"fullLore"` |  |
 | `"highest_bid_amount"` |  |
 | `"id"` |  |
 | `"item"` |  |
-| `"item_byte"` |  |
+| `"item_bytes"` |  |
 | `"item_lore"` |  |
 | `"item_name"` |  |
-| `"last_updated"` |  |
+| `"lastUpdated"` |  |
 | `"link"` |  |
 | `"lore"` |  |
 | `"material"` |  |
 | `"mayor"` |  |
-| `"member"` |  |
 | `"name"` |  |
 | `"npc_sell_price"` |  |
 | `"page"` |  |
-| `"product"` |  |
-| `"profile"` |  |
 | `"profile_id"` |  |
+| `"profiles"` |  |
 | `"progress"` |  |
-| `"required_amount"` |  |
-| `"sale"` |  |
-| `"skill"` |  |
+| `"requiredAmount"` |  |
+| `"sales"` |  |
 | `"start"` |  |
 | `"starting_bid"` |  |
-| `"stat"` |  |
+| `"stats"` |  |
 | `"success"` |  |
 | `"text"` |  |
 | `"tier"` |  |
+| `"tiers"` |  |
 | `"title"` |  |
-| `"total_auction"` |  |
-| `"total_page"` |  |
+| `"totalAuctions"` |  |
+| `"totalPages"` |  |
 | `"uuid"` |  |
-| `"version"` |  |
 
 Operations: List, Load.
 
@@ -427,13 +423,6 @@ Create an instance: `guild := client.Guild(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `guild` | `map[string]any` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -461,7 +450,7 @@ Create an instance: `housing := client.Housing(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `house` | `map[string]any` |  |
+| `houses` | `[]any` |  |
 | `success` | `bool` |  |
 
 #### Example: Load
@@ -500,16 +489,13 @@ Create an instance: `other := client.Other(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `booster` | `[]any` |  |
-| `booster_state` | `map[string]any` |  |
-| `game` | `map[string]any` |  |
-| `leaderboard` | `map[string]any` |  |
-| `player_count` | `int` |  |
-| `staff_rolling_daily` | `int` |  |
+| `boosterState` | `map[string]any` |  |
+| `boosters` | `[]any` |  |
+| `staff_rollingDaily` | `int` |  |
 | `staff_total` | `int` |  |
 | `success` | `bool` |  |
-| `watchdog_last_minute` | `int` |  |
-| `watchdog_rolling_daily` | `int` |  |
+| `watchdog_lastMinute` | `int` |  |
+| `watchdog_rollingDaily` | `int` |  |
 | `watchdog_total` | `int` |  |
 
 #### Example: Load
@@ -547,8 +533,16 @@ Create an instance: `player := client.Player(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `player` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `displayname` | `string` |  |
+| `firstLogin` | `int` |  |
+| `lastLogin` | `int` |  |
+| `lastLogout` | `int` |  |
+| `monthlyPackageRank` | `string` |  |
+| `newPackageRank` | `string` |  |
+| `packageRank` | `string` |  |
+| `rank` | `string` |  |
+| `stats` | `map[string]any` |  |
+| `uuid` | `string` |  |
 
 #### Example: Load
 
@@ -578,12 +572,10 @@ Create an instance: `playerData := client.PlayerData(nil)`
 | --- | --- | --- |
 | `date` | `int` |  |
 | `ended` | `int` |  |
-| `game_type` | `string` |  |
+| `gameType` | `string` |  |
 | `map` | `string` |  |
 | `mode` | `string` |  |
-| `session` | `map[string]any` |  |
-| `success` | `bool` |  |
-| `uuid` | `string` |  |
+| `online` | `bool` |  |
 
 #### Example: Load
 
@@ -620,21 +612,21 @@ Create an instance: `resource := client.Resource(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `achievement` | `map[string]any` |  |
-| `challenge` | `map[string]any` |  |
-| `game` | `map[string]any` |  |
-| `last_updated` | `int` |  |
+| `databaseName` | `string` |  |
+| `id` | `int` |  |
+| `lastUpdated` | `int` |  |
+| `modeNames` | `map[string]any` |  |
+| `name` | `string` |  |
 | `one_time` | `map[string]any` |  |
-| `quest` | `map[string]any` |  |
-| `rarity` | `map[string]any` |  |
+| `rarities` | `map[string]any` |  |
 | `success` | `bool` |  |
 | `tiered` | `map[string]any` |  |
-| `type` | `map[string]any` |  |
+| `types` | `map[string]any` |  |
 
 #### Example: Load
 
 ```go
-resource, err := client.Resource(nil).Load(nil, nil)
+resource, err := client.Resource(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -657,54 +649,49 @@ Create an instance: `skyBlock := client.SkyBlock(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `auction` | `[]any` |  |
 | `auctioneer` | `string` |  |
-| `bid` | `[]any` |  |
+| `auctions` | `[]any` |  |
+| `bids` | `[]any` |  |
 | `category` | `string` |  |
 | `claimed` | `bool` |  |
-| `claimed_bidder` | `[]any` |  |
-| `collection` | `map[string]any` |  |
+| `claimed_bidders` | `[]any` |  |
 | `color` | `string` |  |
 | `coop` | `[]any` |  |
 | `current` | `map[string]any` |  |
 | `end` | `int` |  |
-| `event` | `[]any` |  |
+| `events` | `[]any` |  |
 | `extra` | `string` |  |
-| `full_lore` | `[]any` |  |
-| `garden` | `map[string]any` |  |
+| `fullLore` | `[]any` |  |
 | `highest_bid_amount` | `int` |  |
 | `id` | `string` |  |
 | `item` | `map[string]any` |  |
-| `item_byte` | `map[string]any` |  |
+| `item_bytes` | `map[string]any` |  |
 | `item_lore` | `string` |  |
 | `item_name` | `string` |  |
-| `last_updated` | `int` |  |
+| `lastUpdated` | `int` |  |
 | `link` | `string` |  |
 | `lore` | `string` |  |
 | `material` | `string` |  |
 | `mayor` | `map[string]any` |  |
-| `member` | `map[string]any` |  |
 | `name` | `string` |  |
 | `npc_sell_price` | `float64` |  |
 | `page` | `int` |  |
-| `product` | `map[string]any` |  |
-| `profile` | `map[string]any` |  |
 | `profile_id` | `string` |  |
+| `profiles` | `[]any` |  |
 | `progress` | `int` |  |
-| `required_amount` | `int` |  |
-| `sale` | `[]any` |  |
-| `skill` | `map[string]any` |  |
+| `requiredAmount` | `int` |  |
+| `sales` | `[]any` |  |
 | `start` | `int` |  |
 | `starting_bid` | `int` |  |
-| `stat` | `map[string]any` |  |
+| `stats` | `map[string]any` |  |
 | `success` | `bool` |  |
 | `text` | `string` |  |
 | `tier` | `string` |  |
+| `tiers` | `[]any` |  |
 | `title` | `string` |  |
-| `total_auction` | `int` |  |
-| `total_page` | `int` |  |
+| `totalAuctions` | `int` |  |
+| `totalPages` | `int` |  |
 | `uuid` | `string` |  |
-| `version` | `string` |  |
 
 #### Example: Load
 
@@ -796,15 +783,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-guild := client.Guild(nil)
-guild.Load(nil, nil)
+other := client.Other(nil)
+other.List(nil, nil)
 
-// guild.Data() now returns the guild data from the last load
-// guild.Match() returns the last match criteria
+// other.Data() now returns the other data from the last list
+// other.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

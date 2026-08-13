@@ -6,313 +6,299 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/hypixel-sdk/go/core"
+)
 
 // Guild is the typed data model for the guild entity.
 type Guild struct {
-	Guild *map[string]any `json:"guild,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // GuildLoadMatch is the typed request payload for Guild.LoadTyped.
 type GuildLoadMatch struct {
-	Guild *map[string]any `json:"guild,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // Housing is the typed data model for the housing entity.
 type Housing struct {
-	House *map[string]any `json:"house,omitempty"`
+	Houses *[]any `json:"houses,omitempty"`
 	Success *bool `json:"success,omitempty"`
 }
 
 // HousingLoadMatch is the typed request payload for Housing.LoadTyped.
 type HousingLoadMatch struct {
-	House *map[string]any `json:"house,omitempty"`
+	Houses *[]any `json:"houses,omitempty"`
 	Success *bool `json:"success,omitempty"`
 }
 
 // HousingListMatch is the typed request payload for Housing.ListTyped.
 type HousingListMatch struct {
-	House *map[string]any `json:"house,omitempty"`
+	Houses *[]any `json:"houses,omitempty"`
 	Success *bool `json:"success,omitempty"`
 }
 
 // Other is the typed data model for the other entity.
 type Other struct {
-	Booster *[]any `json:"booster,omitempty"`
-	BoosterState *map[string]any `json:"booster_state,omitempty"`
-	Game *map[string]any `json:"game,omitempty"`
-	Leaderboard *map[string]any `json:"leaderboard,omitempty"`
-	PlayerCount *int `json:"player_count,omitempty"`
-	StaffRollingDaily *int `json:"staff_rolling_daily,omitempty"`
+	BoosterState *map[string]any `json:"boosterState,omitempty"`
+	Boosters *[]any `json:"boosters,omitempty"`
+	StaffRollingDaily *int `json:"staff_rollingDaily,omitempty"`
 	StaffTotal *int `json:"staff_total,omitempty"`
 	Success *bool `json:"success,omitempty"`
-	WatchdogLastMinute *int `json:"watchdog_last_minute,omitempty"`
-	WatchdogRollingDaily *int `json:"watchdog_rolling_daily,omitempty"`
+	WatchdogLastMinute *int `json:"watchdog_lastMinute,omitempty"`
+	WatchdogRollingDaily *int `json:"watchdog_rollingDaily,omitempty"`
 	WatchdogTotal *int `json:"watchdog_total,omitempty"`
 }
 
 // OtherLoadMatch is the typed request payload for Other.LoadTyped.
 type OtherLoadMatch struct {
-	Booster *[]any `json:"booster,omitempty"`
-	BoosterState *map[string]any `json:"booster_state,omitempty"`
-	Game *map[string]any `json:"game,omitempty"`
-	Leaderboard *map[string]any `json:"leaderboard,omitempty"`
-	PlayerCount *int `json:"player_count,omitempty"`
-	StaffRollingDaily *int `json:"staff_rolling_daily,omitempty"`
+	BoosterState *map[string]any `json:"boosterState,omitempty"`
+	Boosters *[]any `json:"boosters,omitempty"`
+	StaffRollingDaily *int `json:"staff_rollingDaily,omitempty"`
 	StaffTotal *int `json:"staff_total,omitempty"`
 	Success *bool `json:"success,omitempty"`
-	WatchdogLastMinute *int `json:"watchdog_last_minute,omitempty"`
-	WatchdogRollingDaily *int `json:"watchdog_rolling_daily,omitempty"`
+	WatchdogLastMinute *int `json:"watchdog_lastMinute,omitempty"`
+	WatchdogRollingDaily *int `json:"watchdog_rollingDaily,omitempty"`
 	WatchdogTotal *int `json:"watchdog_total,omitempty"`
 }
 
 // OtherListMatch is the typed request payload for Other.ListTyped.
 type OtherListMatch struct {
-	Booster *[]any `json:"booster,omitempty"`
-	BoosterState *map[string]any `json:"booster_state,omitempty"`
-	Game *map[string]any `json:"game,omitempty"`
-	Leaderboard *map[string]any `json:"leaderboard,omitempty"`
-	PlayerCount *int `json:"player_count,omitempty"`
-	StaffRollingDaily *int `json:"staff_rolling_daily,omitempty"`
+	BoosterState *map[string]any `json:"boosterState,omitempty"`
+	Boosters *[]any `json:"boosters,omitempty"`
+	StaffRollingDaily *int `json:"staff_rollingDaily,omitempty"`
 	StaffTotal *int `json:"staff_total,omitempty"`
 	Success *bool `json:"success,omitempty"`
-	WatchdogLastMinute *int `json:"watchdog_last_minute,omitempty"`
-	WatchdogRollingDaily *int `json:"watchdog_rolling_daily,omitempty"`
+	WatchdogLastMinute *int `json:"watchdog_lastMinute,omitempty"`
+	WatchdogRollingDaily *int `json:"watchdog_rollingDaily,omitempty"`
 	WatchdogTotal *int `json:"watchdog_total,omitempty"`
 }
 
 // Player is the typed data model for the player entity.
 type Player struct {
-	Player *map[string]any `json:"player,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Displayname *string `json:"displayname,omitempty"`
+	FirstLogin *int `json:"firstLogin,omitempty"`
+	LastLogin *int `json:"lastLogin,omitempty"`
+	LastLogout *int `json:"lastLogout,omitempty"`
+	MonthlyPackageRank *string `json:"monthlyPackageRank,omitempty"`
+	NewPackageRank *string `json:"newPackageRank,omitempty"`
+	PackageRank *string `json:"packageRank,omitempty"`
+	Rank *string `json:"rank,omitempty"`
+	Stats *map[string]any `json:"stats,omitempty"`
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // PlayerLoadMatch is the typed request payload for Player.LoadTyped.
 type PlayerLoadMatch struct {
-	Player *map[string]any `json:"player,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Displayname *string `json:"displayname,omitempty"`
+	FirstLogin *int `json:"firstLogin,omitempty"`
+	LastLogin *int `json:"lastLogin,omitempty"`
+	LastLogout *int `json:"lastLogout,omitempty"`
+	MonthlyPackageRank *string `json:"monthlyPackageRank,omitempty"`
+	NewPackageRank *string `json:"newPackageRank,omitempty"`
+	PackageRank *string `json:"packageRank,omitempty"`
+	Rank *string `json:"rank,omitempty"`
+	Stats *map[string]any `json:"stats,omitempty"`
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // PlayerData is the typed data model for the player_data entity.
 type PlayerData struct {
 	Date *int `json:"date,omitempty"`
 	Ended *int `json:"ended,omitempty"`
-	GameType *string `json:"game_type,omitempty"`
+	GameType *string `json:"gameType,omitempty"`
 	Map *string `json:"map,omitempty"`
 	Mode *string `json:"mode,omitempty"`
-	Session *map[string]any `json:"session,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Uuid *string `json:"uuid,omitempty"`
+	Online *bool `json:"online,omitempty"`
 }
 
 // PlayerDataLoadMatch is the typed request payload for PlayerData.LoadTyped.
 type PlayerDataLoadMatch struct {
 	Date *int `json:"date,omitempty"`
 	Ended *int `json:"ended,omitempty"`
-	GameType *string `json:"game_type,omitempty"`
+	GameType *string `json:"gameType,omitempty"`
 	Map *string `json:"map,omitempty"`
 	Mode *string `json:"mode,omitempty"`
-	Session *map[string]any `json:"session,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Uuid *string `json:"uuid,omitempty"`
+	Online *bool `json:"online,omitempty"`
 }
 
 // PlayerDataListMatch is the typed request payload for PlayerData.ListTyped.
 type PlayerDataListMatch struct {
 	Date *int `json:"date,omitempty"`
 	Ended *int `json:"ended,omitempty"`
-	GameType *string `json:"game_type,omitempty"`
+	GameType *string `json:"gameType,omitempty"`
 	Map *string `json:"map,omitempty"`
 	Mode *string `json:"mode,omitempty"`
-	Session *map[string]any `json:"session,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Uuid *string `json:"uuid,omitempty"`
+	Online *bool `json:"online,omitempty"`
 }
 
 // Resource is the typed data model for the resource entity.
 type Resource struct {
-	Achievement *map[string]any `json:"achievement,omitempty"`
-	Challenge *map[string]any `json:"challenge,omitempty"`
-	Game *map[string]any `json:"game,omitempty"`
-	LastUpdated *int `json:"last_updated,omitempty"`
+	DatabaseName *string `json:"databaseName,omitempty"`
+	Id *int `json:"id,omitempty"`
+	LastUpdated *int `json:"lastUpdated,omitempty"`
+	ModeNames *map[string]any `json:"modeNames,omitempty"`
+	Name *string `json:"name,omitempty"`
 	OneTime *map[string]any `json:"one_time,omitempty"`
-	Quest *map[string]any `json:"quest,omitempty"`
-	Rarity *map[string]any `json:"rarity,omitempty"`
+	Rarities *map[string]any `json:"rarities,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Tiered *map[string]any `json:"tiered,omitempty"`
-	Type *map[string]any `json:"type,omitempty"`
+	Types *map[string]any `json:"types,omitempty"`
 }
 
 // ResourceLoadMatch is the typed request payload for Resource.LoadTyped.
 type ResourceLoadMatch struct {
-	Achievement *map[string]any `json:"achievement,omitempty"`
-	Challenge *map[string]any `json:"challenge,omitempty"`
-	Game *map[string]any `json:"game,omitempty"`
-	LastUpdated *int `json:"last_updated,omitempty"`
+	DatabaseName *string `json:"databaseName,omitempty"`
+	Id int `json:"id"`
+	LastUpdated *int `json:"lastUpdated,omitempty"`
+	ModeNames *map[string]any `json:"modeNames,omitempty"`
+	Name *string `json:"name,omitempty"`
 	OneTime *map[string]any `json:"one_time,omitempty"`
-	Quest *map[string]any `json:"quest,omitempty"`
-	Rarity *map[string]any `json:"rarity,omitempty"`
+	Rarities *map[string]any `json:"rarities,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Tiered *map[string]any `json:"tiered,omitempty"`
-	Type *map[string]any `json:"type,omitempty"`
+	Types *map[string]any `json:"types,omitempty"`
 }
 
 // SkyBlock is the typed data model for the sky_block entity.
 type SkyBlock struct {
-	Auction *[]any `json:"auction,omitempty"`
 	Auctioneer *string `json:"auctioneer,omitempty"`
-	Bid *[]any `json:"bid,omitempty"`
+	Auctions *[]any `json:"auctions,omitempty"`
+	Bids *[]any `json:"bids,omitempty"`
 	Category *string `json:"category,omitempty"`
 	Claimed *bool `json:"claimed,omitempty"`
-	ClaimedBidder *[]any `json:"claimed_bidder,omitempty"`
-	Collection *map[string]any `json:"collection,omitempty"`
+	ClaimedBidders *[]any `json:"claimed_bidders,omitempty"`
 	Color *string `json:"color,omitempty"`
 	Coop *[]any `json:"coop,omitempty"`
 	Current *map[string]any `json:"current,omitempty"`
 	End *int `json:"end,omitempty"`
-	Event *[]any `json:"event,omitempty"`
+	Events *[]any `json:"events,omitempty"`
 	Extra *string `json:"extra,omitempty"`
-	FullLore *[]any `json:"full_lore,omitempty"`
-	Garden *map[string]any `json:"garden,omitempty"`
+	FullLore *[]any `json:"fullLore,omitempty"`
 	HighestBidAmount *int `json:"highest_bid_amount,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Item *map[string]any `json:"item,omitempty"`
-	ItemByte *map[string]any `json:"item_byte,omitempty"`
+	ItemBytes *map[string]any `json:"item_bytes,omitempty"`
 	ItemLore *string `json:"item_lore,omitempty"`
 	ItemName *string `json:"item_name,omitempty"`
-	LastUpdated *int `json:"last_updated,omitempty"`
+	LastUpdated *int `json:"lastUpdated,omitempty"`
 	Link *string `json:"link,omitempty"`
 	Lore *string `json:"lore,omitempty"`
 	Material *string `json:"material,omitempty"`
 	Mayor *map[string]any `json:"mayor,omitempty"`
-	Member *map[string]any `json:"member,omitempty"`
 	Name *string `json:"name,omitempty"`
 	NpcSellPrice *float64 `json:"npc_sell_price,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Product *map[string]any `json:"product,omitempty"`
-	Profile *map[string]any `json:"profile,omitempty"`
 	ProfileId *string `json:"profile_id,omitempty"`
+	Profiles *[]any `json:"profiles,omitempty"`
 	Progress *int `json:"progress,omitempty"`
-	RequiredAmount *int `json:"required_amount,omitempty"`
-	Sale *[]any `json:"sale,omitempty"`
-	Skill *map[string]any `json:"skill,omitempty"`
+	RequiredAmount *int `json:"requiredAmount,omitempty"`
+	Sales *[]any `json:"sales,omitempty"`
 	Start *int `json:"start,omitempty"`
 	StartingBid *int `json:"starting_bid,omitempty"`
-	Stat *map[string]any `json:"stat,omitempty"`
+	Stats *map[string]any `json:"stats,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Tier *string `json:"tier,omitempty"`
+	Tiers *[]any `json:"tiers,omitempty"`
 	Title *string `json:"title,omitempty"`
-	TotalAuction *int `json:"total_auction,omitempty"`
-	TotalPage *int `json:"total_page,omitempty"`
+	TotalAuctions *int `json:"totalAuctions,omitempty"`
+	TotalPages *int `json:"totalPages,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	Version *string `json:"version,omitempty"`
 }
 
 // SkyBlockLoadMatch is the typed request payload for SkyBlock.LoadTyped.
 type SkyBlockLoadMatch struct {
-	Auction *[]any `json:"auction,omitempty"`
 	Auctioneer *string `json:"auctioneer,omitempty"`
-	Bid *[]any `json:"bid,omitempty"`
+	Auctions *[]any `json:"auctions,omitempty"`
+	Bids *[]any `json:"bids,omitempty"`
 	Category *string `json:"category,omitempty"`
 	Claimed *bool `json:"claimed,omitempty"`
-	ClaimedBidder *[]any `json:"claimed_bidder,omitempty"`
-	Collection *map[string]any `json:"collection,omitempty"`
+	ClaimedBidders *[]any `json:"claimed_bidders,omitempty"`
 	Color *string `json:"color,omitempty"`
 	Coop *[]any `json:"coop,omitempty"`
 	Current *map[string]any `json:"current,omitempty"`
 	End *int `json:"end,omitempty"`
-	Event *[]any `json:"event,omitempty"`
+	Events *[]any `json:"events,omitempty"`
 	Extra *string `json:"extra,omitempty"`
-	FullLore *[]any `json:"full_lore,omitempty"`
-	Garden *map[string]any `json:"garden,omitempty"`
+	FullLore *[]any `json:"fullLore,omitempty"`
 	HighestBidAmount *int `json:"highest_bid_amount,omitempty"`
 	Id string `json:"id"`
 	Item *map[string]any `json:"item,omitempty"`
-	ItemByte *map[string]any `json:"item_byte,omitempty"`
+	ItemBytes *map[string]any `json:"item_bytes,omitempty"`
 	ItemLore *string `json:"item_lore,omitempty"`
 	ItemName *string `json:"item_name,omitempty"`
-	LastUpdated *int `json:"last_updated,omitempty"`
+	LastUpdated *int `json:"lastUpdated,omitempty"`
 	Link *string `json:"link,omitempty"`
 	Lore *string `json:"lore,omitempty"`
 	Material *string `json:"material,omitempty"`
 	Mayor *map[string]any `json:"mayor,omitempty"`
-	Member *map[string]any `json:"member,omitempty"`
 	Name *string `json:"name,omitempty"`
 	NpcSellPrice *float64 `json:"npc_sell_price,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Product *map[string]any `json:"product,omitempty"`
-	Profile *map[string]any `json:"profile,omitempty"`
 	ProfileId *string `json:"profile_id,omitempty"`
+	Profiles *[]any `json:"profiles,omitempty"`
 	Progress *int `json:"progress,omitempty"`
-	RequiredAmount *int `json:"required_amount,omitempty"`
-	Sale *[]any `json:"sale,omitempty"`
-	Skill *map[string]any `json:"skill,omitempty"`
+	RequiredAmount *int `json:"requiredAmount,omitempty"`
+	Sales *[]any `json:"sales,omitempty"`
 	Start *int `json:"start,omitempty"`
 	StartingBid *int `json:"starting_bid,omitempty"`
-	Stat *map[string]any `json:"stat,omitempty"`
+	Stats *map[string]any `json:"stats,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Tier *string `json:"tier,omitempty"`
+	Tiers *[]any `json:"tiers,omitempty"`
 	Title *string `json:"title,omitempty"`
-	TotalAuction *int `json:"total_auction,omitempty"`
-	TotalPage *int `json:"total_page,omitempty"`
+	TotalAuctions *int `json:"totalAuctions,omitempty"`
+	TotalPages *int `json:"totalPages,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	Version *string `json:"version,omitempty"`
 }
 
 // SkyBlockListMatch is the typed request payload for SkyBlock.ListTyped.
 type SkyBlockListMatch struct {
-	Auction *[]any `json:"auction,omitempty"`
 	Auctioneer *string `json:"auctioneer,omitempty"`
-	Bid *[]any `json:"bid,omitempty"`
+	Auctions *[]any `json:"auctions,omitempty"`
+	Bids *[]any `json:"bids,omitempty"`
 	Category *string `json:"category,omitempty"`
 	Claimed *bool `json:"claimed,omitempty"`
-	ClaimedBidder *[]any `json:"claimed_bidder,omitempty"`
-	Collection *map[string]any `json:"collection,omitempty"`
+	ClaimedBidders *[]any `json:"claimed_bidders,omitempty"`
 	Color *string `json:"color,omitempty"`
 	Coop *[]any `json:"coop,omitempty"`
 	Current *map[string]any `json:"current,omitempty"`
 	End *int `json:"end,omitempty"`
-	Event *[]any `json:"event,omitempty"`
+	Events *[]any `json:"events,omitempty"`
 	Extra *string `json:"extra,omitempty"`
-	FullLore *[]any `json:"full_lore,omitempty"`
-	Garden *map[string]any `json:"garden,omitempty"`
+	FullLore *[]any `json:"fullLore,omitempty"`
 	HighestBidAmount *int `json:"highest_bid_amount,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Item *map[string]any `json:"item,omitempty"`
-	ItemByte *map[string]any `json:"item_byte,omitempty"`
+	ItemBytes *map[string]any `json:"item_bytes,omitempty"`
 	ItemLore *string `json:"item_lore,omitempty"`
 	ItemName *string `json:"item_name,omitempty"`
-	LastUpdated *int `json:"last_updated,omitempty"`
+	LastUpdated *int `json:"lastUpdated,omitempty"`
 	Link *string `json:"link,omitempty"`
 	Lore *string `json:"lore,omitempty"`
 	Material *string `json:"material,omitempty"`
 	Mayor *map[string]any `json:"mayor,omitempty"`
-	Member *map[string]any `json:"member,omitempty"`
 	Name *string `json:"name,omitempty"`
 	NpcSellPrice *float64 `json:"npc_sell_price,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Product *map[string]any `json:"product,omitempty"`
-	Profile *map[string]any `json:"profile,omitempty"`
 	ProfileId *string `json:"profile_id,omitempty"`
+	Profiles *[]any `json:"profiles,omitempty"`
 	Progress *int `json:"progress,omitempty"`
-	RequiredAmount *int `json:"required_amount,omitempty"`
-	Sale *[]any `json:"sale,omitempty"`
-	Skill *map[string]any `json:"skill,omitempty"`
+	RequiredAmount *int `json:"requiredAmount,omitempty"`
+	Sales *[]any `json:"sales,omitempty"`
 	Start *int `json:"start,omitempty"`
 	StartingBid *int `json:"starting_bid,omitempty"`
-	Stat *map[string]any `json:"stat,omitempty"`
+	Stats *map[string]any `json:"stats,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Tier *string `json:"tier,omitempty"`
+	Tiers *[]any `json:"tiers,omitempty"`
 	Title *string `json:"title,omitempty"`
-	TotalAuction *int `json:"total_auction,omitempty"`
-	TotalPage *int `json:"total_page,omitempty"`
+	TotalAuctions *int `json:"totalAuctions,omitempty"`
+	TotalPages *int `json:"totalPages,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
-	Version *string `json:"version,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
@@ -327,12 +313,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -344,12 +344,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

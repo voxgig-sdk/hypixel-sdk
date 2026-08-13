@@ -113,13 +113,6 @@ Prepare a fetch definition without sending the request. Returns the
 $guild = $client->Guild();
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `guild` | `array` | No |  |
-| `success` | `bool` | No |  |
-
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -170,7 +163,7 @@ $housing = $client->Housing();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | `array` | No |  |
+| `houses` | `array` | No |  |
 | `success` | `bool` | No |  |
 
 ### Operations
@@ -231,16 +224,13 @@ $other = $client->Other();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | `array` | No |  |
-| `booster_state` | `array` | No |  |
-| `game` | `array` | No |  |
-| `leaderboard` | `array` | No |  |
-| `player_count` | `int` | No |  |
-| `staff_rolling_daily` | `int` | No |  |
+| `boosterState` | `array` | No |  |
+| `boosters` | `array` | No |  |
+| `staff_rollingDaily` | `int` | No |  |
 | `staff_total` | `int` | No |  |
 | `success` | `bool` | No |  |
-| `watchdog_last_minute` | `int` | No |  |
-| `watchdog_rolling_daily` | `int` | No |  |
+| `watchdog_lastMinute` | `int` | No |  |
+| `watchdog_rollingDaily` | `int` | No |  |
 | `watchdog_total` | `int` | No |  |
 
 ### Operations
@@ -301,8 +291,16 @@ $player = $client->Player();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `displayname` | `string` | No |  |
+| `firstLogin` | `int` | No |  |
+| `lastLogin` | `int` | No |  |
+| `lastLogout` | `int` | No |  |
+| `monthlyPackageRank` | `string` | No |  |
+| `newPackageRank` | `string` | No |  |
+| `packageRank` | `string` | No |  |
+| `rank` | `string` | No |  |
+| `stats` | `array` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -356,12 +354,10 @@ $player_data = $client->PlayerData();
 | --- | --- | --- | --- |
 | `date` | `int` | No |  |
 | `ended` | `int` | No |  |
-| `game_type` | `string` | No |  |
+| `gameType` | `string` | No |  |
 | `map` | `string` | No |  |
 | `mode` | `string` | No |  |
-| `session` | `array` | No |  |
-| `success` | `bool` | No |  |
-| `uuid` | `string` | No |  |
+| `online` | `bool` | No |  |
 
 ### Operations
 
@@ -421,16 +417,16 @@ $resource = $client->Resource();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | `array` | No |  |
-| `challenge` | `array` | No |  |
-| `game` | `array` | No |  |
-| `last_updated` | `int` | No |  |
+| `databaseName` | `string` | No |  |
+| `id` | `int` | No |  |
+| `lastUpdated` | `int` | No |  |
+| `modeNames` | `array` | No |  |
+| `name` | `string` | No |  |
 | `one_time` | `array` | No |  |
-| `quest` | `array` | No |  |
-| `rarity` | `array` | No |  |
+| `rarities` | `array` | No |  |
 | `success` | `bool` | No |  |
 | `tiered` | `array` | No |  |
-| `type` | `array` | No |  |
+| `types` | `array` | No |  |
 
 ### Operations
 
@@ -439,7 +435,7 @@ $resource = $client->Resource();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Resource()->load();
+$result = $client->Resource()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -482,54 +478,49 @@ $sky_block = $client->SkyBlock();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | `array` | No |  |
 | `auctioneer` | `string` | No |  |
-| `bid` | `array` | No |  |
+| `auctions` | `array` | No |  |
+| `bids` | `array` | No |  |
 | `category` | `string` | No |  |
 | `claimed` | `bool` | No |  |
-| `claimed_bidder` | `array` | No |  |
-| `collection` | `array` | No |  |
+| `claimed_bidders` | `array` | No |  |
 | `color` | `string` | No |  |
 | `coop` | `array` | No |  |
 | `current` | `array` | No |  |
 | `end` | `int` | No |  |
-| `event` | `array` | No |  |
+| `events` | `array` | No |  |
 | `extra` | `string` | No |  |
-| `full_lore` | `array` | No |  |
-| `garden` | `array` | No |  |
+| `fullLore` | `array` | No |  |
 | `highest_bid_amount` | `int` | No |  |
 | `id` | `string` | No |  |
 | `item` | `array` | No |  |
-| `item_byte` | `array` | No |  |
+| `item_bytes` | `array` | No |  |
 | `item_lore` | `string` | No |  |
 | `item_name` | `string` | No |  |
-| `last_updated` | `int` | No |  |
+| `lastUpdated` | `int` | No |  |
 | `link` | `string` | No |  |
 | `lore` | `string` | No |  |
 | `material` | `string` | No |  |
 | `mayor` | `array` | No |  |
-| `member` | `array` | No |  |
 | `name` | `string` | No |  |
 | `npc_sell_price` | `float` | No |  |
 | `page` | `int` | No |  |
-| `product` | `array` | No |  |
-| `profile` | `array` | No |  |
 | `profile_id` | `string` | No |  |
+| `profiles` | `array` | No |  |
 | `progress` | `int` | No |  |
-| `required_amount` | `int` | No |  |
-| `sale` | `array` | No |  |
-| `skill` | `array` | No |  |
+| `requiredAmount` | `int` | No |  |
+| `sales` | `array` | No |  |
 | `start` | `int` | No |  |
 | `starting_bid` | `int` | No |  |
-| `stat` | `array` | No |  |
+| `stats` | `array` | No |  |
 | `success` | `bool` | No |  |
 | `text` | `string` | No |  |
 | `tier` | `string` | No |  |
+| `tiers` | `array` | No |  |
 | `title` | `string` | No |  |
-| `total_auction` | `int` | No |  |
-| `total_page` | `int` | No |  |
+| `totalAuctions` | `int` | No |  |
+| `totalPages` | `int` | No |  |
 | `uuid` | `string` | No |  |
-| `version` | `string` | No |  |
 
 ### Operations
 

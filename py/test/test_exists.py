@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Hypixel SDK exists test
 
 import pytest
 from hypixel_sdk import HypixelSDK

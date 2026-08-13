@@ -119,13 +119,6 @@ guild := client.Guild(nil)
 fmt.Println(guild.GetName()) // "guild"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `guild` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
-
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -175,7 +168,7 @@ fmt.Println(housing.GetName()) // "housing"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `house` | `map[string]any` | No |  |
+| `houses` | `[]any` | No |  |
 | `success` | `bool` | No |  |
 
 ### Operations
@@ -239,16 +232,13 @@ fmt.Println(other.GetName()) // "other"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `booster` | `[]any` | No |  |
-| `booster_state` | `map[string]any` | No |  |
-| `game` | `map[string]any` | No |  |
-| `leaderboard` | `map[string]any` | No |  |
-| `player_count` | `int` | No |  |
-| `staff_rolling_daily` | `int` | No |  |
+| `boosterState` | `map[string]any` | No |  |
+| `boosters` | `[]any` | No |  |
+| `staff_rollingDaily` | `int` | No |  |
 | `staff_total` | `int` | No |  |
 | `success` | `bool` | No |  |
-| `watchdog_last_minute` | `int` | No |  |
-| `watchdog_rolling_daily` | `int` | No |  |
+| `watchdog_lastMinute` | `int` | No |  |
+| `watchdog_rollingDaily` | `int` | No |  |
 | `watchdog_total` | `int` | No |  |
 
 ### Operations
@@ -312,8 +302,16 @@ fmt.Println(player.GetName()) // "player"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `player` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `displayname` | `string` | No |  |
+| `firstLogin` | `int` | No |  |
+| `lastLogin` | `int` | No |  |
+| `lastLogout` | `int` | No |  |
+| `monthlyPackageRank` | `string` | No |  |
+| `newPackageRank` | `string` | No |  |
+| `packageRank` | `string` | No |  |
+| `rank` | `string` | No |  |
+| `stats` | `map[string]any` | No |  |
+| `uuid` | `string` | No |  |
 
 ### Operations
 
@@ -366,12 +364,10 @@ fmt.Println(playerData.GetName()) // "player_data"
 | --- | --- | --- | --- |
 | `date` | `int` | No |  |
 | `ended` | `int` | No |  |
-| `game_type` | `string` | No |  |
+| `gameType` | `string` | No |  |
 | `map` | `string` | No |  |
 | `mode` | `string` | No |  |
-| `session` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
-| `uuid` | `string` | No |  |
+| `online` | `bool` | No |  |
 
 ### Operations
 
@@ -434,16 +430,16 @@ fmt.Println(resource.GetName()) // "resource"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `achievement` | `map[string]any` | No |  |
-| `challenge` | `map[string]any` | No |  |
-| `game` | `map[string]any` | No |  |
-| `last_updated` | `int` | No |  |
+| `databaseName` | `string` | No |  |
+| `id` | `int` | No |  |
+| `lastUpdated` | `int` | No |  |
+| `modeNames` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
 | `one_time` | `map[string]any` | No |  |
-| `quest` | `map[string]any` | No |  |
-| `rarity` | `map[string]any` | No |  |
+| `rarities` | `map[string]any` | No |  |
 | `success` | `bool` | No |  |
 | `tiered` | `map[string]any` | No |  |
-| `type` | `map[string]any` | No |  |
+| `types` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -452,7 +448,7 @@ fmt.Println(resource.GetName()) // "resource"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Resource(nil).Load(nil, nil)
+result, err := client.Resource(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -494,54 +490,49 @@ fmt.Println(skyBlock.GetName()) // "sky_block"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `auction` | `[]any` | No |  |
 | `auctioneer` | `string` | No |  |
-| `bid` | `[]any` | No |  |
+| `auctions` | `[]any` | No |  |
+| `bids` | `[]any` | No |  |
 | `category` | `string` | No |  |
 | `claimed` | `bool` | No |  |
-| `claimed_bidder` | `[]any` | No |  |
-| `collection` | `map[string]any` | No |  |
+| `claimed_bidders` | `[]any` | No |  |
 | `color` | `string` | No |  |
 | `coop` | `[]any` | No |  |
 | `current` | `map[string]any` | No |  |
 | `end` | `int` | No |  |
-| `event` | `[]any` | No |  |
+| `events` | `[]any` | No |  |
 | `extra` | `string` | No |  |
-| `full_lore` | `[]any` | No |  |
-| `garden` | `map[string]any` | No |  |
+| `fullLore` | `[]any` | No |  |
 | `highest_bid_amount` | `int` | No |  |
 | `id` | `string` | No |  |
 | `item` | `map[string]any` | No |  |
-| `item_byte` | `map[string]any` | No |  |
+| `item_bytes` | `map[string]any` | No |  |
 | `item_lore` | `string` | No |  |
 | `item_name` | `string` | No |  |
-| `last_updated` | `int` | No |  |
+| `lastUpdated` | `int` | No |  |
 | `link` | `string` | No |  |
 | `lore` | `string` | No |  |
 | `material` | `string` | No |  |
 | `mayor` | `map[string]any` | No |  |
-| `member` | `map[string]any` | No |  |
 | `name` | `string` | No |  |
 | `npc_sell_price` | `float64` | No |  |
 | `page` | `int` | No |  |
-| `product` | `map[string]any` | No |  |
-| `profile` | `map[string]any` | No |  |
 | `profile_id` | `string` | No |  |
+| `profiles` | `[]any` | No |  |
 | `progress` | `int` | No |  |
-| `required_amount` | `int` | No |  |
-| `sale` | `[]any` | No |  |
-| `skill` | `map[string]any` | No |  |
+| `requiredAmount` | `int` | No |  |
+| `sales` | `[]any` | No |  |
 | `start` | `int` | No |  |
 | `starting_bid` | `int` | No |  |
-| `stat` | `map[string]any` | No |  |
+| `stats` | `map[string]any` | No |  |
 | `success` | `bool` | No |  |
 | `text` | `string` | No |  |
 | `tier` | `string` | No |  |
+| `tiers` | `[]any` | No |  |
 | `title` | `string` | No |  |
-| `total_auction` | `int` | No |  |
-| `total_page` | `int` | No |  |
+| `totalAuctions` | `int` | No |  |
+| `totalPages` | `int` | No |  |
 | `uuid` | `string` | No |  |
-| `version` | `string` | No |  |
 
 ### Operations
 

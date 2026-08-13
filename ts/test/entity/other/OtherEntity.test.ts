@@ -63,12 +63,12 @@ describe('OtherEntity', async () => {
     const other_ref01_ent = client.Other()
     const other_ref01_match: any = {}
 
-    const other_ref01_list = await other_ref01_ent.list(other_ref01_match)
+    const other_ref01_list = (await other_ref01_ent.list(other_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const other_ref01_match_dt0: any = {}
-    const other_ref01_data_dt0 = await other_ref01_ent.load(other_ref01_match_dt0)
+    const other_ref01_data_dt0 = (await other_ref01_ent.load(other_ref01_match_dt0)).data()
     assert(null != other_ref01_data_dt0)
 
 

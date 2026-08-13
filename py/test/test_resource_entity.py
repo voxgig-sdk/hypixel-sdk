@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from hypixel_sdk.utility.voxgig_struct import voxgig_struct as vs
 from hypixel_sdk import HypixelSDK
-from core import helpers
+from hypixel_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -48,9 +48,13 @@ class TestResourceEntity:
 
         # LOAD
         resource_ref01_ent = client.Resource(None)
-        resource_ref01_match_dt0 = {}
+        resource_ref01_match_dt0 = {
+            "id": resource_ref01_data["id"],
+        }
         resource_ref01_data_dt0_loaded = resource_ref01_ent.load(resource_ref01_match_dt0, None)
-        assert resource_ref01_data_dt0_loaded is not None
+        resource_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(resource_ref01_data_dt0_loaded))
+        assert resource_ref01_data_dt0_load_result is not None
+        assert resource_ref01_data_dt0_load_result["id"] == resource_ref01_data["id"]
 
 
 

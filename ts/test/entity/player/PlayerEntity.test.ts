@@ -62,7 +62,7 @@ describe('PlayerEntity', async () => {
     // LOAD
     const player_ref01_ent = client.Player()
     const player_ref01_match_dt0: any = {}
-    const player_ref01_data_dt0 = await player_ref01_ent.load(player_ref01_match_dt0)
+    const player_ref01_data_dt0 = (await player_ref01_ent.load(player_ref01_match_dt0)).data()
     assert(null != player_ref01_data_dt0)
 
 

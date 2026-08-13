@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from hypixel_sdk.utility.voxgig_struct import voxgig_struct as vs
 from hypixel_sdk import HypixelSDK
-from core import helpers
+from hypixel_sdk.core import helpers
 from test import runner
 
 

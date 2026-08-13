@@ -4,19 +4,6 @@ main: kit: entity: guild: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "guild"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
-    }
-  ]
-
   name: "guild"
   op: {
     load: {
