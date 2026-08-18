@@ -40,7 +40,7 @@ class HypixelSDK
         $utility = new HypixelUtility();
         $this->_utility = $utility;
 
-        $config = HypixelConfig::make_config();
+        $config = HypixelConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -28,7 +28,7 @@ class HypixelSDK
     utility = HypixelUtility.new
     @_utility = utility
 
-    config = HypixelConfig.make_config
+    config = HypixelConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

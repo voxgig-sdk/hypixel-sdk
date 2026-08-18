@@ -146,7 +146,7 @@ class PlayerDataListMatch
 }
 
 /** Resource entity data model. */
-class Resource
+class ResourceType
 {
     public ?string $databaseName = null;
     public ?int $id = null;

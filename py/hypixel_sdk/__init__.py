@@ -23,8 +23,8 @@ class HypixelSDK:
         utility = HypixelUtility()
         self._utility = utility
 
-        from hypixel_sdk.config import make_config
-        config = make_config()
+        from hypixel_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

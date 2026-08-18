@@ -40,7 +40,7 @@ class SkyBlockEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = HypixelConfig::make_config();
+        $cfg = HypixelConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = HypixelSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];
