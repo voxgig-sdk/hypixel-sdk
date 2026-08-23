@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Hypixel",
+            "slug": "hypixel",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -344,14 +347,17 @@ def make_config():
           },
           {
             "name": "firstLogin",
+            "short": "Unix timestamp in milliseconds",
             "type": "`$INTEGER`",
           },
           {
             "name": "lastLogin",
+            "short": "Unix timestamp in milliseconds",
             "type": "`$INTEGER`",
           },
           {
             "name": "lastLogout",
+            "short": "Unix timestamp in milliseconds",
             "type": "`$INTEGER`",
           },
           {
@@ -372,6 +378,7 @@ def make_config():
           },
           {
             "name": "stats",
+            "short": "Game statistics organized by game type database name",
             "type": "`$OBJECT`",
           },
           {

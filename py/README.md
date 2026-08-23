@@ -291,14 +291,14 @@ API path: `/v2/boosters`
 | Field | Description |
 | --- | --- |
 | `displayname` |  |
-| `firstLogin` |  |
-| `lastLogin` |  |
-| `lastLogout` |  |
+| `firstLogin` | Unix timestamp in milliseconds |
+| `lastLogin` | Unix timestamp in milliseconds |
+| `lastLogout` | Unix timestamp in milliseconds |
 | `monthlyPackageRank` |  |
 | `newPackageRank` |  |
 | `packageRank` |  |
 | `rank` |  |
-| `stats` |  |
+| `stats` | Game statistics organized by game type database name |
 | `uuid` |  |
 
 Operations: Load.
@@ -496,14 +496,14 @@ Create an instance: `player = client.Player()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `displayname` | `str` |  |
-| `firstLogin` | `int` |  |
-| `lastLogin` | `int` |  |
-| `lastLogout` | `int` |  |
+| `firstLogin` | `int` | Unix timestamp in milliseconds |
+| `lastLogin` | `int` | Unix timestamp in milliseconds |
+| `lastLogout` | `int` | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `str` |  |
 | `newPackageRank` | `str` |  |
 | `packageRank` | `str` |  |
 | `rank` | `str` |  |
-| `stats` | `dict` |  |
+| `stats` | `dict` | Game statistics organized by game type database name |
 | `uuid` | `str` |  |
 
 #### Example: Load

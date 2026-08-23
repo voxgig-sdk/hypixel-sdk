@@ -292,14 +292,14 @@ $player = $client->Player();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `displayname` | `string` | No |  |
-| `firstLogin` | `int` | No |  |
-| `lastLogin` | `int` | No |  |
-| `lastLogout` | `int` | No |  |
+| `firstLogin` | `int` | No | Unix timestamp in milliseconds |
+| `lastLogin` | `int` | No | Unix timestamp in milliseconds |
+| `lastLogout` | `int` | No | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `string` | No |  |
 | `newPackageRank` | `string` | No |  |
 | `packageRank` | `string` | No |  |
 | `rank` | `string` | No |  |
-| `stats` | `array` | No |  |
+| `stats` | `array` | No | Game statistics organized by game type database name |
 | `uuid` | `string` | No |  |
 
 ### Operations

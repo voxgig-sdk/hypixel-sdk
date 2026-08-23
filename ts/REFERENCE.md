@@ -380,14 +380,14 @@ const player = client.Player()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `displayname` | `string` | No |  |
-| `firstLogin` | `number` | No |  |
-| `lastLogin` | `number` | No |  |
-| `lastLogout` | `number` | No |  |
+| `firstLogin` | `number` | No | Unix timestamp in milliseconds |
+| `lastLogin` | `number` | No | Unix timestamp in milliseconds |
+| `lastLogout` | `number` | No | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `string` | No |  |
 | `newPackageRank` | `string` | No |  |
 | `packageRank` | `string` | No |  |
 | `rank` | `string` | No |  |
-| `stats` | `Record<string, any>` | No |  |
+| `stats` | `Record<string, any>` | No | Game statistics organized by game type database name |
 | `uuid` | `string` | No |  |
 
 ### Operations

@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Hypixel",
+			"slug": "hypixel",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -327,14 +330,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "firstLogin",
+						"short": "Unix timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lastLogin",
+						"short": "Unix timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lastLogout",
+						"short": "Unix timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -355,6 +361,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "stats",
+						"short": "Game statistics organized by game type database name",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{

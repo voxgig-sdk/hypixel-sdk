@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -338,14 +338,14 @@ API path: `/v2/boosters`
 | Field | Description |
 | --- | --- |
 | `displayname` |  |
-| `firstLogin` |  |
-| `lastLogin` |  |
-| `lastLogout` |  |
+| `firstLogin` | Unix timestamp in milliseconds |
+| `lastLogin` | Unix timestamp in milliseconds |
+| `lastLogout` | Unix timestamp in milliseconds |
 | `monthlyPackageRank` |  |
 | `newPackageRank` |  |
 | `packageRank` |  |
 | `rank` |  |
-| `stats` |  |
+| `stats` | Game statistics organized by game type database name |
 | `uuid` |  |
 
 Operations: load.
@@ -543,14 +543,14 @@ Create an instance: `const player = client.Player()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `displayname` | `string` |  |
-| `firstLogin` | `number` |  |
-| `lastLogin` | `number` |  |
-| `lastLogout` | `number` |  |
+| `firstLogin` | `number` | Unix timestamp in milliseconds |
+| `lastLogin` | `number` | Unix timestamp in milliseconds |
+| `lastLogout` | `number` | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `string` |  |
 | `newPackageRank` | `string` |  |
 | `packageRank` | `string` |  |
 | `rank` | `string` |  |
-| `stats` | `Record<string, any>` |  |
+| `stats` | `Record<string, any>` | Game statistics organized by game type database name |
 | `uuid` | `string` |  |
 
 #### Example: Load

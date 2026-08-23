@@ -288,14 +288,14 @@ player = client.Player()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `displayname` | `str` | No |  |
-| `firstLogin` | `int` | No |  |
-| `lastLogin` | `int` | No |  |
-| `lastLogout` | `int` | No |  |
+| `firstLogin` | `int` | No | Unix timestamp in milliseconds |
+| `lastLogin` | `int` | No | Unix timestamp in milliseconds |
+| `lastLogout` | `int` | No | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `str` | No |  |
 | `newPackageRank` | `str` | No |  |
 | `packageRank` | `str` | No |  |
 | `rank` | `str` | No |  |
-| `stats` | `dict` | No |  |
+| `stats` | `dict` | No | Game statistics organized by game type database name |
 | `uuid` | `str` | No |  |
 
 ### Operations

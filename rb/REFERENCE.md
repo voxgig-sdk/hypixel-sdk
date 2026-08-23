@@ -293,14 +293,14 @@ player = client.Player
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `displayname` | `String` | No |  |
-| `firstLogin` | `Integer` | No |  |
-| `lastLogin` | `Integer` | No |  |
-| `lastLogout` | `Integer` | No |  |
+| `firstLogin` | `Integer` | No | Unix timestamp in milliseconds |
+| `lastLogin` | `Integer` | No | Unix timestamp in milliseconds |
+| `lastLogout` | `Integer` | No | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `String` | No |  |
 | `newPackageRank` | `String` | No |  |
 | `packageRank` | `String` | No |  |
 | `rank` | `String` | No |  |
-| `stats` | `Hash` | No |  |
+| `stats` | `Hash` | No | Game statistics organized by game type database name |
 | `uuid` | `String` | No |  |
 
 ### Operations

@@ -13,16 +13,19 @@ main: kit: entity: player: {
     {
       name: "firstLogin"
       req: false
+      short: "Unix timestamp in milliseconds"
       type: "`$INTEGER`"
     }
     {
       name: "lastLogin"
       req: false
+      short: "Unix timestamp in milliseconds"
       type: "`$INTEGER`"
     }
     {
       name: "lastLogout"
       req: false
+      short: "Unix timestamp in milliseconds"
       type: "`$INTEGER`"
     }
     {
@@ -48,6 +51,7 @@ main: kit: entity: player: {
     {
       name: "stats"
       req: false
+      short: "Game statistics organized by game type database name"
       type: "`$OBJECT`"
     }
     {

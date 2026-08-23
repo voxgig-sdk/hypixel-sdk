@@ -6,7 +6,7 @@ The Golang SDK for the Hypixel API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Guild(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -309,14 +309,14 @@ API path: `/v2/boosters`
 | Field | Description |
 | --- | --- |
 | `"displayname"` |  |
-| `"firstLogin"` |  |
-| `"lastLogin"` |  |
-| `"lastLogout"` |  |
+| `"firstLogin"` | Unix timestamp in milliseconds |
+| `"lastLogin"` | Unix timestamp in milliseconds |
+| `"lastLogout"` | Unix timestamp in milliseconds |
 | `"monthlyPackageRank"` |  |
 | `"newPackageRank"` |  |
 | `"packageRank"` |  |
 | `"rank"` |  |
-| `"stats"` |  |
+| `"stats"` | Game statistics organized by game type database name |
 | `"uuid"` |  |
 
 Operations: Load.
@@ -534,14 +534,14 @@ Create an instance: `player := client.Player(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `displayname` | `string` |  |
-| `firstLogin` | `int` |  |
-| `lastLogin` | `int` |  |
-| `lastLogout` | `int` |  |
+| `firstLogin` | `int` | Unix timestamp in milliseconds |
+| `lastLogin` | `int` | Unix timestamp in milliseconds |
+| `lastLogout` | `int` | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `string` |  |
 | `newPackageRank` | `string` |  |
 | `packageRank` | `string` |  |
 | `rank` | `string` |  |
-| `stats` | `map[string]any` |  |
+| `stats` | `map[string]any` | Game statistics organized by game type database name |
 | `uuid` | `string` |  |
 
 #### Example: Load

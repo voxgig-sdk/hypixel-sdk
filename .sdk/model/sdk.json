@@ -371,18 +371,21 @@
               "active": true,
               "name": "firstLogin",
               "req": false,
+              "short": "Unix timestamp in milliseconds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lastLogin",
               "req": false,
+              "short": "Unix timestamp in milliseconds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lastLogout",
               "req": false,
+              "short": "Unix timestamp in milliseconds",
               "type": "`$INTEGER`"
             },
             {
@@ -413,6 +416,7 @@
               "active": true,
               "name": "stats",
               "req": false,
+              "short": "Game statistics organized by game type database name",
               "type": "`$OBJECT`"
             },
             {

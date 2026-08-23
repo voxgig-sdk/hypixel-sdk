@@ -284,14 +284,14 @@ API path: `/v2/boosters`
 | Field | Description |
 | --- | --- |
 | `displayname` |  |
-| `firstLogin` |  |
-| `lastLogin` |  |
-| `lastLogout` |  |
+| `firstLogin` | Unix timestamp in milliseconds |
+| `lastLogin` | Unix timestamp in milliseconds |
+| `lastLogout` | Unix timestamp in milliseconds |
 | `monthlyPackageRank` |  |
 | `newPackageRank` |  |
 | `packageRank` |  |
 | `rank` |  |
-| `stats` |  |
+| `stats` | Game statistics organized by game type database name |
 | `uuid` |  |
 
 Operations: Load.
@@ -494,14 +494,14 @@ Create an instance: `player = client.Player`
 | Field | Type | Description |
 | --- | --- | --- |
 | `displayname` | `String` |  |
-| `firstLogin` | `Integer` |  |
-| `lastLogin` | `Integer` |  |
-| `lastLogout` | `Integer` |  |
+| `firstLogin` | `Integer` | Unix timestamp in milliseconds |
+| `lastLogin` | `Integer` | Unix timestamp in milliseconds |
+| `lastLogout` | `Integer` | Unix timestamp in milliseconds |
 | `monthlyPackageRank` | `String` |  |
 | `newPackageRank` | `String` |  |
 | `packageRank` | `String` |  |
 | `rank` | `String` |  |
-| `stats` | `Hash` |  |
+| `stats` | `Hash` | Game statistics organized by game type database name |
 | `uuid` | `String` |  |
 
 #### Example: Load

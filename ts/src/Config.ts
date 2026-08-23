@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Hypixel',
+        slug: "hypixel",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -363,14 +374,17 @@ class Config {
         },
         {
           "name": "firstLogin",
+          "short": "Unix timestamp in milliseconds",
           "type": "`$INTEGER`"
         },
         {
           "name": "lastLogin",
+          "short": "Unix timestamp in milliseconds",
           "type": "`$INTEGER`"
         },
         {
           "name": "lastLogout",
+          "short": "Unix timestamp in milliseconds",
           "type": "`$INTEGER`"
         },
         {
@@ -391,6 +405,7 @@ class Config {
         },
         {
           "name": "stats",
+          "short": "Game statistics organized by game type database name",
           "type": "`$OBJECT`"
         },
         {

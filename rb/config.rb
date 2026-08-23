@@ -19,6 +19,9 @@ module HypixelConfig
     {
       "main" => {
         "name" => "Hypixel",
+        "slug" => "hypixel",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -335,14 +338,17 @@ module HypixelConfig
             },
             {
               "name" => "firstLogin",
+              "short" => "Unix timestamp in milliseconds",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lastLogin",
+              "short" => "Unix timestamp in milliseconds",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lastLogout",
+              "short" => "Unix timestamp in milliseconds",
               "type" => "`$INTEGER`",
             },
             {
@@ -363,6 +369,7 @@ module HypixelConfig
             },
             {
               "name" => "stats",
+              "short" => "Game statistics organized by game type database name",
               "type" => "`$OBJECT`",
             },
             {
