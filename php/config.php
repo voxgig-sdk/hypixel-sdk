@@ -42,6 +42,7 @@ class HypixelConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
