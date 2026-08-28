@@ -45,7 +45,7 @@ client = HypixelSDK({
 
 ```python
 try:
-    guild = client.Guild().load()
+    guild = client.Guild().load({"id": "example_id"})
     print(guild)
 except Exception as err:
     print(f"load failed: {err}")
@@ -409,7 +409,7 @@ Create an instance: `guild = client.Guild()`
 #### Example: Load
 
 ```python
-guild = client.Guild().load()
+guild = client.Guild().load({"id": "guild_id"})
 ```
 
 
@@ -434,13 +434,13 @@ Create an instance: `housing = client.Housing()`
 #### Example: Load
 
 ```python
-housing = client.Housing().load()
+housing = client.Housing().load({"house": "house"})
 ```
 
 #### Example: List
 
 ```python
-housings = client.Housing().list()
+housings = client.Housing().list({"uuid": "example"})
 ```
 
 
@@ -509,7 +509,7 @@ Create an instance: `player = client.Player()`
 #### Example: Load
 
 ```python
-player = client.Player().load()
+player = client.Player().load({"uuid": "uuid"})
 ```
 
 
@@ -538,13 +538,13 @@ Create an instance: `player_data = client.PlayerData()`
 #### Example: Load
 
 ```python
-player_data = client.PlayerData().load()
+player_data = client.PlayerData().load({"uuid": "uuid"})
 ```
 
 #### Example: List
 
 ```python
-player_datas = client.PlayerData().list()
+player_datas = client.PlayerData().list({"uuid": "example"})
 ```
 
 
@@ -642,7 +642,7 @@ Create an instance: `sky_block = client.SkyBlock()`
 #### Example: Load
 
 ```python
-sky_block = client.SkyBlock().load({"id": "sky_block_id"})
+sky_block = client.SkyBlock().load({"profile": "profile"})
 ```
 
 #### Example: List
@@ -650,6 +650,29 @@ sky_block = client.SkyBlock().load({"id": "sky_block_id"})
 ```python
 sky_blocks = client.SkyBlock().list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single guild — the value is the loaded record.
-    guild, err := client.Guild(nil).Load(nil, nil)
+    guild, err := client.Guild(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -258,7 +258,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    guild, err := client.Guild(nil).Load(nil, nil)
+    guild, err := client.Guild(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
     // guild is the returned record
 
@@ -427,7 +427,7 @@ Create an instance: `guild := client.Guild(nil)`
 #### Example: Load
 
 ```go
-guild, err := client.Guild(nil).Load(nil, nil)
+guild, err := client.Guild(nil).Load(map[string]any{"id": "guild_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -456,7 +456,7 @@ Create an instance: `housing := client.Housing(nil)`
 #### Example: Load
 
 ```go
-housing, err := client.Housing(nil).Load(nil, nil)
+housing, err := client.Housing(nil).Load(map[string]any{"house": "house"}, nil)
 if err != nil {
     panic(err)
 }
@@ -547,7 +547,7 @@ Create an instance: `player := client.Player(nil)`
 #### Example: Load
 
 ```go
-player, err := client.Player(nil).Load(nil, nil)
+player, err := client.Player(nil).Load(map[string]any{"uuid": "uuid"}, nil)
 if err != nil {
     panic(err)
 }
@@ -580,7 +580,7 @@ Create an instance: `playerData := client.PlayerData(nil)`
 #### Example: Load
 
 ```go
-playerData, err := client.PlayerData(nil).Load(nil, nil)
+playerData, err := client.PlayerData(nil).Load(map[string]any{"uuid": "uuid"}, nil)
 if err != nil {
     panic(err)
 }
@@ -696,7 +696,7 @@ Create an instance: `skyBlock := client.SkyBlock(nil)`
 #### Example: Load
 
 ```go
-skyBlock, err := client.SkyBlock(nil).Load(map[string]any{"id": "sky_block_id"}, nil)
+skyBlock, err := client.SkyBlock(nil).Load(map[string]any{"profile": "profile"}, nil)
 if err != nil {
     panic(err)
 }
@@ -712,6 +712,29 @@ if err != nil {
 }
 fmt.Println(skyBlocks) // the array of records
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

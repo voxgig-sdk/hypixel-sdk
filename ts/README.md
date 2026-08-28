@@ -41,7 +41,7 @@ const client = new HypixelSDK({
 
 ```ts
 try {
-  const guild = await client.Guild().load()
+  const guild = await client.Guild().load({ id: 'example_id' })
   console.log(guild)
 } catch (err) {
   console.error('load failed:', err)
@@ -456,7 +456,7 @@ Create an instance: `const guild = client.Guild()`
 #### Example: Load
 
 ```ts
-const guild = await client.Guild().load()
+const guild = await client.Guild().load({ id: 'guild_id' })
 ```
 
 
@@ -481,13 +481,13 @@ Create an instance: `const housing = client.Housing()`
 #### Example: Load
 
 ```ts
-const housing = await client.Housing().load()
+const housing = await client.Housing().load({ house: 'house' })
 ```
 
 #### Example: List
 
 ```ts
-const housings = await client.Housing().list()
+const housings = await client.Housing().list({ uuid: "example" })
 ```
 
 
@@ -556,7 +556,7 @@ Create an instance: `const player = client.Player()`
 #### Example: Load
 
 ```ts
-const player = await client.Player().load()
+const player = await client.Player().load({ uuid: 'uuid' })
 ```
 
 
@@ -585,13 +585,13 @@ Create an instance: `const player_data = client.PlayerData()`
 #### Example: Load
 
 ```ts
-const player_data = await client.PlayerData().load()
+const player_data = await client.PlayerData().load({ uuid: 'uuid' })
 ```
 
 #### Example: List
 
 ```ts
-const player_datas = await client.PlayerData().list()
+const player_datas = await client.PlayerData().list({ uuid: "example" })
 ```
 
 
@@ -689,7 +689,7 @@ Create an instance: `const sky_block = client.SkyBlock()`
 #### Example: Load
 
 ```ts
-const sky_block = await client.SkyBlock().load({ id: 'sky_block_id' })
+const sky_block = await client.SkyBlock().load({ profile: 'profile' })
 ```
 
 #### Example: List
@@ -697,6 +697,29 @@ const sky_block = await client.SkyBlock().load({ id: 'sky_block_id' })
 ```ts
 const sky_blocks = await client.SkyBlock().list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

@@ -18,6 +18,9 @@ type Guild struct {
 
 // GuildLoadMatch is the typed request payload for Guild.LoadTyped.
 type GuildLoadMatch struct {
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Player *string `json:"player,omitempty"`
 }
 
 // Housing is the typed data model for the housing entity.
@@ -28,14 +31,12 @@ type Housing struct {
 
 // HousingLoadMatch is the typed request payload for Housing.LoadTyped.
 type HousingLoadMatch struct {
-	Houses *[]any `json:"houses,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	House string `json:"house"`
 }
 
 // HousingListMatch is the typed request payload for Housing.ListTyped.
 type HousingListMatch struct {
-	Houses *[]any `json:"houses,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Uuid string `json:"uuid"`
 }
 
 // Other is the typed data model for the other entity.
@@ -90,16 +91,7 @@ type Player struct {
 
 // PlayerLoadMatch is the typed request payload for Player.LoadTyped.
 type PlayerLoadMatch struct {
-	Displayname *string `json:"displayname,omitempty"`
-	FirstLogin *int `json:"firstLogin,omitempty"`
-	LastLogin *int `json:"lastLogin,omitempty"`
-	LastLogout *int `json:"lastLogout,omitempty"`
-	MonthlyPackageRank *string `json:"monthlyPackageRank,omitempty"`
-	NewPackageRank *string `json:"newPackageRank,omitempty"`
-	PackageRank *string `json:"packageRank,omitempty"`
-	Rank *string `json:"rank,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	Uuid *string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid"`
 }
 
 // PlayerData is the typed data model for the player_data entity.
@@ -114,22 +106,12 @@ type PlayerData struct {
 
 // PlayerDataLoadMatch is the typed request payload for PlayerData.LoadTyped.
 type PlayerDataLoadMatch struct {
-	Date *int `json:"date,omitempty"`
-	Ended *int `json:"ended,omitempty"`
-	GameType *string `json:"gameType,omitempty"`
-	Map *string `json:"map,omitempty"`
-	Mode *string `json:"mode,omitempty"`
-	Online *bool `json:"online,omitempty"`
+	Uuid string `json:"uuid"`
 }
 
 // PlayerDataListMatch is the typed request payload for PlayerData.ListTyped.
 type PlayerDataListMatch struct {
-	Date *int `json:"date,omitempty"`
-	Ended *int `json:"ended,omitempty"`
-	GameType *string `json:"gameType,omitempty"`
-	Map *string `json:"map,omitempty"`
-	Mode *string `json:"mode,omitempty"`
-	Online *bool `json:"online,omitempty"`
+	Uuid string `json:"uuid"`
 }
 
 // Resource is the typed data model for the resource entity.
@@ -209,95 +191,13 @@ type SkyBlock struct {
 
 // SkyBlockLoadMatch is the typed request payload for SkyBlock.LoadTyped.
 type SkyBlockLoadMatch struct {
-	Auctioneer *string `json:"auctioneer,omitempty"`
-	Auctions *[]any `json:"auctions,omitempty"`
-	Bids *[]any `json:"bids,omitempty"`
-	Category *string `json:"category,omitempty"`
-	Claimed *bool `json:"claimed,omitempty"`
-	ClaimedBidders *[]any `json:"claimed_bidders,omitempty"`
-	Color *string `json:"color,omitempty"`
-	Coop *[]any `json:"coop,omitempty"`
-	Current *map[string]any `json:"current,omitempty"`
-	End *int `json:"end,omitempty"`
-	Events *[]any `json:"events,omitempty"`
-	Extra *string `json:"extra,omitempty"`
-	FullLore *[]any `json:"fullLore,omitempty"`
-	HighestBidAmount *int `json:"highest_bid_amount,omitempty"`
-	Id string `json:"id"`
-	Item *map[string]any `json:"item,omitempty"`
-	ItemBytes *map[string]any `json:"item_bytes,omitempty"`
-	ItemLore *string `json:"item_lore,omitempty"`
-	ItemName *string `json:"item_name,omitempty"`
-	LastUpdated *int `json:"lastUpdated,omitempty"`
-	Link *string `json:"link,omitempty"`
-	Lore *string `json:"lore,omitempty"`
-	Material *string `json:"material,omitempty"`
-	Mayor *map[string]any `json:"mayor,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NpcSellPrice *float64 `json:"npc_sell_price,omitempty"`
-	Page *int `json:"page,omitempty"`
-	ProfileId *string `json:"profile_id,omitempty"`
-	Profiles *[]any `json:"profiles,omitempty"`
-	Progress *int `json:"progress,omitempty"`
-	RequiredAmount *int `json:"requiredAmount,omitempty"`
-	Sales *[]any `json:"sales,omitempty"`
-	Start *int `json:"start,omitempty"`
-	StartingBid *int `json:"starting_bid,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Tier *string `json:"tier,omitempty"`
-	Tiers *[]any `json:"tiers,omitempty"`
-	Title *string `json:"title,omitempty"`
-	TotalAuctions *int `json:"totalAuctions,omitempty"`
-	TotalPages *int `json:"totalPages,omitempty"`
-	Uuid *string `json:"uuid,omitempty"`
+	Profile string `json:"profile"`
 }
 
 // SkyBlockListMatch is the typed request payload for SkyBlock.ListTyped.
 type SkyBlockListMatch struct {
-	Auctioneer *string `json:"auctioneer,omitempty"`
-	Auctions *[]any `json:"auctions,omitempty"`
-	Bids *[]any `json:"bids,omitempty"`
-	Category *string `json:"category,omitempty"`
-	Claimed *bool `json:"claimed,omitempty"`
-	ClaimedBidders *[]any `json:"claimed_bidders,omitempty"`
-	Color *string `json:"color,omitempty"`
-	Coop *[]any `json:"coop,omitempty"`
-	Current *map[string]any `json:"current,omitempty"`
-	End *int `json:"end,omitempty"`
-	Events *[]any `json:"events,omitempty"`
-	Extra *string `json:"extra,omitempty"`
-	FullLore *[]any `json:"fullLore,omitempty"`
-	HighestBidAmount *int `json:"highest_bid_amount,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Item *map[string]any `json:"item,omitempty"`
-	ItemBytes *map[string]any `json:"item_bytes,omitempty"`
-	ItemLore *string `json:"item_lore,omitempty"`
-	ItemName *string `json:"item_name,omitempty"`
-	LastUpdated *int `json:"lastUpdated,omitempty"`
-	Link *string `json:"link,omitempty"`
-	Lore *string `json:"lore,omitempty"`
-	Material *string `json:"material,omitempty"`
-	Mayor *map[string]any `json:"mayor,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NpcSellPrice *float64 `json:"npc_sell_price,omitempty"`
-	Page *int `json:"page,omitempty"`
-	ProfileId *string `json:"profile_id,omitempty"`
-	Profiles *[]any `json:"profiles,omitempty"`
-	Progress *int `json:"progress,omitempty"`
-	RequiredAmount *int `json:"requiredAmount,omitempty"`
-	Sales *[]any `json:"sales,omitempty"`
-	Start *int `json:"start,omitempty"`
-	StartingBid *int `json:"starting_bid,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Tier *string `json:"tier,omitempty"`
-	Tiers *[]any `json:"tiers,omitempty"`
-	Title *string `json:"title,omitempty"`
-	TotalAuctions *int `json:"totalAuctions,omitempty"`
-	TotalPages *int `json:"totalPages,omitempty"`
+	Player *string `json:"player,omitempty"`
+	Profile *string `json:"profile,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
 }
 

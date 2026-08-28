@@ -9,18 +9,19 @@
 ---@class Guild
 
 ---@class GuildLoadMatch
+---@field id? string
+---@field name? string
+---@field player? string
 
 ---@class Housing
 ---@field houses? table
 ---@field success? boolean
 
 ---@class HousingLoadMatch
----@field houses? table
----@field success? boolean
+---@field house string
 
 ---@class HousingListMatch
----@field houses? table
----@field success? boolean
+---@field uuid string
 
 ---@class Other
 ---@field boosterState? table
@@ -65,16 +66,7 @@
 ---@field uuid? string
 
 ---@class PlayerLoadMatch
----@field displayname? string
----@field firstLogin? number
----@field lastLogin? number
----@field lastLogout? number
----@field monthlyPackageRank? string
----@field newPackageRank? string
----@field packageRank? string
----@field rank? string
----@field stats? table
----@field uuid? string
+---@field uuid string
 
 ---@class PlayerData
 ---@field date? number
@@ -85,20 +77,10 @@
 ---@field online? boolean
 
 ---@class PlayerDataLoadMatch
----@field date? number
----@field ended? number
----@field gameType? string
----@field map? string
----@field mode? string
----@field online? boolean
+---@field uuid string
 
 ---@class PlayerDataListMatch
----@field date? number
----@field ended? number
----@field gameType? string
----@field map? string
----@field mode? string
----@field online? boolean
+---@field uuid string
 
 ---@class Resource
 ---@field databaseName? string
@@ -170,93 +152,11 @@
 ---@field uuid? string
 
 ---@class SkyBlockLoadMatch
----@field auctioneer? string
----@field auctions? table
----@field bids? table
----@field category? string
----@field claimed? boolean
----@field claimed_bidders? table
----@field color? string
----@field coop? table
----@field current? table
----@field end? number
----@field events? table
----@field extra? string
----@field fullLore? table
----@field highest_bid_amount? number
----@field id string
----@field item? table
----@field item_bytes? table
----@field item_lore? string
----@field item_name? string
----@field lastUpdated? number
----@field link? string
----@field lore? string
----@field material? string
----@field mayor? table
----@field name? string
----@field npc_sell_price? number
----@field page? number
----@field profile_id? string
----@field profiles? table
----@field progress? number
----@field requiredAmount? number
----@field sales? table
----@field start? number
----@field starting_bid? number
----@field stats? table
----@field success? boolean
----@field text? string
----@field tier? string
----@field tiers? table
----@field title? string
----@field totalAuctions? number
----@field totalPages? number
----@field uuid? string
+---@field profile string
 
 ---@class SkyBlockListMatch
----@field auctioneer? string
----@field auctions? table
----@field bids? table
----@field category? string
----@field claimed? boolean
----@field claimed_bidders? table
----@field color? string
----@field coop? table
----@field current? table
----@field end? number
----@field events? table
----@field extra? string
----@field fullLore? table
----@field highest_bid_amount? number
----@field id? string
----@field item? table
----@field item_bytes? table
----@field item_lore? string
----@field item_name? string
----@field lastUpdated? number
----@field link? string
----@field lore? string
----@field material? string
----@field mayor? table
----@field name? string
----@field npc_sell_price? number
----@field page? number
----@field profile_id? string
----@field profiles? table
----@field progress? number
----@field requiredAmount? number
----@field sales? table
----@field start? number
----@field starting_bid? number
----@field stats? table
----@field success? boolean
----@field text? string
----@field tier? string
----@field tiers? table
----@field title? string
----@field totalAuctions? number
----@field totalPages? number
+---@field player? string
+---@field profile? string
 ---@field uuid? string
 
 local M = {}

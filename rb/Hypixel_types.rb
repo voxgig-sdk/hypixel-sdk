@@ -13,8 +13,21 @@ class Guild
 end
 
 # Request payload for Guild#load.
-class GuildLoadMatch
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] player
+#   @return [String, nil]
+GuildLoadMatch = Struct.new(
+  :id,
+  :name,
+  :player,
+  keyword_init: true
+)
 
 # Housing entity data model.
 #
@@ -31,27 +44,19 @@ Housing = Struct.new(
 
 # Request payload for Housing#load.
 #
-# @!attribute [rw] houses
-#   @return [Array, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] house
+#   @return [String]
 HousingLoadMatch = Struct.new(
-  :houses,
-  :success,
+  :house,
   keyword_init: true
 )
 
 # Request payload for Housing#list.
 #
-# @!attribute [rw] houses
-#   @return [Array, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] uuid
+#   @return [String]
 HousingListMatch = Struct.new(
-  :houses,
-  :success,
+  :uuid,
   keyword_init: true
 )
 
@@ -213,45 +218,9 @@ Player = Struct.new(
 
 # Request payload for Player#load.
 #
-# @!attribute [rw] displayname
-#   @return [String, nil]
-#
-# @!attribute [rw] firstLogin
-#   @return [Integer, nil]
-#
-# @!attribute [rw] lastLogin
-#   @return [Integer, nil]
-#
-# @!attribute [rw] lastLogout
-#   @return [Integer, nil]
-#
-# @!attribute [rw] monthlyPackageRank
-#   @return [String, nil]
-#
-# @!attribute [rw] newPackageRank
-#   @return [String, nil]
-#
-# @!attribute [rw] packageRank
-#   @return [String, nil]
-#
-# @!attribute [rw] rank
-#   @return [String, nil]
-#
-# @!attribute [rw] stats
-#   @return [Hash, nil]
-#
 # @!attribute [rw] uuid
-#   @return [String, nil]
+#   @return [String]
 PlayerLoadMatch = Struct.new(
-  :displayname,
-  :firstLogin,
-  :lastLogin,
-  :lastLogout,
-  :monthlyPackageRank,
-  :newPackageRank,
-  :packageRank,
-  :rank,
-  :stats,
   :uuid,
   keyword_init: true
 )
@@ -287,59 +256,19 @@ PlayerData = Struct.new(
 
 # Request payload for PlayerData#load.
 #
-# @!attribute [rw] date
-#   @return [Integer, nil]
-#
-# @!attribute [rw] ended
-#   @return [Integer, nil]
-#
-# @!attribute [rw] gameType
-#   @return [String, nil]
-#
-# @!attribute [rw] map
-#   @return [String, nil]
-#
-# @!attribute [rw] mode
-#   @return [String, nil]
-#
-# @!attribute [rw] online
-#   @return [Boolean, nil]
+# @!attribute [rw] uuid
+#   @return [String]
 PlayerDataLoadMatch = Struct.new(
-  :date,
-  :ended,
-  :gameType,
-  :map,
-  :mode,
-  :online,
+  :uuid,
   keyword_init: true
 )
 
 # Request payload for PlayerData#list.
 #
-# @!attribute [rw] date
-#   @return [Integer, nil]
-#
-# @!attribute [rw] ended
-#   @return [Integer, nil]
-#
-# @!attribute [rw] gameType
-#   @return [String, nil]
-#
-# @!attribute [rw] map
-#   @return [String, nil]
-#
-# @!attribute [rw] mode
-#   @return [String, nil]
-#
-# @!attribute [rw] online
-#   @return [Boolean, nil]
+# @!attribute [rw] uuid
+#   @return [String]
 PlayerDataListMatch = Struct.new(
-  :date,
-  :ended,
-  :gameType,
-  :map,
-  :mode,
-  :online,
+  :uuid,
   keyword_init: true
 )
 
@@ -612,354 +541,26 @@ SkyBlock = Struct.new(
 
 # Request payload for SkyBlock#load.
 #
-# @!attribute [rw] auctioneer
-#   @return [String, nil]
-#
-# @!attribute [rw] auctions
-#   @return [Array, nil]
-#
-# @!attribute [rw] bids
-#   @return [Array, nil]
-#
-# @!attribute [rw] category
-#   @return [String, nil]
-#
-# @!attribute [rw] claimed
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] claimed_bidders
-#   @return [Array, nil]
-#
-# @!attribute [rw] color
-#   @return [String, nil]
-#
-# @!attribute [rw] coop
-#   @return [Array, nil]
-#
-# @!attribute [rw] current
-#   @return [Hash, nil]
-#
-# @!attribute [rw] end
-#   @return [Integer, nil]
-#
-# @!attribute [rw] events
-#   @return [Array, nil]
-#
-# @!attribute [rw] extra
-#   @return [String, nil]
-#
-# @!attribute [rw] fullLore
-#   @return [Array, nil]
-#
-# @!attribute [rw] highest_bid_amount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] profile
 #   @return [String]
-#
-# @!attribute [rw] item
-#   @return [Hash, nil]
-#
-# @!attribute [rw] item_bytes
-#   @return [Hash, nil]
-#
-# @!attribute [rw] item_lore
-#   @return [String, nil]
-#
-# @!attribute [rw] item_name
-#   @return [String, nil]
-#
-# @!attribute [rw] lastUpdated
-#   @return [Integer, nil]
-#
-# @!attribute [rw] link
-#   @return [String, nil]
-#
-# @!attribute [rw] lore
-#   @return [String, nil]
-#
-# @!attribute [rw] material
-#   @return [String, nil]
-#
-# @!attribute [rw] mayor
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] npc_sell_price
-#   @return [Float, nil]
-#
-# @!attribute [rw] page
-#   @return [Integer, nil]
-#
-# @!attribute [rw] profile_id
-#   @return [String, nil]
-#
-# @!attribute [rw] profiles
-#   @return [Array, nil]
-#
-# @!attribute [rw] progress
-#   @return [Integer, nil]
-#
-# @!attribute [rw] requiredAmount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] sales
-#   @return [Array, nil]
-#
-# @!attribute [rw] start
-#   @return [Integer, nil]
-#
-# @!attribute [rw] starting_bid
-#   @return [Integer, nil]
-#
-# @!attribute [rw] stats
-#   @return [Hash, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] text
-#   @return [String, nil]
-#
-# @!attribute [rw] tier
-#   @return [String, nil]
-#
-# @!attribute [rw] tiers
-#   @return [Array, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] totalAuctions
-#   @return [Integer, nil]
-#
-# @!attribute [rw] totalPages
-#   @return [Integer, nil]
-#
-# @!attribute [rw] uuid
-#   @return [String, nil]
 SkyBlockLoadMatch = Struct.new(
-  :auctioneer,
-  :auctions,
-  :bids,
-  :category,
-  :claimed,
-  :claimed_bidders,
-  :color,
-  :coop,
-  :current,
-  :end,
-  :events,
-  :extra,
-  :fullLore,
-  :highest_bid_amount,
-  :id,
-  :item,
-  :item_bytes,
-  :item_lore,
-  :item_name,
-  :lastUpdated,
-  :link,
-  :lore,
-  :material,
-  :mayor,
-  :name,
-  :npc_sell_price,
-  :page,
-  :profile_id,
-  :profiles,
-  :progress,
-  :requiredAmount,
-  :sales,
-  :start,
-  :starting_bid,
-  :stats,
-  :success,
-  :text,
-  :tier,
-  :tiers,
-  :title,
-  :totalAuctions,
-  :totalPages,
-  :uuid,
+  :profile,
   keyword_init: true
 )
 
 # Request payload for SkyBlock#list.
 #
-# @!attribute [rw] auctioneer
+# @!attribute [rw] player
 #   @return [String, nil]
 #
-# @!attribute [rw] auctions
-#   @return [Array, nil]
-#
-# @!attribute [rw] bids
-#   @return [Array, nil]
-#
-# @!attribute [rw] category
+# @!attribute [rw] profile
 #   @return [String, nil]
-#
-# @!attribute [rw] claimed
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] claimed_bidders
-#   @return [Array, nil]
-#
-# @!attribute [rw] color
-#   @return [String, nil]
-#
-# @!attribute [rw] coop
-#   @return [Array, nil]
-#
-# @!attribute [rw] current
-#   @return [Hash, nil]
-#
-# @!attribute [rw] end
-#   @return [Integer, nil]
-#
-# @!attribute [rw] events
-#   @return [Array, nil]
-#
-# @!attribute [rw] extra
-#   @return [String, nil]
-#
-# @!attribute [rw] fullLore
-#   @return [Array, nil]
-#
-# @!attribute [rw] highest_bid_amount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] item
-#   @return [Hash, nil]
-#
-# @!attribute [rw] item_bytes
-#   @return [Hash, nil]
-#
-# @!attribute [rw] item_lore
-#   @return [String, nil]
-#
-# @!attribute [rw] item_name
-#   @return [String, nil]
-#
-# @!attribute [rw] lastUpdated
-#   @return [Integer, nil]
-#
-# @!attribute [rw] link
-#   @return [String, nil]
-#
-# @!attribute [rw] lore
-#   @return [String, nil]
-#
-# @!attribute [rw] material
-#   @return [String, nil]
-#
-# @!attribute [rw] mayor
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] npc_sell_price
-#   @return [Float, nil]
-#
-# @!attribute [rw] page
-#   @return [Integer, nil]
-#
-# @!attribute [rw] profile_id
-#   @return [String, nil]
-#
-# @!attribute [rw] profiles
-#   @return [Array, nil]
-#
-# @!attribute [rw] progress
-#   @return [Integer, nil]
-#
-# @!attribute [rw] requiredAmount
-#   @return [Integer, nil]
-#
-# @!attribute [rw] sales
-#   @return [Array, nil]
-#
-# @!attribute [rw] start
-#   @return [Integer, nil]
-#
-# @!attribute [rw] starting_bid
-#   @return [Integer, nil]
-#
-# @!attribute [rw] stats
-#   @return [Hash, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] text
-#   @return [String, nil]
-#
-# @!attribute [rw] tier
-#   @return [String, nil]
-#
-# @!attribute [rw] tiers
-#   @return [Array, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] totalAuctions
-#   @return [Integer, nil]
-#
-# @!attribute [rw] totalPages
-#   @return [Integer, nil]
 #
 # @!attribute [rw] uuid
 #   @return [String, nil]
 SkyBlockListMatch = Struct.new(
-  :auctioneer,
-  :auctions,
-  :bids,
-  :category,
-  :claimed,
-  :claimed_bidders,
-  :color,
-  :coop,
-  :current,
-  :end,
-  :events,
-  :extra,
-  :fullLore,
-  :highest_bid_amount,
-  :id,
-  :item,
-  :item_bytes,
-  :item_lore,
-  :item_name,
-  :lastUpdated,
-  :link,
-  :lore,
-  :material,
-  :mayor,
-  :name,
-  :npc_sell_price,
-  :page,
-  :profile_id,
-  :profiles,
-  :progress,
-  :requiredAmount,
-  :sales,
-  :start,
-  :starting_bid,
-  :stats,
-  :success,
-  :text,
-  :tier,
-  :tiers,
-  :title,
-  :totalAuctions,
-  :totalPages,
+  :player,
+  :profile,
   :uuid,
   keyword_init: true
 )

@@ -20,8 +20,10 @@ class Guild(TypedDict):
     pass
 
 
-class GuildLoadMatch(TypedDict):
-    pass
+class GuildLoadMatch(TypedDict, total=False):
+    id: str
+    name: str
+    player: str
 
 
 class Housing(TypedDict, total=False):
@@ -29,14 +31,12 @@ class Housing(TypedDict, total=False):
     success: bool
 
 
-class HousingLoadMatch(TypedDict, total=False):
-    houses: list
-    success: bool
+class HousingLoadMatch(TypedDict):
+    house: str
 
 
-class HousingListMatch(TypedDict, total=False):
-    houses: list
-    success: bool
+class HousingListMatch(TypedDict):
+    uuid: str
 
 
 class Other(TypedDict, total=False):
@@ -85,16 +85,7 @@ class Player(TypedDict, total=False):
     uuid: str
 
 
-class PlayerLoadMatch(TypedDict, total=False):
-    displayname: str
-    firstLogin: int
-    lastLogin: int
-    lastLogout: int
-    monthlyPackageRank: str
-    newPackageRank: str
-    packageRank: str
-    rank: str
-    stats: dict
+class PlayerLoadMatch(TypedDict):
     uuid: str
 
 
@@ -107,22 +98,12 @@ class PlayerData(TypedDict, total=False):
     online: bool
 
 
-class PlayerDataLoadMatch(TypedDict, total=False):
-    date: int
-    ended: int
-    gameType: str
-    map: str
-    mode: str
-    online: bool
+class PlayerDataLoadMatch(TypedDict):
+    uuid: str
 
 
-class PlayerDataListMatch(TypedDict, total=False):
-    date: int
-    ended: int
-    gameType: str
-    map: str
-    mode: str
-    online: bool
+class PlayerDataListMatch(TypedDict):
+    uuid: str
 
 
 class Resource(TypedDict, total=False):
@@ -200,96 +181,11 @@ class SkyBlock(TypedDict, total=False):
     uuid: str
 
 
-class SkyBlockLoadMatchRequired(TypedDict):
-    id: str
-
-
-class SkyBlockLoadMatch(SkyBlockLoadMatchRequired, total=False):
-    auctioneer: str
-    auctions: list
-    bids: list
-    category: str
-    claimed: bool
-    claimed_bidders: list
-    color: str
-    coop: list
-    current: dict
-    end: int
-    events: list
-    extra: str
-    fullLore: list
-    highest_bid_amount: int
-    item: dict
-    item_bytes: dict
-    item_lore: str
-    item_name: str
-    lastUpdated: int
-    link: str
-    lore: str
-    material: str
-    mayor: dict
-    name: str
-    npc_sell_price: float
-    page: int
-    profile_id: str
-    profiles: list
-    progress: int
-    requiredAmount: int
-    sales: list
-    start: int
-    starting_bid: int
-    stats: dict
-    success: bool
-    text: str
-    tier: str
-    tiers: list
-    title: str
-    totalAuctions: int
-    totalPages: int
-    uuid: str
+class SkyBlockLoadMatch(TypedDict):
+    profile: str
 
 
 class SkyBlockListMatch(TypedDict, total=False):
-    auctioneer: str
-    auctions: list
-    bids: list
-    category: str
-    claimed: bool
-    claimed_bidders: list
-    color: str
-    coop: list
-    current: dict
-    end: int
-    events: list
-    extra: str
-    fullLore: list
-    highest_bid_amount: int
-    id: str
-    item: dict
-    item_bytes: dict
-    item_lore: str
-    item_name: str
-    lastUpdated: int
-    link: str
-    lore: str
-    material: str
-    mayor: dict
-    name: str
-    npc_sell_price: float
-    page: int
-    profile_id: str
-    profiles: list
-    progress: int
-    requiredAmount: int
-    sales: list
-    start: int
-    starting_bid: int
-    stats: dict
-    success: bool
-    text: str
-    tier: str
-    tiers: list
-    title: str
-    totalAuctions: int
-    totalPages: int
+    player: str
+    profile: str
     uuid: str

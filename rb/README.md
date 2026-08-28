@@ -37,7 +37,7 @@ client = HypixelSDK.new({
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the Guild record (raises on error).
-  guild = client.Guild.load()
+  guild = client.Guild.load({ "id" => "example_id" })
   puts guild
 rescue => err
   warn "load failed: #{err}"
@@ -403,7 +403,7 @@ Create an instance: `guild = client.Guild`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Guild record (raises on error).
-guild = client.Guild.load()
+guild = client.Guild.load({ "id" => "guild_id" })
 ```
 
 
@@ -429,7 +429,7 @@ Create an instance: `housing = client.Housing`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Housing record (raises on error).
-housing = client.Housing.load()
+housing = client.Housing.load({ "house" => "house" })
 ```
 
 #### Example: List
@@ -508,7 +508,7 @@ Create an instance: `player = client.Player`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Player record (raises on error).
-player = client.Player.load()
+player = client.Player.load({ "uuid" => "uuid" })
 ```
 
 
@@ -538,7 +538,7 @@ Create an instance: `player_data = client.PlayerData`
 
 ```ruby
 # load returns the ENTITY — call data_get for the PlayerData record (raises on error).
-player_data = client.PlayerData.load()
+player_data = client.PlayerData.load({ "uuid" => "uuid" })
 ```
 
 #### Example: List
@@ -645,7 +645,7 @@ Create an instance: `sky_block = client.SkyBlock`
 
 ```ruby
 # load returns the ENTITY — call data_get for the SkyBlock record (raises on error).
-sky_block = client.SkyBlock.load({ "id" => "sky_block_id" })
+sky_block = client.SkyBlock.load({ "profile" => "profile" })
 ```
 
 #### Example: List
@@ -654,6 +654,29 @@ sky_block = client.SkyBlock.load({ "id" => "sky_block_id" })
 # list returns an Array of SkyBlock records (raises on error).
 sky_blocks = client.SkyBlock.list
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

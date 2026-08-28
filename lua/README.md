@@ -38,7 +38,7 @@ local client = sdk.new({
 ### 3. Load a guild
 
 ```lua
-local guild, err = client:Guild():load()
+local guild, err = client:Guild():load({ id = "example_id" })
 if err then error(err) end
 print(guild)
 ```
@@ -224,7 +224,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local guild, err = client:Guild():load()
+    local guild, err = client:Guild():load({ id = "example_id" })
     if err then error(err) end
     -- guild is the loaded record
 
@@ -393,7 +393,7 @@ Create an instance: `local guild = client:Guild(nil)`
 #### Example: Load
 
 ```lua
-local guild, err = client:Guild():load()
+local guild, err = client:Guild():load({ id = "guild_id" })
 ```
 
 
@@ -418,7 +418,7 @@ Create an instance: `local housing = client:Housing(nil)`
 #### Example: Load
 
 ```lua
-local housing, err = client:Housing():load()
+local housing, err = client:Housing():load({ house = "house" })
 ```
 
 #### Example: List
@@ -493,7 +493,7 @@ Create an instance: `local player = client:Player(nil)`
 #### Example: Load
 
 ```lua
-local player, err = client:Player():load()
+local player, err = client:Player():load({ uuid = "uuid" })
 ```
 
 
@@ -522,7 +522,7 @@ Create an instance: `local player_data = client:PlayerData(nil)`
 #### Example: Load
 
 ```lua
-local player_data, err = client:PlayerData():load()
+local player_data, err = client:PlayerData():load({ uuid = "uuid" })
 ```
 
 #### Example: List
@@ -626,7 +626,7 @@ Create an instance: `local sky_block = client:SkyBlock(nil)`
 #### Example: Load
 
 ```lua
-local sky_block, err = client:SkyBlock():load({ id = "sky_block_id" })
+local sky_block, err = client:SkyBlock():load({ profile = "profile" })
 ```
 
 #### Example: List
@@ -634,6 +634,29 @@ local sky_block, err = client:SkyBlock():load({ id = "sky_block_id" })
 ```lua
 local sky_blocks, err = client:SkyBlock():list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

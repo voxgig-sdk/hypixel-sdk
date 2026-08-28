@@ -38,7 +38,7 @@ $client = new HypixelSDK([
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Guild record (throws on error).
-    $guild = $client->Guild()->load();
+    $guild = $client->Guild()->load(["id" => "example_id"]);
     print_r($guild);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -413,7 +413,7 @@ Create an instance: `$guild = $client->Guild();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Guild record (throws on error).
-$guild = $client->Guild()->load();
+$guild = $client->Guild()->load(["id" => "guild_id"]);
 ```
 
 
@@ -439,7 +439,7 @@ Create an instance: `$housing = $client->Housing();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Housing record (throws on error).
-$housing = $client->Housing()->load();
+$housing = $client->Housing()->load(["house" => "house"]);
 ```
 
 #### Example: List
@@ -518,7 +518,7 @@ Create an instance: `$player = $client->Player();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Player record (throws on error).
-$player = $client->Player()->load();
+$player = $client->Player()->load(["uuid" => "uuid"]);
 ```
 
 
@@ -548,7 +548,7 @@ Create an instance: `$player_data = $client->PlayerData();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the PlayerData record (throws on error).
-$player_data = $client->PlayerData()->load();
+$player_data = $client->PlayerData()->load(["uuid" => "uuid"]);
 ```
 
 #### Example: List
@@ -655,7 +655,7 @@ Create an instance: `$sky_block = $client->SkyBlock();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the SkyBlock record (throws on error).
-$sky_block = $client->SkyBlock()->load(["id" => "sky_block_id"]);
+$sky_block = $client->SkyBlock()->load(["profile" => "profile"]);
 ```
 
 #### Example: List
@@ -664,6 +664,29 @@ $sky_block = $client->SkyBlock()->load(["id" => "sky_block_id"]);
 // list() returns an array of SkyBlock records (throws on error).
 $sky_blocks = $client->SkyBlock()->list();
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

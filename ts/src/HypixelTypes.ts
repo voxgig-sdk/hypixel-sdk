@@ -9,6 +9,9 @@ export interface Guild {
 }
 
 export interface GuildLoadMatch {
+  id?: string
+  name?: string
+  player?: string
 }
 
 export interface Housing {
@@ -17,8 +20,7 @@ export interface Housing {
 }
 
 export interface HousingLoadMatch {
-  houses?: any[]
-  success?: boolean
+  house: string
 
   // Selects a custom action instead of the plain load:
   //   'house'
@@ -28,8 +30,7 @@ export interface HousingLoadMatch {
 }
 
 export interface HousingListMatch {
-  houses?: any[]
-  success?: boolean
+  uuid: string
 
   // Selects a custom action instead of the plain list:
   //   'house' | 'player'
@@ -85,16 +86,7 @@ export interface Player {
 }
 
 export interface PlayerLoadMatch {
-  displayname?: string
-  firstLogin?: number
-  lastLogin?: number
-  lastLogout?: number
-  monthlyPackageRank?: string
-  newPackageRank?: string
-  packageRank?: string
-  rank?: string
-  stats?: Record<string, any>
-  uuid?: string
+  uuid: string
 }
 
 export interface PlayerData {
@@ -107,21 +99,11 @@ export interface PlayerData {
 }
 
 export interface PlayerDataLoadMatch {
-  date?: number
-  ended?: number
-  gameType?: string
-  map?: string
-  mode?: string
-  online?: boolean
+  uuid: string
 }
 
 export interface PlayerDataListMatch {
-  date?: number
-  ended?: number
-  gameType?: string
-  map?: string
-  mode?: string
-  online?: boolean
+  uuid: string
 }
 
 export interface Resource {
@@ -203,94 +185,12 @@ export interface SkyBlock {
 }
 
 export interface SkyBlockLoadMatch {
-  auctioneer?: string
-  auctions?: any[]
-  bids?: any[]
-  category?: string
-  claimed?: boolean
-  claimed_bidders?: any[]
-  color?: string
-  coop?: any[]
-  current?: Record<string, any>
-  end?: number
-  events?: any[]
-  extra?: string
-  fullLore?: any[]
-  highest_bid_amount?: number
-  id: string
-  item?: Record<string, any>
-  item_bytes?: Record<string, any>
-  item_lore?: string
-  item_name?: string
-  lastUpdated?: number
-  link?: string
-  lore?: string
-  material?: string
-  mayor?: Record<string, any>
-  name?: string
-  npc_sell_price?: number
-  page?: number
-  profile_id?: string
-  profiles?: any[]
-  progress?: number
-  requiredAmount?: number
-  sales?: any[]
-  start?: number
-  starting_bid?: number
-  stats?: Record<string, any>
-  success?: boolean
-  text?: string
-  tier?: string
-  tiers?: any[]
-  title?: string
-  totalAuctions?: number
-  totalPages?: number
-  uuid?: string
+  profile: string
 }
 
 export interface SkyBlockListMatch {
-  auctioneer?: string
-  auctions?: any[]
-  bids?: any[]
-  category?: string
-  claimed?: boolean
-  claimed_bidders?: any[]
-  color?: string
-  coop?: any[]
-  current?: Record<string, any>
-  end?: number
-  events?: any[]
-  extra?: string
-  fullLore?: any[]
-  highest_bid_amount?: number
-  id?: string
-  item?: Record<string, any>
-  item_bytes?: Record<string, any>
-  item_lore?: string
-  item_name?: string
-  lastUpdated?: number
-  link?: string
-  lore?: string
-  material?: string
-  mayor?: Record<string, any>
-  name?: string
-  npc_sell_price?: number
-  page?: number
-  profile_id?: string
-  profiles?: any[]
-  progress?: number
-  requiredAmount?: number
-  sales?: any[]
-  start?: number
-  starting_bid?: number
-  stats?: Record<string, any>
-  success?: boolean
-  text?: string
-  tier?: string
-  tiers?: any[]
-  title?: string
-  totalAuctions?: number
-  totalPages?: number
+  player?: string
+  profile?: string
   uuid?: string
 }
 
