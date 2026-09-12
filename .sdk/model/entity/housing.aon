@@ -36,10 +36,16 @@ main: kit: entity: housing: {
           }
           method: "GET"
           orig: "/v2/housing/player"
-          parts: [
-            "v2"
-            "housing"
-            "player"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "housing"
+            }
+            {
+              lit: "player"
+            }
           ]
           select: {
             "$action": "player"
@@ -55,10 +61,16 @@ main: kit: entity: housing: {
         {
           method: "GET"
           orig: "/v2/housing/houses"
-          parts: [
-            "v2"
-            "housing"
-            "houses"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "housing"
+            }
+            {
+              lit: "houses"
+            }
           ]
           select: {
             "$action": "house"
@@ -87,10 +99,16 @@ main: kit: entity: housing: {
           }
           method: "GET"
           orig: "/v2/housing/house"
-          parts: [
-            "v2"
-            "housing"
-            "house"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "housing"
+            }
+            {
+              lit: "house"
+            }
           ]
           select: {
             "$action": "house"

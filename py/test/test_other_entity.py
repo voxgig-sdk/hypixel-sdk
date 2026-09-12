@@ -130,7 +130,7 @@ def _other_basic_setup(extra):
         "HYPIXEL_TEST_OTHER_ENTID": idmap,
         "HYPIXEL_TEST_LIVE": "FALSE",
         "HYPIXEL_TEST_EXPLAIN": "FALSE",
-        "HYPIXEL_APIKEY": "NONE",
+        "HYPIXEL_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -140,6 +140,10 @@ def _other_basic_setup(extra):
 
     if env.get("HYPIXEL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("HYPIXEL_APIKEY"),
             },

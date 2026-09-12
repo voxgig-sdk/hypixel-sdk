@@ -37,9 +37,13 @@ main: kit: entity: guild: {
           }
           method: "GET"
           orig: "/v2/guild"
-          parts: [
-            "v2"
-            "guild"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "guild"
+            }
           ]
           select: {
             exist: [

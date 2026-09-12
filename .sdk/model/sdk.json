@@ -71,9 +71,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/guild",
-                  "parts": [
-                    "v2",
-                    "guild"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "guild"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -136,10 +140,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/housing/player",
-                  "parts": [
-                    "v2",
-                    "housing",
-                    "player"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "housing"
+                    },
+                    {
+                      "lit": "player"
+                    }
                   ],
                   "select": {
                     "$action": "player",
@@ -158,10 +168,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/housing/houses",
-                  "parts": [
-                    "v2",
-                    "housing",
-                    "houses"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "housing"
+                    },
+                    {
+                      "lit": "houses"
+                    }
                   ],
                   "select": {
                     "$action": "house"
@@ -194,10 +210,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/housing/house",
-                  "parts": [
-                    "v2",
-                    "housing",
-                    "house"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "housing"
+                    },
+                    {
+                      "lit": "house"
+                    }
                   ],
                   "select": {
                     "$action": "house",
@@ -284,9 +306,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/boosters",
-                  "parts": [
-                    "v2",
-                    "boosters"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "boosters"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -306,9 +332,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/counts",
-                  "parts": [
-                    "v2",
-                    "counts"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "counts"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -322,9 +352,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/leaderboards",
-                  "parts": [
-                    "v2",
-                    "leaderboards"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "leaderboards"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -338,9 +372,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/punishmentstats",
-                  "parts": [
-                    "v2",
-                    "punishmentstats"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "punishmentstats"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -369,6 +407,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "firstLogin",
               "req": false,
               "short": "Unix timestamp in milliseconds",
@@ -376,6 +415,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "lastLogin",
               "req": false,
               "short": "Unix timestamp in milliseconds",
@@ -383,6 +423,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "lastLogout",
               "req": false,
               "short": "Unix timestamp in milliseconds",
@@ -449,9 +490,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/player",
-                  "parts": [
-                    "v2",
-                    "player"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "player"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -478,12 +523,14 @@
           "fields": [
             {
               "active": true,
+              "format": "int64",
               "name": "date",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int64",
               "name": "ended",
               "req": false,
               "type": "`$INTEGER`"
@@ -536,9 +583,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/recentgames",
-                  "parts": [
-                    "v2",
-                    "recentgames"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "recentgames"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -573,9 +624,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/status",
-                  "parts": [
-                    "v2",
-                    "status"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "status"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -614,6 +669,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "lastUpdated",
               "req": false,
               "type": "`$INTEGER`"
@@ -677,10 +733,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/achievements",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "achievements"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "achievements"
+                    }
                   ],
                   "select": {
                     "$action": "achievement"
@@ -696,10 +758,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/challenges",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "challenges"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "challenges"
+                    }
                   ],
                   "select": {
                     "$action": "challenge"
@@ -715,10 +783,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/games",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "games"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "games"
+                    }
                   ],
                   "select": {
                     "$action": "game"
@@ -734,11 +808,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/guilds/achievements",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "guilds",
-                    "achievements"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "guilds"
+                    },
+                    {
+                      "lit": "achievements"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -752,10 +834,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/quests",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "quests"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "quests"
+                    }
                   ],
                   "select": {
                     "$action": "quest"
@@ -771,11 +859,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/vanity/companions",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "vanity",
-                    "companions"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "vanity"
+                    },
+                    {
+                      "lit": "companions"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -789,11 +885,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/vanity/pets",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "vanity",
-                    "pets"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "vanity"
+                    },
+                    {
+                      "lit": "pets"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -870,6 +974,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "end",
               "req": false,
               "type": "`$INTEGER`"
@@ -930,6 +1035,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "lastUpdated",
               "req": false,
               "type": "`$INTEGER`"
@@ -1008,6 +1114,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "start",
               "req": false,
               "type": "`$INTEGER`"
@@ -1116,10 +1223,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/auction",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "auction"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "auction"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1151,10 +1264,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/auctions",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "auctions"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "auctions"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1183,10 +1302,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/bingo",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "bingo"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "bingo"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1215,10 +1340,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/profiles",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "profiles"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "profiles"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1236,11 +1367,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/bingo",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "skyblock",
-                    "bingo"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "bingo"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1254,11 +1393,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/items",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "skyblock",
-                    "items"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "items"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1272,10 +1419,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/auctions_ended",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "auctions_ended"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "auctions_ended"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1289,10 +1442,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/firesales",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "firesales"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "firesales"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1306,10 +1465,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/news",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "news"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "news"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1340,10 +1505,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/garden",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "garden"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "garden"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1372,10 +1543,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/museum",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "museum"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "museum"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1404,10 +1581,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/profile",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "profile"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "profile"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1425,11 +1608,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/collections",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "skyblock",
-                    "collections"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "collections"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1443,11 +1634,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/election",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "skyblock",
-                    "election"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "election"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1461,11 +1660,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/resources/skyblock/skills",
-                  "parts": [
-                    "v2",
-                    "resources",
-                    "skyblock",
-                    "skills"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "resources"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "skills"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1479,10 +1686,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/v2/skyblock/bazaar",
-                  "parts": [
-                    "v2",
-                    "skyblock",
-                    "bazaar"
+                  "segments": [
+                    {
+                      "lit": "v2"
+                    },
+                    {
+                      "lit": "skyblock"
+                    },
+                    {
+                      "lit": "bazaar"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1562,8 +1775,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1937,6 +2153,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1962,6 +2181,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -2013,6 +2236,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2037,6 +2261,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -2088,6 +2313,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2112,6 +2338,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -2152,6 +2379,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2177,6 +2407,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -2211,6 +2444,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2236,6 +2472,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -2276,6 +2515,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2301,6 +2543,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -2346,6 +2591,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2371,6 +2619,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -2388,11 +2639,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -2421,6 +2667,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2445,6 +2694,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

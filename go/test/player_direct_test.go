@@ -100,14 +100,22 @@ func playerDirectSetup(mockres any) *playerDirectSetupResult {
 	env := envOverride(map[string]any{
 		"HYPIXEL_TEST_PLAYER_ENTID": map[string]any{},
 		"HYPIXEL_TEST_LIVE":    "FALSE",
-		"HYPIXEL_APIKEY":       "NONE",
+		"HYPIXEL_APIKEY":       "",
 	})
 
 	live := env["HYPIXEL_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["HYPIXEL_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewHypixelSDK(mergedOpts)
 

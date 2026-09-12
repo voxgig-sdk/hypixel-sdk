@@ -72,9 +72,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/guild",
-                ["parts"] = {
-                  "v2",
-                  "guild",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "guild",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -86,6 +90,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.guild`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "guild",
                 },
               },
             },
@@ -127,10 +135,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/housing/player",
-                ["parts"] = {
-                  "v2",
-                  "housing",
-                  "player",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "housing",
+                  },
+                  {
+                    ["lit"] = "player",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "player",
@@ -142,16 +156,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.houses`",
                 },
+                ["parts"] = {
+                  "v2",
+                  "housing",
+                  "player",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/housing/houses",
-                ["parts"] = {
-                  "v2",
-                  "housing",
-                  "houses",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "housing",
+                  },
+                  {
+                    ["lit"] = "houses",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "house",
@@ -159,6 +184,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.houses`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "housing",
+                  "houses",
                 },
               },
             },
@@ -182,10 +212,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/housing/house",
-                ["parts"] = {
-                  "v2",
-                  "housing",
-                  "house",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "housing",
+                  },
+                  {
+                    ["lit"] = "house",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "house",
@@ -196,6 +232,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.house`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "housing",
+                  "house",
                 },
               },
             },
@@ -251,14 +292,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/boosters",
-                ["parts"] = {
-                  "v2",
-                  "boosters",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "boosters",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "boosters",
                 },
               },
             },
@@ -272,14 +321,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/counts",
-                ["parts"] = {
-                  "v2",
-                  "counts",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "counts",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.games`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "counts",
                 },
               },
               {
@@ -287,14 +344,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/leaderboards",
-                ["parts"] = {
-                  "v2",
-                  "leaderboards",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "leaderboards",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.leaderboards`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "leaderboards",
                 },
               },
               {
@@ -302,14 +367,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/punishmentstats",
-                ["parts"] = {
-                  "v2",
-                  "punishmentstats",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "punishmentstats",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "punishmentstats",
                 },
               },
             },
@@ -326,16 +399,19 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "firstLogin",
             ["short"] = "Unix timestamp in milliseconds",
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "lastLogin",
             ["short"] = "Unix timestamp in milliseconds",
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "lastLogout",
             ["short"] = "Unix timestamp in milliseconds",
             ["type"] = "`$INTEGER`",
@@ -387,9 +463,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/player",
-                ["parts"] = {
-                  "v2",
-                  "player",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "player",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -399,6 +479,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.player`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "player",
                 },
               },
             },
@@ -411,10 +495,12 @@ local function make_config()
       ["player_data"] = {
         ["fields"] = {
           {
+            ["format"] = "int64",
             ["name"] = "date",
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "ended",
             ["type"] = "`$INTEGER`",
           },
@@ -456,9 +542,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/recentgames",
-                ["parts"] = {
-                  "v2",
-                  "recentgames",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "recentgames",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -468,6 +558,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.games`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "recentgames",
                 },
               },
             },
@@ -491,9 +585,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/status",
-                ["parts"] = {
-                  "v2",
-                  "status",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "status",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -503,6 +601,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.session`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "status",
                 },
               },
             },
@@ -523,6 +625,7 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "lastUpdated",
             ["type"] = "`$INTEGER`",
           },
@@ -555,6 +658,10 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "resource",
         ["op"] = {
           ["load"] = {
@@ -566,10 +673,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/achievements",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "achievements",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "achievements",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "achievement",
@@ -578,16 +691,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.achievements`",
                 },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "achievements",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/challenges",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "challenges",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "challenges",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "challenge",
@@ -596,16 +720,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.challenges`",
                 },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "challenges",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/games",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "games",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "games",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "game",
@@ -614,22 +749,41 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.games`",
                 },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "games",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/guilds/achievements",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "guilds",
-                  "achievements",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "guilds",
+                  },
+                  {
+                    ["lit"] = "achievements",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "guilds",
+                  "achievements",
                 },
               },
               {
@@ -637,10 +791,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/quests",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "quests",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "quests",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "quest",
@@ -649,22 +809,41 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.quests`",
                 },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "quests",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/vanity/companions",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "vanity",
-                  "companions",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "vanity",
+                  },
+                  {
+                    ["lit"] = "companions",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "vanity",
+                  "companions",
                 },
               },
               {
@@ -672,16 +851,30 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/vanity/pets",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "vanity",
-                  "pets",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "vanity",
+                  },
+                  {
+                    ["lit"] = "pets",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "vanity",
+                  "pets",
                 },
               },
             },
@@ -730,6 +923,7 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "end",
             ["type"] = "`$INTEGER`",
           },
@@ -770,6 +964,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "lastUpdated",
             ["type"] = "`$INTEGER`",
           },
@@ -822,6 +1017,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "int64",
             ["name"] = "start",
             ["type"] = "`$INTEGER`",
           },
@@ -866,6 +1062,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "sky_block",
         ["op"] = {
           ["list"] = {
@@ -898,10 +1098,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/auction",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "auction",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "auction",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -913,6 +1119,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.auctions`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "auction",
                 },
               },
               {
@@ -930,10 +1141,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/auctions",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "auctions",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "auctions",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -943,6 +1160,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.auctions`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "auctions",
                 },
               },
               {
@@ -960,10 +1182,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/bingo",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "bingo",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "bingo",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -973,6 +1201,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.events`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "bingo",
                 },
               },
               {
@@ -990,10 +1223,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/profiles",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "profiles",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "profiles",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1004,22 +1243,41 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.profiles`",
                 },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "profiles",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/skyblock/bingo",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "skyblock",
-                  "bingo",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "bingo",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.goals`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "skyblock",
+                  "bingo",
                 },
               },
               {
@@ -1027,16 +1285,30 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/skyblock/items",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "skyblock",
-                  "items",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "items",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.items`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "skyblock",
+                  "items",
                 },
               },
               {
@@ -1044,15 +1316,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/auctions_ended",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "auctions_ended",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "auctions_ended",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.auctions`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "auctions_ended",
                 },
               },
               {
@@ -1060,15 +1343,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/firesales",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "firesales",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "firesales",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.sales`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "firesales",
                 },
               },
               {
@@ -1076,15 +1370,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/news",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "news",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "news",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.items`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "news",
                 },
               },
             },
@@ -1108,10 +1413,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/garden",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "garden",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "garden",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1121,6 +1432,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.garden`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "garden",
                 },
               },
               {
@@ -1138,10 +1454,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/museum",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "museum",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "museum",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1151,6 +1473,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.members`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "museum",
                 },
               },
               {
@@ -1168,10 +1495,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/profile",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "profile",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "profile",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1182,22 +1515,41 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.profile`",
                 },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "profile",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/skyblock/collections",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "skyblock",
-                  "collections",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "collections",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.collections`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "skyblock",
+                  "collections",
                 },
               },
               {
@@ -1205,16 +1557,30 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/skyblock/election",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "skyblock",
-                  "election",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "election",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "skyblock",
+                  "election",
                 },
               },
               {
@@ -1222,16 +1588,30 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/resources/skyblock/skills",
-                ["parts"] = {
-                  "v2",
-                  "resources",
-                  "skyblock",
-                  "skills",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "resources",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "skills",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.skills`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "resources",
+                  "skyblock",
+                  "skills",
                 },
               },
               {
@@ -1239,15 +1619,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v2/skyblock/bazaar",
-                ["parts"] = {
-                  "v2",
-                  "skyblock",
-                  "bazaar",
+                ["segments"] = {
+                  {
+                    ["lit"] = "v2",
+                  },
+                  {
+                    ["lit"] = "skyblock",
+                  },
+                  {
+                    ["lit"] = "bazaar",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.products`",
+                },
+                ["parts"] = {
+                  "v2",
+                  "skyblock",
+                  "bazaar",
                 },
               },
             },

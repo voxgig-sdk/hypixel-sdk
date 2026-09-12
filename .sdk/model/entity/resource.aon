@@ -16,6 +16,7 @@ main: kit: entity: resource: {
       type: "`$INTEGER`"
     }
     {
+      format: "int64"
       name: "lastUpdated"
       req: false
       type: "`$INTEGER`"
@@ -70,10 +71,16 @@ main: kit: entity: resource: {
         {
           method: "GET"
           orig: "/v2/resources/achievements"
-          parts: [
-            "v2"
-            "resources"
-            "achievements"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "achievements"
+            }
           ]
           select: {
             "$action": "achievement"
@@ -86,10 +93,16 @@ main: kit: entity: resource: {
         {
           method: "GET"
           orig: "/v2/resources/challenges"
-          parts: [
-            "v2"
-            "resources"
-            "challenges"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "challenges"
+            }
           ]
           select: {
             "$action": "challenge"
@@ -102,10 +115,16 @@ main: kit: entity: resource: {
         {
           method: "GET"
           orig: "/v2/resources/games"
-          parts: [
-            "v2"
-            "resources"
-            "games"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "games"
+            }
           ]
           select: {
             "$action": "game"
@@ -118,11 +137,19 @@ main: kit: entity: resource: {
         {
           method: "GET"
           orig: "/v2/resources/guilds/achievements"
-          parts: [
-            "v2"
-            "resources"
-            "guilds"
-            "achievements"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "guilds"
+            }
+            {
+              lit: "achievements"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -132,10 +159,16 @@ main: kit: entity: resource: {
         {
           method: "GET"
           orig: "/v2/resources/quests"
-          parts: [
-            "v2"
-            "resources"
-            "quests"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "quests"
+            }
           ]
           select: {
             "$action": "quest"
@@ -148,11 +181,19 @@ main: kit: entity: resource: {
         {
           method: "GET"
           orig: "/v2/resources/vanity/companions"
-          parts: [
-            "v2"
-            "resources"
-            "vanity"
-            "companions"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "vanity"
+            }
+            {
+              lit: "companions"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -162,11 +203,19 @@ main: kit: entity: resource: {
         {
           method: "GET"
           orig: "/v2/resources/vanity/pets"
-          parts: [
-            "v2"
-            "resources"
-            "vanity"
-            "pets"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "vanity"
+            }
+            {
+              lit: "pets"
+            }
           ]
           transform: {
             req: "`reqdata`"

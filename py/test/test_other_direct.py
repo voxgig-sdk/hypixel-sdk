@@ -97,15 +97,18 @@ def _other_direct_setup(mockres):
     env = runner.env_override({
         "HYPIXEL_TEST_OTHER_ENTID": {},
         "HYPIXEL_TEST_LIVE": "FALSE",
-        "HYPIXEL_APIKEY": "NONE",
+        "HYPIXEL_APIKEY": "",
     })
 
     live = env.get("HYPIXEL_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("HYPIXEL_APIKEY"),
-        }
+        })
         client = HypixelSDK(merged_opts)
         return {
             "client": client,

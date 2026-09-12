@@ -6,11 +6,13 @@ main: kit: entity: player_data: {
 
   fields: [
     {
+      format: "int64"
       name: "date"
       req: false
       type: "`$INTEGER`"
     }
     {
+      format: "int64"
       name: "ended"
       req: false
       type: "`$INTEGER`"
@@ -56,9 +58,13 @@ main: kit: entity: player_data: {
           }
           method: "GET"
           orig: "/v2/recentgames"
-          parts: [
-            "v2"
-            "recentgames"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "recentgames"
+            }
           ]
           select: {
             exist: [
@@ -89,9 +95,13 @@ main: kit: entity: player_data: {
           }
           method: "GET"
           orig: "/v2/status"
-          parts: [
-            "v2"
-            "status"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "status"
+            }
           ]
           select: {
             exist: [

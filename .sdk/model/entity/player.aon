@@ -11,18 +11,21 @@ main: kit: entity: player: {
       type: "`$STRING`"
     }
     {
+      format: "int64"
       name: "firstLogin"
       req: false
       short: "Unix timestamp in milliseconds"
       type: "`$INTEGER`"
     }
     {
+      format: "int64"
       name: "lastLogin"
       req: false
       short: "Unix timestamp in milliseconds"
       type: "`$INTEGER`"
     }
     {
+      format: "int64"
       name: "lastLogout"
       req: false
       short: "Unix timestamp in milliseconds"
@@ -80,9 +83,13 @@ main: kit: entity: player: {
           }
           method: "GET"
           orig: "/v2/player"
-          parts: [
-            "v2"
-            "player"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "player"
+            }
           ]
           select: {
             exist: [

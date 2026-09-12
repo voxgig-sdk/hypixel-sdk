@@ -51,6 +51,7 @@ main: kit: entity: sky_block: {
       type: "`$OBJECT`"
     }
     {
+      format: "int64"
       name: "end"
       req: false
       type: "`$INTEGER`"
@@ -101,6 +102,7 @@ main: kit: entity: sky_block: {
       type: "`$STRING`"
     }
     {
+      format: "int64"
       name: "lastUpdated"
       req: false
       type: "`$INTEGER`"
@@ -166,6 +168,7 @@ main: kit: entity: sky_block: {
       type: "`$ARRAY`"
     }
     {
+      format: "int64"
       name: "start"
       req: false
       type: "`$INTEGER`"
@@ -260,10 +263,16 @@ main: kit: entity: sky_block: {
           }
           method: "GET"
           orig: "/v2/skyblock/auction"
-          parts: [
-            "v2"
-            "skyblock"
-            "auction"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "auction"
+            }
           ]
           select: {
             exist: [
@@ -292,10 +301,16 @@ main: kit: entity: sky_block: {
           }
           method: "GET"
           orig: "/v2/skyblock/auctions"
-          parts: [
-            "v2"
-            "skyblock"
-            "auctions"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "auctions"
+            }
           ]
           select: {
             exist: [
@@ -321,10 +336,16 @@ main: kit: entity: sky_block: {
           }
           method: "GET"
           orig: "/v2/skyblock/bingo"
-          parts: [
-            "v2"
-            "skyblock"
-            "bingo"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "bingo"
+            }
           ]
           select: {
             exist: [
@@ -350,10 +371,16 @@ main: kit: entity: sky_block: {
           }
           method: "GET"
           orig: "/v2/skyblock/profiles"
-          parts: [
-            "v2"
-            "skyblock"
-            "profiles"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "profiles"
+            }
           ]
           select: {
             exist: [
@@ -368,11 +395,19 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/resources/skyblock/bingo"
-          parts: [
-            "v2"
-            "resources"
-            "skyblock"
-            "bingo"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "bingo"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -382,11 +417,19 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/resources/skyblock/items"
-          parts: [
-            "v2"
-            "resources"
-            "skyblock"
-            "items"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "items"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -396,10 +439,16 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/skyblock/auctions_ended"
-          parts: [
-            "v2"
-            "skyblock"
-            "auctions_ended"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "auctions_ended"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -409,10 +458,16 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/skyblock/firesales"
-          parts: [
-            "v2"
-            "skyblock"
-            "firesales"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "firesales"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -422,10 +477,16 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/skyblock/news"
-          parts: [
-            "v2"
-            "skyblock"
-            "news"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "news"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -451,10 +512,16 @@ main: kit: entity: sky_block: {
           }
           method: "GET"
           orig: "/v2/skyblock/garden"
-          parts: [
-            "v2"
-            "skyblock"
-            "garden"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "garden"
+            }
           ]
           select: {
             exist: [
@@ -480,10 +547,16 @@ main: kit: entity: sky_block: {
           }
           method: "GET"
           orig: "/v2/skyblock/museum"
-          parts: [
-            "v2"
-            "skyblock"
-            "museum"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "museum"
+            }
           ]
           select: {
             exist: [
@@ -509,10 +582,16 @@ main: kit: entity: sky_block: {
           }
           method: "GET"
           orig: "/v2/skyblock/profile"
-          parts: [
-            "v2"
-            "skyblock"
-            "profile"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "profile"
+            }
           ]
           select: {
             exist: [
@@ -527,11 +606,19 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/resources/skyblock/collections"
-          parts: [
-            "v2"
-            "resources"
-            "skyblock"
-            "collections"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "collections"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -541,11 +628,19 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/resources/skyblock/election"
-          parts: [
-            "v2"
-            "resources"
-            "skyblock"
-            "election"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "election"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -555,11 +650,19 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/resources/skyblock/skills"
-          parts: [
-            "v2"
-            "resources"
-            "skyblock"
-            "skills"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "resources"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "skills"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -569,10 +672,16 @@ main: kit: entity: sky_block: {
         {
           method: "GET"
           orig: "/v2/skyblock/bazaar"
-          parts: [
-            "v2"
-            "skyblock"
-            "bazaar"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "skyblock"
+            }
+            {
+              lit: "bazaar"
+            }
           ]
           transform: {
             req: "`reqdata`"

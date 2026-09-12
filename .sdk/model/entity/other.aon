@@ -55,9 +55,13 @@ main: kit: entity: other: {
         {
           method: "GET"
           orig: "/v2/boosters"
-          parts: [
-            "v2"
-            "boosters"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "boosters"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -72,9 +76,13 @@ main: kit: entity: other: {
         {
           method: "GET"
           orig: "/v2/counts"
-          parts: [
-            "v2"
-            "counts"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "counts"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -84,9 +92,13 @@ main: kit: entity: other: {
         {
           method: "GET"
           orig: "/v2/leaderboards"
-          parts: [
-            "v2"
-            "leaderboards"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "leaderboards"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -96,9 +108,13 @@ main: kit: entity: other: {
         {
           method: "GET"
           orig: "/v2/punishmentstats"
-          parts: [
-            "v2"
-            "punishmentstats"
+          segments: [
+            {
+              lit: "v2"
+            }
+            {
+              lit: "punishmentstats"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -76,9 +76,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/guild",
-								"parts": []any{
-									"v2",
-									"guild",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "guild",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -90,6 +94,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.guild`",
+								},
+								"parts": []any{
+									"v2",
+									"guild",
 								},
 							},
 						},
@@ -131,10 +139,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/housing/player",
-								"parts": []any{
-									"v2",
-									"housing",
-									"player",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "housing",
+									},
+									map[string]any{
+										"lit": "player",
+									},
 								},
 								"select": map[string]any{
 									"$action": "player",
@@ -146,16 +160,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.houses`",
 								},
+								"parts": []any{
+									"v2",
+									"housing",
+									"player",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/housing/houses",
-								"parts": []any{
-									"v2",
-									"housing",
-									"houses",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "housing",
+									},
+									map[string]any{
+										"lit": "houses",
+									},
 								},
 								"select": map[string]any{
 									"$action": "house",
@@ -163,6 +188,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.houses`",
+								},
+								"parts": []any{
+									"v2",
+									"housing",
+									"houses",
 								},
 							},
 						},
@@ -186,10 +216,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/housing/house",
-								"parts": []any{
-									"v2",
-									"housing",
-									"house",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "housing",
+									},
+									map[string]any{
+										"lit": "house",
+									},
 								},
 								"select": map[string]any{
 									"$action": "house",
@@ -200,6 +236,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.house`",
+								},
+								"parts": []any{
+									"v2",
+									"housing",
+									"house",
 								},
 							},
 						},
@@ -255,14 +296,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/boosters",
-								"parts": []any{
-									"v2",
-									"boosters",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "boosters",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v2",
+									"boosters",
 								},
 							},
 						},
@@ -276,14 +325,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/counts",
-								"parts": []any{
-									"v2",
-									"counts",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "counts",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.games`",
+								},
+								"parts": []any{
+									"v2",
+									"counts",
 								},
 							},
 							map[string]any{
@@ -291,14 +348,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/leaderboards",
-								"parts": []any{
-									"v2",
-									"leaderboards",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "leaderboards",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.leaderboards`",
+								},
+								"parts": []any{
+									"v2",
+									"leaderboards",
 								},
 							},
 							map[string]any{
@@ -306,14 +371,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/punishmentstats",
-								"parts": []any{
-									"v2",
-									"punishmentstats",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "punishmentstats",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v2",
+									"punishmentstats",
 								},
 							},
 						},
@@ -330,16 +403,19 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "firstLogin",
 						"short": "Unix timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "lastLogin",
 						"short": "Unix timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "lastLogout",
 						"short": "Unix timestamp in milliseconds",
 						"type": "`$INTEGER`",
@@ -391,9 +467,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/player",
-								"parts": []any{
-									"v2",
-									"player",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "player",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -403,6 +483,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.player`",
+								},
+								"parts": []any{
+									"v2",
+									"player",
 								},
 							},
 						},
@@ -415,10 +499,12 @@ func MakeConfig() map[string]any {
 			"player_data": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "int64",
 						"name": "date",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "ended",
 						"type": "`$INTEGER`",
 					},
@@ -460,9 +546,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/recentgames",
-								"parts": []any{
-									"v2",
-									"recentgames",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "recentgames",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -472,6 +562,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.games`",
+								},
+								"parts": []any{
+									"v2",
+									"recentgames",
 								},
 							},
 						},
@@ -495,9 +589,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/status",
-								"parts": []any{
-									"v2",
-									"status",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "status",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -507,6 +605,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.session`",
+								},
+								"parts": []any{
+									"v2",
+									"status",
 								},
 							},
 						},
@@ -527,6 +629,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "lastUpdated",
 						"type": "`$INTEGER`",
 					},
@@ -559,6 +662,10 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "resource",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -570,10 +677,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/achievements",
-								"parts": []any{
-									"v2",
-									"resources",
-									"achievements",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "achievements",
+									},
 								},
 								"select": map[string]any{
 									"$action": "achievement",
@@ -582,16 +695,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.achievements`",
 								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"achievements",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/challenges",
-								"parts": []any{
-									"v2",
-									"resources",
-									"challenges",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "challenges",
+									},
 								},
 								"select": map[string]any{
 									"$action": "challenge",
@@ -600,16 +724,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.challenges`",
 								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"challenges",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/games",
-								"parts": []any{
-									"v2",
-									"resources",
-									"games",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "games",
+									},
 								},
 								"select": map[string]any{
 									"$action": "game",
@@ -618,22 +753,41 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.games`",
 								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"games",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/guilds/achievements",
-								"parts": []any{
-									"v2",
-									"resources",
-									"guilds",
-									"achievements",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "guilds",
+									},
+									map[string]any{
+										"lit": "achievements",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"guilds",
+									"achievements",
 								},
 							},
 							map[string]any{
@@ -641,10 +795,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/quests",
-								"parts": []any{
-									"v2",
-									"resources",
-									"quests",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "quests",
+									},
 								},
 								"select": map[string]any{
 									"$action": "quest",
@@ -653,22 +813,41 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.quests`",
 								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"quests",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/vanity/companions",
-								"parts": []any{
-									"v2",
-									"resources",
-									"vanity",
-									"companions",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "vanity",
+									},
+									map[string]any{
+										"lit": "companions",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"vanity",
+									"companions",
 								},
 							},
 							map[string]any{
@@ -676,16 +855,30 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/vanity/pets",
-								"parts": []any{
-									"v2",
-									"resources",
-									"vanity",
-									"pets",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "vanity",
+									},
+									map[string]any{
+										"lit": "pets",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"vanity",
+									"pets",
 								},
 							},
 						},
@@ -734,6 +927,7 @@ func MakeConfig() map[string]any {
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "end",
 						"type": "`$INTEGER`",
 					},
@@ -774,6 +968,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "lastUpdated",
 						"type": "`$INTEGER`",
 					},
@@ -826,6 +1021,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"format": "int64",
 						"name": "start",
 						"type": "`$INTEGER`",
 					},
@@ -870,6 +1066,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "sky_block",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -902,10 +1102,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/auction",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"auction",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "auction",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -917,6 +1123,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.auctions`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"auction",
 								},
 							},
 							map[string]any{
@@ -934,10 +1145,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/auctions",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"auctions",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "auctions",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -947,6 +1164,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.auctions`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"auctions",
 								},
 							},
 							map[string]any{
@@ -964,10 +1186,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/bingo",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"bingo",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "bingo",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -977,6 +1205,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.events`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"bingo",
 								},
 							},
 							map[string]any{
@@ -994,10 +1227,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/profiles",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"profiles",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "profiles",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1008,22 +1247,41 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.profiles`",
 								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"profiles",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/skyblock/bingo",
-								"parts": []any{
-									"v2",
-									"resources",
-									"skyblock",
-									"bingo",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "bingo",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.goals`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"skyblock",
+									"bingo",
 								},
 							},
 							map[string]any{
@@ -1031,16 +1289,30 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/skyblock/items",
-								"parts": []any{
-									"v2",
-									"resources",
-									"skyblock",
-									"items",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "items",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.items`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"skyblock",
+									"items",
 								},
 							},
 							map[string]any{
@@ -1048,15 +1320,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/auctions_ended",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"auctions_ended",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "auctions_ended",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.auctions`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"auctions_ended",
 								},
 							},
 							map[string]any{
@@ -1064,15 +1347,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/firesales",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"firesales",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "firesales",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.sales`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"firesales",
 								},
 							},
 							map[string]any{
@@ -1080,15 +1374,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/news",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"news",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "news",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.items`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"news",
 								},
 							},
 						},
@@ -1112,10 +1417,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/garden",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"garden",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "garden",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1125,6 +1436,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.garden`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"garden",
 								},
 							},
 							map[string]any{
@@ -1142,10 +1458,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/museum",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"museum",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "museum",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1155,6 +1477,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.members`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"museum",
 								},
 							},
 							map[string]any{
@@ -1172,10 +1499,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/profile",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"profile",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "profile",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1186,22 +1519,41 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.profile`",
 								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"profile",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/skyblock/collections",
-								"parts": []any{
-									"v2",
-									"resources",
-									"skyblock",
-									"collections",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "collections",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.collections`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"skyblock",
+									"collections",
 								},
 							},
 							map[string]any{
@@ -1209,16 +1561,30 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/skyblock/election",
-								"parts": []any{
-									"v2",
-									"resources",
-									"skyblock",
-									"election",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "election",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"skyblock",
+									"election",
 								},
 							},
 							map[string]any{
@@ -1226,16 +1592,30 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/resources/skyblock/skills",
-								"parts": []any{
-									"v2",
-									"resources",
-									"skyblock",
-									"skills",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "resources",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "skills",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.skills`",
+								},
+								"parts": []any{
+									"v2",
+									"resources",
+									"skyblock",
+									"skills",
 								},
 							},
 							map[string]any{
@@ -1243,15 +1623,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v2/skyblock/bazaar",
-								"parts": []any{
-									"v2",
-									"skyblock",
-									"bazaar",
+								"segments": []any{
+									map[string]any{
+										"lit": "v2",
+									},
+									map[string]any{
+										"lit": "skyblock",
+									},
+									map[string]any{
+										"lit": "bazaar",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.products`",
+								},
+								"parts": []any{
+									"v2",
+									"skyblock",
+									"bazaar",
 								},
 							},
 						},
@@ -1263,6 +1654,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

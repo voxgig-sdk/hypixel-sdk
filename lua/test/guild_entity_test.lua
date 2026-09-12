@@ -91,7 +91,7 @@ function guild_basic_setup(extra)
     ["HYPIXEL_TEST_GUILD_ENTID"] = idmap,
     ["HYPIXEL_TEST_LIVE"] = "FALSE",
     ["HYPIXEL_TEST_EXPLAIN"] = "FALSE",
-    ["HYPIXEL_APIKEY"] = "NONE",
+    ["HYPIXEL_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +102,9 @@ function guild_basic_setup(extra)
 
   if env["HYPIXEL_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["HYPIXEL_APIKEY"],
       },

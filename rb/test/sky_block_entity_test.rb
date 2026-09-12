@@ -127,7 +127,7 @@ def sky_block_basic_setup(extra)
     "HYPIXEL_TEST_SKY_BLOCK_ENTID" => idmap,
     "HYPIXEL_TEST_LIVE" => "FALSE",
     "HYPIXEL_TEST_EXPLAIN" => "FALSE",
-    "HYPIXEL_APIKEY" => "NONE",
+    "HYPIXEL_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -138,6 +138,9 @@ def sky_block_basic_setup(extra)
 
   if env["HYPIXEL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["HYPIXEL_APIKEY"],
       },

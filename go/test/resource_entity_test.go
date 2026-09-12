@@ -50,7 +50,7 @@ func TestResourceEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		resourceRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.resource", setup.data)))
+		resourceRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.resource")))
 		var resourceRef01Data map[string]any
 		if len(resourceRef01DataRaw) > 0 {
 			resourceRef01Data = core.ToMapAny(resourceRef01DataRaw[0][1])
@@ -103,7 +103,7 @@ func resourceBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"resource01", "resource02", "resource03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -123,7 +123,7 @@ func resourceBasicSetup(extra map[string]any) *entityTestSetup {
 		"HYPIXEL_TEST_RESOURCE_ENTID": idmap,
 		"HYPIXEL_TEST_LIVE":      "FALSE",
 		"HYPIXEL_TEST_EXPLAIN":   "FALSE",
-		"HYPIXEL_APIKEY":         "NONE",
+		"HYPIXEL_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["HYPIXEL_TEST_RESOURCE_ENTID"])
@@ -132,11 +132,23 @@ func resourceBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["HYPIXEL_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["HYPIXEL_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewHypixelSDK(core.ToMapAny(mergedOpts))
 	}
