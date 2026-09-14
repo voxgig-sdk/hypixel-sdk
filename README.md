@@ -105,7 +105,7 @@ local results, err = client:Other():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
+| TypeScript | `@voxgig-sdk/hypixel-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
 | Python | `voxgig-sdk-hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
 | PHP | `voxgig-sdk/hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/hypixel-sdk/go` | `go get github.com/voxgig-sdk/hypixel-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Other():list()
 ### TypeScript
 
 ```ts
-import { HypixelSDK } from '@voxgig-sdk/hypixel'
+import { HypixelSDK } from '@voxgig-sdk/hypixel-sdk'
 
 const client = new HypixelSDK({
   apikey: process.env.HYPIXEL_APIKEY,

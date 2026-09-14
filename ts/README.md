@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { HypixelSDK } from '@voxgig-sdk/hypixel'
+import { HypixelSDK } from '@voxgig-sdk/hypixel-sdk'
 
 const client = new HypixelSDK({
   apikey: process.env.HYPIXEL_APIKEY,
@@ -781,7 +781,7 @@ hypixel/
 Import the SDK from the package root:
 
 ```ts
-import { HypixelSDK } from '@voxgig-sdk/hypixel'
+import { HypixelSDK } from '@voxgig-sdk/hypixel-sdk'
 ```
 
 ### Entity state
