@@ -16,5 +16,138 @@
     "guild": {
       "guild_ref01": {}
     }
+  },
+  "requests": {
+    "GET /v2/guild": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getGuild",
+        "parameters": [
+          {
+            "description": "Guild ObjectID",
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Player UUID",
+            "in": "query",
+            "name": "player",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Guild name",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "guild": {
+                      "description": "Guild data object",
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Get guild information"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Some data is missing, this is usually a field."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Access is forbidden, usually due to an invalid API key being used."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

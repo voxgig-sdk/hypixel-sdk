@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Hypixel SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class HypixelFeatures
@@ -14,8 +17,14 @@ class HypixelFeatures
         switch ($name) {
             case "base":
                 return new HypixelBaseFeature();
+            case "ratelimit":
+                return new HypixelRatelimitFeature();
+            case "retry":
+                return new HypixelRetryFeature();
             case "test":
                 return new HypixelTestFeature();
+            case "timeout":
+                return new HypixelTimeoutFeature();
             default:
                 return new HypixelBaseFeature();
         }
@@ -31,7 +40,10 @@ class HypixelFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

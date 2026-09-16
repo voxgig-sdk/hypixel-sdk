@@ -1,12 +1,18 @@
 # Hypixel SDK feature factory
 
 from hypixel_sdk.feature.base_feature import HypixelBaseFeature
+from hypixel_sdk.feature.ratelimit_feature import HypixelRatelimitFeature
+from hypixel_sdk.feature.retry_feature import HypixelRetryFeature
 from hypixel_sdk.feature.test_feature import HypixelTestFeature
+from hypixel_sdk.feature.timeout_feature import HypixelTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: HypixelBaseFeature(),
+    "ratelimit": lambda: HypixelRatelimitFeature(),
+    "retry": lambda: HypixelRetryFeature(),
     "test": lambda: HypixelTestFeature(),
+    "timeout": lambda: HypixelTimeoutFeature(),
 }
 
 

@@ -3,9 +3,9 @@
     "player": {
       "PLAYER00": {
         "displayname": "s64",
-        "firstLogin": "s65",
-        "lastLogin": "s66",
-        "lastLogout": "s67",
+        "firstLogin": 101,
+        "lastLogin": 102,
+        "lastLogout": 103,
         "monthlyPackageRank": "s68",
         "newPackageRank": "s69",
         "packageRank": "s6a",
@@ -16,9 +16,9 @@
       },
       "PLAYER01": {
         "displayname": "sc8",
-        "firstLogin": "sc9",
-        "lastLogin": "sca",
-        "lastLogout": "scb",
+        "firstLogin": 201,
+        "lastLogin": 202,
+        "lastLogout": 203,
         "monthlyPackageRank": "scc",
         "newPackageRank": "scd",
         "packageRank": "sce",
@@ -29,9 +29,9 @@
       },
       "PLAYER02": {
         "displayname": "s12c",
-        "firstLogin": "s12d",
-        "lastLogin": "s12e",
-        "lastLogout": "s12f",
+        "firstLogin": 301,
+        "lastLogin": 302,
+        "lastLogout": 303,
         "monthlyPackageRank": "s130",
         "newPackageRank": "s131",
         "packageRank": "s132",
@@ -46,15 +46,208 @@
     "player": {
       "player_ref01": {
         "displayname": "s190",
-        "firstLogin": "s191",
-        "lastLogin": "s192",
-        "lastLogout": "s193",
+        "firstLogin": 401,
+        "lastLogin": 402,
+        "lastLogout": 403,
         "monthlyPackageRank": "s194",
         "newPackageRank": "s195",
         "packageRank": "s196",
         "rank": "s197",
         "stats": {},
         "uuid": "s199"
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/player": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPlayer",
+        "parameters": [
+          {
+            "description": "Player UUID (supports both dashed and undashed versions)",
+            "in": "query",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "player": {
+                      "properties": {
+                        "displayname": {
+                          "type": "string"
+                        },
+                        "firstLogin": {
+                          "description": "Unix timestamp in milliseconds",
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "lastLogin": {
+                          "description": "Unix timestamp in milliseconds",
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "lastLogout": {
+                          "description": "Unix timestamp in milliseconds",
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "monthlyPackageRank": {
+                          "enum": [
+                            "SUPERSTAR"
+                          ],
+                          "type": "string"
+                        },
+                        "newPackageRank": {
+                          "enum": [
+                            "MVP_PLUS",
+                            "MVP",
+                            "VIP_PLUS",
+                            "VIP"
+                          ],
+                          "type": "string"
+                        },
+                        "packageRank": {
+                          "enum": [
+                            "MVP_PLUS",
+                            "MVP",
+                            "VIP_PLUS",
+                            "VIP"
+                          ],
+                          "type": "string"
+                        },
+                        "rank": {
+                          "enum": [
+                            "ADMIN",
+                            "MODERATOR",
+                            "HELPER"
+                          ],
+                          "type": "string"
+                        },
+                        "stats": {
+                          "description": "Game statistics organized by game type database name",
+                          "type": "object"
+                        },
+                        "uuid": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Get player's data",
+            "headers": {
+              "RateLimit-Limit": {
+                "description": "The limit of requests per minute for the provided API key",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "The remaining amount of requests allowed for the current minute",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "The amount of seconds until the next minute and the reset of the API key usages",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Some data is missing, this is usually a field."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Access is forbidden, usually due to an invalid API key being used."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

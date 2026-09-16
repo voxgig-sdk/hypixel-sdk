@@ -11,39 +11,39 @@
         "color": "s1b4",
         "coop": [],
         "current": {},
-        "end": "s1b7",
+        "end": 439,
         "events": [],
         "extra": "s1b9",
         "fullLore": [],
-        "highest_bid_amount": "s1bb",
+        "highest_bid_amount": 443,
         "id": "SKY_BLOCK00",
         "item": {},
         "item_bytes": {},
         "item_lore": "s1bf",
         "item_name": "s1c0",
-        "lastUpdated": "s1c1",
+        "lastUpdated": 449,
         "link": "s1c2",
         "lore": "s1c3",
         "material": "s1c4",
         "mayor": {},
         "name": "s1c6",
         "npc_sell_price": 455,
-        "page": "s1c8",
+        "page": 456,
         "profile_id": "PROFILE01",
         "profiles": [],
-        "progress": "s1cb",
-        "requiredAmount": "s1cc",
+        "progress": 459,
+        "requiredAmount": 460,
         "sales": [],
-        "start": "s1ce",
-        "starting_bid": "s1cf",
+        "start": 462,
+        "starting_bid": 463,
         "stats": {},
         "success": false,
         "text": "s1d2",
         "tier": "s1d3",
         "tiers": [],
         "title": "s1d5",
-        "totalAuctions": "s1d6",
-        "totalPages": "s1d7",
+        "totalAuctions": 470,
+        "totalPages": 471,
         "uuid": "s1d8"
       },
       "SKY_BLOCK01": {
@@ -56,39 +56,39 @@
         "color": "s362",
         "coop": [],
         "current": {},
-        "end": "s365",
+        "end": 869,
         "events": [],
         "extra": "s367",
         "fullLore": [],
-        "highest_bid_amount": "s369",
+        "highest_bid_amount": 873,
         "id": "SKY_BLOCK01",
         "item": {},
         "item_bytes": {},
         "item_lore": "s36d",
         "item_name": "s36e",
-        "lastUpdated": "s36f",
+        "lastUpdated": 879,
         "link": "s370",
         "lore": "s371",
         "material": "s372",
         "mayor": {},
         "name": "s374",
         "npc_sell_price": 885,
-        "page": "s376",
+        "page": 886,
         "profile_id": "PROFILE01",
         "profiles": [],
-        "progress": "s379",
-        "requiredAmount": "s37a",
+        "progress": 889,
+        "requiredAmount": 890,
         "sales": [],
-        "start": "s37c",
-        "starting_bid": "s37d",
+        "start": 892,
+        "starting_bid": 893,
         "stats": {},
         "success": false,
         "text": "s380",
         "tier": "s381",
         "tiers": [],
         "title": "s383",
-        "totalAuctions": "s384",
-        "totalPages": "s385",
+        "totalAuctions": 900,
+        "totalPages": 901,
         "uuid": "s386"
       },
       "SKY_BLOCK02": {
@@ -101,39 +101,39 @@
         "color": "s510",
         "coop": [],
         "current": {},
-        "end": "s513",
+        "end": 1299,
         "events": [],
         "extra": "s515",
         "fullLore": [],
-        "highest_bid_amount": "s517",
+        "highest_bid_amount": 1303,
         "id": "SKY_BLOCK02",
         "item": {},
         "item_bytes": {},
         "item_lore": "s51b",
         "item_name": "s51c",
-        "lastUpdated": "s51d",
+        "lastUpdated": 1309,
         "link": "s51e",
         "lore": "s51f",
         "material": "s520",
         "mayor": {},
         "name": "s522",
         "npc_sell_price": 1315,
-        "page": "s524",
+        "page": 1316,
         "profile_id": "PROFILE01",
         "profiles": [],
-        "progress": "s527",
-        "requiredAmount": "s528",
+        "progress": 1319,
+        "requiredAmount": 1320,
         "sales": [],
-        "start": "s52a",
-        "starting_bid": "s52b",
+        "start": 1322,
+        "starting_bid": 1323,
         "stats": {},
         "success": false,
         "text": "s52e",
         "tier": "s52f",
         "tiers": [],
         "title": "s531",
-        "totalAuctions": "s532",
-        "totalPages": "s533",
+        "totalAuctions": 1330,
+        "totalPages": 1331,
         "uuid": "s534"
       }
     }
@@ -150,39 +150,1181 @@
         "color": "s6be",
         "coop": [],
         "current": {},
-        "end": "s6c1",
+        "end": 1729,
         "events": [],
         "extra": "s6c3",
         "fullLore": [],
-        "highest_bid_amount": "s6c5",
+        "highest_bid_amount": 1733,
         "item": {},
         "item_bytes": {},
         "item_lore": "s6c9",
         "item_name": "s6ca",
-        "lastUpdated": "s6cb",
+        "lastUpdated": 1739,
         "link": "s6cc",
         "lore": "s6cd",
         "material": "s6ce",
         "mayor": {},
         "name": "s6d0",
         "npc_sell_price": 1745,
-        "page": "s6d2",
+        "page": 1746,
         "profile_id": "PROFILE01",
         "profiles": [],
-        "progress": "s6d5",
-        "requiredAmount": "s6d6",
+        "progress": 1749,
+        "requiredAmount": 1750,
         "sales": [],
-        "start": "s6d8",
-        "starting_bid": "s6d9",
+        "start": 1752,
+        "starting_bid": 1753,
         "stats": {},
         "success": false,
         "text": "s6dc",
         "tier": "s6dd",
         "tiers": [],
         "title": "s6df",
-        "totalAuctions": "s6e0",
-        "totalPages": "s6e1",
+        "totalAuctions": 1760,
+        "totalPages": 1761,
         "uuid": "s6e2"
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/skyblock/auction": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockAuction",
+        "parameters": [
+          {
+            "description": "The auction UUID that you wish to request",
+            "in": "query",
+            "name": "uuid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The player UUID that you wish to request",
+            "in": "query",
+            "name": "player",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The profile UUID that you wish to request",
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "auctions": {
+                      "items": {
+                        "properties": {
+                          "auctioneer": {
+                            "type": "string"
+                          },
+                          "bids": {
+                            "items": {
+                              "properties": {
+                                "amount": {
+                                  "type": "integer"
+                                },
+                                "auction_id": {
+                                  "type": "string"
+                                },
+                                "bidder": {
+                                  "type": "string"
+                                },
+                                "profile_id": {
+                                  "type": "string"
+                                },
+                                "timestamp": {
+                                  "format": "int64",
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "claimed": {
+                            "type": "boolean"
+                          },
+                          "claimed_bidders": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "coop": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "end": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "extra": {
+                            "type": "string"
+                          },
+                          "highest_bid_amount": {
+                            "type": "integer"
+                          },
+                          "item_bytes": {
+                            "properties": {
+                              "data": {
+                                "description": "Base64 encoded string containing gzipped NBT data",
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "item_lore": {
+                            "type": "string"
+                          },
+                          "item_name": {
+                            "type": "string"
+                          },
+                          "profile_id": {
+                            "type": "string"
+                          },
+                          "start": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "starting_bid": {
+                            "type": "integer"
+                          },
+                          "tier": {
+                            "type": "string"
+                          },
+                          "uuid": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Some data is missing, this is usually a field."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Access is forbidden, usually due to an invalid API key being used."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Some data provided is invalid."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/auctions": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockAuctions",
+        "parameters": [
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "auctions": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "totalAuctions": {
+                      "type": "integer"
+                    },
+                    "totalPages": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/bingo": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockPlayerBingo",
+        "parameters": [
+          {
+            "description": "Player UUID",
+            "in": "query",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "events": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/profiles": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockProfiles",
+        "parameters": [
+          {
+            "description": "Player UUID",
+            "in": "query",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "profiles": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/resources/skyblock/bingo": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockBingo",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "end": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "goals": {
+                      "items": {
+                        "properties": {
+                          "fullLore": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "lore": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "progress": {
+                            "type": "integer"
+                          },
+                          "requiredAmount": {
+                            "type": "integer"
+                          },
+                          "tiers": {
+                            "items": {
+                              "type": "integer"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "modifier": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "start": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/skyblock/items": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockItems",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "color": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "material": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "npc_sell_price": {
+                            "type": "number"
+                          },
+                          "stats": {
+                            "type": "object"
+                          },
+                          "tier": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/skyblock/auctions_ended": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockAuctionsEnded",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "auctions": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/firesales": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockFireSales",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "sales": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/news": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockNews",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "item": {
+                            "properties": {
+                              "material": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Access is forbidden, usually due to an invalid API key being used."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/garden": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockGarden",
+        "parameters": [
+          {
+            "description": "Profile UUID",
+            "in": "query",
+            "name": "profile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "garden": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/museum": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockMuseum",
+        "parameters": [
+          {
+            "description": "Profile UUID",
+            "in": "query",
+            "name": "profile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "members": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/skyblock/profile": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockProfile",
+        "parameters": [
+          {
+            "description": "Profile UUID",
+            "in": "query",
+            "name": "profile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "profile": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/resources/skyblock/collections": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockCollections",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "collections": {
+                      "type": "object"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/skyblock/election": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockElection",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "current": {
+                      "type": "object"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "mayor": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/skyblock/skills": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockSkills",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "skills": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/skyblock/bazaar": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSkyBlockBazaar",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "products": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

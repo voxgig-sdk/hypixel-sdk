@@ -261,6 +261,12 @@ main: kit: entity: sky_block: {
               }
             ]
           }
+          contract: {
+            id: "GET /v2/skyblock/auction"
+            json: "{\"operationId\":\"getSkyBlockAuction\",\"parameters\":[{\"description\":\"The auction UUID that you wish to request\",\"in\":\"query\",\"name\":\"uuid\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"The player UUID that you wish to request\",\"in\":\"query\",\"name\":\"player\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"The profile UUID that you wish to request\",\"in\":\"query\",\"name\":\"profile\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"auctions\":{\"items\":{\"properties\":{\"auctioneer\":{\"type\":\"string\"},\"bids\":{\"items\":{\"properties\":{\"amount\":{\"type\":\"integer\"},\"auction_id\":{\"type\":\"string\"},\"bidder\":{\"type\":\"string\"},\"profile_id\":{\"type\":\"string\"},\"timestamp\":{\"format\":\"int64\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"category\":{\"type\":\"string\"},\"claimed\":{\"type\":\"boolean\"},\"claimed_bidders\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"coop\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"end\":{\"format\":\"int64\",\"type\":\"integer\"},\"extra\":{\"type\":\"string\"},\"highest_bid_amount\":{\"type\":\"integer\"},\"item_bytes\":{\"properties\":{\"data\":{\"description\":\"Base64 encoded string containing gzipped NBT data\",\"type\":\"string\"},\"type\":{\"type\":\"integer\"}},\"type\":\"object\"},\"item_lore\":{\"type\":\"string\"},\"item_name\":{\"type\":\"string\"},\"profile_id\":{\"type\":\"string\"},\"start\":{\"format\":\"int64\",\"type\":\"integer\"},\"starting_bid\":{\"type\":\"integer\"},\"tier\":{\"type\":\"string\"},\"uuid\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cause\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Some data is missing, this is usually a field.\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cause\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Access is forbidden, usually due to an invalid API key being used.\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cause\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Some data provided is invalid.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cause\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/auction"
           segments: [
@@ -299,6 +305,12 @@ main: kit: entity: sky_block: {
               }
             ]
           }
+          contract: {
+            id: "GET /v2/skyblock/auctions"
+            json: "{\"operationId\":\"getSkyBlockAuctions\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"auctions\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"page\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"totalAuctions\":{\"type\":\"integer\"},\"totalPages\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/auctions"
           segments: [
@@ -333,6 +345,12 @@ main: kit: entity: sky_block: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /v2/skyblock/bingo"
+            json: "{\"operationId\":\"getSkyBlockPlayerBingo\",\"parameters\":[{\"description\":\"Player UUID\",\"in\":\"query\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"events\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/v2/skyblock/bingo"
@@ -369,6 +387,12 @@ main: kit: entity: sky_block: {
               }
             ]
           }
+          contract: {
+            id: "GET /v2/skyblock/profiles"
+            json: "{\"operationId\":\"getSkyBlockProfiles\",\"parameters\":[{\"description\":\"Player UUID\",\"in\":\"query\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"profiles\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/profiles"
           segments: [
@@ -393,6 +417,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/resources/skyblock/bingo"
+            json: "{\"operationId\":\"getSkyBlockBingo\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"end\":{\"format\":\"int64\",\"type\":\"integer\"},\"goals\":{\"items\":{\"properties\":{\"fullLore\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"type\":\"string\"},\"lore\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"progress\":{\"type\":\"integer\"},\"requiredAmount\":{\"type\":\"integer\"},\"tiers\":{\"items\":{\"type\":\"integer\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"type\":\"integer\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"modifier\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"start\":{\"format\":\"int64\",\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/resources/skyblock/bingo"
           segments: [
@@ -415,6 +445,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/resources/skyblock/items"
+            json: "{\"operationId\":\"getSkyBlockItems\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"items\":{\"items\":{\"properties\":{\"category\":{\"type\":\"string\"},\"color\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"material\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"npc_sell_price\":{\"type\":\"number\"},\"stats\":{\"type\":\"object\"},\"tier\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/resources/skyblock/items"
           segments: [
@@ -437,6 +473,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/skyblock/auctions_ended"
+            json: "{\"operationId\":\"getSkyBlockAuctionsEnded\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"auctions\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/auctions_ended"
           segments: [
@@ -456,6 +498,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/skyblock/firesales"
+            json: "{\"operationId\":\"getSkyBlockFireSales\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"sales\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/firesales"
           segments: [
@@ -475,6 +523,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/skyblock/news"
+            json: "{\"operationId\":\"getSkyBlockNews\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"items\":{\"items\":{\"properties\":{\"item\":{\"properties\":{\"material\":{\"type\":\"string\"}},\"type\":\"object\"},\"link\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"},\"403\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cause\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Access is forbidden, usually due to an invalid API key being used.\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cause\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle.\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/news"
           segments: [
@@ -509,6 +563,12 @@ main: kit: entity: sky_block: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /v2/skyblock/garden"
+            json: "{\"operationId\":\"getSkyBlockGarden\",\"parameters\":[{\"description\":\"Profile UUID\",\"in\":\"query\",\"name\":\"profile\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"garden\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/v2/skyblock/garden"
@@ -545,6 +605,12 @@ main: kit: entity: sky_block: {
               }
             ]
           }
+          contract: {
+            id: "GET /v2/skyblock/museum"
+            json: "{\"operationId\":\"getSkyBlockMuseum\",\"parameters\":[{\"description\":\"Profile UUID\",\"in\":\"query\",\"name\":\"profile\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"members\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/museum"
           segments: [
@@ -580,6 +646,12 @@ main: kit: entity: sky_block: {
               }
             ]
           }
+          contract: {
+            id: "GET /v2/skyblock/profile"
+            json: "{\"operationId\":\"getSkyBlockProfile\",\"parameters\":[{\"description\":\"Profile UUID\",\"in\":\"query\",\"name\":\"profile\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"profile\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/profile"
           segments: [
@@ -604,6 +676,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/resources/skyblock/collections"
+            json: "{\"operationId\":\"getSkyBlockCollections\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"collections\":{\"type\":\"object\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"version\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/resources/skyblock/collections"
           segments: [
@@ -626,6 +704,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/resources/skyblock/election"
+            json: "{\"operationId\":\"getSkyBlockElection\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"current\":{\"type\":\"object\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"mayor\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/resources/skyblock/election"
           segments: [
@@ -648,6 +732,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/resources/skyblock/skills"
+            json: "{\"operationId\":\"getSkyBlockSkills\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"skills\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"},\"version\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/resources/skyblock/skills"
           segments: [
@@ -670,6 +760,12 @@ main: kit: entity: sky_block: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/skyblock/bazaar"
+            json: "{\"operationId\":\"getSkyBlockBazaar\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"products\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/skyblock/bazaar"
           segments: [

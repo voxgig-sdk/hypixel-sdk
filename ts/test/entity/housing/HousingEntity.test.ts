@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { HypixelSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('HousingEntity', async () => {
 
     const live = 'TRUE' === process.env.HYPIXEL_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'housing.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'housing.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set HYPIXEL_TEST_HOUSING_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"houses","req":false,"type":"`$ARRAY`","index$":0},{"active":true,"name":"success","req":false,"type":"`$BOOLEAN`","index$":1}],"name":"housing","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"uuid","orig":"uuid","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /v2/housing/player","json":"{\"operationId\":\"getHousingPlayer\",\"parameters\":[{\"description\":\"Player UUID\",\"in\":\"query\",\"name\":\"uuid\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"houses\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v2/housing/player","segments":[{"lit":"v2"},{"lit":"housing"},{"lit":"player"}],"select":{"$action":"player","exist":["uuid"]},"transform":{"req":"`reqdata`","res":"`body.houses`"},"index$":0},{"active":true,"args":{},"contract":{"id":"GET /v2/housing/houses","json":"{\"operationId\":\"getHousingHouses\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"houses\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v2/housing/houses","segments":[{"lit":"v2"},{"lit":"housing"},{"lit":"houses"}],"select":{"$action":"house"},"transform":{"req":"`reqdata`","res":"`body.houses`"},"index$":1}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"house","orig":"house","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /v2/housing/house","json":"{\"operationId\":\"getHousingHouse\",\"parameters\":[{\"description\":\"House UUID\",\"in\":\"query\",\"name\":\"house\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"house\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v2/housing/house","segments":[{"lit":"v2"},{"lit":"housing"},{"lit":"house"}],"select":{"$action":"house","exist":["house"]},"transform":{"req":"`reqdata`","res":"`body.house`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"housing","name__orig":"housing","Name":"Housing","name_":"housing","name-":"housing","NAME":"HOUSING","index$":1}, {"active":true,"entity":"housing","key$":"BasicHousingFlow","kind":"basic","name":"BasicHousingFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"housing_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"housing_ref01","srcdatavar":"housing_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-housing_ref01"}}],"index$":1}]}, 'Housing')
     }
     const client = setup.client
     const struct = setup.struct
@@ -115,13 +114,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['HYPIXEL_TEST_HOUSING_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'HYPIXEL_TEST_HOUSING_ENTID': idmap,
     'HYPIXEL_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.HYPIXEL_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['HYPIXEL_TEST_HOUSING_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new HypixelSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -146,7 +144,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -159,7 +158,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.HYPIXEL_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

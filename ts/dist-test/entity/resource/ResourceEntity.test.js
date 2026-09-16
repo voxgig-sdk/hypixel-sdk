@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.HYPIXEL_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'resource.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'resource.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set HYPIXEL_TEST_RESOURCE_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "databaseName", "req": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "id", "req": false, "type": "`$INTEGER`", "index$": 1 }, { "active": true, "format": "int64", "name": "lastUpdated", "req": false, "type": "`$INTEGER`", "index$": 2 }, { "active": true, "name": "modeNames", "req": false, "type": "`$OBJECT`", "index$": 3 }, { "active": true, "name": "name", "req": false, "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "one_time", "req": false, "type": "`$OBJECT`", "index$": 5 }, { "active": true, "name": "rarities", "req": false, "type": "`$OBJECT`", "index$": 6 }, { "active": true, "name": "success", "req": false, "type": "`$BOOLEAN`", "index$": 7 }, { "active": true, "name": "tiered", "req": false, "type": "`$OBJECT`", "index$": 8 }, { "active": true, "name": "types", "req": false, "type": "`$OBJECT`", "index$": 9 }], "id": { "field": "id", "name": "id" }, "name": "resource", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": {}, "contract": { "id": "GET /v2/resources/achievements", "json": "{\"operationId\":\"getAchievements\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"achievements\":{\"type\":\"object\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v2/resources/achievements", "segments": [{ "lit": "v2" }, { "lit": "resources" }, { "lit": "achievements" }], "select": { "$action": "achievement" }, "transform": { "req": "`reqdata`", "res": "`body.achievements`" }, "index$": 0 }, { "active": true, "args": {}, "contract": { "id": "GET /v2/resources/challenges", "json": "{\"operationId\":\"getChallenges\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"challenges\":{\"type\":\"object\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v2/resources/challenges", "segments": [{ "lit": "v2" }, { "lit": "resources" }, { "lit": "challenges" }], "select": { "$action": "challenge" }, "transform": { "req": "`reqdata`", "res": "`body.challenges`" }, "index$": 1 }, { "active": true, "args": {}, "contract": { "id": "GET /v2/resources/games", "json": "{\"operationId\":\"getGames\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"games\":{\"additionalProperties\":{\"properties\":{\"databaseName\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\"},\"modeNames\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"},\"name\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"object\"},\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v2/resources/games", "segments": [{ "lit": "v2" }, { "lit": "resources" }, { "lit": "games" }], "select": { "$action": "game" }, "transform": { "req": "`reqdata`", "res": "`body.games`" }, "index$": 2 }, { "active": true, "args": {}, "contract": { "id": "GET /v2/resources/guilds/achievements", "json": "{\"operationId\":\"getGuildAchievements\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"one_time\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"},\"tiered\":{\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v2/resources/guilds/achievements", "segments": [{ "lit": "v2" }, { "lit": "resources" }, { "lit": "guilds" }, { "lit": "achievements" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "active": true, "args": {}, "contract": { "id": "GET /v2/resources/quests", "json": "{\"operationId\":\"getQuests\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"quests\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v2/resources/quests", "segments": [{ "lit": "v2" }, { "lit": "resources" }, { "lit": "quests" }], "select": { "$action": "quest" }, "transform": { "req": "`reqdata`", "res": "`body.quests`" }, "index$": 4 }, { "active": true, "args": {}, "contract": { "id": "GET /v2/resources/vanity/companions", "json": "{\"operationId\":\"getVanityCompanions\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"rarities\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"},\"types\":{\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v2/resources/vanity/companions", "segments": [{ "lit": "v2" }, { "lit": "resources" }, { "lit": "vanity" }, { "lit": "companions" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 5 }, { "active": true, "args": {}, "contract": { "id": "GET /v2/resources/vanity/pets", "json": "{\"operationId\":\"getVanityPets\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"format\":\"int64\",\"type\":\"integer\"},\"rarities\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"},\"types\":{\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/v2/resources/vanity/pets", "segments": [{ "lit": "v2" }, { "lit": "resources" }, { "lit": "vanity" }, { "lit": "pets" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 6 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "resource", "name__orig": "resource", "Name": "Resource", "name_": "resource", "name-": "resource", "NAME": "RESOURCE", "index$": 5 }, { "active": true, "entity": "resource", "key$": "BasicResourceFlow", "kind": "basic", "name": "BasicResourceFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "resource_ref01", "srcdatavar": "resource_ref01_data", "suffix": "_dt0" }, "match": {}, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-resource_ref01" } }], "index$": 0 }] }, 'Resource');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -103,12 +101,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['HYPIXEL_TEST_RESOURCE_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'HYPIXEL_TEST_RESOURCE_ENTID': idmap,
         'HYPIXEL_TEST_LIVE': 'FALSE',
@@ -117,7 +109,13 @@ function basicSetup(extra) {
     });
     idmap = env['HYPIXEL_TEST_RESOURCE_ENTID'];
     const live = 'TRUE' === env.HYPIXEL_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['HYPIXEL_TEST_RESOURCE_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.HypixelSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -130,7 +128,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -142,7 +141,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.HYPIXEL_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

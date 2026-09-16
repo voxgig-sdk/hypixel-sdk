@@ -4,7 +4,7 @@
       "RESOURCE00": {
         "databaseName": "s64",
         "id": "RESOURCE00",
-        "lastUpdated": "s66",
+        "lastUpdated": 102,
         "modeNames": {},
         "name": "s68",
         "one_time": {},
@@ -16,7 +16,7 @@
       "RESOURCE01": {
         "databaseName": "sc8",
         "id": "RESOURCE01",
-        "lastUpdated": "sca",
+        "lastUpdated": 202,
         "modeNames": {},
         "name": "scc",
         "one_time": {},
@@ -28,7 +28,7 @@
       "RESOURCE02": {
         "databaseName": "s12c",
         "id": "RESOURCE02",
-        "lastUpdated": "s12e",
+        "lastUpdated": 302,
         "modeNames": {},
         "name": "s130",
         "one_time": {},
@@ -43,7 +43,7 @@
     "resource": {
       "resource_ref01": {
         "databaseName": "s190",
-        "lastUpdated": "s192",
+        "lastUpdated": 402,
         "modeNames": {},
         "name": "s194",
         "one_time": {},
@@ -51,6 +51,359 @@
         "success": false,
         "tiered": {},
         "types": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/resources/achievements": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAchievements",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "achievements": {
+                      "type": "object"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/challenges": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getChallenges",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "challenges": {
+                      "type": "object"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/games": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getGames",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "games": {
+                      "additionalProperties": {
+                        "properties": {
+                          "databaseName": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "integer"
+                          },
+                          "modeNames": {
+                            "additionalProperties": {
+                              "type": "string"
+                            },
+                            "type": "object"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "object"
+                    },
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/guilds/achievements": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getGuildAchievements",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "one_time": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "tiered": {
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/quests": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getQuests",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "quests": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/vanity/companions": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getVanityCompanions",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "rarities": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "types": {
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /v2/resources/vanity/pets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getVanityPets",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "rarities": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "types": {
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

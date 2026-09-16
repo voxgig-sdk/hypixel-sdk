@@ -2,8 +2,8 @@
   "existing": {
     "player_data": {
       "PLAYER_DATA00": {
-        "date": "s3c",
-        "ended": "s3d",
+        "date": 60,
+        "ended": 61,
         "gameType": "s3e",
         "map": "s3f",
         "mode": "s40",
@@ -11,8 +11,8 @@
         "id": "PLAYER_DATA00"
       },
       "PLAYER_DATA01": {
-        "date": "s78",
-        "ended": "s79",
+        "date": 120,
+        "ended": 121,
         "gameType": "s7a",
         "map": "s7b",
         "mode": "s7c",
@@ -20,8 +20,8 @@
         "id": "PLAYER_DATA01"
       },
       "PLAYER_DATA02": {
-        "date": "sb4",
-        "ended": "sb5",
+        "date": 180,
+        "ended": 181,
         "gameType": "sb6",
         "map": "sb7",
         "mode": "sb8",
@@ -33,12 +33,300 @@
   "new": {
     "player_data": {
       "player_data_ref01": {
-        "date": "sf0",
-        "ended": "sf1",
+        "date": 240,
+        "ended": 241,
         "gameType": "sf2",
         "map": "sf3",
         "mode": "sf4",
         "online": false
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/recentgames": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRecentGames",
+        "parameters": [
+          {
+            "description": "Player UUID (supports both dashed and undashed versions)",
+            "in": "query",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "games": {
+                      "items": {
+                        "properties": {
+                          "date": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "ended": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "gameType": {
+                            "type": "string"
+                          },
+                          "map": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "uuid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Get player's recent game"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Some data is missing, this is usually a field."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Access is forbidden, usually due to an invalid API key being used."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Some data provided is invalid."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/status": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPlayerStatus",
+        "parameters": [
+          {
+            "description": "Player UUID (supports both dashed and undashed versions)",
+            "in": "query",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "session": {
+                      "properties": {
+                        "gameType": {
+                          "type": "string"
+                        },
+                        "map": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string"
+                        },
+                        "online": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "uuid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Get player status"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Some data is missing, this is usually a field."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Access is forbidden, usually due to an invalid API key being used."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cause": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A request limit has been reached, usually this is due to the limit on the key being reached but can also be triggered by a global throttle."
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

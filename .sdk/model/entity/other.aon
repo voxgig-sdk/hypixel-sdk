@@ -53,6 +53,12 @@ main: kit: entity: other: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /v2/boosters"
+            json: "{\"operationId\":\"getBoosters\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"boosterState\":{\"type\":\"object\"},\"boosters\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/boosters"
           segments: [
@@ -74,6 +80,12 @@ main: kit: entity: other: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /v2/counts"
+            json: "{\"operationId\":\"getPlayerCounts\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"games\":{\"additionalProperties\":{\"type\":\"integer\"},\"type\":\"object\"},\"playerCount\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/counts"
           segments: [
@@ -90,6 +102,12 @@ main: kit: entity: other: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/leaderboards"
+            json: "{\"operationId\":\"getLeaderboards\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"leaderboards\":{\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/leaderboards"
           segments: [
@@ -106,6 +124,12 @@ main: kit: entity: other: {
           }
         }
         {
+          contract: {
+            id: "GET /v2/punishmentstats"
+            json: "{\"operationId\":\"getPunishmentStats\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"staff_rollingDaily\":{\"type\":\"integer\"},\"staff_total\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"watchdog_lastMinute\":{\"type\":\"integer\"},\"watchdog_rollingDaily\":{\"type\":\"integer\"},\"watchdog_total\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"A successful response\"}},\"security\":[{\"ApiKey\":[]}],\"securitySchemes\":{\"ApiKey\":{\"description\":\"Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.\",\"in\":\"header\",\"name\":\"API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v2/punishmentstats"
           segments: [

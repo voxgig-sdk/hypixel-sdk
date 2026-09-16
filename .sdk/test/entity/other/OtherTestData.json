@@ -4,34 +4,34 @@
       "OTHER00": {
         "boosterState": {},
         "boosters": [],
-        "staff_rollingDaily": "s52",
-        "staff_total": "s53",
+        "staff_rollingDaily": 82,
+        "staff_total": 83,
         "success": true,
-        "watchdog_lastMinute": "s55",
-        "watchdog_rollingDaily": "s56",
-        "watchdog_total": "s57",
+        "watchdog_lastMinute": 85,
+        "watchdog_rollingDaily": 86,
+        "watchdog_total": 87,
         "id": "OTHER00"
       },
       "OTHER01": {
         "boosterState": {},
         "boosters": [],
-        "staff_rollingDaily": "sa2",
-        "staff_total": "sa3",
+        "staff_rollingDaily": 162,
+        "staff_total": 163,
         "success": true,
-        "watchdog_lastMinute": "sa5",
-        "watchdog_rollingDaily": "sa6",
-        "watchdog_total": "sa7",
+        "watchdog_lastMinute": 165,
+        "watchdog_rollingDaily": 166,
+        "watchdog_total": 167,
         "id": "OTHER01"
       },
       "OTHER02": {
         "boosterState": {},
         "boosters": [],
-        "staff_rollingDaily": "sf2",
-        "staff_total": "sf3",
+        "staff_rollingDaily": 242,
+        "staff_total": 243,
         "success": true,
-        "watchdog_lastMinute": "sf5",
-        "watchdog_rollingDaily": "sf6",
-        "watchdog_total": "sf7",
+        "watchdog_lastMinute": 245,
+        "watchdog_rollingDaily": 246,
+        "watchdog_total": 247,
         "id": "OTHER02"
       }
     }
@@ -41,12 +41,206 @@
       "other_ref01": {
         "boosterState": {},
         "boosters": [],
-        "staff_rollingDaily": "s142",
-        "staff_total": "s143",
+        "staff_rollingDaily": 322,
+        "staff_total": 323,
         "success": true,
-        "watchdog_lastMinute": "s145",
-        "watchdog_rollingDaily": "s146",
-        "watchdog_total": "s147"
+        "watchdog_lastMinute": 325,
+        "watchdog_rollingDaily": 326,
+        "watchdog_total": 327
+      }
+    }
+  },
+  "requests": {
+    "GET /v2/boosters": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBoosters",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "boosterState": {
+                      "type": "object"
+                    },
+                    "boosters": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/counts": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPlayerCounts",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "games": {
+                      "additionalProperties": {
+                        "type": "integer"
+                      },
+                      "type": "object"
+                    },
+                    "playerCount": {
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/leaderboards": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getLeaderboards",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "leaderboards": {
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v2/punishmentstats": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPunishmentStats",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "staff_rollingDaily": {
+                      "type": "integer"
+                    },
+                    "staff_total": {
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "watchdog_lastMinute": {
+                      "type": "integer"
+                    },
+                    "watchdog_rollingDaily": {
+                      "type": "integer"
+                    },
+                    "watchdog_total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "A successful response"
+          }
+        },
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKey": {
+            "description": "Obtained via the Hypixel Developer Dashboard when creating an application. You can also request higher limits for production applications in this dashboard.",
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }
