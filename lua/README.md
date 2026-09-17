@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local others, err = client:Other():list()
+local resource, err = client:Resource():load()
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Other():list()
+local result, err = client:Resource():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -246,8 +246,6 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `houses` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -308,11 +306,7 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `databaseName` |  |
-| `id` |  |
 | `lastUpdated` |  |
-| `modeNames` |  |
-| `name` |  |
 | `one_time` |  |
 | `rarities` |  |
 | `success` |  |
@@ -407,13 +401,6 @@ Create an instance: `local housing = client:Housing(nil)`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `houses` | `table` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -546,11 +533,7 @@ Create an instance: `local resource = client:Resource(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `databaseName` | `string` |  |
-| `id` | `number` |  |
 | `lastUpdated` | `number` |  |
-| `modeNames` | `table` |  |
-| `name` | `string` |  |
 | `one_time` | `table` |  |
 | `rarities` | `table` |  |
 | `success` | `boolean` |  |
@@ -560,7 +543,7 @@ Create an instance: `local resource = client:Resource(nil)`
 #### Example: Load
 
 ```lua
-local resource, err = client:Resource():load({ id = 1 })
+local resource, err = client:Resource():load()
 ```
 
 
@@ -778,6 +761,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── hypixel_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations
@@ -792,15 +776,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local other = client:Other()
-other:list()
+local resource = client:Resource()
+resource:load()
 
--- other:data_get() now returns the other data from the last list
--- other:match_get() returns the last match criteria
+-- resource:data_get() now returns the resource data from the last load
+-- resource:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

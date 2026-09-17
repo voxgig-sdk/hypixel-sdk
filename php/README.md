@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $others = $client->Other()->list();
+    $resource = $client->Resource()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -268,8 +268,6 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `houses` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -330,11 +328,7 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `databaseName` |  |
-| `id` |  |
 | `lastUpdated` |  |
-| `modeNames` |  |
-| `name` |  |
 | `one_time` |  |
 | `rarities` |  |
 | `success` |  |
@@ -430,13 +424,6 @@ Create an instance: `$housing = $client->Housing();`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `houses` | `array` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -576,11 +563,7 @@ Create an instance: `$resource = $client->Resource();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `databaseName` | `string` |  |
-| `id` | `int` |  |
 | `lastUpdated` | `int` |  |
-| `modeNames` | `array` |  |
-| `name` | `string` |  |
 | `one_time` | `array` |  |
 | `rarities` | `array` |  |
 | `success` | `bool` |  |
@@ -591,7 +574,7 @@ Create an instance: `$resource = $client->Resource();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Resource record (throws on error).
-$resource = $client->Resource()->load(["id" => 1]);
+$resource = $client->Resource()->load();
 ```
 
 
@@ -811,6 +794,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── hypixel_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations
@@ -825,15 +809,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$other = $client->Other();
-$other->list();
+$resource = $client->Resource();
+$resource->load();
 
-// $other->data_get() now returns the other data from the last list
-// $other->match_get() returns the last match criteria
+// $resource->data_get() now returns the resource data from the last load
+// $resource->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

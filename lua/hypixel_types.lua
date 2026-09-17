@@ -14,8 +14,6 @@
 ---@field player? string
 
 ---@class Housing
----@field houses? table
----@field success? boolean
 
 ---@class HousingLoadMatch
 ---@field house string
@@ -83,11 +81,7 @@
 ---@field uuid string
 
 ---@class Resource
----@field databaseName? string
----@field id? number
 ---@field lastUpdated? number
----@field modeNames? table
----@field name? string
 ---@field one_time? table
 ---@field rarities? table
 ---@field success? boolean
@@ -95,11 +89,7 @@
 ---@field types? table
 
 ---@class ResourceLoadMatch
----@field databaseName? string
----@field id number
 ---@field lastUpdated? number
----@field modeNames? table
----@field name? string
 ---@field one_time? table
 ---@field rarities? table
 ---@field success? boolean

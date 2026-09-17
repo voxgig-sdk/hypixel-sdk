@@ -153,13 +153,6 @@ Return the entity name.
 housing = client.Housing()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `houses` | `list` | No |  |
-| `success` | `bool` | No |  |
-
 ### Operations
 
 #### `list(reqmatch=None, ctrl=None) -> list`
@@ -413,11 +406,7 @@ resource = client.Resource()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `databaseName` | `str` | No |  |
-| `id` | `int` | No |  |
 | `lastUpdated` | `int` | No |  |
-| `modeNames` | `dict` | No |  |
-| `name` | `str` | No |  |
 | `one_time` | `dict` | No |  |
 | `rarities` | `dict` | No |  |
 | `success` | `bool` | No |  |
@@ -431,7 +420,7 @@ resource = client.Resource()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Resource().load({"id": 1})
+result = client.Resource().load()
 ```
 
 ### Common Methods

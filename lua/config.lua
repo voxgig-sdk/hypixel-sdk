@@ -77,6 +77,7 @@ local function make_config()
       base = "https://api.hypixel.net",
       auth = {
         prefix = "",
+        name = "API-Key",
       },
       headers = {
         ["content-type"] = "application/json",
@@ -158,16 +159,7 @@ local function make_config()
         },
       },
       ["housing"] = {
-        ["fields"] = {
-          {
-            ["name"] = "houses",
-            ["type"] = "`$ARRAY`",
-          },
-          {
-            ["name"] = "success",
-            ["type"] = "`$BOOLEAN`",
-          },
-        },
+        ["fields"] = {},
         ["name"] = "housing",
         ["op"] = {
           ["list"] = {
@@ -671,25 +663,9 @@ local function make_config()
       ["resource"] = {
         ["fields"] = {
           {
-            ["name"] = "databaseName",
-            ["type"] = "`$STRING`",
-          },
-          {
-            ["name"] = "id",
-            ["type"] = "`$INTEGER`",
-          },
-          {
             ["format"] = "int64",
             ["name"] = "lastUpdated",
             ["type"] = "`$INTEGER`",
-          },
-          {
-            ["name"] = "modeNames",
-            ["type"] = "`$OBJECT`",
-          },
-          {
-            ["name"] = "name",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "one_time",
@@ -711,10 +687,6 @@ local function make_config()
             ["name"] = "types",
             ["type"] = "`$OBJECT`",
           },
-        },
-        ["id"] = {
-          ["field"] = "id",
-          ["name"] = "id",
         },
         ["name"] = "resource",
         ["op"] = {

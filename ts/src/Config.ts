@@ -123,6 +123,7 @@ class Config {
 
     auth: {
       prefix: '',
+      name: 'API-Key',
     },
 
     headers: {
@@ -131,27 +132,27 @@ class Config {
 
     entity: {
       
-      guild: {
-      },
-
-      housing: {
-      },
-
-      other: {
-      },
-
-      player: {
-      },
-
-      player_data: {
-      },
-
-      resource: {
-      },
-
-      sky_block: {
-      },
-
+        guild: {
+        },
+  
+        housing: {
+        },
+  
+        other: {
+        },
+  
+        player: {
+        },
+  
+        player_data: {
+        },
+  
+        resource: {
+        },
+  
+        sky_block: {
+        },
+  
     }
   }
 
@@ -223,16 +224,7 @@ class Config {
       }
     },
     "housing": {
-      "fields": [
-        {
-          "name": "houses",
-          "type": "`$ARRAY`"
-        },
-        {
-          "name": "success",
-          "type": "`$BOOLEAN`"
-        }
-      ],
+      "fields": [],
       "name": "housing",
       "op": {
         "list": {
@@ -736,25 +728,9 @@ class Config {
     "resource": {
       "fields": [
         {
-          "name": "databaseName",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "id",
-          "type": "`$INTEGER`"
-        },
-        {
           "format": "int64",
           "name": "lastUpdated",
           "type": "`$INTEGER`"
-        },
-        {
-          "name": "modeNames",
-          "type": "`$OBJECT`"
-        },
-        {
-          "name": "name",
-          "type": "`$STRING`"
         },
         {
           "name": "one_time",
@@ -777,10 +753,6 @@ class Config {
           "type": "`$OBJECT`"
         }
       ],
-      "id": {
-        "field": "id",
-        "name": "id"
-      },
       "name": "resource",
       "op": {
         "load": {

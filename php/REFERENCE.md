@@ -159,13 +159,6 @@ Return the entity name.
 $housing = $client->Housing();
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `houses` | `array` | No |  |
-| `success` | `bool` | No |  |
-
 ### Operations
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
@@ -417,11 +410,7 @@ $resource = $client->Resource();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `databaseName` | `string` | No |  |
-| `id` | `int` | No |  |
 | `lastUpdated` | `int` | No |  |
-| `modeNames` | `array` | No |  |
-| `name` | `string` | No |  |
 | `one_time` | `array` | No |  |
 | `rarities` | `array` | No |  |
 | `success` | `bool` | No |  |
@@ -435,7 +424,7 @@ $resource = $client->Resource();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Resource()->load(["id" => 1]);
+$result = $client->Resource()->load();
 ```
 
 ### Common Methods

@@ -48,13 +48,9 @@ class TestResourceEntity:
 
         # LOAD
         resource_ref01_ent = client.Resource(None)
-        resource_ref01_match_dt0 = {
-            "id": resource_ref01_data["id"],
-        }
+        resource_ref01_match_dt0 = {}
         resource_ref01_data_dt0_loaded = resource_ref01_ent.load(resource_ref01_match_dt0, None)
-        resource_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(resource_ref01_data_dt0_loaded))
-        assert resource_ref01_data_dt0_load_result is not None
-        assert resource_ref01_data_dt0_load_result["id"] == resource_ref01_data["id"]
+        assert resource_ref01_data_dt0_loaded is not None
 
 
 

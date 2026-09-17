@@ -51,9 +51,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  others = client.Other.list()
+  resource = client.Resource.load()
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -121,8 +121,8 @@ client = HypixelSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-other = client.Other.list()
-puts other
+resource = client.Resource.load()
+puts resource
 ```
 
 ### Use a custom fetch function
@@ -255,8 +255,6 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `houses` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -317,11 +315,7 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `databaseName` |  |
-| `id` |  |
 | `lastUpdated` |  |
-| `modeNames` |  |
-| `name` |  |
 | `one_time` |  |
 | `rarities` |  |
 | `success` |  |
@@ -417,13 +411,6 @@ Create an instance: `housing = client.Housing`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `houses` | `Array` |  |
-| `success` | `Boolean` |  |
 
 #### Example: Load
 
@@ -563,11 +550,7 @@ Create an instance: `resource = client.Resource`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `databaseName` | `String` |  |
-| `id` | `Integer` |  |
 | `lastUpdated` | `Integer` |  |
-| `modeNames` | `Hash` |  |
-| `name` | `String` |  |
 | `one_time` | `Hash` |  |
 | `rarities` | `Hash` |  |
 | `success` | `Boolean` |  |
@@ -578,7 +561,7 @@ Create an instance: `resource = client.Resource`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Resource record (raises on error).
-resource = client.Resource.load({ "id" => 1 })
+resource = client.Resource.load()
 ```
 
 
@@ -798,6 +781,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── Hypixel_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations
@@ -812,15 +796,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-other = client.Other
-other.list()
+resource = client.Resource
+resource.load()
 
-# other.data_get now returns the other data from the last list
-# other.match_get returns the last match criteria
+# resource.data_get now returns the resource data from the last load
+# resource.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

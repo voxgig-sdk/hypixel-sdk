@@ -157,13 +157,6 @@ Return the entity name.
 local housing = client:Housing(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `houses` | `table` | No |  |
-| `success` | `boolean` | No |  |
-
 ### Operations
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -415,11 +408,7 @@ local resource = client:Resource(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `databaseName` | `string` | No |  |
-| `id` | `number` | No |  |
 | `lastUpdated` | `number` | No |  |
-| `modeNames` | `table` | No |  |
-| `name` | `string` | No |  |
 | `one_time` | `table` | No |  |
 | `rarities` | `table` | No |  |
 | `success` | `boolean` | No |  |
@@ -433,7 +422,7 @@ local resource = client:Resource(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Resource():load({ id = 1 })
+local result, err = client:Resource():load()
 ```
 
 ### Common Methods

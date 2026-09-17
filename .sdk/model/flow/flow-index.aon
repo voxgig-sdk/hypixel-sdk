@@ -1,9 +1,9 @@
 # Flows
 
-@"BasicGuildFlow.aon"
-@"BasicHousingFlow.aon"
-@"BasicOtherFlow.aon"
-@"BasicPlayerDataFlow.aon"
-@"BasicPlayerFlow.aon"
-@"BasicResourceFlow.aon"
-@"BasicSkyBlockFlow.aon"
+@"./BasicGuildFlow.aon"
+@"./BasicHousingFlow.aon"
+@"./BasicOtherFlow.aon"
+@"./BasicPlayerDataFlow.aon"
+@"./BasicPlayerFlow.aon"
+@"./BasicResourceFlow.aon"
+@"./BasicSkyBlockFlow.aon"

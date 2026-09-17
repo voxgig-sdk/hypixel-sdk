@@ -229,13 +229,6 @@ Return a copy of the entity options.
 const housing = client.Housing()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `houses` | `any[]` | No |  |
-| `success` | `boolean` | No |  |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard
@@ -501,11 +494,7 @@ const resource = client.Resource()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `databaseName` | `string` | No |  |
-| `id` | `number` | No |  |
 | `lastUpdated` | `number` | No |  |
-| `modeNames` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
 | `one_time` | `Record<string, any>` | No |  |
 | `rarities` | `Record<string, any>` | No |  |
 | `success` | `boolean` | No |  |
@@ -542,7 +531,7 @@ const result = await client.Resource().load({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Resource().load({ id: 1 })
+const result = await client.Resource().load()
 ```
 
 ### Common Methods

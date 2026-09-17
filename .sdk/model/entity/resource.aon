@@ -6,30 +6,10 @@ main: kit: entity: resource: {
 
   fields: [
     {
-      name: "databaseName"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "id"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
       format: "int64"
       name: "lastUpdated"
       req: false
       type: "`$INTEGER`"
-    }
-    {
-      name: "modeNames"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "name"
-      req: false
-      type: "`$STRING`"
     }
     {
       name: "one_time"
@@ -57,11 +37,6 @@ main: kit: entity: resource: {
       type: "`$OBJECT`"
     }
   ]
-
-  id: {
-    field: "id"
-    name: "id"
-  }
 
   name: "resource"
   op: {

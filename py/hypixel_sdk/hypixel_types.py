@@ -26,9 +26,8 @@ class GuildLoadMatch(TypedDict, total=False):
     player: str
 
 
-class Housing(TypedDict, total=False):
-    houses: list
-    success: bool
+class Housing(TypedDict):
+    pass
 
 
 class HousingLoadMatch(TypedDict):
@@ -107,11 +106,7 @@ class PlayerDataListMatch(TypedDict):
 
 
 class Resource(TypedDict, total=False):
-    databaseName: str
-    id: int
     lastUpdated: int
-    modeNames: dict
-    name: str
     one_time: dict
     rarities: dict
     success: bool
@@ -119,15 +114,8 @@ class Resource(TypedDict, total=False):
     types: dict
 
 
-class ResourceLoadMatchRequired(TypedDict):
-    id: int
-
-
-class ResourceLoadMatch(ResourceLoadMatchRequired, total=False):
-    databaseName: str
+class ResourceLoadMatch(TypedDict, total=False):
     lastUpdated: int
-    modeNames: dict
-    name: str
     one_time: dict
     rarities: dict
     success: bool

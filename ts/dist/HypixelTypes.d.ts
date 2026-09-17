@@ -6,8 +6,6 @@ export interface GuildLoadMatch {
     player?: string;
 }
 export interface Housing {
-    houses?: any[];
-    success?: boolean;
 }
 export interface HousingLoadMatch {
     house: string;
@@ -79,11 +77,7 @@ export interface PlayerDataListMatch {
     uuid: string;
 }
 export interface Resource {
-    databaseName?: string;
-    id?: number;
     lastUpdated?: number;
-    modeNames?: Record<string, any>;
-    name?: string;
     one_time?: Record<string, any>;
     rarities?: Record<string, any>;
     success?: boolean;
@@ -91,11 +85,7 @@ export interface Resource {
     types?: Record<string, any>;
 }
 export interface ResourceLoadMatch {
-    databaseName?: string;
-    id: number;
     lastUpdated?: number;
-    modeNames?: Record<string, any>;
-    name?: string;
     one_time?: Record<string, any>;
     rarities?: Record<string, any>;
     success?: boolean;

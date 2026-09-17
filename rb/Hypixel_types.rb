@@ -30,17 +30,8 @@ GuildLoadMatch = Struct.new(
 )
 
 # Housing entity data model.
-#
-# @!attribute [rw] houses
-#   @return [Array, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-Housing = Struct.new(
-  :houses,
-  :success,
-  keyword_init: true
-)
+class Housing
+end
 
 # Request payload for Housing#load.
 #
@@ -274,20 +265,8 @@ PlayerDataListMatch = Struct.new(
 
 # Resource entity data model.
 #
-# @!attribute [rw] databaseName
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
 # @!attribute [rw] lastUpdated
 #   @return [Integer, nil]
-#
-# @!attribute [rw] modeNames
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
 #
 # @!attribute [rw] one_time
 #   @return [Hash, nil]
@@ -304,11 +283,7 @@ PlayerDataListMatch = Struct.new(
 # @!attribute [rw] types
 #   @return [Hash, nil]
 Resource = Struct.new(
-  :databaseName,
-  :id,
   :lastUpdated,
-  :modeNames,
-  :name,
   :one_time,
   :rarities,
   :success,
@@ -319,20 +294,8 @@ Resource = Struct.new(
 
 # Request payload for Resource#load.
 #
-# @!attribute [rw] databaseName
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer]
-#
 # @!attribute [rw] lastUpdated
 #   @return [Integer, nil]
-#
-# @!attribute [rw] modeNames
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
 #
 # @!attribute [rw] one_time
 #   @return [Hash, nil]
@@ -349,11 +312,7 @@ Resource = Struct.new(
 # @!attribute [rw] types
 #   @return [Hash, nil]
 ResourceLoadMatch = Struct.new(
-  :databaseName,
-  :id,
   :lastUpdated,
-  :modeNames,
-  :name,
   :one_time,
   :rarities,
   :success,

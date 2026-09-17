@@ -164,13 +164,6 @@ housing := client.Housing(nil)
 fmt.Println(housing.GetName()) // "housing"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `houses` | `[]any` | No |  |
-| `success` | `bool` | No |  |
-
 ### Operations
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
@@ -430,11 +423,7 @@ fmt.Println(resource.GetName()) // "resource"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `databaseName` | `string` | No |  |
-| `id` | `int` | No |  |
 | `lastUpdated` | `int` | No |  |
-| `modeNames` | `map[string]any` | No |  |
-| `name` | `string` | No |  |
 | `one_time` | `map[string]any` | No |  |
 | `rarities` | `map[string]any` | No |  |
 | `success` | `bool` | No |  |
@@ -448,7 +437,7 @@ fmt.Println(resource.GetName()) // "resource"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Resource(nil).Load(map[string]any{"id": 1}, nil)
+result, err := client.Resource(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }

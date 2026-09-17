@@ -160,13 +160,6 @@ Return the entity name.
 housing = client.Housing
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `houses` | `Array` | No |  |
-| `success` | `Boolean` | No |  |
-
 ### Operations
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
@@ -418,11 +411,7 @@ resource = client.Resource
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `databaseName` | `String` | No |  |
-| `id` | `Integer` | No |  |
 | `lastUpdated` | `Integer` | No |  |
-| `modeNames` | `Hash` | No |  |
-| `name` | `String` | No |  |
 | `one_time` | `Hash` | No |  |
 | `rarities` | `Hash` | No |  |
 | `success` | `Boolean` | No |  |
@@ -436,7 +425,7 @@ resource = client.Resource
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Resource.load({ "id" => 1 })
+result = client.Resource.load()
 ```
 
 ### Common Methods

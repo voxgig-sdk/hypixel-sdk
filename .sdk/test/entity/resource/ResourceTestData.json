@@ -2,50 +2,38 @@
   "existing": {
     "resource": {
       "RESOURCE00": {
-        "databaseName": "s64",
-        "id": "RESOURCE00",
-        "lastUpdated": 102,
-        "modeNames": {},
-        "name": "s68",
+        "lastUpdated": 60,
         "one_time": {},
         "rarities": {},
         "success": false,
         "tiered": {},
-        "types": {}
+        "types": {},
+        "id": "RESOURCE00"
       },
       "RESOURCE01": {
-        "databaseName": "sc8",
-        "id": "RESOURCE01",
-        "lastUpdated": 202,
-        "modeNames": {},
-        "name": "scc",
+        "lastUpdated": 120,
         "one_time": {},
         "rarities": {},
         "success": false,
         "tiered": {},
-        "types": {}
+        "types": {},
+        "id": "RESOURCE01"
       },
       "RESOURCE02": {
-        "databaseName": "s12c",
-        "id": "RESOURCE02",
-        "lastUpdated": 302,
-        "modeNames": {},
-        "name": "s130",
+        "lastUpdated": 180,
         "one_time": {},
         "rarities": {},
         "success": false,
         "tiered": {},
-        "types": {}
+        "types": {},
+        "id": "RESOURCE02"
       }
     }
   },
   "new": {
     "resource": {
       "resource_ref01": {
-        "databaseName": "s190",
-        "lastUpdated": 402,
-        "modeNames": {},
-        "name": "s194",
+        "lastUpdated": 240,
         "one_time": {},
         "rarities": {},
         "success": false,

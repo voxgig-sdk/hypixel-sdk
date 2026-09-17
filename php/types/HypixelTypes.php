@@ -28,8 +28,6 @@ class GuildLoadMatch
 /** Housing entity data model. */
 class Housing
 {
-    public ?array $houses = null;
-    public ?bool $success = null;
 }
 
 /** Request payload for Housing#load. */
@@ -130,11 +128,7 @@ class PlayerDataListMatch
 /** Resource entity data model. */
 class ResourceType
 {
-    public ?string $databaseName = null;
-    public ?int $id = null;
     public ?int $lastUpdated = null;
-    public ?array $modeNames = null;
-    public ?string $name = null;
     public ?array $one_time = null;
     public ?array $rarities = null;
     public ?bool $success = null;
@@ -145,11 +139,7 @@ class ResourceType
 /** Request payload for Resource#load. */
 class ResourceLoadMatch
 {
-    public ?string $databaseName = null;
-    public int $id;
     public ?int $lastUpdated = null;
-    public ?array $modeNames = null;
-    public ?string $name = null;
     public ?array $one_time = null;
     public ?array $rarities = null;
     public ?bool $success = null;

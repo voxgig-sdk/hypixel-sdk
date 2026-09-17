@@ -4,19 +4,6 @@ main: kit: entity: housing: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "houses"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
-    }
-  ]
-
   name: "housing"
   op: {
     list: {

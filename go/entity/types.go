@@ -25,8 +25,6 @@ type GuildLoadMatch struct {
 
 // Housing is the typed data model for the housing entity.
 type Housing struct {
-	Houses *[]any `json:"houses,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // HousingLoadMatch is the typed request payload for Housing.LoadTyped.
@@ -116,11 +114,7 @@ type PlayerDataListMatch struct {
 
 // Resource is the typed data model for the resource entity.
 type Resource struct {
-	DatabaseName *string `json:"databaseName,omitempty"`
-	Id *int `json:"id,omitempty"`
 	LastUpdated *int `json:"lastUpdated,omitempty"`
-	ModeNames *map[string]any `json:"modeNames,omitempty"`
-	Name *string `json:"name,omitempty"`
 	OneTime *map[string]any `json:"one_time,omitempty"`
 	Rarities *map[string]any `json:"rarities,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -130,11 +124,7 @@ type Resource struct {
 
 // ResourceLoadMatch is the typed request payload for Resource.LoadTyped.
 type ResourceLoadMatch struct {
-	DatabaseName *string `json:"databaseName,omitempty"`
-	Id int `json:"id"`
 	LastUpdated *int `json:"lastUpdated,omitempty"`
-	ModeNames *map[string]any `json:"modeNames,omitempty"`
-	Name *string `json:"name,omitempty"`
 	OneTime *map[string]any `json:"one_time,omitempty"`
 	Rarities *map[string]any `json:"rarities,omitempty"`
 	Success *bool `json:"success,omitempty"`

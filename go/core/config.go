@@ -81,6 +81,7 @@ func MakeConfig() map[string]any {
 			"base": "https://api.hypixel.net",
 			"auth": map[string]any{
 				"prefix": "",
+				"name": "API-Key",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",
@@ -162,16 +163,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"housing": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "houses",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "success",
-						"type": "`$BOOLEAN`",
-					},
-				},
+				"fields": []any{},
 				"name": "housing",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -675,25 +667,9 @@ func MakeConfig() map[string]any {
 			"resource": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "databaseName",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "id",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
 						"format": "int64",
 						"name": "lastUpdated",
 						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "modeNames",
-						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "name",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "one_time",
@@ -715,10 +691,6 @@ func MakeConfig() map[string]any {
 						"name": "types",
 						"type": "`$OBJECT`",
 					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
 				},
 				"name": "resource",
 				"op": map[string]any{

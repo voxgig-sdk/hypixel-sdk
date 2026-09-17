@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-others, err := client.Other(nil).List(nil, nil)
+resource, err := client.Resource(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = others
+_ = resource
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-other, err := client.Other(nil).List(
+resource, err := client.Resource(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(other) // the returned mock data
+fmt.Println(resource) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -280,8 +280,6 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `"houses"` |  |
-| `"success"` |  |
 
 Operations: List, Load.
 
@@ -342,11 +340,7 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `"databaseName"` |  |
-| `"id"` |  |
 | `"lastUpdated"` |  |
-| `"modeNames"` |  |
-| `"name"` |  |
 | `"one_time"` |  |
 | `"rarities"` |  |
 | `"success"` |  |
@@ -445,13 +439,6 @@ Create an instance: `housing := client.Housing(nil)`
 | --- | --- |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `houses` | `[]any` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -612,11 +599,7 @@ Create an instance: `resource := client.Resource(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `databaseName` | `string` |  |
-| `id` | `int` |  |
 | `lastUpdated` | `int` |  |
-| `modeNames` | `map[string]any` |  |
-| `name` | `string` |  |
 | `one_time` | `map[string]any` |  |
 | `rarities` | `map[string]any` |  |
 | `success` | `bool` |  |
@@ -626,7 +609,7 @@ Create an instance: `resource := client.Resource(nil)`
 #### Example: Load
 
 ```go
-resource, err := client.Resource(nil).Load(map[string]any{"id": 1}, nil)
+resource, err := client.Resource(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -867,15 +850,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-other := client.Other(nil)
-other.List(nil, nil)
+resource := client.Resource(nil)
+resource.Load(nil, nil)
 
-// other.Data() now returns the other data from the last list
-// other.Match() returns the last match criteria
+// resource.Data() now returns the resource data from the last load
+// resource.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

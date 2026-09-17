@@ -55,10 +55,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const others = await client.Other().list()
-  console.log(others)
+  const resource = await client.Resource().load()
+  console.log(resource)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -122,10 +122,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = HypixelSDK.test()
 
-const other = await client.Other().list()
-// other is the entity, populated with mock response data
-// — call other.data() for the record itself
-console.log(other)
+const resource = await client.Resource().load()
+// resource is the entity, populated with mock response data
+// — call resource.data() for the record itself
+console.log(resource)
 ```
 
 You can also use the instance method:
@@ -140,10 +140,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Other()
+const entity = client.Resource()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -314,8 +314,6 @@ API path: `/v2/guild`
 
 | Field | Description |
 | --- | --- |
-| `houses` |  |
-| `success` |  |
 
 Operations: list, load.
 
@@ -376,11 +374,7 @@ API path: `/v2/recentgames`
 
 | Field | Description |
 | --- | --- |
-| `databaseName` |  |
-| `id` |  |
 | `lastUpdated` |  |
-| `modeNames` |  |
-| `name` |  |
 | `one_time` |  |
 | `rarities` |  |
 | `success` |  |
@@ -475,13 +469,6 @@ Create an instance: `const housing = client.Housing()`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `houses` | `any[]` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -614,11 +601,7 @@ Create an instance: `const resource = client.Resource()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `databaseName` | `string` |  |
-| `id` | `number` |  |
 | `lastUpdated` | `number` |  |
-| `modeNames` | `Record<string, any>` |  |
-| `name` | `string` |  |
 | `one_time` | `Record<string, any>` |  |
 | `rarities` | `Record<string, any>` |  |
 | `success` | `boolean` |  |
@@ -628,7 +611,7 @@ Create an instance: `const resource = client.Resource()`
 #### Example: Load
 
 ```ts
-const resource = await client.Resource().load({ id: 1 })
+const resource = await client.Resource().load()
 ```
 
 
@@ -852,16 +835,16 @@ import { HypixelSDK } from '@voxgig-sdk/hypixel-sdk'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const other = client.Other()
-await other.list()
+const resource = client.Resource()
+await resource.load()
 
-// other.data() now returns the other data from the last `list`
-// other.match() returns the last match criteria
+// resource.data() now returns the resource data from the last `load`
+// resource.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -46,23 +46,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = HypixelSDK.test({
   entity: {
-    other: {
+    resource: {
       test01: { id: 'test01' },
     },
   },
 })
-const others = await client.Other().list()
-// others is an array of Other entities, populated with mock data
-// — call others[0].data() for the record itself
-console.log(others)
+const resource = await client.Resource().load()
+// resource is the Resource entity, populated with mock data
+// — call resource.data() for the record itself
+console.log(resource)
 ```
 
 ### Python
 
 ```python
 client = HypixelSDK.test()
-others = client.Other().list()
-print(others)
+resource = client.Resource().load()
+print(resource)
 ```
 
 ### PHP
@@ -70,16 +70,16 @@ print(others)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = HypixelSDK::test([
-    "entity" => ["other" => ["test01" => []]],
+    "entity" => ["resource" => ["test01" => []]],
 ]);
-$others = $client->Other()->list();
+$resource = $client->Resource()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Other(nil).List(
+result, err := client.Resource(nil).Load(
     nil, nil,
 )
 ```
@@ -89,28 +89,28 @@ result, err := client.Other(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = HypixelSDK.test({
-  "entity" => { "other" => { "test01" => {} } },
+  "entity" => { "resource" => { "test01" => {} } },
 })
-others = client.Other.list()
+resource = client.Resource.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Other():list()
+local result, err = client:Resource():load()
 ```
 
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/hypixel-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
-| Python | `voxgig-sdk-hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
-| PHP | `voxgig-sdk/hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
+| TypeScript | `@voxgig-sdk/hypixel-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/tags) |
+| Python | `voxgig-sdk-hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/tags) |
+| PHP | `voxgig-sdk/hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/hypixel-sdk/go` | `go get github.com/voxgig-sdk/hypixel-sdk/go@latest` |
-| Ruby | `voxgig-sdk-hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
-| Lua | `voxgig-sdk-hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/releases) |
+| Ruby | `voxgig-sdk-hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/tags) |
+| Lua | `voxgig-sdk-hypixel` | publish pending — [install from git tag](https://github.com/voxgig-sdk/hypixel-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/hypixel-sdk/go-cli` | `go install github.com/voxgig-sdk/hypixel-sdk/go-cli/cmd/hypixel@latest` |
 | Go MCP server | `github.com/voxgig-sdk/hypixel-sdk/go-mcp` | `go get github.com/voxgig-sdk/hypixel-sdk/go-mcp@latest` |
 

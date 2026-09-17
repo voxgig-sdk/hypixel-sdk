@@ -2,28 +2,19 @@
   "existing": {
     "housing": {
       "HOUSING00": {
-        "houses": [],
-        "success": false,
         "id": "HOUSING00"
       },
       "HOUSING01": {
-        "houses": [],
-        "success": false,
         "id": "HOUSING01"
       },
       "HOUSING02": {
-        "houses": [],
-        "success": false,
         "id": "HOUSING02"
       }
     }
   },
   "new": {
     "housing": {
-      "housing_ref01": {
-        "houses": [],
-        "success": false
-      }
+      "housing_ref01": {}
     }
   },
   "requests": {

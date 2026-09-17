@@ -15,8 +15,6 @@ export interface GuildLoadMatch {
 }
 
 export interface Housing {
-  houses?: any[]
-  success?: boolean
 }
 
 export interface HousingLoadMatch {
@@ -107,11 +105,7 @@ export interface PlayerDataListMatch {
 }
 
 export interface Resource {
-  databaseName?: string
-  id?: number
   lastUpdated?: number
-  modeNames?: Record<string, any>
-  name?: string
   one_time?: Record<string, any>
   rarities?: Record<string, any>
   success?: boolean
@@ -120,11 +114,7 @@ export interface Resource {
 }
 
 export interface ResourceLoadMatch {
-  databaseName?: string
-  id: number
   lastUpdated?: number
-  modeNames?: Record<string, any>
-  name?: string
   one_time?: Record<string, any>
   rarities?: Record<string, any>
   success?: boolean

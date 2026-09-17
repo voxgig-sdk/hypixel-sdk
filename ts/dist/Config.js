@@ -104,6 +104,7 @@ class Config {
         base: "https://api.hypixel.net",
         auth: {
             prefix: '',
+            name: 'API-Key',
         },
         headers: {
             "content-type": "application/json"
@@ -185,16 +186,7 @@ class Config {
             }
         },
         "housing": {
-            "fields": [
-                {
-                    "name": "houses",
-                    "type": "`$ARRAY`"
-                },
-                {
-                    "name": "success",
-                    "type": "`$BOOLEAN`"
-                }
-            ],
+            "fields": [],
             "name": "housing",
             "op": {
                 "list": {
@@ -698,25 +690,9 @@ class Config {
         "resource": {
             "fields": [
                 {
-                    "name": "databaseName",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "id",
-                    "type": "`$INTEGER`"
-                },
-                {
                     "format": "int64",
                     "name": "lastUpdated",
                     "type": "`$INTEGER`"
-                },
-                {
-                    "name": "modeNames",
-                    "type": "`$OBJECT`"
-                },
-                {
-                    "name": "name",
-                    "type": "`$STRING`"
                 },
                 {
                     "name": "one_time",
@@ -739,10 +715,6 @@ class Config {
                     "type": "`$OBJECT`"
                 }
             ],
-            "id": {
-                "field": "id",
-                "name": "id"
-            },
             "name": "resource",
             "op": {
                 "load": {
